@@ -1,14 +1,14 @@
 %%%
-# This is a comment
+# This is a comment - but only in this block
 title = "Registration of underscored 'for sale' DNS Node Name"
 abbrev = "forsalereg"
 ipr = "trust200902"
-area = "Internet"
+# area = "Internet"
 # workgroup = "Internet Engineering Task Force (IETF)"
 submissiontype = "IETF"
 keyword = [""]
 tocdepth = 5
-#date = 1997-04-01T00:00:00Z
+# date = 2022-12-20T00:00:00Z
 
 [seriesInfo]
 name = "Internet-Draft"
@@ -30,107 +30,67 @@ organization = "SIDN Labs"
   code = "6825 MD"
   pobox = "Meander 501"
   cityarea = "Gld"
-
-#
-[[contact]]
-initials="A"
-surname="B"
-fullname="A B"
-  [contact.address.postal]
-  city = "Arnhem"
-  code = "6825 MD"
-  pobox = "Meander 501"
-  cityarea = "Gld"
 %%%
 
 {mainmatter}
 
+# Abstract
+
+This document defines the operational convention of using a reserved underscored node name RRset in DNS ("\_for-sale") to indicate that the parent domain name above it is for sale. For this purpose a TXT record is created that MAY contain pointers, such as a URI that allows an interested party to find more information or to engage in further arrangements.
+
 # Introduction
 
-This RFC is a commentary on the difficulty of deciding upon an acceptably
-distinctive hostname for one's computer, a problem which grows in direct
-proportion to the logarithmically increasing size of the Internet.
+## Terminology
 
-Distribution of this memo is unlimited.
+The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL NOT**",
+"**SHOULD**", "**SHOULD NOT**", "**RECOMMENDED**", "**NOT RECOMMENDED**", "**MAY**", and
+"**OPTIONAL**" in this document are to be interpreted as described in BCP 14 [@!RFC2119] [@!RFC8174]
+when, and only when, they appear in all capitals, as shown here.
 
-Except to TS Eliot.
+# Rationale
 
-And, for that matter, to [@A B], who hates iambic pentameter.
+# Convention
 
-# Features
+## RRset
 
-## Definition List
+## Content of TXT record
 
-First Term
-: This is the definition of the first term.
+## TTL
 
-Second Term
-: This is one definition of the second term.
+# Examples
 
-## Ordered List
+## Example 1: a URI
 
-1) First item.
-2) Second item.
+The owner of 'example.com' wishes to signal that the domain is for sale and adds this record to the 'example.com' zone:
 
-## Lists in Lists
+~~~
+_for-sale.example.com IN TXT  "https://example.com/forsale.html"
+~~~
 
-Foo validator:
-: It performs the following actions:
-  * runs
-  * jumps
-  * walks
+And interested party notices this signal and can visit the URI mentioned for further information.
 
-Another example:
+As an alternative, a mailto: URI could also be used:
 
-{type="Step %d:"}
-1. Send it to
-   * Alice
-   * Bob
-   * Carol
+~~~
+_for-sale.example.com IN TXT "mailto:owner@example.com?subject=An%20example&body=Dear%20domain%20owner%3A%20%0A"
+~~~
 
-# Credits
+[todo] wel/geen subject/body erbij?
 
-[@A B]
+There can be a use case for this, especially since WHOIS (or RDAP) often has privact restrictions.
 
-[@-libes; @-lottor; @-wong; @-ts]
+# Acknowledgements
+
+The author would like to thank [todo] for their valuable feedback.
 
 # Security Considerations
 
-Security issues are not discussed in this memo.
+One use of the TXT record defined in this document is to parse the content it contains and to automatically publisch certain information from it on a website or otherwise. There is a risk involved, when the domain owner publishes a malicious URI or one that points to improper content. This may result in reputational damage for the part parsing the record.
 
-Particularly the cardiac security of certain famous poets.
+Even worse is when the content of the TXT record is not validated sufficiently, opening doors to XSS attacks. Therefore it is **RECOMMENDED** that any parsing and publishing is done with utmost care.
+
+[@-RFC8552]
 
 {backmatter}
 
-<reference anchor='libes' target=''>
- <front>
- <title>Choosing a Name for Your Computer</title>
-  <author initials='D.' surname='Libes' fullname='D. Libes'></author>
-  <date year='1989' month='November'/>
- </front>
- <seriesInfo name="Communications of the ACM" value='Vol. 32, No. 11, Pg. 1289' />
- </reference>
 
-<reference anchor='lottor' target='namedroppers@internic.net'>
- <front>
- <title>Domain Name Survey</title>
-  <author initials='M.' surname='Lottor' fullname='M. Lottor'></author>
-  <date year='1997' month='January'/>
- </front>
- </reference>
-
-<reference anchor='wong' target='http://www.seas.upenn.edu/~mengwong/coolhosts.html'>
- <front>
- <title>Cool Hostnames</title>
-  <author initials='M.' surname='Wong' fullname='M. Wong'></author>
-  <date/>
- </front>
- </reference>
-
-<reference anchor='ts' target=''>
- <front>
- <title>Old Possum's Book of Practical Cats</title>
-  <author initials='TS' surname='Stearns' fullname='TS. Stearns'></author>
-  <date/>
- </front>
- </reference>
