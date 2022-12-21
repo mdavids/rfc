@@ -40,7 +40,7 @@ This document defines a simple operational convention of using a reserved unders
 
 # Introduction
 
-Well established services [@RFC3912], [@RFC7483] exist, to find out if a domain name is registered or not. But the fact that a domain name exists, does not exclude the possibility to obtain it, because it may be up for sale.
+Well established services [@RFC3912], [@RFC7483] exist, to find out if a domain name is registered or not. But the fact that a domain name exists does not exclude the possibility to obtain it, because it may be up for sale.
 
 Some registrars offer (payed) mediation services between domain name holders and interested parties, but for a domain  name that is not for sale, such services are a waste of money and time.
 
@@ -60,8 +60,6 @@ when, and only when, they appear in all capitals, as shown here.
 # Rationale
 
 There are undoubtedly more ways to address this problem space. The reasons for the approach defined in this document are primarly accessibility and simplicity. The indicator can be easilty turned on and off at will and more over, it is available right away and does not require major changes in existing services. This allows for a smooth introduction of the concept.
-
-[todo: betere verwoording]
 
 # Convention
 
@@ -152,17 +150,17 @@ Figure: Entry for the "Underscored and Globally Scoped DNS Node Names" Registry
 
 # Security Considerations {#security}
 
-One use of the TXT record type defined in this document is to parse the content it contains and to automatically publisch certain information from it on a website or otherwise. There is a risk involved in this, when the domain owner publishes a malicious URI or one that points to improper content. This may result in reputational damage for the part parsing the record.
+One use of the TXT record type defined in this document is to parse the content it contains and to automatically publish certain information from it on a website or otherwise. There is a risk involved in this, when the domain owner publishes a malicious URI or one that points to improper content. This may result in reputational damage for the party parsing the record.
 
 Even worse is the scenario where the content of the TXT record is not validated sufficiently, opening doors to XSS attacks among other things.
 
 Therefore it is **RECOMMENDED** that any parsing and publishing is done with utmost care and sufficient validation.
 
-There is also a potential risk that this method is abused as a marketing tool, or to otherwise lure individuals into visiting certain sites or other forms of contact, without the intention of actually selling the particular domain name. It is therefore recommended that this method is primarlily used by professionals who are sufficiently alert and aware.
+There is also a potential risk that this method is abused as a marketing tool, or to otherwise lure individuals into visiting certain sites or other forms of contact, without the intention of actually selling the particular domain name. It is therefore recommended that this method is primarily used by professionals who are sufficiently alert and aware.
 
 # Acknowledgements
 
-The author would like to thank [TODO] for their valuable feedback.
+The author would like to thank Thijs van den Hout for his valuable feedback.
 
 [@-RFC8553]
 
