@@ -113,7 +113,7 @@ As an alternative, a mailto: URI could also be used:
 _for-sale.example.com IN TXT "mailto:owner@example.com"
 ~~~
 
-Or a telefphone URI:
+Or a telephone URI:
 
 ~~~
 _for-sale.example.com IN TXT "tel:+1-201-555-0123"
