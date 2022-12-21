@@ -36,17 +36,17 @@ organization = "SIDN Labs"
 
 # Abstract
 
-This document defines a simple operational convention of using a reserved underscored node name ("\_for-sale" TXT RRset in DNS [@!RFC1035]) to indicate that the parent domain name above it is for sale.
+This document defines a simple operational convention of using a reserved underscored node name ("\_for-sale") to indicate that the parent domain name above it is for sale.
 
 # Introduction
 
-Well established services [@RFC3912], [@RFC7483] exist, to find out if a domain name is registered or not. But the fact that a domain name exists, does not exclude the possibility to obtain it.
+Well established services [@RFC3912], [@RFC7483] exist, to find out if a domain name is registered or not. But the fact that a domain name exists, does not exclude the possibility to obtain it, because it may be up for sale.
 
-Some registrars offer (payed) mediation services between domain name holders and interested parties, but for a domain  name that is not for sale, such services are a waste of money and   time.
+Some registrars offer (payed) mediation services between domain name holders and interested parties, but for a domain  name that is not for sale, such services are a waste of money and time.
 
 This specification defines a simple universal way to find out if a domain name, even thouh it is taken, might be obtained nevertheless. It enables a domain name holder to add a reserved underscored node name [@!RFC8552] in the zone, indicating that the domain name is actually for sale.
 
-The TXT record type that is created for that purpose **MAY** contain a pointer, such as a URI [@RFC8820], to allow an interested party to find information or to get in touch and engage in further arrangements.
+The TXT record RRtype [@!RFC1035] that is created for that purpose **MAY** contain a pointer, such as a URI [@RFC8820], to allow an interested party to find information or to get in touch and engage in further arrangements.
 
 With due caution, this information can also be incorporated in the automated availability services, so that when the domain name is checked for availabilty, the service can also indicate it is for sale, including a referral to the selling party's information.
 
@@ -67,9 +67,9 @@ There are undoubtedly more ways to address this problem space. The reasons for t
 
 ## Content limitations
 
-The TXT record may contain any valid content, ranging from an empty string to sensible text or URI's. However, it **SHALL NOT** contain any text that is suggesting that the domain is not for sale. Only the absence of the "\_for-sale" record is an indication of that. Any existence of a "\_for-sale" TXT record **MUST** be regarded as an indication that the domain name is for sale.
+The TXT record **MUST** contain any valid content, ranging from an empty string to sensible text or URI's. However, it **SHALL NOT** contain any text that is suggesting that the domain is not for sale. Only the absence of the "\_for-sale" record is an indication of that. Any existence of a "\_for-sale" TXT record **MUST** therefore be regarded as an indication that the domain name is for sale.
 
-This specification does not dictate the exact use of any content in the "\_for-sale" TXT record, or the lack of any such content. Registries and registrars may use it in their tools, perhaps even by defining additional requirements that the content must meet. Or an individual can use it in combination with existing tools to get in touch with the seller.
+This specification does not dictate the exact use of any content in the "\_for-sale" TXT record, or the lack of any such content. Parties, such as Registries and Registrars may use it in their tools, perhaps even by defining additional requirements that the content must meet. Or an individual can use it in combination with existing tools to get in touch with the seller.
 
 ## RRset limitations
 
@@ -90,8 +90,8 @@ See (#placements) for further explanation.
 \_for-sale.domain | Situation | Verdict
 -------|---------------------|--------
 \_for-sale.example | root zone | Allowed
-\_for-sale.co.aaa.example | aaa.example in PSL | Allowed
-\_for-sale.bbb.example | Second level | Allowed
+\_for-sale.aaa.example | Second level | Allowed
+\_for-sale.co.bbb.example | aaa.example in PSL | Allowed
 \_for-sale.www.ccc.example | Other | Not allowed
 Table: Allowed placements {#placements}
 
@@ -105,15 +105,13 @@ The owner of 'example.com' wishes to signal that the domain is for sale and adds
 _for-sale.example.com IN TXT  "https://example.com/forsale.html"
 ~~~
 
-And interested party notices this signal and can visit the URI mentioned for further information. The TXT record can also be processed by automated tools. See the (#security, use title) section for possible risks.
+An interested party notices this signal and can visit the URI mentioned for further information. The TXT record can also be processed by automated tools. See the (#security, use title) section for possible risks.
 
 As an alternative, a mailto: URI could also be used:
 
 ~~~
 _for-sale.example.com IN TXT "mailto:owner@example.com"
 ~~~
-
-[todo: wel/geen subject/body erbij?]
 
 Or a telefphone URI:
 
@@ -164,7 +162,7 @@ There is also a potential risk that this method is abused as a marketing tool, o
 
 # Acknowledgements
 
-The author would like to thank [todo] for their valuable feedback.
+The author would like to thank [TODO] for their valuable feedback.
 
 [@-RFC8553]
 
