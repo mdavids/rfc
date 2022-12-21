@@ -75,7 +75,7 @@ The content of the TXT record is "as is" and characters such as ";" between two 
 
 This specification does not define any restrictions to the number of TXT records in the RRset, although it is recommended to limit it to one. When the RRset contains multiple records, it is at the discretion of the processor to make a selection. For example, a registry might pick a mandatory URI from the RRset, to display on a website as part of their service, whilst and indivual might just pick a possibly present phone number and dial it to get in touch.
 
-## TTL
+## TTL limitations
 
 A TTL longer than 86400 is **NOT RECOMMENDED**.
 
