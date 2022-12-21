@@ -105,7 +105,7 @@ Name | Situation | Verdict
 \_for-sale.aaa.example | Second level | For sale
 \_for-sale.co.bbb.example | bbb.example in PSL | For sale
 \_for-sale.www.ccc.example | Other | Invalid
-Table: Allowed placements {#placements}
+Table: Allowed placements of TXT record {#placements}
 
 # Examples
 
