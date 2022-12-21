@@ -65,11 +65,11 @@ There are undoubtedly more ways to address this problem space. The reasons for t
 
 ## Content limitations
 
-The TXT record **MUST** contain any valid content, ranging from an empty string to sensible text or URI's. However, it **SHALL NOT** contain any text that is suggesting that the domain is not for sale. Only the absence of the "\_for-sale" record is an indication of that. Any existence of a "\_for-sale" TXT record **MUST** therefore be regarded as an indication that the domain name is for sale.
+The TXT record **MUST** contain any valid content, ranging from an empty string to sensible text or URI's. However, it **SHALL NOT** contain any text that is suggesting that the domain is not for sale. In the case a domain name is not for sale, the "\_for-sale" indicator MUST NOT be used. Any existence of a "\_for-sale" TXT record **MUST** therefore be regarded as an indication that the domain name is for sale.
 
 This specification does not dictate the exact use of any content in the "\_for-sale" TXT record, or the lack of any such content. Parties, such as Registries and Registrars may use it in their tools, perhaps even by defining additional requirements that the content must meet. Or an individual can use it in combination with existing tools to get in touch with the seller.
 
-The content of the TXT record is "as is" and characters such as ";" between two URI's for example, have no defined meaning. It is up to the processor of the content to decide how to handle them.
+The content of the TXT record is "as is" and characters such as ";" between two URIs for example, have no defined meaning. It is up to the processor of the content to decide how to handle them.
 
 ## RRset limitations
 
@@ -77,7 +77,7 @@ This specification does not define any restrictions to the number of TXT records
 
 ## TTL
 
-There is no special obligation for a certain TTL of the "\_for-sale" TXT record, but it is recommended to keep the TTL at a reasonable level. Not too short, to avoid redundant DNS queries, and no too long, to avoid that a domain name might still show up as for sale, while in fact it no longer is. Any TTL between 3600 and 28800 seems reasonable. A TTL longer than 86400 is **NOT RECOMMENDED**.
+A TTL longer than 86400 is **NOT RECOMMENDED**.
 
 ## Placement of node name
 
