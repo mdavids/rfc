@@ -99,8 +99,8 @@ Any other placement of the record **MUST NOT** be regarded as a signal that the 
 
 See (#placements) for further explanation.
 
-\_for-sale.domain | Situation | Verdict
--------|---------------------|--------
+Name | Situation | Verdict
+-----|-----------|--------
 \_for-sale.example | root zone | For sale
 \_for-sale.aaa.example | Second level | For sale
 \_for-sale.co.bbb.example | bbb.example in PSL | For sale
