@@ -132,7 +132,7 @@ _for-sale.example.com IN TXT  "I'm for sale: info [at] example.com"
 The content in the next example could be malicious, but it is not in violation of this specification (see (#security)):
 
 ~~~
-_for-sale.example.com IN TXT  "<script>Hi, I'm a hacker!</script>"
+_for-sale.example.com IN TXT  "<script>alert('I'm a hacker!')</script>"
 ~~~
 
 
@@ -162,7 +162,7 @@ There is also a potential risk that this method is abused as a marketing tool, o
 
 # Acknowledgements
 
-The author would like to thank Thijs van den Hout for his valuable feedback.
+The author would like to thank Thijs van den Hout and Caspar Schutijser for their valuable feedback.
 
 [@-RFC8553]
 
