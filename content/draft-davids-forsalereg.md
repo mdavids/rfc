@@ -69,6 +69,8 @@ The TXT record **MUST** contain any valid content, ranging from an empty string 
 
 This specification does not dictate the exact use of any content in the "\_for-sale" TXT record, or the lack of any such content. Parties, such as Registries and Registrars may use it in their tools, perhaps even by defining additional requirements that the content must meet. Or an individual can use it in combination with existing tools to get in touch with the seller.
 
+The content of the TXT record is "as is" and characters such as ";" between two URI's for example, have no defined meaning. It is up to the processor of the content to decide how to handle them.
+
 ## RRset limitations
 
 This specification does not define any restrictions to the number of TXT records in the RRset, although it is recommended to limit it to one. When the RRset contains multiple records, it is at the discretion of the processor to make a selection. For example, a registry might pick a mandatory URI from the RRset, to display on a website as part of their service, whilst and indivual might just pick a possibly present phone number and dial it to get in touch.
