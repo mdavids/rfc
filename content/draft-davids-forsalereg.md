@@ -36,19 +36,19 @@ organization = "SIDN Labs"
 
 # Abstract
 
-This document defines a simple operational convention of using a reserved underscored node name ("\_for-sale" TXT RRset in DNS ) to indicate that the parent domain name above it is for sale.
+This document defines a simple operational convention of using a reserved underscored node name ("\_for-sale" TXT RRset in DNS [@!RFC1035]) to indicate that the parent domain name above it is for sale.
 
 # Introduction
 
-Finding a new, original and still available domain name can sometimes be a challenge. At the same time many domain names are registered solely for the purpose of selling them.
+Well established services exist, to find out if a domain name is registered or not. But the fact that a domain name exists does not exclude the possibility that it can be obtained.
 
-Well established services exist, to find out if a domain name is registered or not. But this does not apply for signalling as to whether that domain name is for sale. This leads to the situation where parties are looking for a domain name, only to find out it is already registered - without a universal way to find out that this domain name, even though it exists, might be obtained nevertheless. Some registrars offer (payed) mediation services, but for a domain name that is not for sale, such services are a waste of money and time.
+Some registrars offer (payed) mediation services between domain name holders and interested parties, but for a domain  name that is not for sale, such services are a waste of money and   time.
 
-This specification proposes a simple universal method to fill that gap. It allows a domain holder to add a reserved underscored node name in the zone, to indicate that the domain name is actually for sale.
+This specification defines a simple universal way to find out if a domain name, even thouh it is taken, might be obtained nevertheless. It enables domain name holder to add a reserved underscored node name in the zone, indicating that the domain name is actually for sale.
 
-The TXT record type that is created for that purpose **MAY** contain pointers, such as a URI that allows an interested party to find more information or to engage in further arrangements.
+The TXT record type that is created for that purpose **MAY** contain a pointer, such as a URI, to allow an interested party to find information or to get in touch and engage in further arrangements.
 
-With due caution, this information can also be incorporated in the availability services, so that when the domain name is checked for availabilty, the service can also indicate it is for sale, including a referral to the selling party's information. 
+With due caution, this information can also be incorporated in the automated availability services, so that when the domain name is checked for availabilty, the service can also indicate it is for sale, including a referral to the selling party's information.
 
 ## Terminology
 
@@ -75,19 +75,21 @@ The TXT record may contain any valid content, ranging from an empty string to se
 
 There is no special obligation for a certain TTL of the "\_for-sale" TXT record, but it is recommended to keep the TTL at a reasonable level. Not too short, to avoid redundant DNS queries, and no too long, to avoid that a domain name might still show up as for sale, while in fact it no longer is. Any TTL between 3600 and 28800 seems reasonable. A TTL longer than 86400 is **NOT RECOMMENDED**.
 
-## Placement [todo: is dit de goede titel?]
+## Placement of node name
 
 The "\_for-sale" leaf node name **MAY** be placed on the top level domain, or any domain directly below. It **MAY** also be placed at a lower level, but only when that level is mentioned in the Public Suffix List (PSL| [todo: referentie]. 
 
+Any other placement of the record **MUST NOT** be regarded as a signal that the domain above it is for sale.
 
-Any other placement of the record **MUST NOT** be regarded as a signal that the domain above it is for sale. See (#placements) for further explanation.
+See (#placements) for further explanation.
 
-Domain | In PSL or root zone | Verdict
+\_for-sale.domain | Situation | Verdict
 -------|---------------------|--------
-\_for-sale.example | root | Allowed
-\_for-sale.gov.example | PSL | Allowed
-\_for-sale.co.example | Neither | Not allowed
-Table: Allowed placements [todo: beter] {#placements}
+\_for-sale.example | root zone | Allowed
+\_for-sale.co.aaa.example | aaa.example in PSL | Allowed
+\_for-sale.bbb.example | Second level | Allowed
+\_for-sale.www.ccc.example | Other | Not allowed
+Table: Allowed placements {#placements}
 
 # Examples
 
