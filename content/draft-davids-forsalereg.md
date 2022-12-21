@@ -138,7 +138,7 @@ _for-sale.example.com IN TXT  "<script>alert('I'm a hacker!')</script>"
 
 # IANA Considerations
 
-IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@!RFC8552]. The underscored node name defined in this specification should be added as follows:
+IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@!RFC8552], [@IANA]. The underscored node name defined in this specification should be added as follows:
 
 ~~~ ascii-art
              +-----------+--------------+-------------+
@@ -176,4 +176,14 @@ The author would like to thank Thijs van den Hout and Caspar Schutijser for thei
   </author>
  </front>
 </reference>
+
+<reference anchor='IANA' target='https://www.iana.org/assignments/dns-parameters/dns-parameters.xml#underscored-globally-scoped-dns-node-names'>
+ <front>
+  <title>Underscored and Globally Scoped DNS Node Names</title>
+  <author>
+    <organization>IANA</organization>
+  </author>
+ </front>
+</reference>
+
 
