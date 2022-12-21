@@ -91,7 +91,7 @@ See (#placements) for further explanation.
 -------|---------------------|--------
 \_for-sale.example | root zone | Allowed
 \_for-sale.aaa.example | Second level | Allowed
-\_for-sale.co.bbb.example | aaa.example in PSL | Allowed
+\_for-sale.co.bbb.example | bbb.example in PSL | Allowed
 \_for-sale.www.ccc.example | Other | Not allowed
 Table: Allowed placements {#placements}
 
