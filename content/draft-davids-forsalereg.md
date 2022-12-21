@@ -81,7 +81,7 @@ There is no special obligation for a certain TTL of the "\_for-sale" TXT record,
 
 ## Placement of node name
 
-The "\_for-sale" leaf node name **MAY** be placed on the top level domain, or any domain directly below. It **MAY** also be placed at a lower level, but only when that level is mentioned in the Public Suffix List (PSL| [todo: referentie]. 
+The "\_for-sale" leaf node name **MAY** be placed on the top level domain, or any domain directly below. It **MAY** also be placed at a lower level, but only when that level is mentioned in the Public Suffix List [@psl] [todo: referentie]. 
 
 Any other placement of the record **MUST NOT** be regarded as a signal that the domain above it is for sale.
 
@@ -128,7 +128,7 @@ There can be a use case for this, especially since WHOIS (or RDAP) often has pri
 Free format text:
 
 ~~~
-_for-sale.example.com IN TXT  "Domain for sale: info [at] example.com"
+_for-sale.example.com IN TXT  "I'm for sale: info [at] example.com"
 ~~~
 
 The content in the next example could be malicious, but it is not in violation of this specification (see (#security)):
@@ -140,7 +140,7 @@ _for-sale.example.com IN TXT  "<script>Hi, I'm a hacker!</script>"
 
 # IANA Considerations
 
-IANA has established the "Underscored and Globally Scoped DNS Node Names" registry. The underscored node name defined in this specification should be added as follows:
+IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@!RFC8552]. The underscored node name defined in this specification should be added as follows:
 
 ~~~ ascii-art
              +-----------+--------------+-------------+
@@ -160,7 +160,7 @@ Even worse is the scenario where the content of the TXT record is not validated 
 
 Therefore it is **RECOMMENDED** that any parsing and publishing is done with utmost care and sufficient validation.
 
-There is also a potential risk that this method is abused as a marketing tool, or to otherwise to lure individuals into visiting certain sites or other forms of contact, without the intention of actually selling the particular domain name. It is therefore recommended that this method is primarlily used by professionals and other parties who are sufficiently alert of this.
+There is also a potential risk that this method is abused as a marketing tool, or to otherwise lure individuals into visiting certain sites or other forms of contact, without the intention of actually selling the particular domain name. It is therefore recommended that this method is primarlily used by professionals who are sufficiently alert and aware.
 
 # Acknowledgements
 
@@ -170,4 +170,9 @@ The author would like to thank [todo] for their valuable feedback.
 
 {backmatter}
 
+<reference anchor='psl' target='https://publicsuffix.org/'>
+ <front>
+ <title>Public Suffix List - Mozilla Foundation</title>
+ </front>
+</reference>
 
