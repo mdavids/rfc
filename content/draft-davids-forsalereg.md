@@ -1,6 +1,6 @@
 %%%
 # This is a comment - but only in this block
-title = "Registration of underscored 'for sale' DNS Node Name"
+title = "Registration of Underscored and Globally Scoped 'for sale' DNS Node Name"
 abbrev = "forsalereg"
 ipr = "trust200902"
 # area = "Internet"
@@ -36,13 +36,13 @@ organization = "SIDN Labs"
 
 # Abstract
 
-This document defines a simple operational convention of using a reserved underscored node name ("\_for-sale") to indicate that the parent domain name above it is for sale.
+This document defines a simple operational convention of using a reserved underscored node name ("\_for-sale") to indicate that the parent domain name above, is for sale. It has the advantage that it can be easily deployed, without affecting any running operations. As such, the method can be applied to a domain name that is still in full use.
 
 # Introduction
 
-Well established services [@RFC3912], [@RFC7483] exist, to find out if a domain name is registered or not. But the fact that a domain name exists does not exclude the possibility to obtain it, because it may be up for sale.
+Well established services [@RFC3912; @RFC7483] exist, to find out if a domain name is registered or not. But the fact that a domain name exists does not exclude the possibility to obtain it, because it may be up for sale.
 
-Some registrars offer (payed) mediation services between domain name holders and interested parties, but for a domain  name that is not for sale, such services are a waste of money and time.
+Some registrars and various other parties offer (payed) mediation services between domain name holders and interested parties, but for a domain name that is not for sale, such services are a waste of money and time.
 
 This specification defines a simple universal way to find out if a domain name, even thouh it is taken, might be obtained nevertheless. It enables a domain name holder to add a reserved underscored node name [@!RFC8552] in the zone, indicating that the domain name is actually for sale.
 
@@ -75,9 +75,21 @@ The content of the TXT record is "as is" and characters such as ";" between two 
 
 This specification does not define any restrictions to the number of TXT records in the RRset, although it is recommended to limit it to one. When the RRset contains multiple records, it is at the discretion of the processor to make a selection. For example, a registry might pick a mandatory URI from the RRset, to display on a website as part of their service, whilst and indivual might just pick a possibly present phone number and dial it to get in touch.
 
-## TTL limitations
+## RRtype limitation
+
+Adding any other RRtypes under the "\_for-sale" leaf but TXT is **NOT RECOMMENDED** and they **MUST** be ignored for the purpose of this document.
+
+## TTL limitation
 
 A TTL longer than 86400 is **NOT RECOMMENDED**.
+
+## Wildcard limitation
+
+The "\_for-sale" leaf **MUST NOT** be a wildcard.
+
+## CNAME limitation
+
+The "\_for-sale" leaf **MAY** be a CNAME pointing to a TXT RRtype.
 
 ## Placement of node name
 
@@ -89,10 +101,10 @@ See (#placements) for further explanation.
 
 \_for-sale.domain | Situation | Verdict
 -------|---------------------|--------
-\_for-sale.example | root zone | Allowed
-\_for-sale.aaa.example | Second level | Allowed
-\_for-sale.co.bbb.example | bbb.example in PSL | Allowed
-\_for-sale.www.ccc.example | Other | Not allowed
+\_for-sale.example | root zone | For sale
+\_for-sale.aaa.example | Second level | For sale
+\_for-sale.co.bbb.example | bbb.example in PSL | For sale
+\_for-sale.www.ccc.example | Other | Invalid
 Table: Allowed placements {#placements}
 
 # Examples
@@ -132,13 +144,13 @@ _for-sale.example.com IN TXT  "I'm for sale: info [at] example.com"
 The content in the next example could be malicious, but it is not in violation of this specification (see (#security)):
 
 ~~~
-_for-sale.example.com IN TXT  "<script>alert('I'm a hacker!')</script>"
+_for-sale.example.com IN TXT  "<script>alert('H4x0r')</script>"
 ~~~
 
 
 # IANA Considerations
 
-IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@!RFC8552], [@IANA]. The underscored node name defined in this specification should be added as follows:
+IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@!RFC8552; @IANA]. The underscored node name defined in this specification should be added as follows:
 
 ~~~ ascii-art
              +-----------+--------------+-------------+
@@ -164,7 +176,7 @@ There is also a potential risk that this method is abused as a marketing tool, o
 
 The author would like to thank Thijs van den Hout and Caspar Schutijser for their valuable feedback.
 
-[@-RFC8553]
+[@-RFC8553, section 2.1]
 
 {backmatter}
 
