@@ -14,7 +14,7 @@ tocdepth = 5
 name = "Internet-Draft"
 value = "draft-davids-forsale-00"
 stream = "IETF"
-status = "bcp"	# or "informational" or "experimental" ?
+status = "bcp"  # or "informational" or "experimental" ?
 
 [[author]]
 initials="M."
@@ -46,7 +46,7 @@ Some registrars offer (payed) mediation services between domain name holders and
 
 This specification defines a simple universal way to find out if a domain name, even thouh it is taken, might be obtained nevertheless. It enables a domain name holder to add a reserved underscored node name [@!RFC8552] in the zone, indicating that the domain name is actually for sale.
 
-The TXT record type that is created for that purpose **MAY** contain a pointer, such as a URI, to allow an interested party to find information or to get in touch and engage in further arrangements.
+The TXT record type that is created for that purpose **MAY** contain a pointer, such as a URI [@RFC8820], to allow an interested party to find information or to get in touch and engage in further arrangements.
 
 With due caution, this information can also be incorporated in the automated availability services, so that when the domain name is checked for availabilty, the service can also indicate it is for sale, including a referral to the selling party's information.
 
@@ -67,7 +67,7 @@ There are undoubtedly more ways to address this problem space. The reasons for t
 
 ## Content limitations
 
-The TXT record may contain any valid content, ranging from an empty string to sensible text or URI's [@RFC8820]. However, it **SHALL NOT** contain any text that is suggesting that the domain is not for sale. Only the absence of the "\_for-sale" record is an indication of that. Any existence of a "\_for-sale" TXT record **MUST** be regarded as an indication that the domain name is for sale.
+The TXT record may contain any valid content, ranging from an empty string to sensible text or URI's. However, it **SHALL NOT** contain any text that is suggesting that the domain is not for sale. Only the absence of the "\_for-sale" record is an indication of that. Any existence of a "\_for-sale" TXT record **MUST** be regarded as an indication that the domain name is for sale.
 
 This specification does not dictate the exact use of any content in the "\_for-sale" TXT record, or the lack of any such content. Registries and registrars may use it in their tools, perhaps even by defining additional requirements that the content must meet. Or an individual can use it in combination with existing tools to get in touch with the seller.
 
@@ -81,7 +81,7 @@ There is no special obligation for a certain TTL of the "\_for-sale" TXT record,
 
 ## Placement of node name
 
-The "\_for-sale" leaf node name **MAY** be placed on the top level domain, or any domain directly below. It **MAY** also be placed at a lower level, but only when that level is mentioned in the Public Suffix List [@psl] [todo: referentie]. 
+The "\_for-sale" leaf node name **MAY** be placed on the top level domain, or any domain directly below. It **MAY** also be placed at a lower level, but only when that level is mentioned in the Public Suffix List [@PSL]. 
 
 Any other placement of the record **MUST NOT** be regarded as a signal that the domain above it is for sale.
 
@@ -170,9 +170,12 @@ The author would like to thank [todo] for their valuable feedback.
 
 {backmatter}
 
-<reference anchor='psl' target='https://publicsuffix.org/'>
+<reference anchor='PSL' target='https://publicsuffix.org/'>
  <front>
- <title>Public Suffix List - Mozilla Foundation</title>
+  <title>Public Suffix List</title>
+  <author>
+    <organization>Mozilla Foundation</organization>
+  </author>
  </front>
 </reference>
 
