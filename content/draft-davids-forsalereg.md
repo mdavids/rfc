@@ -114,7 +114,7 @@ Table: Allowed placements {#placements}
 The owner of 'example.com' wishes to signal that the domain is for sale and adds this record to the 'example.com' zone:
 
 ~~~
-_for-sale.example.com IN TXT "https://example.com/forsale.html"
+_for-sale.example.com. IN TXT "https://example.com/forsale.html"
 ~~~
 
 An interested party notices this signal and can visit the URI mentioned for further information. The TXT record can also be processed by automated tools. See the (#security, use title) section for possible risks.
@@ -122,13 +122,13 @@ An interested party notices this signal and can visit the URI mentioned for furt
 As an alternative, a mailto: URI could also be used:
 
 ~~~
-_for-sale.example.com IN TXT "mailto:owner@example.com"
+_for-sale.example.com. IN TXT "mailto:owner@example.com"
 ~~~
 
 Or a telephone URI:
 
 ~~~
-_for-sale.example.com IN TXT "tel:+1-201-555-0123"
+_for-sale.example.com. IN TXT "tel:+1-201-555-0123"
 ~~~
 
 There can be a use case for this, especially since WHOIS (or RDAP) often has privacy restrictions.
@@ -138,13 +138,13 @@ There can be a use case for this, especially since WHOIS (or RDAP) often has pri
 Free format text:
 
 ~~~
-_for-sale.example.com IN TXT "I'm for sale: info [at] example.com"
+_for-sale.example.com. IN TXT "I'm for sale: info [at] example.com"
 ~~~
 
 The content in the next example could be malicious, but it is not in violation of this specification (see (#security)):
 
 ~~~
-_for-sale.example.com IN TXT "<script>alert('H4x0r')</script>"
+_for-sale.example.com. IN TXT "<script>alert('H4x0r')</script>"
 ~~~
 
 
