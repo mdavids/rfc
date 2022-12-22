@@ -8,11 +8,11 @@ ipr = "trust200902"
 submissiontype = "IETF"
 keyword = [""]
 tocdepth = 5
-date = 2022-12-22T00:00:00Z
+# date = 2022-12-22T00:00:00Z
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-00"
+value = "draft-davids-forsalereg-01"
 stream = "IETF"
 status = "bcp"  # or "informational" or "experimental" ?
 
@@ -162,6 +162,10 @@ IANA has established the "Underscored and Globally Scoped DNS Node Names" regist
 Figure: Entry for the "Underscored and Globally Scoped DNS Node Names" Registry
 
 
+# Privacy Considerations
+
+There is a risk of data scraping, such as email adresses and phone numbers.
+
 # Security Considerations {#security}
 
 One use of the TXT record type defined in this document is to parse the content it contains and to automatically publish certain information from it on a website or otherwise. There is a risk involved in this, when the domain owner publishes a malicious URI or one that points to improper content. This may result in reputational damage for the party parsing the record.
@@ -170,9 +174,13 @@ Even worse is the scenario where the content of the TXT record is not validated 
 
 Therefore it is **RECOMMENDED** that any parsing and publishing is done with utmost care.
 
-There is a risk of data scraping, such as email adresses and phone numbers.
-
 There is also a potential risk that this method is abused as a marketing tool, or to otherwise lure individuals into visiting certain sites or other forms of contact, without the intention of actually selling the particular domain name. It is therefore recommended that this method is primarily used by professionals who are sufficiently alert and aware.
+
+# Implementation Status
+
+The concept described in this document is in use with the .nl ccTLD registry.
+
+[note to editor: please remove this section before publication]
 
 # Acknowledgements
 
