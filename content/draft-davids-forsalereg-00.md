@@ -8,11 +8,11 @@ ipr = "trust200902"
 submissiontype = "IETF"
 keyword = [""]
 tocdepth = 5
-# date = 2022-12-20T00:00:00Z
+date = 2022-12-22T00:00:00Z
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsale-00"
+value = "draft-davids-forsalereg-00"
 stream = "IETF"
 status = "bcp"  # or "informational" or "experimental" ?
 
@@ -32,15 +32,15 @@ organization = "SIDN Labs"
   cityarea = "Gld"
 %%%
 
-{mainmatter}
-
-# Abstract
+.# Abstract
 
 This document defines a simple operational convention of using a reserved underscored node name ("\_for-sale") to indicate that the parent domain name above, is for sale. It has the advantage that it can be easily deployed, without affecting any running operations. As such, the method can be applied to a domain name that is still in full use.
 
+{mainmatter}
+
 # Introduction
 
-Well established services [@RFC3912; @RFC7483] exist, to find out if a domain name is registered or not. But the fact that a domain name exists does not exclude the possibility to obtain it, because it may be up for sale.
+Well established services [@RFC3912; @RFC9083] exist, to find out if a domain name is registered or not. But the fact that a domain name exists does not exclude the possibility to obtain it, because it may be up for sale.
 
 Some registrars and various other parties offer (payed) mediation services between domain name holders and interested parties, but for a domain name that is not for sale, such services are a waste of money and time.
 
@@ -65,7 +65,7 @@ There are undoubtedly more ways to address this problem space. The reasons for t
 
 ## Content limitations
 
-The TXT record **MUST** contain any valid content, ranging from an empty string to sensible text or URI's. However, it **SHALL NOT** contain any text that is suggesting that the domain is not for sale. In the case a domain name is not for sale, the "\_for-sale" indicator MUST NOT be used. Any existence of a "\_for-sale" TXT record **MUST** therefore be regarded as an indication that the domain name is for sale.
+The TXT [@RFC8553, section 2.1] record **MUST** contain any valid content, ranging from an empty string to sensible text or URI's. However, it **SHALL NOT** contain any text that is suggesting that the domain is not for sale. In the case a domain name is not for sale, the "\_for-sale" indicator MUST NOT be used. Any existence of a "\_for-sale" TXT record **MUST** therefore be regarded as an indication that the domain name is for sale.
 
 This specification does not dictate the exact use of any content in the "\_for-sale" TXT record, or the lack of any such content. Parties, such as Registries and Registrars may use it in their tools, perhaps even by defining additional requirements that the content must meet. Or an individual can use it in combination with existing tools to get in touch with the seller.
 
@@ -177,8 +177,6 @@ There is also a potential risk that this method is abused as a marketing tool, o
 # Acknowledgements
 
 The author would like to thank Thijs van den Hout, Caspar Schutijser and Melvin Elderman for their valuable feedback.
-
-[@-RFC8553, section 2.1]
 
 {backmatter}
 
