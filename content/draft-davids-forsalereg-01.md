@@ -8,7 +8,7 @@ ipr = "trust200902"
 submissiontype = "IETF"
 keyword = [""]
 tocdepth = 5
-# date = 2022-12-22T00:00:00Z
+date = 2022-12-22T00:00:00Z
 
 [seriesInfo]
 name = "Internet-Draft"
