@@ -8,7 +8,7 @@ ipr = "trust200902"
 submissiontype = "IETF"
 keyword = [""]
 tocdepth = 5
-date = 2022-12-22T00:00:00Z
+# date = 2022-12-22T00:00:00Z
 
 [seriesInfo]
 name = "Internet-Draft"
@@ -26,10 +26,10 @@ organization = "SIDN Labs"
   email = "marco.davids@sidn.nl"
   phone = "+31 26 352 5500"
   [author.address.postal]
+  street = "Meander 501"
   city = "Arnhem"
   code = "6825 MD"
-  pobox = "Meander 501"
-  cityarea = "Gld"
+  country = "Netherlands"
 %%%
 
 .# Abstract
