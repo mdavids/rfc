@@ -73,7 +73,7 @@ The content of the TXT record is "as is" and characters such as ";" between two 
 
 ## RRset limitations
 
-This specification does not define any restrictions to the number of TXT records in the RRset, although it is recommended to limit it to one. When the RRset contains multiple records, it is at the discretion of the processor to make a selection. For example, a registry might pick a mandatory URI from the RRset, to display on a website as part of their service, whilst and indivual might just pick a possibly present phone number and dial it to get in touch.
+This specification does not define any restrictions to the number of TXT records in the RRset, although it is recommended to limit it to one. It is also recommended that the length of the data does not exceed 255 bytes. When the RRset contains multiple records, or exceeds 255 bytes, it is at the discretion of the processor to make a selection. For example, a registry might pick a mandatory URI from the RRset, to display on a website as part of their service, whilst and indivual might just pick a possibly present phone number and dial it to get in touch.
 
 ## RRtype limitation
 
@@ -166,15 +166,17 @@ Figure: Entry for the "Underscored and Globally Scoped DNS Node Names" Registry
 
 One use of the TXT record type defined in this document is to parse the content it contains and to automatically publish certain information from it on a website or otherwise. There is a risk involved in this, when the domain owner publishes a malicious URI or one that points to improper content. This may result in reputational damage for the party parsing the record.
 
-Even worse is the scenario where the content of the TXT record is not validated sufficiently, opening doors to XSS attacks among other things.
+Even worse is the scenario where the content of the TXT record is not validated and sanitized sufficiently, opening doors to XSS attacks among other things.
 
-Therefore it is **RECOMMENDED** that any parsing and publishing is done with utmost care and sufficient validation.
+Therefore it is **RECOMMENDED** that any parsing and publishing is done with utmost care.
+
+There is a risk of data scraping, such as email adresses and phone numbers.
 
 There is also a potential risk that this method is abused as a marketing tool, or to otherwise lure individuals into visiting certain sites or other forms of contact, without the intention of actually selling the particular domain name. It is therefore recommended that this method is primarily used by professionals who are sufficiently alert and aware.
 
 # Acknowledgements
 
-The author would like to thank Thijs van den Hout and Caspar Schutijser for their valuable feedback.
+The author would like to thank Thijs van den Hout, Caspar Schutijser and Melvin Elderman for their valuable feedback.
 
 [@-RFC8553, section 2.1]
 
