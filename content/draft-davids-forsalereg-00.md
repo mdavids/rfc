@@ -8,11 +8,11 @@ ipr = "trust200902"
 submissiontype = "IETF"
 keyword = [""]
 tocdepth = 5
-# date = 2022-12-22T00:00:00Z
+date = 2022-12-22T00:00:00Z
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-01"
+value = "draft-davids-forsalereg-00"
 stream = "IETF"
 status = "bcp"  # or "informational" or "experimental" ?
 
