@@ -8,11 +8,11 @@ ipr = "trust200902"
 submissiontype = "IETF"
 keyword = [""]
 tocdepth = 5
-date = 2022-12-22T00:00:00Z
+# date = 2022-12-22T00:00:00Z
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-00"
+value = "draft-davids-forsalereg-01"
 stream = "IETF"
 status = "bcp"  # or "informational" or "experimental" ?
 
@@ -44,11 +44,11 @@ Well established services [@RFC3912; @RFC9083] exist, to find out if a domain na
 
 Some registrars and various other parties offer (payed) mediation services between domain name holders and interested parties, but for a domain name that is not for sale, such services are a waste of money and time.
 
-This specification defines a simple universal way to find out if a domain name, even thouh it is taken, might be obtained nevertheless. It enables a domain name holder to add a reserved underscored node name [@!RFC8552] in the zone, indicating that the domain name is actually for sale.
+This specification defines a simple universal way to find out if a domain name, even though it is taken, might be obtained nevertheless. It enables a domain name holder to add a reserved underscored node name [@!RFC8552] in the zone, indicating that the domain name is actually for sale.
 
 The TXT record RRtype [@!RFC1035] that is created for that purpose **MAY** contain a pointer, such as a URI [@RFC8820], to allow an interested party to find information or to get in touch and engage in further arrangements.
 
-With due caution, this information can also be incorporated in the automated availability services, so that when the domain name is checked for availabilty, the service can also indicate it is for sale, including a referral to the selling party's information.
+With due caution, this information can also be incorporated in the automated availability services, so that when the domain name is checked for availablity, the service can also indicate it is for sale, including a referral to the selling party's information.
 
 ## Terminology
 
@@ -59,7 +59,7 @@ when, and only when, they appear in all capitals, as shown here.
 
 # Rationale
 
-There are undoubtedly more ways to address this problem space. The reasons for the approach defined in this document are primarly accessibility and simplicity. The indicator can be easilty turned on and off at will and more over, it is available right away and does not require major changes in existing services. This allows for a smooth introduction of the concept.
+There are undoubtedly more ways to address this problem space. The reasons for the approach defined in this document are primarily accessibility and simplicity. The indicator can be easilty turned on and off at will and moreover, it is available right away and does not require major changes in existing services. This allows for a smooth introduction of the concept.
 
 # Convention
 
@@ -73,7 +73,7 @@ The content of the TXT record is "as is" and characters such as ";" between two 
 
 ## RRset limitations
 
-This specification does not define any restrictions to the number of TXT records in the RRset, although it is recommended to limit it to one. It is also recommended that the length of the data does not exceed 255 bytes. When the RRset contains multiple records, or exceeds 255 bytes, it is at the discretion of the processor to make a selection. For example, a registry might pick a mandatory URI from the RRset, to display on a website as part of their service, whilst and indivual might just pick a possibly present phone number and dial it to get in touch.
+This specification does not define any restrictions to the number of TXT records in the RRset, although it is recommended to limit it to one. It is also recommended that the length of the data does not exceed 255 bytes. When the RRset contains multiple records, or exceeds 255 bytes, it is at the discretion of the processor to make a selection. For example, a registry might pick a mandatory URI from the RRset, to display on a website as part of their service, whilst and individual might just pick a possibly present phone number and dial it to get in touch.
 
 ## RRtype limitation
 
@@ -164,7 +164,7 @@ Figure: Entry for the "Underscored and Globally Scoped DNS Node Names" Registry
 
 # Privacy Considerations
 
-There is a risk of data scraping, such as email adresses and phone numbers.
+There is a risk of data scraping, such as email addresses and phone numbers.
 
 # Security Considerations {#security}
 
