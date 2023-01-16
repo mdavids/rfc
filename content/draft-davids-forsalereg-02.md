@@ -48,7 +48,7 @@ This specification defines a simple universal way to find out if a domain name, 
 
 The TXT record RRtype [@!RFC1035] that is created for that purpose **MAY** contain a pointer, such as a URI [@RFC8820], to allow an interested party to find information or to get in touch and engage in further arrangements.
 
-With due caution, this information can also be incorporated in the automated availability services, so that when the domain name is checked for availablity, the service can also indicate it is for sale, including a referral to the selling party's information.
+With due caution, this information can also be incorporated in the automated availability services, so that when the domain name is checked for availability, the service can also indicate it is for sale, including a referral to the selling party's information.
 
 ## Terminology
 
