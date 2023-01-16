@@ -12,7 +12,7 @@ tocdepth = 5
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-01"
+value = "draft-davids-forsalereg-02"
 stream = "IETF"
 status = "bcp"  # or "informational" or "experimental" ?
 
@@ -59,7 +59,7 @@ when, and only when, they appear in all capitals, as shown here.
 
 # Rationale
 
-There are undoubtedly more ways to address this problem space. The reasons for the approach defined in this document are primarily accessibility and simplicity. The indicator can be easilty turned on and off at will and moreover, it is available right away and does not require major changes in existing services. This allows for a smooth introduction of the concept.
+There are undoubtedly more ways to address this problem space. The reasons for the approach defined in this document are primarily accessibility and simplicity. The indicator can be easily turned on and off at will and moreover, it is available right away and does not require major changes in existing services. This allows for a smooth introduction of the concept.
 
 # Convention
 
