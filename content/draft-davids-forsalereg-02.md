@@ -42,7 +42,7 @@ This document defines a simple operational convention of using a reserved unders
 
 Well established services [@RFC3912; @RFC9083] exist, to find out if a domain name is registered or not. But the fact that a domain name exists does not exclude the possibility to obtain it, because it may be up for sale.
 
-Some registrars and various other parties offer (payed) mediation services between domain name holders and interested parties, but for a domain name that is not for sale, such services are a waste of money and time.
+Some registrars and various other parties offer (paid) mediation services between domain name holders and interested parties, but for a domain name that is not for sale, such services are a waste of money and time.
 
 This specification defines a simple universal way to find out if a domain name, even though it is taken, might be obtained nevertheless. It enables a domain name holder to add a reserved underscored node name [@!RFC8552] in the zone, indicating that the domain name is actually for sale.
 
