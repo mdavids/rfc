@@ -168,7 +168,7 @@ There is a risk of data scraping, such as email addresses and phone numbers.
 
 # Security Considerations {#security}
 
-One use of the TXT record type defined in this document is to parse the content it contains and to automatically publish certain information from it on a website or elsehwere. However, there is a risk involved in this if the domain owner publishes a malicious URI or one that points to improper content. This may result in reputational damage for the party parsing the record.
+One use of the TXT record type defined in this document is to parse the content it contains and to automatically publish certain information from it on a website or elsewhere. However, there is a risk involved in this if the domain owner publishes a malicious URI or one that points to improper content. This may result in reputational damage for the party parsing the record.
 
 Even worse is a scenario in which the content of the TXT record is not validated and sanitized sufficiently, opening doors to - for example - XSS attacks among other things. 
 
