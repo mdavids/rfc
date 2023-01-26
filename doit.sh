@@ -6,5 +6,5 @@ cd ~/Dropbox/lab/ietf/rfc_for-sale/rfc/content
 make txt
 # make html
 
-mv draft-davids-forsalereg-02.txt ..
+mv draft-davids-forsalereg-03.txt ..
 

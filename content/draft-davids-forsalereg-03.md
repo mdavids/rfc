@@ -12,7 +12,7 @@ tocdepth = 5
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-02"
+value = "draft-davids-forsalereg-03"
 stream = "IETF"
 status = "bcp"  # or "informational" or "experimental" ?
 
@@ -103,7 +103,7 @@ Name | Situation | Verdict
 -----|-----------|--------
 \_for-sale.example | root zone | For sale
 \_for-sale.aaa.example | Second level | For sale
-\_for-sale.co.bbb.example | bbb.example in PSL | For sale
+\_for-sale.acme.bbb.example | bbb.example in PSL | For sale
 \_for-sale.www.ccc.example | Other | Invalid
 Table: Allowed placements of TXT record {#placements}
 
