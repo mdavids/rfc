@@ -169,7 +169,7 @@ containing this content does not indicate that the domain is actually for sale.
 In other cases, distinguishing intent can be more difficult.
 
 This issue can be completely circumvented by adding a "\_for-sale" leaf node with a 
-different resource record (RR) type—anything other than TXT. This prevents wildcard responses for TXT queries.
+different RR type, anything other than TXT. This prevents wildcard responses for TXT queries.
 
 For example:
 
