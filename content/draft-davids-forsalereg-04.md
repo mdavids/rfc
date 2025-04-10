@@ -158,18 +158,18 @@ _for-sale.example.com. IN TXT "<script>alert('H4x0r')</script>"
 ~~~
 
 # Operational Guidelines {#guidelines}
-DNS wildcards interact poorly with underscored names. And even though wildcards
-are NOT RECOMMENDED, they can still occur. Therefore assumptions about 
-the content of "\_for-sale" TXT records should be made with caution. 
+DNS wildcards interact poorly with underscored names. Although the use of  wildcards
+is  NOT RECOMMENDED, they may still be encountered in practice. Therefore,
+any  assumptions about the content of "\_for-sale" TXT records should be made with caution. 
 
-For example, some operators use wildcards to enforce a "v=spf1 -all"
-response for every subdomain. Obvisously, there is a reasonable change
-that the existence of a "\_for-sale" TXT record with such content is not for
-sale, but in some cases it is more diffcult.
+For instance, some operators configure wildcards to return a fixed "v=spf1 -all"
+TXT record for all subdomains. In such cases, the presence of a "\_for-sale" TXT record 
+containing this content does not indicate that the domain is actually for sale. 
 
-It's possible to circumvent this issue completely by adding a "\_for-sale" leaf node of a
-different RR type, meaning anything but TXT. This will prevent a wildcard
-response for TXT RR type queries.
+In other cases, distinguishing intent can be more difficult.
+
+This issue can be completely circumvented by adding a "\_for-sale" leaf node with a 
+different resource record (RR) type—anything other than TXT. This prevents wildcard responses for TXT queries.
 
 For example:
 
@@ -177,12 +177,10 @@ For example:
 _for-sale.example.com. IN NULL \# 1 FF
 ~~~
 
-But processors SHOULD NOT expect this to be the case.
+However, processors SHOULD NOT rely on this being the case.
 
-Hence, it is RECOMMENDED to use  content that is recognizable,
-either by humans or automated processes. Such as the "fscode="-string in
-the (#examples, use title) section, or the descriptive string mentioned
-there, that humans can can easily interpret.
+Therefore, it is RECOMMENDED to include content that is recognizable either by humans or automated systems, 
+such as the "fscode=" string or the descriptive text shown in the (#examples, use title) section.
 
 # IANA Considerations
 
