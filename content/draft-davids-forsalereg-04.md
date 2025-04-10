@@ -159,15 +159,15 @@ _for-sale.example.com. IN TXT "<script>alert('H4x0r')</script>"
 
 # Operational Guidelines {#guidelines}
 DNS wildcards interact poorly with underscored names. And even though wildcards
-are NOT RECOMMENDED, they can still occur. As such, no assumptions SHOULD be made
-about the content of "\_for-sale" TXT records. 
+are NOT RECOMMENDED, they can still occur. Therefore assumptions about 
+the content of "\_for-sale" TXT records should be made with caution. 
 
 For example, some operators use wildcards to enforce a "v=spf1 -all"
-response for every subdomain. But obvisously, there is a reasonable change
+response for every subdomain. Obvisously, there is a reasonable change
 that the existence of a "\_for-sale" TXT record with such content is not for
-sale.
+sale, but in some cases it is more diffcult.
 
-It's possible to circumvent this issue by adding a "\_for-sale" leaf node of a
+It's possible to circumvent this issue completely by adding a "\_for-sale" leaf node of a
 different RR type, meaning anything but TXT. This will prevent a wildcard
 response for TXT RR type queries.
 
