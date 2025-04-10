@@ -168,8 +168,8 @@ that the existence of a "\_for-sale" TXT record with such content is not for
 sale.
 
 It's possible to circumvent this issue by adding a "\_for-sale" leaf node of a
-different RR type, meaning anything but TXT, but processors SHOULD NOT expect 
-this to be the case.
+different RR type, meaning anything but TXT. This will prevent a wildcard
+response for TXT RR type queries.
 
 For example:
 
@@ -177,10 +177,12 @@ For example:
 _for-sale.example.com. IN NULL \# 1 FF
 ~~~
 
-Hence, it is RECOMMENDED to work with with content that is recognizable,
-either for humans or automated processes. Such as the "fscode="-string in
-the (#examples, use title) section, or a descriptive string that humans can can easily
-interpret.
+But processors SHOULD NOT expect this to be the case.
+
+Hence, it is RECOMMENDED to use  content that is recognizable,
+either by humans or automated processes. Such as the "fscode="-string in
+the (#examples, use title) section, or the descriptive string mentioned
+there, that humans can can easily interpret.
 
 # IANA Considerations
 
