@@ -1,4 +1,6 @@
-MMARK :=/usr/local/bin/mmark
+MMARK :=/opt/homebrew/bin/mmark
+# Staat in PATH, dus hier niet gedaan
+#XML2RFC :=/Users/marco/.local/bin/xml2rfc
 TXT := $(patsubst %.md,%.txt,$(wildcard *.md))
 XML := $(patsubst %.md,%.xml,$(wildcard *.md))
 HTML := $(patsubst %.md,%.html,$(wildcard *.md))

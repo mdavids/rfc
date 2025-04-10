@@ -34,21 +34,21 @@ organization = "SIDN Labs"
 
 .# Abstract
 
-This document defines a simple operational convention of using a reserved underscored node name ("\_for-sale") to indicate that the parent domain name above, is for sale. It has the advantage that it can be easily deployed, without affecting any running operations. As such, the method can be applied to a domain name that is still in full use.
+This document defines a simple operational convention of using a reserved underscored node name ("\_for-sale") to indicate that the parent domain name above, is for sale. This approach offers the advantage of easy deployment without affecting ongoing operations. As such, the method can be applied to a domain name that is still in full use.
 
 {mainmatter}
 
 # Introduction
 
-Well-established services [@RFC3912; @RFC9083] exist to find out whether a domain name is registered or not. However, the fact that a domain name exists does mean that it cannot be obtained, because it may be up for sale.
+Well-established services [@RFC3912; @RFC9083] exist to determine whether a domain name is registered. However, the fact that a domain name exists does not necessarily mean it cannot be obtained; it may still be for sale.
 
-Some registrars and various other parties offer (chargeable) mediation services between domain name holders and interested parties, but for domain names that are not for sale, such services would be a waste of money and time.
+Some registrars and other entities offer mediation services between domain name holders and interested parties; however, for domain names not for sale, such services may be unnecessary.
 
-This specification defines a simple and universal way to find out if a domain name, even though it is taken, might be purchased nevertheless. It enables a domain name holder to add a reserved underscored node name [@!RFC8552] in the zone, indicating that the domain name is actually for sale.
+This specification defines a simple and universal method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored node name [@!RFC8552] in the zone, indicating that the domain name is for sale.
 
-The TXT record RRtype [@!RFC1035] that is created for that purpose **MAY** contain a pointer, such as a URI [@RFC8820], to allow an interested party to find information or to get in touch with the domain owner and engage in further negotiations.
+The TXT record RRtype [@!RFC1035] that is created for that purpose **MAY** contain a pointer, such as a URI [@RFC8820], allowing interested parties to obtain information or contact the domain name holder for further negotiations.
 
-With due caution, such information can also be incorporated in the automated availability services, so that when a domain name is checked for availability, the service can also indicate whether or not it is for sale, including a pointer to the selling party's information.
+With due caution, such information can also be incorporated into automated availability services. When a domain name is checked for availability, the service can indicate whether it is for sale and provide a pointer to the seller's information.
 
 ## Terminology
 
@@ -59,7 +59,7 @@ when, and only when, they appear in all capitals, as shown here.
 
 # Rationale
 
-There are undoubtedly more ways to address this problem space. The reasons for the approach defined in this document are primarily accessibility and simplicity. The indicator can be easily turned on and off at will and moreover, it is available right away and does not require major changes in existing services. This allows for a smooth introduction of the concept.
+There are undoubtedly more ways to address this problem space. The reasons for the approach defined in this document are primarily accessibility and simplicity. The indicator can be easily turned on and off at will and moreover, it is immediately deployable and does not require significant changes in existing services. This allows for a smooth introduction of the concept.
 
 # Conventions
 
@@ -73,7 +73,7 @@ The content of the TXT record is "as is" and characters such as ";" between two 
 
 ## RRset limitations
 
-This specification does not define any restrictions on the number of TXT records in the RRset, although it is recommended to limit it to one. It is also recommended that the length of the RDATA [@RFC8499] does not exceed 255 bytes. When the RRset contains multiple records, or exceeds 255 bytes, it is at the discretion of the processor to make a selection. For example, a registry might pick a mandatory URI from the RRset to display on a website as part of its service, while an individual might just pick a phone number (if present) and dial it to make contact with a potential seller.
+This specification does not define any restrictions on the number of TXT records in the RRset, although it is recommended to limit it to one. It is also recommended that the length of the RDATA [@RFC8499] does not exceed 255 bytes. If the RRset contains multiple records or the total size exceeds 255 bytes, it is up to the processor to determine which data to use.. For example, a registry might pick a mandatory URI from the RRset to display on a website as part of its service, while an individual might just pick a phone number (if present) and dial it to make contact with a potential seller.
 
 ## RR Type limitation
 
@@ -81,7 +81,7 @@ Adding any other RR types under the "\_for-sale" leaf but TXT is **NOT RECOMMEND
 
 ## TTL limitation
 
-A TTL longer than 86400 is **NOT RECOMMENDED**. Long TTLs increase the chance of outdated information, which can give potential buyers the idea that the domain name is still for sale when it is not.
+A TTL longer than 86400 is **NOT RECOMMENDED**. Long TTLs increase the risk of outdated information persisting, potentially misleading buyers into believing the domain is still available for purchase.
 
 ## Wildcard limitation
 
@@ -109,9 +109,9 @@ Table: Allowed placements of TXT record {#placements}
 
 # Examples
 
-## Example 1: a URI
+## Example 1: A URI
 
-The owner of 'example.com' wishes to signal that the domain is for sale and adds this record to the 'example.com' zone:
+The holder of 'example.com' wishes to signal that the domain is for sale and adds this record to the 'example.com' zone:
 
 ~~~
 _for-sale.example.com. IN TXT "https://example.com/forsale.html"
@@ -168,7 +168,7 @@ There is a risk of data scraping, such as email addresses and phone numbers.
 
 # Security Considerations {#security}
 
-One use of the TXT record type defined in this document is to parse the content it contains and to automatically publish certain information from it on a website or elsewhere. However, there is a risk involved in this if the domain owner publishes a malicious URI or one that points to improper content. This may result in reputational damage for the party parsing the record.
+One use of the TXT record type defined in this document is to parse the content it contains and to automatically publish certain information from it on a website or elsewhere. However, there is a risk involved in this if the domain name holder  publishes a malicious URI or one that points to improper content. This may result in reputational damage for the party parsing the record.
 
 Even worse is a scenario in which the content of the TXT record is not validated and sanitized sufficiently, opening doors to - for example - XSS attacks among other things. 
 
