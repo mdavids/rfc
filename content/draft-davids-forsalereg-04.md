@@ -165,8 +165,11 @@ about the content of "\_for-sale" TXT records.
 For example, some operators use wildcards to enforce a "v=spf1 -all"
 response for every subdomain. But obvisously, there is a reasonable change
 that the existence of a "\_for-sale" TXT record with such content is not for
-sale. It's possible to circumvent this by adding a "\_for-sale" record of a
-different RR type, but processors SHOULD NOT expect this to be the case.
+sale.
+
+It's possible to circumvent this issue by adding a "\_for-sale" leaf node of a
+different RR type, meaning anything but TXT, but processors SHOULD NOT expect 
+this to be the case.
 
 For example:
 
