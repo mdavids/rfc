@@ -10,13 +10,13 @@ txt: $(TXT)
 
 %.txt: %.xml
 	xml2rfc --text --v3 $<
-	rm -f $(basename $<).xml
+#	rm -f $(basename $<).xml
 
 html: $(HTML)
 
 %.html: %.xml
 	xml2rfc --html --v3 $<
-	rm -f $(basename $<).xml
+#	rm -f $(basename $<).xml
 
 xml: $(XML)
 
@@ -27,7 +27,7 @@ pdf: $(PDF)
 
 %.pdf: %.xml
 	xml2rfc --pdf --v3 $<
-	rm $(basename $<).xml
+#	rm $(basename $<).xml
 
 .PHONY: clean
 clean:

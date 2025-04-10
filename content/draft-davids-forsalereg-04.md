@@ -12,7 +12,7 @@ tocdepth = 5
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-03"
+value = "draft-davids-forsalereg-04"
 stream = "IETF"
 status = "bcp"  # or "informational" or "experimental" ?
 
@@ -34,19 +34,21 @@ organization = "SIDN Labs"
 
 .# Abstract
 
-This document defines a simple operational convention of using a reserved underscored node name ("\_for-sale") to indicate that the parent domain name above, is for sale. This approach offers the advantage of easy deployment without affecting ongoing operations. As such, the method can be applied to a domain name that is still in full use.
+This document defines a simple operational convention of using a reserved underscored node name ("\_for-sale") to indicate that the parent domain name above is for sale. This approach offers the advantage of easy deployment without affecting ongoing operations. As such, the method can be applied to a domain name that is still in full use.
 
 {mainmatter}
 
 # Introduction
 
-Well-established services [@RFC3912; @RFC9083] exist to determine whether a domain name is registered. However, the fact that a domain name exists does not necessarily mean it cannot be obtained; it may still be for sale.
+Well-established services [@RFC3912; @RFC9083] exist to determine whether a domain name is registered. However, the fact that a domain name exists does not necessarily mean it
+is unavailable; it may still be for sale.
 
 Some registrars and other entities offer mediation services between domain name holders and interested parties; however, for domain names not for sale, such services may be unnecessary.
 
 This specification defines a simple and universal method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored node name [@!RFC8552] in the zone, indicating that the domain name is for sale.
 
-The TXT record RRtype [@!RFC1035] that is created for that purpose **MAY** contain a pointer, such as a URI [@RFC8820], allowing interested parties to obtain information or contact the domain name holder for further negotiations.
+The TXT record RR type [@!RFC1035] that is created for that purpose **MAY** contain a pointer, such as a
+Uniform Resource Identifier (URI) [@RFC8820], allowing interested parties to obtain information or contact the domain name holder for further negotiations.
 
 With due caution, such information can also be incorporated into automated availability services. When a domain name is checked for availability, the service can indicate whether it is for sale and provide a pointer to the seller's information.
 
@@ -67,13 +69,15 @@ There are undoubtedly more ways to address this problem space. The reasons for t
 
 The TXT [@RFC8553, (see) section 2.1] record **MUST** contain any valid content, ranging from an empty string to meaningful text or URIs. However, it **SHALL NOT** contain any text that suggests that the domain is not for sale. If a domain name is not for sale, the "\_for-sale" indicator MUST NOT be used. Any existence of a "\_for-sale" TXT record **MUST** therefore be regarded as an indication that the domain name is for sale.
 
-This specification does not dictate the exact use of any content in the "\_for-sale" TXT record, or the lack of any such content. Parties - such as Registries and Registrars - may use it in their tools, perhaps even by defining additional requirements that the content must meet. Alternatively, an individual can use it in combination with existing tools to make contact with the seller.
+This specification does not dictate the exact use of any content in the "\_for-sale" TXT record, or the lack of any such content. Parties - such as Registries and registrars - may use it in their tools, perhaps even by defining additional requirements that the content must meet. Alternatively, an individual can use it in combination with existing tools to make contact with the seller.
 
-The content of the TXT record is "as is" and characters such as ";" between two URIs for example, have no defined meaning. It is up to the processor of the content to decide how to handle it.
+The content of the TXT record is "as is" and characters such as ";" between two URIs for example, have no defined meaning. It is up to the processor of the content to decide how to handle it. See (#security)
+for additional guidelines.
 
 ## RRset limitations
 
-This specification does not define any restrictions on the number of TXT records in the RRset, although it is recommended to limit it to one. It is also recommended that the length of the RDATA [@RFC8499] does not exceed 255 bytes. If the RRset contains multiple records or the total size exceeds 255 bytes, it is up to the processor to determine which data to use.. For example, a registry might pick a mandatory URI from the RRset to display on a website as part of its service, while an individual might just pick a phone number (if present) and dial it to make contact with a potential seller.
+This specification does not define any restrictions on the number of TXT records in the RRset, although it is recommended to limit it to one. It is also recommended that the length of the RDATA [@RFC8499] does not exceed 255 bytes. If the RRset contains multiple records or the total size exceeds 255 bytes, it is up to the processor to determine which data to use.. For example, a
+registry might pick a mandatory URI from the RRset to display on a website as part of its service, while an individual might just pick a phone number (if present) and dial it to make contact with a potential seller.
 
 ## RR Type limitation
 
@@ -85,11 +89,11 @@ A TTL longer than 86400 is **NOT RECOMMENDED**. Long TTLs increase the risk of o
 
 ## Wildcard limitation
 
-The "\_for-sale" leaf **MUST NOT** be a wildcard.
+The "\_for-sale" leaf **SHOULD NOT** be a wildcard.
 
 ## CNAME limitation
 
-The "\_for-sale" leaf **MAY** be a CNAME pointing to a TXT RRtype.
+The "\_for-sale" leaf **MAY** be a CNAME pointing to a TXT RR type.
 
 ## Placement of node name
 
@@ -107,7 +111,7 @@ Name | Situation | Verdict
 \_for-sale.www.ccc.example | Other | Invalid
 Table: Allowed placements of TXT record {#placements}
 
-# Examples
+# Examples {#examples}
 
 ## Example 1: A URI
 
@@ -141,12 +145,39 @@ Free format text:
 _for-sale.example.com. IN TXT "I'm for sale: info [at] example.com"
 ~~~
 
-The content in the next example could be malicious, but it is not in violation of this specification (see (#security)):
+Proprietary format, used by a registry or registrar to automatically redirect visitors to a web page, and which has no well-defined meaning to third parties.
+
+~~~
+_for-sale.example.com. IN TXT "fscode=aHR0cHM...V4YW1wbGUuY29t"
+~~~
+
+The content in the following example could be malicious, but it is not in violation of this specification (see (#security)):
 
 ~~~
 _for-sale.example.com. IN TXT "<script>alert('H4x0r')</script>"
 ~~~
 
+# Operational Guidelines {#guidelines}
+DNS wildcards interact poorly with underscored names. And even though wildcards
+are NOT RECOMMENDED, they can still occur. As such, no assumptions SHOULD be made
+about the content of "\_for-sale" TXT records. 
+
+For example, some operators use wildcards to enforce a "v=spf1 -all"
+response for every subdomain. But obvisously, there is a reasonable change
+that the existence of a "\_for-sale" TXT record with such content is not for
+sale. It's possible to circumvent this by adding a "\_for-sale" record of a
+different RR type, but processors SHOULD NOT expect this to be the case.
+
+For example:
+
+~~~
+_for-sale.example.com. IN NULL \# 1 FF
+~~~
+
+Hence, it is RECOMMENDED to work with with content that is recognizable,
+either for humans or automated processes. Such as the "fscode="-string in
+the (#examples, use title) section, or a descriptive string that humans can can easily
+interpret.
 
 # IANA Considerations
 
@@ -159,7 +190,7 @@ IANA has established the "Underscored and Globally Scoped DNS Node Names" regist
              | TXT       | _for-sale    | TBD         |
              +-----------+--------------+-------------+
 ~~~
-Figure: Entry for the "Underscored and Globally Scoped DNS Node Names" Registry
+Figure: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
 
 # Privacy Considerations
