@@ -147,7 +147,8 @@ Free format text:
 _for-sale.example.com. IN TXT "I'm for sale: info [at] example.com"
 ~~~
 
-Proprietary format, used by a registry or registrar to automatically redirect visitors to a web page, and which has no well-defined meaning to third parties.
+Proprietary format, used by a registry or registrar to automatically redirect visitors to a web page, and which has no well-defined meaning to third
+parties:
 
 ~~~
 _for-sale.example.com. IN TXT "fscode=aHR0cHM...V4YW1wbGUuY29t"
