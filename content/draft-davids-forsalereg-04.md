@@ -71,8 +71,8 @@ The TXT [@RFC8553, (see) section 2.1] record **MUST** contain any valid content,
 
 This specification does not dictate the exact use of any content in the "\_for-sale" TXT record, or the lack of any such content. Parties - such as Registries and registrars - may use it in their tools, perhaps even by defining additional requirements that the content must meet. Alternatively, an individual can use it in combination with existing tools to make contact with the seller.
 
-The content of the TXT record is "as is" and characters such as ";" between two URIs for example, have no defined meaning. It is up to the processor of the content to decide how to handle it. See (#security)
-for additional guidelines.
+The content of the TXT record is "as is" and characters such as ";" between two URIs for example, have no defined meaning. It is up to the processor of the content to decide how to handle it. See
+(#guidelines) for additional guidelines.
 
 ## RRset limitations
 
