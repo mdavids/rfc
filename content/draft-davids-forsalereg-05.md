@@ -2,12 +2,14 @@
 # This is a comment - but only in this block
 title = "Registration of Underscored and Globally Scoped DNS Node Name: \"_for-sale\""
 abbrev = "forsalereg"
+#ipr = "trust200902" # mmark docs say 'none' for independent submissions
 ipr = "none"
 # area = "Internet"
 # workgroup = "Internet Engineering Task Force (IETF)"
 submissiontype = "independent"
 keyword = [""]
-tocdepth = 5
+# https://www.rfc-editor.org/rfc/rfc7991#section-2.45.14
+tocdepth = 3
 # date = 2022-12-22T00:00:00Z
 
 # See FAQ: "How Do I Create an Independent IETF Document?"
