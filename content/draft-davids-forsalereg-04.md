@@ -1,6 +1,6 @@
 %%%
 # This is a comment - but only in this block
-title = "Registration of Underscored and Globally Scoped 'for sale' DNS Node Name"
+title = "Registration of Underscored and Globally Scoped DNS Node Name: \"_for-sale\""
 abbrev = "forsalereg"
 ipr = "trust200902"
 # area = "Internet"
@@ -34,7 +34,9 @@ organization = "SIDN Labs"
 
 .# Abstract
 
-This document defines a simple operational convention of using a reserved underscored node name ("\_for-sale") to indicate that the parent domain name above is for sale. This approach offers the advantage of easy deployment without affecting ongoing operations. As such, the method can be applied to a domain name that is still in full use.
+This document defines an operational convention for using the reserved DNS node name
+"\_for-sale" to indicate that the parent domain name is available for purchase. 
+This approach offers the advantage of easy deployment without affecting ongoing operations. As such, the method can be applied to a domain name that is still in full use.
 
 {mainmatter}
 
@@ -47,7 +49,7 @@ Some registrars and other entities offer mediation services between domain name 
 
 This specification defines a simple and universal method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored node name [@!RFC8552] in the zone, indicating that the domain name is for sale.
 
-The TXT record RR type [@!RFC1035] that is created for that purpose **MAY** contain a pointer, such as a
+The TXT RR type [@!RFC1035] that is created for that purpose **MAY** contain a pointer, such as a
 Uniform Resource Identifier (URI) [@RFC8820], allowing interested parties to obtain information or contact the domain name holder for further negotiations.
 
 With due caution, such information can also be incorporated into automated availability services. When a domain name is checked for availability, the service can indicate whether it is for sale and provide a pointer to the seller's information.
@@ -67,8 +69,9 @@ There are undoubtedly more ways to address this problem space. The reasons for t
 
 ## Content limitations
 
-The TXT [@RFC8553, (see) section 2.1] record **MUST** contain any valid content, ranging from an empty string to meaningful text or URIs. However, it **SHALL NOT** contain any text that suggests that the domain is not for sale. If a domain name is not for sale, the "\_for-sale" indicator MUST NOT be used. Any existence of a "\_for-sale" TXT
-record, assuming it it not a wildcard,  **MAY** therefore be regarded as an indication that the domain name is for sale.
+The TXT [@RFC8553, (see) section 2.1] record **MUST** contain any valid content, ranging from an empty string to meaningful text or URIs. However, it **SHALL NOT** contain any text that suggests that the domain is not for sale. If a domain name is not for sale, the "\_for-sale" indicator
+**MUST NOT** be used. Any existence of a "\_for-sale" TXT
+record, assuming it is not a wildcard,  **MAY** therefore be regarded as an indication that the domain name is for sale.
 
 This specification does not dictate the exact use of any content in the "\_for-sale" TXT record, or the lack of any such content. Parties - such as
 registries and registrars - may use it in their tools, perhaps even by defining additional requirements that the content must meet. Alternatively, an individual can use it in combination with existing tools to make contact with the seller.
@@ -78,12 +81,13 @@ The content of the TXT record is "as is" and characters such as ";" between two 
 
 ## RRset limitations
 
-This specification does not define any restrictions on the number of TXT records in the RRset, although it is recommended to limit it to one. It is also recommended that the length of the RDATA [@RFC8499] does not exceed 255 bytes. If the RRset contains multiple records or the total size exceeds 255 bytes, it is up to the processor to determine which data to use.. For example, a
+This specification does not define any restrictions on the number of TXT records in the RRset, although it is recommended to limit it to one. It is also recommended that the length of the RDATA [@RFC8499] does not exceed 255 bytes. If the RRset contains multiple records or the total size exceeds 255 bytes, it is up to the processor to determine which data to use. For example, a
 registry might pick a mandatory URI from the RRset to display on a website as part of its service, while an individual might just pick a phone number (if present) and dial it to make contact with a potential seller.
 
-## RR Type limitation
+## RR Type limitations
 
-Adding any other RR types under the "\_for-sale" leaf but TXT is **NOT RECOMMENDED** and they **MUST** be ignored for the purpose of this document.
+Adding any other RR types under the "\_for-sale" leaf but TXT is not
+recommended and they **MUST** be ignored for the purpose of this document.
 
 ## TTL limitation
 
@@ -120,7 +124,7 @@ Table: Allowed placements of TXT record {#placements}
 The holder of 'example.com' wishes to signal that the domain is for sale and adds this record to the 'example.com' zone:
 
 ~~~
-_for-sale.example.com. IN TXT "https://example.com/forsale.html"
+_for-sale.example.com. IN TXT "https://broker.example.net/offer?id=3"
 ~~~
 
 An interested party notices this signal and can visit the URI mentioned for further information. The TXT record can also be processed by automated tools, but see the (#security, use title) section for possible risks. 
@@ -137,18 +141,19 @@ Or a telephone URI:
 _for-sale.example.com. IN TXT "tel:+1-201-555-0123"
 ~~~
 
-There can be a use case for a telephone URI, especially since WHOIS (or RDAP) often has privacy restrictions.
+There can be a use case for these URIs, especially since WHOIS (or RDAP) often has privacy restrictions.
+But see the (#privacy, use title) section for possible downsides.
 
 ## Example 2: Various other approaches
 
-Free format text:
+Free format text, to make the availability more explicit:
 
 ~~~
 _for-sale.example.com. IN TXT "I'm for sale: info [at] example.com"
 ~~~
 
-Proprietary format, used by a registry or registrar to automatically redirect visitors to a web page, and which has no well-defined meaning to third
-parties:
+Proprietary format, used by a registry or registrar to automatically redirect visitors to a web page,
+but which has no well-defined meaning to third parties:
 
 ~~~
 _for-sale.example.com. IN TXT "fscode=aHR0cHM...V4YW1wbGUuY29t"
@@ -161,29 +166,31 @@ _for-sale.example.com. IN TXT "<script>alert('H4x0r')</script>"
 ~~~
 
 # Operational Guidelines {#guidelines}
-DNS wildcards interact poorly with underscored names. Although the use of  wildcards
-is  NOT RECOMMENDED, they may still be encountered in practice. Therefore,
-any  assumptions about the content of "\_for-sale" TXT records should be made with caution. 
+DNS wildcards interact poorly with underscored names, which is why the use of wildcards
+is NOT RECOMMENDED when deploying this mechanism. But they may still be 
+encountered in practice, especially by operators who are not deploying this
+mechanism. Therefore, any assumptions about the content of "\_for-sale" 
+TXT records should be made with caution. 
 
 For instance, some operators configure wildcards to return a fixed "v=spf1 -all"
 TXT record for all subdomains. In such cases, the presence of a "\_for-sale" TXT record 
 containing this content does not indicate that the domain is actually for sale. 
 
-In other cases, distinguishing intent can be more difficult.
+To minimize confusion, it is RECOMMENDED to include content that is recognizable either 
+by humans or automated systems, such as the "fscode=" string or the descriptive text 
+shown in the (#examples, use title) section.
 
-This issue can be completely circumvented by adding a "\_for-sale" leaf node with a 
-different RR type, anything other than TXT. This prevents wildcard responses for TXT queries.
+As an alternative. the situation can be circumvented by adding a "\_for-sale" leaf node with a 
+different RR type, anything other than TXT. Although being an exception to the
+recommendations, it will prevent confusing wildcard responses to TXT queries.
 
 For example:
 
 ~~~
-_for-sale.example.com. IN NULL \# 1 FF
+_for-sale.example.com. IN HINFO "NOT A TXT" "NOT FOR SALE"
 ~~~
 
-However, processors SHOULD NOT rely on this being the case.
-
-Therefore, it is RECOMMENDED to include content that is recognizable either by humans or automated systems, 
-such as the "fscode=" string or the descriptive text shown in the (#examples, use title) section.
+In general it is best to avoid the above wildcard situation completely.
 
 # IANA Considerations
 
@@ -199,13 +206,17 @@ IANA has established the "Underscored and Globally Scoped DNS Node Names" regist
 Figure: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
 
-# Privacy Considerations
+# Privacy Considerations {#privacy}
+
+The use of the "\_for-sale" node name publicly indicates the intent to sell a domain name.
+Domain owners should be aware that this information is accessible to anyone querying the
+DNS and may have privacy implications.
 
 There is a risk of data scraping, such as email addresses and phone numbers.
 
 # Security Considerations {#security}
 
-One use of the TXT record type defined in this document is to parse the content it contains and to automatically publish certain information from it on a website or elsewhere. However, there is a risk involved in this if the domain name holder  publishes a malicious URI or one that points to improper content. This may result in reputational damage for the party parsing the record.
+One use of the TXT record type defined in this document is to parse the content it contains and to automatically publish certain information from it on a website or elsewhere. However, there is a risk if the domain name holder  publishes a malicious URI or one that points to improper content. This may result in reputational damage for the party parsing the record.
 
 Even worse is a scenario in which the content of the TXT record is not validated and sanitized sufficiently, opening doors to - for example - XSS attacks among other things. 
 
@@ -215,9 +226,14 @@ There is also a risk that this method will be abused as a marketing tool, or to 
 
 # Implementation Status
 
-The concept described in this document is in use with the .nl ccTLD registry.
+The concept described in this document is in use with the .nl ccTLD
+registry. See for example:
 
-[note to editor: please remove this section before publication]
+~~~
+https://www.sidn.nl/en/whois?q=example.nl
+~~~
+
+[*note to editor: please remove this section before publication*]
 
 # Acknowledgements
 
