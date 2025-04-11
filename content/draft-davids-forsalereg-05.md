@@ -167,7 +167,7 @@ _for-sale.example.com. IN TXT "<script>alert('H4x0r')</script>"
 
 # Operational Guidelines {#guidelines}
 DNS wildcards interact poorly with underscored names, which is why the use of wildcards
-is NOT RECOMMENDED when deploying this mechanism. But they may still be 
+is **NOT RECOMMENDED** when deploying this mechanism. But they may still be 
 encountered in practice, especially by operators who are not deploying this
 mechanism. Therefore, any assumptions about the content of "\_for-sale" 
 TXT records should be made with caution. 
@@ -176,7 +176,7 @@ For instance, some operators configure wildcards to return a fixed "v=spf1 -all"
 TXT record for all subdomains. In such cases, the presence of a "\_for-sale" TXT record 
 containing this content does not indicate that the domain is actually for sale. 
 
-To minimize confusion, it is RECOMMENDED to include content that is recognizable either 
+To minimize confusion, it is **RECOMMENDED** to include content that is recognizable either 
 by humans or automated systems, such as the "fscode=" string or the descriptive text 
 shown in the (#examples, use title) section.
 
