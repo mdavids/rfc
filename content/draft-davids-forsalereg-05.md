@@ -2,19 +2,21 @@
 # This is a comment - but only in this block
 title = "Registration of Underscored and Globally Scoped DNS Node Name: \"_for-sale\""
 abbrev = "forsalereg"
-ipr = "trust200902"
+ipr = "none"
 # area = "Internet"
 # workgroup = "Internet Engineering Task Force (IETF)"
-submissiontype = "IETF"
+submissiontype = "independent"
 keyword = [""]
 tocdepth = 5
 # date = 2022-12-22T00:00:00Z
 
+# See FAQ: "How Do I Create an Independent IETF Document?"
+# https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
 value = "draft-davids-forsalereg-05"
-stream = "IETF"
-status = "bcp"  # or "informational" or "experimental" ?
+stream = "independent"
+status = "informational"  # or "bcp" or "experimental" ?
 
 [[author]]
 initials="M."
