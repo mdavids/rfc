@@ -172,7 +172,7 @@ _for-sale.example.com. IN TXT "<script>alert('H4x0r')</script>"
 # Operational Guidelines {#guidelines}
 DNS wildcards interact poorly with underscored names, which is why the use of wildcards
 is **NOT RECOMMENDED** when deploying this mechanism. But they may still be 
-encountered in practice, especially by operators who are not deploying this
+encountered in practice, especially with operators who are not deploying this
 mechanism. Therefore, any assumptions about the content of "\_for-sale" 
 TXT records should be made with caution. 
 
