@@ -85,8 +85,8 @@ The content of the TXT record is "as is" and characters such as ";" between two 
 
 ## RRset limitations
 
-This specification does not define any restrictions on the number of TXT records in the RRset, although it is recommended to limit it to one. It is also recommended that the length of the RDATA [@RFC8499] does not exceed 255 bytes. If the RRset contains multiple records or the total size exceeds 255 bytes, it is up to the processor to determine which data to use. For example, a
-registry might pick a mandatory URI from the RRset to display on a website as part of its service, while an individual might just pick a phone number (if present) and dial it to make contact with a potential seller.
+This specification does not define any restrictions on the number of TXT records in the RRset, although it is recommended to limit it to one. It is also recommended that the length of the RDATA [@RFC8499] does not exceed 255
+octets. If this is not the case, it is up to the processor to determine which data to use. For example, a registry might pick the TXT record with a well-known URI from the RRset to display on a website as part of its service, while an individual might just pick a phone number (if present) and dial it to make contact with a potential seller.
 
 ## RR Type limitations
 
