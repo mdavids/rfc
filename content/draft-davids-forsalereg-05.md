@@ -103,7 +103,16 @@ The "\_for-sale" leaf **SHOULD NOT** be a wildcard.
 
 ## CNAME limitation
 
-The "\_for-sale" leaf **MAY** be a CNAME pointing to a TXT RR type.
+The "\_for-sale" leaf **MAY** be a CNAME pointing to a TXT RR type, but if
+that is the case, the leaf it is pointing to **SHOULD** also be
+"\_for-sale", for example:
+
+~~~
+_for-sale.example.com. IN CNAME _for-sale.example.org.
+~~~
+
+In any case the CNAME **SHOULD NOT** point to the zone apex, because usually
+this is the place where several other (TXT) RR types are placed, which is not beneficial to clarity.
 
 ## Placement of node name
 
