@@ -265,7 +265,8 @@ https://www.sidn.nl/en/whois?q=example.nl
 
 # Acknowledgements
 
-The author would like to thank Thijs van den Hout, Caspar Schutijser, Melvin Elderman and Paul Bakker for their valuable feedback.
+The author would like to thank Thijs van den Hout, Caspar Schutijser, Melvin
+Elderman, Paul Bakker and Ben van Hartingsveldt for their valuable feedback.
 
 {backmatter}
 
