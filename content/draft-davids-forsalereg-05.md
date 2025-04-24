@@ -84,6 +84,7 @@ The formal definition of the record format, using ABNF [@!RFC5234; @!RFC7405], i
 ~~~
 forsale-record  = forsale-version forsale-data
 forsale-version = %s"v=FORSALE1;"
+                  ; case sensitive, no spaces
 forsale-data    = 0*244OCTET
                   ; referred to as content or data
 ~~~
