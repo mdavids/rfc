@@ -31,4 +31,5 @@ pdf: $(PDF)
 
 .PHONY: clean
 clean:
-	rm -f *.txt *.xml *.html
+	rm -f *.txt *.xml *.html *~
+
