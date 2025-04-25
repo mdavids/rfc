@@ -219,7 +219,9 @@ valid "\_for-sale" records from unrelated TXT records. Nonetheless, any assumpti
 content of "\_for-sale" TXT records **SHOULD** be made with caution.
 
 It is also **RECOMMENDED** that the content string be limited to visible ASCII characters, 
-excluding the double quote (") and backslash (\\). In ABNF syntax, this would be:
+excluding the double quote (") and backslash (\\).
+
+In ABNF syntax, this would be:
 
 ~~~
 forsale-content     = 0*244recommended-char
