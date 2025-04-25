@@ -53,7 +53,7 @@ Some registrars and other entities offer mediation services between domain name 
 of limited value, whereas they may be beneficial for domain names that are clearly being offered for sale.
 
 <!-- TODO: improve sentence ? -->
-This specification defines a simple and universal method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored
+This specification defines a lightweight and universal method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored
 leaf node name [@!RFC8552] in the zone, indicating that the domain name is for sale.
 
 The TXT RR type [@!RFC1035] created for this purpose **MUST** follow the formal definition of
