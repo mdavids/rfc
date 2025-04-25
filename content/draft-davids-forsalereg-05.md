@@ -1,6 +1,6 @@
 %%%
 # This is a comment - but only in this block
-title = "Registration of Underscored and Globally Scoped DNS Node Name: \"_for-sale\""
+title = "Registration of the \"_for-sale\" Underscored and Globally Scoped DNS Node Name"
 abbrev = "forsalereg"
 #ipr = "trust200902" # mmark docs say 'none' for independent submissions
 ipr = "none"
@@ -38,7 +38,7 @@ organization = "SIDN Labs"
 
 .# Abstract
 
-This document defines an operational convention for using the reserved DNS node name
+This document defines an operational convention for using the reserved DNS leaf node name
 "\_for-sale" to indicate that the parent domain name is available for purchase. 
 This approach offers the advantage of easy deployment without affecting ongoing operations. As such, the method can be applied to a domain name that is still in full use.
 
@@ -50,9 +50,10 @@ Well-established services [@RFC3912; @RFC9083] exist to determine whether a doma
 is unavailable; it may still be for sale.
 
 Some registrars and other entities offer mediation services between domain name holders and interested parties. For domain names that are not for sale, such services may be
-of limited value, whereas they may be be beneficial for domain names that are clearly being offered for sale.
+of limited value, whereas they may be beneficial for domain names that are clearly being offered for sale.
 
-This specification defines a simple and universal method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored node name [@!RFC8552] in the zone, indicating that the domain name is for sale.
+This specification defines a simple and universal method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored
+leaf node name [@!RFC8552] in the zone, indicating that the domain name is for sale.
 
 The TXT RR type [@!RFC1035] created for this purpose **MUST** follow the formal definition of
 (#recformat). Its content **MAY** contain a pointer, such as a Uniform Resource Identifier (URI) [@RFC8820], or another string, 
@@ -82,10 +83,10 @@ The "\_for-sale" TXT record **MUST** start with a version tag, possibly followed
 The formal definition of the record format, using ABNF [@!RFC5234; @!RFC7405], is as follows:
 
 ~~~
-forsale-record  = forsale-version forsale-data
+forsale-record  = forsale-version forsale-content
 forsale-version = %s"v=FORSALE1;"
                   ; case sensitive, no spaces
-forsale-data    = 0*244OCTET
+forsale-content = 0*244OCTET
                   ; referred to as content or data
 ~~~
 
@@ -109,7 +110,7 @@ See (#guidelines) for additional guidelines.
 
 ## RRset limitations
 
-This specification does not define any restrictions on the number of TXT records in the RRset, although it is **RECOMMENDED** to limit it to one. 
+This specification does not define any restrictions on the number of TXT records in the RRset, but limiting it to one is **RECOMMENDED**. 
 It is also **RECOMMENDED** that the length of the RDATA [@RFC8499] per TXT record does not exceed 255 octets. 
 If this is not the case, the processor **SHOULD**  determine which content to use. 
 
@@ -127,27 +128,27 @@ A TTL longer than 86400 is **NOT RECOMMENDED**. Long TTLs increase the risk of o
 
 ## Wildcard limitation
 
-The "\_for-sale" leaf **SHOULD NOT** be a wildcard.
+The "\_for-sale" leaf node name **SHOULD NOT** be a wildcard.
 
 ## CNAME limitation
 
-The "\_for-sale" leaf **MAY** be a CNAME pointing to a TXT RR type, but if
-that is the case, the leaf it is pointing to **SHOULD** also be
-"\_for-sale", for example:
+The "\_for-sale" leaf node name **MAY** be an alias, but if
+that is the case, the CNAME record it is associated with it **SHOULD** also be
+named "\_for-sale", for example:
 
 ~~~
 _for-sale.example.com. IN CNAME _for-sale.example.org.
 ~~~
 
-## Placement of node name
+## Placement of leaf node name
 
 The "\_for-sale" leaf node name **MAY** be placed on the top level domain, or any domain directly below, with the exception of the .arpa infrastructure top-level domain.
 
-It **MAY** also be placed at a lower level, but only when that level is mentioned in the Public Suffix List [@PSL]. 
+It **MAY** also be placed at a lower level, but only when that level is mentioned in the Public Suffix List [@!PSL]. 
 
 Any other placement of the record **MUST NOT** be regarded as a signal that the domain above it is for sale. 
 
-See (#placements) for further explanation.
+(#placements) provides further clarification.
 
 Name | Situation | Verdict
 -----|-----------|--------
@@ -168,7 +169,8 @@ The holder of 'example.com' wishes to signal that the domain is for sale and add
 _for-sale.example.com. IN TXT "v=FORSALE1;https://buy.example.com/"
 ~~~
 
-An interested party notices this signal and can visit the URI mentioned for further information. The TXT record can also be processed by automated tools, but see the (#security, use title) section for possible risks. 
+An interested party notices this signal and can visit the URI mentioned for further information. The TXT record
+may also be processed by automated tools, but see the (#security, use title) section for possible risks. 
 
 As an alternative, a mailto: URI could also be used:
 
@@ -187,14 +189,15 @@ But see the (#privacy, use title) section for possible downsides.
 
 ## Example 2: Various other approaches
 
-Free format text, with some additional unstructured information, aimed to be human readable:
+Free format text, with some additional unstructured information, aimed at
+being human-readable:
 
 ~~~
 _for-sale.example.com. IN TXT "v=FORSALE1;$500, info[at]example.com"
 ~~~
 
 A proprietary format, defined by a registry or registrar to automatically redirect visitors to a web page, 
-but without a well-defined meaning to third parties:
+but without a clearly defined meaning to third parties:
 
 ~~~
 _for-sale.example.com. IN TXT "v=FORSALE1;fscode=aHR0cHM...wbGUuY29t"
@@ -210,21 +213,22 @@ _for-sale.example.com. IN TXT "v=FORSALE1;<script>alert('')</script>"
 DNS wildcards interact poorly with underscored names. Therefore, the use of wildcards 
 is **NOT RECOMMENDED** when deploying this mechanism. However, wildcards may still be encountered 
 in practice, especially with operators who are not implementing this mechanism. 
-This is why the version tag is a **REQUIRED** element: it helps distinguish legitimate
-"\_for-sale" records from unrelated TXT records. Nonetheless, any assumptions about the 
+This is why the version tag is a **REQUIRED** element: it helps distinguish
+valid "\_for-sale" records from unrelated TXT records. Nonetheless, any assumptions about the 
 content of "\_for-sale" TXT records SHOULD be made with caution.
 
 It is also **RECOMMENDED** that the content string be limited to visible ASCII characters, 
 excluding the double quote (") and backslash (\\). In ABNF syntax, this would be:
 
 ~~~
-forsale-data        = 0*244(recommended-char)
+forsale-content     = 0*244recommended-char
 recommended-char    = %x20-21 / %x23-5B / %x5D-7E
 ~~~
 
 # IANA Considerations
 
-IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@!RFC8552; @IANA]. The underscored node name defined in this specification should be added as follows:
+IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@!RFC8552; @IANA]. The underscored
+leaf node name defined in this specification should be added as follows:
 
 ~~~ ascii-art
              +-----------+--------------+-------------+
@@ -239,7 +243,7 @@ This specification does not require the creation of an IANA registry for record 
 
 # Privacy Considerations {#privacy}
 
-The use of the "\_for-sale" node name publicly indicates the intent to sell a domain name.
+The use of the "\_for-sale" leaf node name publicly indicates the intent to sell a domain name.
 Domain owners should be aware that this information is accessible to anyone querying the
 DNS and may have privacy implications.
 
@@ -249,11 +253,13 @@ There is a risk of data scraping, such as email addresses and phone numbers.
 
 One use of the TXT record type defined in this document is to parse the content it contains and to automatically publish certain information from it on a website or elsewhere. However, there is a risk if the domain name holder  publishes a malicious URI or one that points to improper content. This may result in reputational damage for the party parsing the record.
 
-Even worse is a scenario in which the content of the TXT record is not validated and sanitized sufficiently, opening doors to - for example - XSS attacks among other things. 
+An even more serious scenario occurs when the content of the TXT record is not validated and sanitized sufficiently, opening doors to - for example - XSS attacks among other things. 
 
 Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted with the utmost care.
 
-There is also a risk that this method will be abused as a marketing tool, or to otherwise lure individuals into visiting certain sites or attempting other forms of contact, without there being any intention to actually sell the particular domain name. Therefore, it is recommended that this method is primarily used by professionals.
+There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
+means, without there being any intention to actually sell the particular domain name. Therefore, this method is best suited for use by professionals.
+
 
 # Implementation Status
 
@@ -264,7 +270,7 @@ registry. See for example:
 https://www.sidn.nl/en/whois?q=example.nl
 ~~~
 
-[note to editor: please remove this section before publication]
+<NOTE TO RFC EDITOR: Please remove this section before publication.>
 
 # Acknowledgements
 
