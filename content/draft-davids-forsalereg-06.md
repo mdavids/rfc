@@ -4,8 +4,7 @@ title = "Registration of the \"_for-sale\" Underscored and Globally Scoped DNS N
 abbrev = "forsalereg"
 ipr = "trust200902" 
 # area = "Internet"
-# workgroup = "Internet Engineering Task Force (IETF)"
-workgroup = ""
+workgroup = "Internet Engineering Task Force (IETF)"
 submissiontype = "IETF"
 keyword = [""]
 # https://www.rfc-editor.org/rfc/rfc7991#section-2.45.14
