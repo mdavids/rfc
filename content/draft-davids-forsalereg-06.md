@@ -233,14 +233,11 @@ recommended-char    = %x20-21 / %x23-5B / %x5D-7E
 IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@!RFC8552; @IANA]. The underscored
 leaf node name defined in this specification should be added as follows:
 
-~~~ ascii-art
-             +-----------+--------------+-------------+
-             | RR Type   | _NODE NAME   | Reference   |
-             +-----------+--------------+-------------+
-             | TXT       | _for-sale    | TBD         |
-             +-----------+--------------+-------------+
-~~~
-Figure: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
+
+RR Type | _NODE NAME | Reference
+-----|-----------|--------
+TXT | \_for-sale | TBD
+Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
 This specification does not require the creation of an IANA registry for record fields.
 
