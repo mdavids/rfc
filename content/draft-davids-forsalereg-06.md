@@ -52,6 +52,7 @@ is unavailable; it may still be for sale.
 Some registrars and other entities offer mediation services between domain name holders and interested parties. For domain names that are not for sale, such services may be
 of limited value, whereas they may be beneficial for domain names that are clearly being offered for sale.
 
+<!-- TODO: improve sentence ? -->
 This specification defines a simple and universal method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored
 leaf node name [@!RFC8552] in the zone, indicating that the domain name is for sale.
 
@@ -76,7 +77,7 @@ There are undoubtedly more ways to address this problem space. The reasons for t
 
 ## General Record Format {#recformat}
 
-<!-- TODO: see https://www.rfc-editor.org/rfc/rfc8461.html#section-3.1 for inspiration -->
+<!-- COMMENT: https://www.rfc-editor.org/rfc/rfc8461.html#section-3.1 used for inspiration -->
 
 The "\_for-sale" TXT record **MUST** start with a version tag, possibly followed by a string.
 
@@ -90,7 +91,7 @@ forsale-content = 0*244OCTET
                   ; referred to as content or data
 ~~~
 
-<!-- TODO: double check on https://author-tools.ietf.org/abnf -->
+<!-- DONE: double check on https://author-tools.ietf.org/abnf -->
 
 ## Content limitations
 
