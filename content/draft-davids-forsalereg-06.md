@@ -241,6 +241,8 @@ Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
 This specification does not require the creation of an IANA registry for record fields.
 
+<NOTE TO RFC EDITOR: Adjust the text in this section before publication.>
+
 # Privacy Considerations {#privacy}
 
 The use of the "\_for-sale" leaf node name publicly indicates the intent to sell a domain name.
