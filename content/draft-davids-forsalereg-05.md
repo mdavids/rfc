@@ -89,6 +89,8 @@ forsale-data    = 0*244OCTET
                   ; referred to as content or data
 ~~~
 
+<!-- TODO: double check on https://author-tools.ietf.org/abnf -->
+
 ## Content limitations
 
 The TXT [@RFC8553, (see) section 2.1] record **MUST** contain any valid content, ranging from an empty string to meaningful text or URIs.
