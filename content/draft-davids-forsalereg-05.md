@@ -2,11 +2,10 @@
 # This is a comment - but only in this block
 title = "Registration of the \"_for-sale\" Underscored and Globally Scoped DNS Node Name"
 abbrev = "forsalereg"
-#ipr = "trust200902" # mmark docs say 'none' for independent submissions
-ipr = "none"
+ipr = "trust200902" 
 # area = "Internet"
 # workgroup = "Internet Engineering Task Force (IETF)"
-submissiontype = "independent"
+submissiontype = "IETF"
 keyword = [""]
 # https://www.rfc-editor.org/rfc/rfc7991#section-2.45.14
 tocdepth = 3
@@ -17,8 +16,8 @@ tocdepth = 3
 [seriesInfo]
 name = "Internet-Draft"
 value = "draft-davids-forsalereg-05"
-stream = "independent"
-status = "informational"  # or "bcp" or "experimental" ?
+stream = "IETF"
+status = "bcp"
 
 [[author]]
 initials="M."
@@ -59,7 +58,7 @@ The TXT RR type [@!RFC1035] created for this purpose **MUST** follow the formal 
 (#recformat). Its content **MAY** contain a pointer, such as a Uniform Resource Identifier (URI) [@RFC8820], or another string, 
 allowing interested parties to obtain information or contact the domain name holder for further negotiations.
 
-With due caution, such information can also be incorporated into automated availability services. When checking a domain name for availability, the service may indicate whether it is for sale and provide a pointer to the seller’s information.
+With due caution, such information can also be incorporated into automated availability services. When checking a domain name for availability, the service may indicate whether it is for sale and provide a pointer to the seller's information.
 
 ## Terminology
 
@@ -111,7 +110,7 @@ See (#guidelines) for additional guidelines.
 ## RRset limitations
 
 This specification does not define any restrictions on the number of TXT records in the RRset, but limiting it to one is **RECOMMENDED**. 
-It is also **RECOMMENDED** that the length of the RDATA [@RFC8499] per TXT record does not exceed 255 octets. 
+It is also **RECOMMENDED** that the length of the RDATA [@RFC9499] per TXT record does not exceed 255 octets. 
 If this is not the case, the processor **SHOULD**  determine which content to use. 
 
 For example, a registry might select content that includes a recognizable code, which can be used to direct visitors to a sales page 
@@ -144,7 +143,7 @@ _for-sale.example.com. IN CNAME _for-sale.example.org.
 
 The "\_for-sale" leaf node name **MAY** be placed on the top level domain, or any domain directly below, with the exception of the .arpa infrastructure top-level domain.
 
-It **MAY** also be placed at a lower level, but only when that level is mentioned in the Public Suffix List [@!PSL]. 
+It **MAY** also be placed at a lower level, but only when that level is mentioned in the Public Suffix List [@PSL]. 
 
 Any other placement of the record **MUST NOT** be regarded as a signal that the domain above it is for sale. 
 
