@@ -5,6 +5,7 @@ abbrev = "forsalereg"
 ipr = "trust200902" 
 # area = "Internet"
 # workgroup = "Internet Engineering Task Force (IETF)"
+workgroup = ""
 submissiontype = "IETF"
 keyword = [""]
 # https://www.rfc-editor.org/rfc/rfc7991#section-2.45.14
@@ -15,7 +16,7 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-05"
+value = "draft-davids-forsalereg-06"
 stream = "IETF"
 status = "bcp"
 
@@ -214,7 +215,7 @@ is **NOT RECOMMENDED** when deploying this mechanism. However, wildcards may sti
 in practice, especially with operators who are not implementing this mechanism. 
 This is why the version tag is a **REQUIRED** element: it helps distinguish
 valid "\_for-sale" records from unrelated TXT records. Nonetheless, any assumptions about the 
-content of "\_for-sale" TXT records SHOULD be made with caution.
+content of "\_for-sale" TXT records **SHOULD** be made with caution.
 
 It is also **RECOMMENDED** that the content string be limited to visible ASCII characters, 
 excluding the double quote (") and backslash (\\). In ABNF syntax, this would be:
