@@ -15,7 +15,7 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-06"
+value = "draft-davids-forsalereg-07"
 stream = "IETF"
 status = "bcp"
 
@@ -115,7 +115,7 @@ Parties - such as registries and registrars - **MAY** use it in their tools, per
 Content can also be represented in a human-readable format for individuals to
 interpret. See the (#examples, use title) section for clarification.
 
-Since the content of TXT record has no defined meaning, it is up to the processor of the content to decide how to handle it. 
+Since the content of the TXT record has no defined meaning, it is up to the processor of the content to decide how to handle it. 
 
 See (#guidelines) for additional guidelines.
 
