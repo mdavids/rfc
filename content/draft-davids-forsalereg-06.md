@@ -85,12 +85,23 @@ The formal definition of the record format, using ABNF [@!RFC5234; @!RFC7405], i
 ~~~
 forsale-record  = forsale-version forsale-content
 forsale-version = %s"v=FORSALE1;"
-                  ; case sensitive, no spaces
+                  ; version tag, case sensitive, no spaces
 forsale-content = 0*244OCTET
                   ; referred to as content or data
 ~~~
 
 <!-- DONE: double check on https://author-tools.ietf.org/abnf -->
+
+Records without a version tag **MUST NOT** be interpreted or processed as a valid '_for-sale' indicator. 
+However, they may still offer some additional information for humans when considered alongside a valid record, for example:
+
+
+```
+_for-sale.example.com. IN TXT "I am for sale"
+_for-sale.example.com. IN TXT "v=FORSALE1;fscode=NGYyYjEyZWY"
+```
+
+If no TXT records at a leaf node contain a version tag, processors **MUST** consider the node name invalid and discard it.
 
 ## Content limitations
 
@@ -128,7 +139,8 @@ A TTL longer than 86400 is **NOT RECOMMENDED**. Long TTLs increase the risk of o
 
 ## Wildcard limitation
 
-The "\_for-sale" leaf node name **SHOULD NOT** be a wildcard.
+The "\_for-sale" leaf node name **SHOULD NOT** be a wildcard, but processors **MAY** still analyze it
+if it is.
 
 ## CNAME limitation
 
@@ -139,6 +151,8 @@ named "\_for-sale", for example:
 ~~~
 _for-sale.example.com. IN CNAME _for-sale.example.org.
 ~~~
+
+However, processors **MAY** follow the CNAME pointers in other cases as well.
 
 ## Placement of leaf node name
 
