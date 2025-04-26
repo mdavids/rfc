@@ -156,7 +156,7 @@ However, processors **MAY** follow the CNAME pointers in other cases as well.
 
 ## Placement of leaf node name
 
-The "\_for-sale" leaf node name **MAY** be placed on the top level domain, or any domain directly below, with the exception of the .arpa infrastructure top-level domain.
+The "\_for-sale" leaf node name **MAY** be placed on the top-level domain, or any domain directly below, with the exception of the .arpa infrastructure top-level domain.
 
 It **MAY** also be placed at a lower level, but only when that level is mentioned in the Public Suffix List [@PSL]. 
 
