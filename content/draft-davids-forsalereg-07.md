@@ -285,6 +285,8 @@ registry. See for example:
 https://www.sidn.nl/en/whois?q=example.nl
 ~~~
 
+<!-- or https://api.sidn.nl/rest/whois?domain=example.nl -->
+
 <NOTE TO RFC EDITOR: Please remove this section before publication.>
 
 # Acknowledgements
