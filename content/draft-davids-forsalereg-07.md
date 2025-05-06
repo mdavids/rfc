@@ -241,9 +241,9 @@ forsale-content     = 0*244recommended-char
 recommended-char    = %x20-21 / %x23-5B / %x5D-7E
 ~~~
 
-Because the format of the content part is not strictly defined, processors
-**MAY** apply the robustness principle of being liberal in what they accept. 
-This applies in particular to whitespace immediately following the version tag.
+Because the format of the content part is not strictly defined, processors **MAY** 
+apply the robustness principle of being liberal in what they accept. 
+This applies in particular to space characters (%x20) immediately following the version tag.
 
 # IANA Considerations
 
