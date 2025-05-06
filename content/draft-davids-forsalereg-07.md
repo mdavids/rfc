@@ -241,9 +241,11 @@ forsale-content     = 0*244recommended-char
 recommended-char    = %x20-21 / %x23-5B / %x5D-7E
 ~~~
 
-Because the format of the content part is not strictly defined, processors **MAY** 
-apply the robustness principle of being liberal in what they accept. 
-This applies in particular to space characters (%x20) immediately following the version tag.
+Because the format of the content part is not strictly defined in this
+document, processors **MAY** apply the robustness principle of being 
+liberal in what they accept. This applies in particular to space 
+characters (%x20) immediately following the version tag. Alternatively, 
+parties may agree on a more strictly defined proprietary format.
 
 # IANA Considerations
 
@@ -272,7 +274,7 @@ There is a risk of data scraping, such as email addresses and phone numbers.
 
 One use of the TXT record type defined in this document is to parse the content it contains and to automatically publish certain information from it on a website or elsewhere. However, there is a risk if the domain name holder  publishes a malicious URI or one that points to improper content. This may result in reputational damage for the party parsing the record.
 
-An even more serious scenario occurs when the content of the TXT record is not validated and sanitized sufficiently, opening doors to - for example - XSS attacks among other things. 
+An even more serious scenario arises when the content of the TXT record is insufficiently validated and sanitized, potentially enabling attacks such as XSS or SQL injection.
 
 Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted with the utmost care.
 
