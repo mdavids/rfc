@@ -92,7 +92,7 @@ forsale-content = 0*244OCTET
 
 <!-- DONE: double check on https://author-tools.ietf.org/abnf -->
 
-Records without a version tag **MUST NOT** be interpreted or processed as a valid '_for-sale' indicator. 
+Records without a version tag **MUST NOT** be interpreted or processed as a valid "\_for-sale" indicator. 
 However, they may still offer some additional information for humans when considered alongside a valid record, for example:
 
 
@@ -292,6 +292,12 @@ https://www.sidn.nl/en/whois?q=example.nl
 ~~~
 
 <!-- or https://api.sidn.nl/rest/whois?domain=example.nl -->
+
+The Dutch registry SIDN offers registrars the option to register a sales 
+landing page via its registrar dashboard. When this option is used, a 
+unique 'idcode' string is generated, which can be included in the "\_for-sale" record. 
+If such a domain name is entered on the domain finder page, a 'for sale' button is displayed accordingly.
+
 
 <NOTE TO RFC EDITOR: Please remove this section before publication.>
 
