@@ -296,7 +296,7 @@ https://www.sidn.nl/en/whois?q=example.nl
 The Dutch registry SIDN offers registrars the option to register a sales 
 landing page via its registrar dashboard. When this option is used, a 
 unique 'idcode' string is generated, which can be included in the "\_for-sale" record. 
-If such a domain name is entered on the domain finder page, a 'for sale' button is displayed accordingly.
+If such a domain name is entered on the domain finder page of SIDN, a 'for sale' button is displayed accordingly.
 
 
 <NOTE TO RFC EDITOR: Please remove this section before publication.>
