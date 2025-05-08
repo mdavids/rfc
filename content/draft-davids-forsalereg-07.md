@@ -298,6 +298,7 @@ landing page via its registrar dashboard. When this option is used, a
 unique 'idcode' string is generated, which can be included in the "\_for-sale" record. 
 If such a domain name is entered on the domain finder page of SIDN, a 'for sale' button is displayed accordingly.
 
+<!--
 Another place where this method could be used is:
 
 ~~~
@@ -305,6 +306,7 @@ http://whois.icann.org/en
 ~~~
 
 That website could include an indicator when a "\_for-sale" record is found.
+-->
 
 <NOTE TO RFC EDITOR: Please remove this section before publication.>
 
