@@ -39,7 +39,8 @@ organization = "SIDN Labs"
 
 This document defines an operational convention for using the reserved DNS leaf node name
 "\_for-sale" to indicate that the parent domain name is available for purchase. 
-This approach offers the advantage of easy deployment without affecting ongoing operations. As such, the method can be applied to a domain name that is still in full use.
+This approach offers the advantage of easy deployment without affecting ongoing operations. 
+As such, the method can be applied to a domain name that is still in full use.
 
 {mainmatter}
 
@@ -78,7 +79,9 @@ There are undoubtedly more ways to address this problem space. The reasons for t
 
 <!-- COMMENT: https://www.rfc-editor.org/rfc/rfc8461.html#section-3.1 used for inspiration -->
 
-The "\_for-sale" TXT record **MUST** start with a version tag, possibly followed by a string.
+Each "\_for-sale" TXT record **MUST** begin with a version tag, followed by a string containing content that follows a simple "tag=value" syntax.
+
+<!-- TODO: See RFC7489 sectie 6.3 en RFC6375 section 3.2 for inspiration -->
 
 The formal definition of the record format, using ABNF [@!RFC5234; @!RFC7405], is as follows:
 
@@ -92,13 +95,16 @@ forsale-content = 0*244OCTET
 
 <!-- DONE: double check on https://author-tools.ietf.org/abnf -->
 
-Records without a version tag **MUST NOT** be interpreted or processed as a valid "\_for-sale" indicator. 
-However, they may still offer some additional information for humans when considered alongside a valid record, for example:
+Records with a version tag, but no content... <!-- TODO: what do we say -->
 
+<!-- TODO: only one content tag per TXT record -->
+
+Records without a version tag  **MUST NOT** be interpreted or processed as a valid "\_for-sale" indicator. 
+However, they may still offer some additional information for humans when considered alongside a valid record, for example:
 
 ```
 _for-sale.example.com. IN TXT "I am for sale"
-_for-sale.example.com. IN TXT "v=FORSALE1;fscode=NGYyYjEyZWY"
+_for-sale.example.com. IN TXT "v=FORSALE1;code=NGYyYjEyZWY"
 ```
 
 If no TXT records at a leaf node contain a version tag, processors **MUST** consider the node name invalid and discard it.
@@ -121,7 +127,8 @@ See (#guidelines) for additional guidelines.
 
 ## RRset limitations
 
-This specification does not define any restrictions on the number of TXT records in the RRset, but limiting it to one is **RECOMMENDED**. 
+This specification does not define any restrictions on the number of TXT records in the RRset, 
+but limiting it to one is **RECOMMENDED**. <!-- TODO: is it still? -->
 It is also **RECOMMENDED** that the length of the RDATA [@RFC9499] per TXT record does not exceed 255 octets. 
 If this is not the case, the processor **SHOULD**  determine which content to use. 
 
@@ -130,17 +137,12 @@ as part of its services, whereas an individual might simply extract a phone numb
 
 ## RR Type limitations
 
-Adding any resource record (RR) types under the "\_for-sale" leaf other than TXT is **NOT RECOMMENDED**. 
-Such records **MUST** be ignored for the purposes of this document.
-
-## TTL limitation
-
-A TTL longer than 86400 is **NOT RECOMMENDED**. Long TTLs increase the risk of outdated information persisting, potentially misleading buyers into believing the domain is still available for purchase.
+Adding any resource record (RR) types under the "\_for-sale" leaf, other than TXT (such as AAAA or HINFO), is unnecessary for the 
+purposes of this document and therefore discouraged.
 
 ## Wildcard limitation
 
-The "\_for-sale" leaf node name **SHOULD NOT** be a wildcard, but processors **MAY** still analyze it
-if it is.
+Wildcards are only interpreted as leaf names, so \_for-sale.*.example is not a valid wildcard and is non-conformant.
 
 ## CNAME limitation
 
@@ -156,22 +158,38 @@ However, processors **MAY** follow the CNAME pointers in other cases as well.
 
 ## Placement of leaf node name
 
-The "\_for-sale" leaf node name **MAY** be placed on the top-level domain, or any domain directly below, with the exception of the .arpa infrastructure top-level domain.
+The "\_for-sale" leaf node name is primarily intended to indicate that a domain name is available for
+purchase.
 
-It **MAY** also be placed at a lower level, but only when that level is mentioned in the Public Suffix List [@PSL]. 
+For that, the leaf node name is to be placed on the top-level domain, or any domain directly
+below. It can also be placed at a lower level, when that level is mentioned in the Public Suffix List [@PSL]. 
 
-Any other placement of the record **MUST NOT** be regarded as a signal that the domain above it is for sale. 
+When the "\_for-sale" leaf node name is placed elsewhere, the intent is less clear.
 
-(#placements) provides further clarification.
+(#placements) illustrates this:
 
 Name | Situation | Verdict
 -----|-----------|--------
-\_for-sale.example | root zone | For sale
-\_for-sale.aaa.example | Second level | For sale
-\_for-sale.acme.bbb.example | bbb.example in PSL | For sale
-\_for-sale.www.ccc.example | Other | Invalid
-\_for-sale.51.198.in-addr.arpa | infrastructure TLD | Invalid
-Table: Allowed placements of TXT record {#placements}
+\_for-sale.example. | root zone | For sale
+\_for-sale.aaa.example. | second level | For sale
+\_for-sale.acme.bbb.example. | bbb.example in PSL | For sale
+\_for-sale.www.ccc.example. | ccc.example not in PSL | See note 1
+\_for-sale.51.198.in-addr.arpa. | infrastructure TLD | See note 2
+xyz.\_for-sale.example. | Invalid placement | non-conformant
+Table: Placements of TXT record {#placements}
+
+<!-- TODO: If someone wants to sell a label, do we care? -->
+
+Note 1:
+When the "\_for-sale" leaf node name is placed in front of a label of a
+domain that is not in the PSL, it suggests that this label is for sale, and
+not the domain name as a whole. There may be use cases for this, but this
+situation is considered unusual in the context of this document.
+
+Note 2:
+When the "\_for-sale" leaf node name is placed in the .arpa infrastructure top-level
+domain, it may indicate that IP space is being offered for sale, but such a scenario is
+considered outside the scope of this document.
 
 # Examples {#examples}
 
@@ -180,8 +198,11 @@ Table: Allowed placements of TXT record {#placements}
 The holder of 'example.com' wishes to signal that the domain is for sale and adds this record to the 'example.com' zone:
 
 ~~~
-_for-sale.example.com. IN TXT "v=FORSALE1;https://buy.example.com/"
+_for-sale.example.com. IN TXT "v=FORSALE1;uri=https://fs.example.com/"
 ~~~
+
+<!-- TODO: What about URLs with WSP and other weird charachters? MUST be
+encoded? Like https://example.nl/test%20for%20marco.html -->
 
 An interested party notices this signal and can visit the URI mentioned for further information. The TXT record
 may also be processed by automated tools, but see the (#security, use title) section for possible risks. 
@@ -189,38 +210,47 @@ may also be processed by automated tools, but see the (#security, use title) sec
 As an alternative, a mailto: URI could also be used:
 
 ~~~
-_for-sale.example.com. IN TXT "v=FORSALE1;mailto:owner@example.com"
+_for-sale.example.com. IN TXT "v=FORSALE1;uri=mailto:owner@example.com"
 ~~~
 
 Or a telephone URI:
 
 ~~~
-_for-sale.example.com. IN TXT "v=FORSALE1;tel:+1-201-555-0123"
+_for-sale.example.com. IN TXT "v=FORSALE1;uri=tel:+1-201-555-0123"
 ~~~
 
 There can be a use case for these URIs, especially since WHOIS (or RDAP) often has privacy restrictions.
 But see the (#privacy, use title) section for possible downsides.
 
-## Example 2: Various other approaches
+## Example 2: Free text format
 
 Free format text, with some additional unstructured information, aimed at
 being human-readable:
 
 ~~~
-_for-sale.example.com. IN TXT "v=FORSALE1;$500, info[at]example.com"
+_for-sale.example.com. IN TXT "v=FORSALE1;txt=$500, info[at]example.com"
 ~~~
+
+<!-- TODO: remove ? -->
+The content in the following example could be malicious, but it is not in violation of this specification (see (#security)):
+
+~~~
+_for-sale.example.com. IN TXT "v=FORSALE1;txt=<script>...</script>"
+~~~
+
+## Example 3: Code format
 
 A proprietary format, defined by a registry or registrar to automatically redirect visitors to a web page, 
 but without a clearly defined meaning to third parties:
 
 ~~~
-_for-sale.example.com. IN TXT "v=FORSALE1;fscode=aHR0cHM...wbGUuY29t"
+_for-sale.example.com. IN TXT "v=FORSALE1;code=aHR0cHM...wbGUuY29t"
 ~~~
 
-The content in the following example could be malicious, but it is not in violation of this specification (see (#security)):
+## Example 4: Experimental format
 
 ~~~
-_for-sale.example.com. IN TXT "v=FORSALE1;<script>alert('')</script>"
+_for-sale.example.com. IN TXT "v=FORSALE1;x01=L0rum ip$um"
 ~~~
 
 # Operational Guidelines {#guidelines}
@@ -241,6 +271,8 @@ forsale-content     = 0*244recommended-char
 recommended-char    = %x20-21 / %x23-5B / %x5D-7E
 ~~~
 
+Long TTLs are discouraged as they increase the risk of outdated data misleading buyers into thinking the domain is still available.
+
 Because the format of the content part is not strictly defined in this
 document, processors **MAY** apply the robustness principle of being 
 liberal in what they accept. This applies in particular to space 
@@ -258,9 +290,10 @@ RR Type | _NODE NAME | Reference
 TXT | \_for-sale | TBD
 Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
-This specification does not require the creation of an IANA registry for record fields.
+This specification does not require the creation of an IANA registry for
+content tags.
 
-<NOTE TO RFC EDITOR: Adjust the text in this section before publication.>
+<NOTE TO RFC EDITOR: Adjust the text in this section before publication with a citation for the (this) document making the addition as per RFC8552.>
 
 # Privacy Considerations {#privacy}
 
@@ -313,7 +346,8 @@ That website could include an indicator when a "\_for-sale" record is found.
 # Acknowledgements
 
 The author would like to thank Thijs van den Hout, Caspar Schutijser, Melvin
-Elderman, Paul Bakker and Ben van Hartingsveldt for their valuable feedback.
+Elderman, Paul Bakker, Ben van Hartingsveldt, Jesse Davids and the ISE
+Editor for their valuable feedback.
 
 {backmatter}
 
