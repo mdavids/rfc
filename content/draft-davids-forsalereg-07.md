@@ -131,9 +131,11 @@ See (#rrsetlimits) for additional RRset limitations.
 The content value provides information to interested parties as explained
 in (#introsect).
 
-If the tag-value pair is absent, the processor determines how to proceed. 
-One approach is to indicate the domain is for sale and to use traditional 
-methods, such as WHOIS or RDAP, to obtain contact information:
+In the absence of a tag-value pair, processors **MAY** assume that the domain 
+is for sale. In such cases, processors **SHOULD** determine how to proceed. 
+One possible approach is to indicate that the domain is for sale 
+and and to use traditional methods, such as WHOIS or RDAP, to obtain contact
+information:
 
 ```
 _for-sale.example.com. IN TXT "v=FORSALE1;"
@@ -303,12 +305,14 @@ Note 1:
 When the "\_for-sale" leaf node name is placed in front of a label of a
 domain that is not in the PSL, it suggests that this label is for sale, and
 not the domain name as a whole. There may be use cases for this, but this
-situation is considered unusual in the context of this document.
+situation is considered unusual in the context of this document. 
+Processors **MAY** ignore such records.
 
 Note 2:
 When the "\_for-sale" leaf node name is placed in the .arpa infrastructure top-level
 domain, it may indicate that IP space is being offered for sale, but such a scenario is
-considered outside the scope of this document.
+considered outside the scope of this document. Processors **MUST** ignore such
+records.
 
 # Additional Examples {#examples}
 
@@ -369,6 +373,8 @@ _for-sale IN TXT "v=FORSALE1;fcod=XX-aHR0cHM...wbGUuY29t"
 ~~~
 
 ## Example 4: Combinations
+
+An example of multiple valid TXT records from which a processor can choose:
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
