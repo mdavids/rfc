@@ -52,13 +52,13 @@ is unavailable; it may still be for sale.
 Some registrars and other entities offer mediation services between domain name holders and interested parties. For domain names that are not for sale, such services may be
 of limited value, whereas they may be beneficial for domain names that are clearly being offered for sale.
 
-<!-- TODO: improve sentence ? -->
-This specification defines a lightweight and universal method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored
+This specification defines a lightweight method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored
 leaf node name [@!RFC8552] in the zone, indicating that the domain name is for sale.
 
 The TXT RR type [@!RFC1035] created for this purpose **MUST** follow the formal definition of
-(#conventions). Its content **MAY** contain a pointer, such as a Uniform Resource Identifier (URI) [@RFC8820], or another string, 
-allowing interested parties to obtain information or contact the domain name holder for further negotiations.
+(#conventions). Its content **MAY** contain a pointer, such as a Uniform Resource Identifier (URI) 
+[@!RFC3986], or another string, allowing interested parties to obtain information or 
+contact the domain name holder for further negotiations.
 
 With due caution, such information can also be incorporated into automated availability services. When checking a domain name for availability, the service may indicate whether it is for sale and provide a pointer to the seller's information.
 
@@ -81,74 +81,73 @@ There are undoubtedly more ways to address this problem space. The reasons for t
 
 Each "\_for-sale" TXT record **MUST** begin with a version tag, optionally followed by a string containing content that follows a simple "tag=value" syntax.
 
-<!-- TODO: See RFC7489 sectie 6.3 en RFC6375 section 3.2 for inspiration -->
-
-The formal definition of the general record format, using ABNF [@!RFC5234; @!RFC7405], is as follows:
+The formal definition of the record format, using ABNF [@!RFC5234; @!RFC7405], is as follows:
 
 ~~~
 forsale-record  = forsale-version forsale-content
+                  ; forsale-content is referred to as content
+
 forsale-version = %s"v=FORSALE1;"
                   ; version tag, case sensitive, no spaces
-forsale-content = fcod-string / ftxt-string / furi-string / xpr-string
 
-fcod-string     = fcod-tag fcod-value
-ftxt-string     = ftxt-tag ftxt-value
-furi-string     = furi-tag furi-value
-xpr-string      = xpr-tag xpr-value
+forsale-content = fcod-pair / ftxt-pair / furi-pair
+                  ; referred to as tag-value pairs
+                  ; only one tag-value pair per record
+
+fcod-pair       = fcod-tag fcod-value
+ftxt-pair       = ftxt-tag ftxt-value
+furi-pair       = furi-tag furi-value
+                  ; the tags are referred to as content tags
+                  ; the values are referred to as content values
 
 fcod-tag        = %s"fcod="
 ftxt-tag        = %s"ftxt="
 furi-tag        = %s"furi="
-xpr-tag         = %s"xpr" xpr-digit "="
-
-xpr-digit       = %x31-39
-                  ; '1'–'9'
 
 fcod-value      = 1*239OCTET
                   ; must be at least 1 OCTET
+
 ftxt-value      = 1*239ftxt-char
 ftxt-char       = %x20-21 / %x23-5B / %x5D-7E
                   ; excluding " and \ to avoid escape issues
+
 furi-value      = URI
-                  ; http:, https:, mailto: and tel: are most likely
+                  ; Only http, https, mailto and tel schemes
+                  ; exactly one URI
+
 URI             = <as defined in RFC3986, Appendix A>
-xpr-value       = 0*239OCTET
-                  ; empty value allowed %0x00-FF also
-                  ; to allow maximum flexibility for experiments
 ~~~
-
-<!-- hidden -->
-[@-RFC3986]
-
-<!-- TODO: double check on https://author-tools.ietf.org/abnf -->
+<!-- hint: make sure [@!RFC3986 remains somewhere in the document-->
+<!-- hint: double check on https://author-tools.ietf.org/abnf -->
 
 See (#tagdefs) for more detailed format definitions per content tag type. 
 
-Each "\_for-sale" TXT record MUST NOT contain more than one "tag=value" string.
+Each "\_for-sale" TXT record MUST NOT contain more than one tag-value pair.
+
 See (#rrsetlimits) for additional RRset limitations.
 
-The content string provides information to interested parties as explained
+The content value provides information to interested parties as explained
 in (#introsect).
 
-If the content string is absent, the processor determines how to proceed. 
-One approach is to use traditional methods, such as WHOIS or RDAP, to
-obtain contact information. For example:
+If the tag-value pair is absent, the processor determines how to proceed. 
+One approach is to indicate the domain is for sale and to use traditional 
+methods, such as WHOIS or RDAP, to obtain contact information:
 
 ```
 _for-sale.example.com. IN TXT "v=FORSALE1;"
 ```
 
-If a content string is present but contains no valid content tags, this constitutes 
-a syntax error and the content string **SHOULD** be discarded. For example:
+If content is present but invalid, this constitutes 
+a syntax error and the entire record **SHOULD** be discarded. For example:
 
 ```
 _for-sale.example.com. IN TXT "v=FORSALE1;lorumipsum"
+_for-sale.example.com. IN TXT "v=FORSALE1;fcod="
 ```
 
-<!-- TODO: only one content tag per TXT record -->
-
 TXT records in the same RRset, but without a version tag  **MUST NOT** be interpreted or processed as a valid "\_for-sale" indicator. 
-However, they may still offer some additional information for humans when considered alongside a valid record, for example:
+However, they may still offer some additional information for humans when considered alongside a valid
+record. For example:
 
 ```
 _for-sale.example.com. IN TXT "I am for sale"
@@ -157,14 +156,14 @@ _for-sale.example.com. IN TXT "v=FORSALE1;fcod=XX-NGYyYjEyZWY"
 
 See (#contentlimits) for additional recommendations.
 
-If no TXT records at a leaf node contain a version tag, processors **MUST** consider the node name invalid and discard it.
+If no TXT records at a leaf node contain a valid version tag, processors **MUST** consider the node name invalid and discard it.
 
 ## Content tag type definitions {#tagdefs}
 
 <!-- TODO: see https://datatracker.ietf.org/doc/html/rfc6376#section-3.2 and https://datatracker.ietf.org/doc/html/rfc6376#section-3.6
 and https://datatracker.ietf.org/doc/html/rfc7489#section-6.1 -->
 
-The following content tags are introduced as the initial valid content tags:
+The following content tags are defined as valid content tags:
 
 <!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
 ### fcod=  
@@ -193,24 +192,28 @@ the relevant content in an RRset. Adding a recognizable prefix to the content (e
 as it is not enforced in this document. In this case, ACME would recognize its 
 content tag and interpret it as intended. 
 
-See (#guidelines).
+See (#guidelines) for additional guidelines.
 
 ### ftxt=  
 This content tag may contain human-readable text that conveys information to interested parties. For example:
 
 ~~~
-for-sale IN TXT "v=FORSALE1;ftxt=price:$500,info[at]example.com"
+_for-sale IN TXT "v=FORSALE1;ftxt=price:$500,info[at]example.com"
 ~~~
 
 While a single visible character is the minimum, it is **RECOMMENDED** to provide more context.
 
 ### furi=  
-todo
-... in particular http, https [RFC9110], mailto [RFC6068] and tel [RFC3966].
+This content tag may contain a human-readable and machine-parseable URI that conveys information to interested parties.
 
-### xpr1-xpr9=  
-todo
-only for processors who take/are part in the experiment.
+While the syntax allows any URI scheme, only the following schemes are currently defined for use:
+`http` and `https` [@RFC9110], `mailto` [@RFC6068], and `tel` [@RFC3966].  
+
+The content value **MUST** contain exactly one URI. For example:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
+~~~
 
 ## Content limitations {#contentlimits}
 
@@ -232,13 +235,14 @@ See (#guidelines) for additional guidelines.
 ## RRset limitations {#rrsetlimits}
 
 This specification does not define any restrictions on the number of TXT records in the RRset, 
-but limiting it to one per unique "tag=value" pair is **RECOMMENDED**. <!-- TODO re-think -->
+but limiting it to one per unique tag-value pair is **RECOMMENDED**. <!-- TODO re-think -->
 
-It is also **RECOMMENDED** that the length of the RDATA [@RFC9499] for each TXT record does not exceed 255
+The RDATA [@RFC9499] of each TXT record **MUST** consist of a single character-string
+[@!RFC1035].
+
+It is also **RECOMMENDED** that the length of the RDATA for each TXT record does not exceed 255
 octets, in order to avoid the need to concatenate multiple character-strings during
 processing. For convenience, the ABNF definitions in this document are structured accordingly.
-
-<!-- TODO address this case: TXT	"kort" "korter" "kortst" -->
 
 If this is not the case, the processor **SHOULD**  determine which content to use. 
 
@@ -258,7 +262,6 @@ purposes of this document and therefore discouraged.
 
 Wildcards are only interpreted as leaf names, so \_for-sale.*.example is not a valid wildcard and is non-conformant.
 
-<!-- TODO remove?
 ## CNAME limitation
 
 The "\_for-sale" leaf node name **MAY** be an alias, but if
@@ -270,7 +273,6 @@ _for-sale.example.com. IN CNAME _for-sale.example.org.
 ~~~
 
 However, processors **MAY** follow the CNAME pointers in other cases as well.
--->
 
 ## Placement of leaf node name
 
@@ -294,8 +296,6 @@ Name | Situation | Verdict
 xyz.\_for-sale.example. | Invalid placement | non-conformant
 Table: Placements of TXT record {#placements}
 
-<!-- TODO: If someone wants to sell a label, do we care? -->
-
 Note 1:
 When the "\_for-sale" leaf node name is placed in front of a label of a
 domain that is not in the PSL, it suggests that this label is for sale, and
@@ -309,14 +309,14 @@ considered outside the scope of this document.
 
 # Additional examples {#examples}
 
-<!-- TODO sorteren op alfabet; fcod, ftxt, furi, xpr.. -->
+<!-- TODO sorteren op alfabet; fcod, ftxt, furi ? -->
 
 ## Example 1: A URI
 
 The holder of 'example.com' wishes to signal that the domain is for sale and adds this record to the 'example.com' zone:
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;uri=https://fs.example.com/"
+_for-sale IN TXT "v=FORSALE1;furi=https://example.com/fs?d=eHl6"
 ~~~
 
 <!-- TODO: What about URLs with WSP and other weird charachters? MUST be
@@ -328,13 +328,13 @@ may also be processed by automated tools, but see the (#security, use title) sec
 As an alternative, a mailto: URI could also be used:
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;uri=mailto:owner@example.com"
+_for-sale IN TXT "v=FORSALE1;furi=mailto:owner@example.com"
 ~~~
 
 Or a telephone URI:
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;uri=tel:+1-201-555-0123"
+_for-sale IN TXT "v=FORSALE1;furi=tel:+1-201-555-0123"
 ~~~
 
 There can be a use case for these URIs, especially since WHOIS (or RDAP) often has privacy restrictions.
@@ -346,14 +346,13 @@ Free format text, with some additional unstructured information, aimed at
 being human-readable:
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;txt=$500, info[at]example.com"
+_for-sale IN TXT "v=FORSALE1;ftxt=price:EU500, call for info"
 ~~~
 
-<!-- TODO: remove ? -->
 The content in the following example could be malicious, but it is not in violation of this specification (see (#security)):
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;txt=<script>...</script>"
+_for-sale IN TXT "v=FORSALE1;ftxt=<script>...</script>"
 ~~~
 
 ## Example 3: Code format
@@ -365,10 +364,13 @@ but without a clearly defined meaning to third parties:
 _for-sale IN TXT "v=FORSALE1;fcod=XX-aHR0cHM...wbGUuY29t"
 ~~~
 
-## Example 4: Experimental format
+## Example 4: Combinations
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;x01=L0rum ip$um"
+_for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
+          IN TXT "v=FORSALE1;ftxt=starting price:EU500"
+	  IN TXT "v=FORSALE1;fcod=ACME-ZGVhZGJlZWYx"
+	  IN TXT "v=FORSALE1;fcod=XYZ1-MTExLTIyMi0zMzMtNDQ0"
 ~~~
 
 # Operational Guidelines {#guidelines}
@@ -379,7 +381,7 @@ This is why the version tag is a **REQUIRED** element: it helps distinguish
 valid "\_for-sale" records from unrelated TXT records. Nonetheless, any assumptions about the 
 content of "\_for-sale" TXT records **SHOULD** be made with caution.
 
-It is also **RECOMMENDED** that the content string be limited to visible ASCII characters, 
+It is also **RECOMMENDED** that the content value be limited to visible ASCII characters, 
 excluding the double quote (") and backslash (\\).
 
 In ABNF syntax, this would be:
