@@ -44,7 +44,7 @@ As such, the method can be applied to a domain name that is still in full use.
 
 {mainmatter}
 
-# Introduction
+# Introduction {#introsect}
 
 Well-established services [@RFC3912; @RFC9083] exist to determine whether a domain name is registered. However, the fact that a domain name exists does not necessarily mean it
 is unavailable; it may still be for sale.
@@ -57,7 +57,7 @@ This specification defines a lightweight and universal method to ascertain wheth
 leaf node name [@!RFC8552] in the zone, indicating that the domain name is for sale.
 
 The TXT RR type [@!RFC1035] created for this purpose **MUST** follow the formal definition of
-(#recformat). Its content **MAY** contain a pointer, such as a Uniform Resource Identifier (URI) [@RFC8820], or another string, 
+(#conventions). Its content **MAY** contain a pointer, such as a Uniform Resource Identifier (URI) [@RFC8820], or another string, 
 allowing interested parties to obtain information or contact the domain name holder for further negotiations.
 
 With due caution, such information can also be incorporated into automated availability services. When checking a domain name for availability, the service may indicate whether it is for sale and provide a pointer to the seller's information.
@@ -73,45 +73,149 @@ when, and only when, they appear in all capitals, as shown here.
 
 There are undoubtedly more ways to address this problem space. The reasons for the approach defined in this document are primarily accessibility and simplicity. The indicator can be easily turned on and off at will and moreover, it is immediately deployable and does not require significant changes in existing services. This allows for a smooth introduction of the concept.
 
-# Conventions
+# Conventions {#conventions}
 
-## General Record Format {#recformat}
+## General Record Format
 
 <!-- COMMENT: https://www.rfc-editor.org/rfc/rfc8461.html#section-3.1 used for inspiration -->
 
-Each "\_for-sale" TXT record **MUST** begin with a version tag, followed by a string containing content that follows a simple "tag=value" syntax.
+Each "\_for-sale" TXT record **MUST** begin with a version tag, optionally followed by a string containing content that follows a simple "tag=value" syntax.
 
 <!-- TODO: See RFC7489 sectie 6.3 en RFC6375 section 3.2 for inspiration -->
 
-The formal definition of the record format, using ABNF [@!RFC5234; @!RFC7405], is as follows:
+The formal definition of the general record format, using ABNF [@!RFC5234; @!RFC7405], is as follows:
 
 ~~~
 forsale-record  = forsale-version forsale-content
 forsale-version = %s"v=FORSALE1;"
                   ; version tag, case sensitive, no spaces
-forsale-content = 0*244OCTET
-                  ; referred to as content or data
+forsale-content = fcod-string / ftxt-string / furi-string / xpr-string
+
+fcod-string     = fcod-tag fcod-value
+ftxt-string     = ftxt-tag ftxt-value
+furi-string     = furi-tag furi-value
+xpr-string      = xpr-tag xpr-value
+
+fcod-tag        = %s"fcod="
+ftxt-tag        = %s"ftxt="
+furi-tag        = %s"furi="
+xpr-tag         = %s"xpr" xpr-digit "="
+
+xpr-digit       = %x31-39
+                  ; '1'–'9'
+
+fcod-value      = 1*239OCTET
+                  ; must be at least 1 OCTET
+ftxt-value      = 1*239ftxt-char
+ftxt-char       = %x20-21 / %x23-5B / %x5D-7E
+                  ; excluding " and \ to avoid escape issues
+furi-value      = URI
+                  ; http:, https:, mailto: and tel: are most likely
+URI             = <as defined in RFC3986, Appendix A>
+xpr-value       = 0*239OCTET
+                  ; empty value allowed %0x00-FF also
+                  ; to allow maximum flexibility for experiments
 ~~~
 
-<!-- DONE: double check on https://author-tools.ietf.org/abnf -->
+<!-- hidden -->
+[@-RFC3986]
 
-Records with a version tag, but no content... <!-- TODO: what do we say -->
+<!-- TODO: double check on https://author-tools.ietf.org/abnf -->
+
+See (#tagdefs) for more detailed format definitions per content tag type. 
+
+Each "\_for-sale" TXT record MUST NOT contain more than one "tag=value" string.
+See (#rrsetlimits) for additional RRset limitations.
+
+The content string provides information to interested parties as explained
+in (#introsect).
+
+If the content string is absent, the processor determines how to proceed. 
+One approach is to use traditional methods, such as WHOIS or RDAP, to
+obtain contact information. For example:
+
+```
+_for-sale.example.com. IN TXT "v=FORSALE1;"
+```
+
+If a content string is present but contains no valid content tags, this constitutes 
+a syntax error and the content string **SHOULD** be discarded. For example:
+
+```
+_for-sale.example.com. IN TXT "v=FORSALE1;lorumipsum"
+```
 
 <!-- TODO: only one content tag per TXT record -->
 
-Records without a version tag  **MUST NOT** be interpreted or processed as a valid "\_for-sale" indicator. 
+TXT records in the same RRset, but without a version tag  **MUST NOT** be interpreted or processed as a valid "\_for-sale" indicator. 
 However, they may still offer some additional information for humans when considered alongside a valid record, for example:
 
 ```
 _for-sale.example.com. IN TXT "I am for sale"
-_for-sale.example.com. IN TXT "v=FORSALE1;code=NGYyYjEyZWY"
+_for-sale.example.com. IN TXT "v=FORSALE1;fcod=XX-NGYyYjEyZWY"
 ```
+
+See (#contentlimits) for additional recommendations.
 
 If no TXT records at a leaf node contain a version tag, processors **MUST** consider the node name invalid and discard it.
 
-## Content limitations
+## Content tag type definitions {#tagdefs}
 
-The TXT [@RFC8553, (see) section 2.1] record **MUST** contain any valid content, ranging from an empty string to meaningful text or URIs.
+<!-- TODO: see https://datatracker.ietf.org/doc/html/rfc6376#section-3.2 and https://datatracker.ietf.org/doc/html/rfc6376#section-3.6
+and https://datatracker.ietf.org/doc/html/rfc7489#section-6.1 -->
+
+The following content tags are introduced as the initial valid content tags:
+
+<!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
+### fcod=  
+This content tag is intended to contain a code that is meaningful only to processors 
+that understand its semantics. For example, a registry may allow registrars 
+to enter a "for sale" URL into their system. From that URL, a unique code 
+is generated and inserted as the value of this content tag. When a user checks the 
+availability of the domain name using a registry-provided tool 
+(e.g., a web interface), the registry can use the code to redirect the 
+user to the appropriate "for sale" URL.
+
+The rationale for this approach is that controlling parties retain authority over 
+the redirection URLs, thereby preventing users from being sent to unintended or malicious destinations.
+
+The following example shows a base64-encoded [@?RFC4648] string preceded 
+by the prefix "ACME-" as the value of the content tag:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;fcod=ACME-S2lscm95IHdhcyBoZXJl"
+~~~
+
+Note: As an implementation consideration, when multiple parties are involved in 
+the domain sale process and use the same mechanism, it may be difficult to identify 
+the relevant content in an RRset. Adding a recognizable prefix to the content (e.g.,
+"ACME-") is one possible approach. However, this is left to the implementor, 
+as it is not enforced in this document. In this case, ACME would recognize its 
+content tag and interpret it as intended. 
+
+See (#guidelines).
+
+### ftxt=  
+This content tag may contain human-readable text that conveys information to interested parties. For example:
+
+~~~
+for-sale IN TXT "v=FORSALE1;ftxt=price:$500,info[at]example.com"
+~~~
+
+While a single visible character is the minimum, it is **RECOMMENDED** to provide more context.
+
+### furi=  
+todo
+... in particular http, https [RFC9110], mailto [RFC6068] and tel [RFC3966].
+
+### xpr1-xpr9=  
+todo
+only for processors who take/are part in the experiment.
+
+## Content limitations {#contentlimits}
+
+The "\_for-sale" TXT record [@RFC8553, (see) section 2.1] **MUST** contain content deemed valid under this specification.
+
 Any text that suggests that the domain is not for sale is invalid content. If a domain name is not for sale, 
 a "\_for-sale" indicator is pointless and any existence of a valid "\_for-sale" TXT record **MAY**
 therefore be regarded as an indication that the domain name is for sale.
@@ -121,21 +225,31 @@ Parties - such as registries and registrars - **MAY** use it in their tools, per
 Content can also be represented in a human-readable format for individuals to
 interpret. See the (#examples, use title) section for clarification.
 
-Since the content of the TXT record has no defined meaning, it is up to the processor of the content to decide how to handle it. 
+Since the content value in the TXT record has no strictly defined meaning, it is up to the processor of the content to decide how to handle it. 
 
 See (#guidelines) for additional guidelines.
 
-## RRset limitations
+## RRset limitations {#rrsetlimits}
 
 This specification does not define any restrictions on the number of TXT records in the RRset, 
-but limiting it to one is **RECOMMENDED**. <!-- TODO: is it still? -->
-It is also **RECOMMENDED** that the length of the RDATA [@RFC9499] per TXT record does not exceed 255 octets. 
+but limiting it to one per unique "tag=value" pair is **RECOMMENDED**. <!-- TODO re-think -->
+
+It is also **RECOMMENDED** that the length of the RDATA [@RFC9499] for each TXT record does not exceed 255
+octets, in order to avoid the need to concatenate multiple character-strings during
+processing. For convenience, the ABNF definitions in this document are structured accordingly.
+
+<!-- TODO address this case: TXT	"kort" "korter" "kortst" -->
+
 If this is not the case, the processor **SHOULD**  determine which content to use. 
 
-For example, a registry might select content that includes a recognizable code, which can be used to direct visitors to a sales page 
-as part of its services, whereas an individual might simply extract a phone number (if present) and use it to contact a potential seller.
+For example, a registry might extract content from an RRset that includes 
+a recognizable "fcod" content tag and use it to direct visitors to a sales page as 
+part of its services. An individual, on the other hand, might extract a 
+phone number (if present) from a "furi" tag in the same RRset and use it to contact a potential seller.
 
-## RR Type limitations
+<!-- TODO are the tags mentioned here still called that way? -->
+
+## RR type limitations
 
 Adding any resource record (RR) types under the "\_for-sale" leaf, other than TXT (such as AAAA or HINFO), is unnecessary for the 
 purposes of this document and therefore discouraged.
@@ -144,6 +258,7 @@ purposes of this document and therefore discouraged.
 
 Wildcards are only interpreted as leaf names, so \_for-sale.*.example is not a valid wildcard and is non-conformant.
 
+<!-- TODO remove?
 ## CNAME limitation
 
 The "\_for-sale" leaf node name **MAY** be an alias, but if
@@ -155,6 +270,7 @@ _for-sale.example.com. IN CNAME _for-sale.example.org.
 ~~~
 
 However, processors **MAY** follow the CNAME pointers in other cases as well.
+-->
 
 ## Placement of leaf node name
 
@@ -164,7 +280,7 @@ purchase.
 For that, the leaf node name is to be placed on the top-level domain, or any domain directly
 below. It can also be placed at a lower level, when that level is mentioned in the Public Suffix List [@PSL]. 
 
-When the "\_for-sale" leaf node name is placed elsewhere, the intent is less clear.
+When the "\_for-sale" leaf node name is placed elsewhere, the intent is ambiguous.
 
 (#placements) illustrates this:
 
@@ -191,14 +307,16 @@ When the "\_for-sale" leaf node name is placed in the .arpa infrastructure top-l
 domain, it may indicate that IP space is being offered for sale, but such a scenario is
 considered outside the scope of this document.
 
-# Examples {#examples}
+# Additional examples {#examples}
+
+<!-- TODO sorteren op alfabet; fcod, ftxt, furi, xpr.. -->
 
 ## Example 1: A URI
 
 The holder of 'example.com' wishes to signal that the domain is for sale and adds this record to the 'example.com' zone:
 
 ~~~
-_for-sale.example.com. IN TXT "v=FORSALE1;uri=https://fs.example.com/"
+_for-sale IN TXT "v=FORSALE1;uri=https://fs.example.com/"
 ~~~
 
 <!-- TODO: What about URLs with WSP and other weird charachters? MUST be
@@ -210,13 +328,13 @@ may also be processed by automated tools, but see the (#security, use title) sec
 As an alternative, a mailto: URI could also be used:
 
 ~~~
-_for-sale.example.com. IN TXT "v=FORSALE1;uri=mailto:owner@example.com"
+_for-sale IN TXT "v=FORSALE1;uri=mailto:owner@example.com"
 ~~~
 
 Or a telephone URI:
 
 ~~~
-_for-sale.example.com. IN TXT "v=FORSALE1;uri=tel:+1-201-555-0123"
+_for-sale IN TXT "v=FORSALE1;uri=tel:+1-201-555-0123"
 ~~~
 
 There can be a use case for these URIs, especially since WHOIS (or RDAP) often has privacy restrictions.
@@ -228,14 +346,14 @@ Free format text, with some additional unstructured information, aimed at
 being human-readable:
 
 ~~~
-_for-sale.example.com. IN TXT "v=FORSALE1;txt=$500, info[at]example.com"
+_for-sale IN TXT "v=FORSALE1;txt=$500, info[at]example.com"
 ~~~
 
 <!-- TODO: remove ? -->
 The content in the following example could be malicious, but it is not in violation of this specification (see (#security)):
 
 ~~~
-_for-sale.example.com. IN TXT "v=FORSALE1;txt=<script>...</script>"
+_for-sale IN TXT "v=FORSALE1;txt=<script>...</script>"
 ~~~
 
 ## Example 3: Code format
@@ -244,13 +362,13 @@ A proprietary format, defined by a registry or registrar to automatically redire
 but without a clearly defined meaning to third parties:
 
 ~~~
-_for-sale.example.com. IN TXT "v=FORSALE1;code=aHR0cHM...wbGUuY29t"
+_for-sale IN TXT "v=FORSALE1;fcod=XX-aHR0cHM...wbGUuY29t"
 ~~~
 
 ## Example 4: Experimental format
 
 ~~~
-_for-sale.example.com. IN TXT "v=FORSALE1;x01=L0rum ip$um"
+_for-sale IN TXT "v=FORSALE1;x01=L0rum ip$um"
 ~~~
 
 # Operational Guidelines {#guidelines}
@@ -273,9 +391,10 @@ recommended-char    = %x20-21 / %x23-5B / %x5D-7E
 
 Long TTLs are discouraged as they increase the risk of outdated data misleading buyers into thinking the domain is still available.
 
+<!-- TODO -->
 Because the format of the content part is not strictly defined in this
 document, processors **MAY** apply the robustness principle of being 
-liberal in what they accept. This applies in particular to space 
+liberal in what they accept. This also applies to space 
 characters (%x20) immediately following the version tag. Alternatively, 
 parties may agree on a more strictly defined proprietary format.
 
@@ -346,7 +465,7 @@ That website could include an indicator when a "\_for-sale" record is found.
 # Acknowledgements
 
 The author would like to thank Thijs van den Hout, Caspar Schutijser, Melvin
-Elderman, Paul Bakker, Ben van Hartingsveldt, Jesse Davids and the ISE
+Elderman, Paul Bakker, Ben van Hartingsveldt, Jesse Davids, Juan Stelling and the ISE
 Editor for their valuable feedback.
 
 {backmatter}
