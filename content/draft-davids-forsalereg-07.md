@@ -134,7 +134,7 @@ in (#introsect).
 In the absence of a tag-value pair, processors **MAY** assume that the domain 
 is for sale. In such cases, processors **SHOULD** determine how to proceed. 
 One possible approach is to indicate that the domain is for sale 
-and and to use traditional methods, such as WHOIS or RDAP, to obtain contact
+and to use traditional methods, such as WHOIS or RDAP, to obtain contact
 information:
 
 ```
