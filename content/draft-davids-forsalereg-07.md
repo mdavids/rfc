@@ -437,7 +437,7 @@ An even more serious scenario arises when the content of the TXT record is insuf
 Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted with the utmost care.
 
 There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
-means, without there being any intention to actually sell the particular domain name. Therefore, this method is best suited for use by professionals.
+means, without there being any intention to actually sell the domain name. Therefore, this method is best suited for use by professionals.
 
 
 # Implementation Status
@@ -452,8 +452,8 @@ https://www.sidn.nl/en/whois?q=example.nl
 <!-- or https://api.sidn.nl/rest/whois?domain=example.nl -->
 
 The Dutch registry SIDN offers registrars the option to register a sales 
-landing page via its registrar dashboard. When this option is used, a 
-unique 'idcode' string is generated, which can be included in the "\_for-sale" record. 
+landing page via its registrar dashboard following the "fcod=" method.
+When this option is used, a unique code is generated, which can be included in the "\_for-sale" record. 
 If such a domain name is entered on the domain finder page of SIDN, a 'for sale' button is displayed accordingly.
 
 <!--
