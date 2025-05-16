@@ -35,6 +35,9 @@ organization = "SIDN Labs"
   country = "Netherlands"
 %%%
 
+<!-- TODO: alle comments nalopen, want het zijn niet alleen TODO en kijken
+of het opgeschoond kan/moet -->
+
 <!-- hint: use Title Case everywher -->
 
 .# Abstract
@@ -216,7 +219,7 @@ While the syntax allows any URI scheme, only the following schemes are currently
 The content value **MUST** contain exactly one URI. For example:
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
+_for-sale IN TXT "v=FORSALE1;furi=https://example.com/foo%20bar"
 ~~~
 
 See the (#security, use title) section for possible risks.
@@ -322,6 +325,7 @@ records.
 
 The holder of 'example.com' wishes to signal that the domain is for sale and adds this record to the 'example.com' zone:
 
+<!-- TODO artwork inkorten -->
 ~~~
 _for-sale IN TXT "v=FORSALE1;furi=https://example.com/fs?d=eHl6"
 ~~~
