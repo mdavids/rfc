@@ -35,6 +35,8 @@ organization = "SIDN Labs"
   country = "Netherlands"
 %%%
 
+<!-- hint: use Title Case everywher -->
+
 .# Abstract
 
 This document defines an operational convention for using the reserved DNS leaf node name
@@ -154,16 +156,18 @@ _for-sale.example.com. IN TXT "I am for sale"
 _for-sale.example.com. IN TXT "v=FORSALE1;fcod=XX-NGYyYjEyZWY"
 ```
 
-See (#contentlimits) for additional recommendations.
-
 If no TXT records at a leaf node contain a valid version tag, processors **MUST** consider the node name invalid and discard it.
 
-## Content tag type definitions {#tagdefs}
+See (#contentlimits) for additional content limitations.
+
+## Content Tag Type Definitions {#tagdefs}
 
 <!-- TODO: see https://datatracker.ietf.org/doc/html/rfc6376#section-3.2 and https://datatracker.ietf.org/doc/html/rfc6376#section-3.6
 and https://datatracker.ietf.org/doc/html/rfc7489#section-6.1 -->
 
-The following content tags are defined as valid content tags:
+The following content tags are defined as valid content tags.
+
+See (#guidelines) for operational guidelines.
 
 <!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
 ### fcod=  
@@ -192,8 +196,6 @@ the relevant content in an RRset. Adding a recognizable prefix to the content (e
 as it is not enforced in this document. In this case, ACME would recognize its 
 content tag and interpret it as intended. 
 
-See (#guidelines) for additional guidelines.
-
 ### ftxt=  
 This content tag may contain human-readable text that conveys information to interested parties. For example:
 
@@ -215,7 +217,8 @@ The content value **MUST** contain exactly one URI. For example:
 _for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
 ~~~
 
-## Content limitations {#contentlimits}
+See the (#security, use title) section for possible risks.
+## Content Limitations {#contentlimits}
 
 The "\_for-sale" TXT record [@RFC8553, (see) section 2.1] **MUST** contain content deemed valid under this specification.
 
@@ -232,7 +235,7 @@ Since the content value in the TXT record has no strictly defined meaning, it is
 
 See (#guidelines) for additional guidelines.
 
-## RRset limitations {#rrsetlimits}
+## RRset Limitations {#rrsetlimits}
 
 This specification does not define any restrictions on the number of TXT records in the RRset, 
 but limiting it to one per unique tag-value pair is **RECOMMENDED**. <!-- TODO re-think -->
@@ -253,16 +256,16 @@ phone number (if present) from a "furi" tag in the same RRset and use it to cont
 
 <!-- TODO are the tags mentioned here still called that way? -->
 
-## RR type limitations
+## RR type Limitations
 
 Adding any resource record (RR) types under the "\_for-sale" leaf, other than TXT (such as AAAA or HINFO), is unnecessary for the 
 purposes of this document and therefore discouraged.
 
-## Wildcard limitation
+## Wildcard Limitation
 
 Wildcards are only interpreted as leaf names, so \_for-sale.*.example is not a valid wildcard and is non-conformant.
 
-## CNAME limitation
+## CNAME Limitation
 
 The "\_for-sale" leaf node name **MAY** be an alias, but if
 that is the case, the CNAME record it is associated with it **SHOULD** also be
@@ -274,7 +277,7 @@ _for-sale.example.com. IN CNAME _for-sale.example.org.
 
 However, processors **MAY** follow the CNAME pointers in other cases as well.
 
-## Placement of leaf node name
+## Placement of the Leaf Node Name
 
 The "\_for-sale" leaf node name is primarily intended to indicate that a domain name is available for
 purchase.
@@ -307,7 +310,7 @@ When the "\_for-sale" leaf node name is placed in the .arpa infrastructure top-l
 domain, it may indicate that IP space is being offered for sale, but such a scenario is
 considered outside the scope of this document.
 
-# Additional examples {#examples}
+# Additional Examples {#examples}
 
 <!-- TODO sorteren op alfabet; fcod, ftxt, furi ? -->
 
@@ -340,7 +343,7 @@ _for-sale IN TXT "v=FORSALE1;furi=tel:+1-201-555-0123"
 There can be a use case for these URIs, especially since WHOIS (or RDAP) often has privacy restrictions.
 But see the (#privacy, use title) section for possible downsides.
 
-## Example 2: Free text format
+## Example 2: Free Text Format
 
 Free format text, with some additional unstructured information, aimed at
 being human-readable:
@@ -349,13 +352,14 @@ being human-readable:
 _for-sale IN TXT "v=FORSALE1;ftxt=price:EU500, call for info"
 ~~~
 
-The content in the following example could be malicious, but it is not in violation of this specification (see (#security)):
+The content in the following example could be malicious, but it is not in violation of this specification (see
+the (#security, use title)):
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;ftxt=<script>...</script>"
 ~~~
 
-## Example 3: Code format
+## Example 3: Code Format
 
 A proprietary format, defined by a registry or registrar to automatically redirect visitors to a web page, 
 but without a clearly defined meaning to third parties:
