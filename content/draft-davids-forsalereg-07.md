@@ -95,6 +95,7 @@ The formal definition of the record format, using ABNF [@!RFC5234; @!RFC7405], i
 ~~~
 forsale-record  = forsale-version forsale-content
                   ; referred to as content or RDATA
+                  ; in a single charachter-string
 
 forsale-version = %s"v=FORSALE1;"
                   ; %x76.3D.46.4F.52.53.41.4C.45.31.3B
@@ -267,14 +268,20 @@ See (#guidelines) for additional guidelines.
 This specification does not define restrictions on the number of TXT records in the RRset, 
 but limiting it to one per content tag is **RECOMMENDED**.
 
-The RDATA [@RFC9499] of each TXT record **MUST** consist of a single character-string
-[@!RFC1035].
+If this is not the case, the processor **SHOULD**  determine which content to use.
 
-It is also **RECOMMENDED** that the length of the RDATA for each TXT record does not exceed 255
-octets, in order to avoid the need to concatenate multiple character-strings during
-processing. For convenience, the ABNF definitions in this document are structured accordingly.
+The RDATA [@RFC9499] of each TXT record **MUST** consist of a single character-string with a maximum length of 255 octets
+[@!RFC1035], in order to avoid the need to concatenate multiple character-strings during
+processing. The ABNF definitions in this document are structured accordingly.
 
-If this is not the case, the processor **SHOULD**  determine which content to use. 
+The following example illustrates an invalid TXT record due to the presence of multiple
+character-strings:
+
+~~~
+_for-sale IN TXT ""v=FORSALE1;" "ftxt=foo" "bar" "invalid"
+~~~
+
+When multiple content TXT records present, the processor MAY select one or more of them.
 
 For example, a registry might extract content from an RRset that includes 
 a recognizable "fcod" content tag and use it to direct visitors to a sales page as 
