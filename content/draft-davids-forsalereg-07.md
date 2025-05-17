@@ -208,7 +208,7 @@ the relevant content in an RRset. Adding a recognizable prefix to the content (e
 "ACME-") is one possible approach. However, this is left to the implementor, 
 as it is not enforced in this document. In this case, ACME would recognize its 
 content tag and interpret it as intended. This example uses base64 encoding 
-to avoid escaping and ensure printable characters, though this is not required.
+to avoid escaping and ensure printable characters, though this is also not required.
 
 ### ftxt=  
 This content tag may contain human-readable text that conveys information to interested parties. For example:
