@@ -288,6 +288,8 @@ a recognizable "fcod=" content tag and use it to direct visitors to a sales page
 part of its services. An individual, on the other hand, might extract a 
 phone number (if present) from a "furi=" tag in the same RRset and use it to contact a potential seller.
 
+An example of such a combined record is provided in (#combiexample).
+
 ## RR type Limitations
 
 Adding any resource record (RR) types under the "\_for-sale" leaf, other than TXT (such as AAAA or HINFO), is unnecessary for the 
@@ -398,7 +400,7 @@ There can be a use case for these URIs, especially since WHOIS (or RDAP) often h
 But see the (#privacy, use title) section for possible downsides.
 
 
-## Example 4: Combinations
+## Example 4: Combinations {#combiexample}
 
 An example of multiple valid TXT records from which a processor can choose:
 
