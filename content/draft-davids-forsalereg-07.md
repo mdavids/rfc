@@ -94,7 +94,7 @@ The formal definition of the record format, using ABNF [@!RFC5234; @!RFC7405], i
 
 ~~~
 forsale-record  = forsale-version forsale-content
-                  ; forsale-content is referred to as content
+                  ; referred to as content or RDATA
 
 forsale-version = %s"v=FORSALE1;"
                   ; %x76.3D.46.4F.52.53.41.4C.45.31.3B
@@ -150,13 +150,20 @@ information:
 _for-sale.example.com. IN TXT "v=FORSALE1;"
 ```
 
-If content is present but invalid, this constitutes 
-a syntax error and the entire record **SHOULD** be discarded. For example:
+If the tag-value pair is present but invalid, this constitutes 
+a syntax error and **SHOULD** be treated as if it was
+absent.
+
+If the version tag is valid but the associated tag-value pair is invalid and
+**SHOULD** be treated as absent, processors **MAY** assume that the domain is for
+sale. For example:
 
 ```
 _for-sale.example.com. IN TXT "v=FORSALE1;lorumipsum"
 _for-sale.example.com. IN TXT "v=FORSALE1;fcod="
+_for-sale.example.com. IN TXT "v=FORSALE1;foo=bar"
 ```
+
 
 TXT records in the same RRset, but without a version tag  **MUST NOT** be interpreted or processed as a valid "\_for-sale" indicator. 
 However, they may still offer some additional information for humans when considered alongside a valid
@@ -357,7 +364,7 @@ the (#security, use title)):
 _for-sale IN TXT "v=FORSALE1;ftxt=<script>...</script>"
 ~~~
 
-## Example 3: A URI
+## Example 3: URI Format
 
 The holder of 'example.com' wishes to signal that the domain is for sale and adds this record to the 'example.com' zone:
 
@@ -413,7 +420,7 @@ forsale-content     = 0*244recommended-char
 recommended-char    = %x20-21 / %x23-5B / %x5D-7E
 ~~~
 
-Long TTLs are discouraged as they increase the risk of outdated data misleading buyers into thinking the domain is still available.
+Long TTLs [@!RFC1035, (see) section 3.2.1] are discouraged as they increase the risk of outdated data misleading buyers into thinking the domain is still available.
 
 Because the format of the content part is not strictly defined in this
 document, processors **MAY** apply the robustness principle of being 
