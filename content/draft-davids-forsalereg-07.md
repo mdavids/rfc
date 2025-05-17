@@ -278,7 +278,7 @@ The following example illustrates an invalid TXT record due to the presence of m
 character-strings:
 
 ~~~
-_for-sale IN TXT ""v=FORSALE1;" "ftxt=foo" "bar" "invalid"
+_for-sale IN TXT "v=FORSALE1;" "ftxt=foo" "bar" "invalid"
 ~~~
 
 When multiple content TXT records present, the processor MAY select one or more of them.
