@@ -99,7 +99,6 @@ forsale-record  = forsale-version forsale-content
 forsale-version = %s"v=FORSALE1;"
                   ; %x76.3D.46.4F.52.53.41.4C.45.31.3B
                   ; version tag, case sensitive, no spaces
-                  ; without the quotes
 
 forsale-content = fcod-pair / ftxt-pair / furi-pair
                   ; referred to as tag-value pairs
@@ -114,6 +113,7 @@ furi-pair       = furi-tag furi-value
 fcod-tag        = %s"fcod="
 ftxt-tag        = %s"ftxt="
 furi-tag        = %s"furi="
+                  ; case sensitive lowercase
 
 fcod-value      = 1*239OCTET
                   ; must be at least 1 OCTET
