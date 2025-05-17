@@ -46,6 +46,10 @@ This document defines an operational convention for using the reserved DNS leaf 
 This approach offers the advantage of easy deployment without affecting ongoing operations. 
 As such, the method can be applied to a domain name that is still in full use.
 
+.# Note to the RFC Editor
+This document contains several "Notes to the RFC Editor", including this section. 
+These should be reviewed and resolved prior to publication.
+
 {mainmatter}
 
 # Introduction {#introsect}
