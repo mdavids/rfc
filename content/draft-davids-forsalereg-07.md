@@ -191,9 +191,9 @@ that understand its semantics.
 
 For example, a registry may allow registrars to enter a "for sale" URL into their system. 
 From that URL, a unique code is generated. This code is inserted as the value of
-thhe "fcod=" content tag of the "\_for-sale" TXT record a a domain, as shown in the example below.
+the "fcod=" content tag of the "\_for-sale" TXT record of a domain name, as shown in the example below.
 
-When a user checks the availability of a domain name using a registry-provided tool 
+When a user checks the availability of the domain name using a registry-provided tool 
 (e.g., a web interface), the registry may use the code to redirect the user to the 
 appropriate "for sale" URL, which may include a query component containing the domain name, for example:
 
