@@ -35,8 +35,7 @@ organization = "SIDN Labs"
   country = "Netherlands"
 %%%
 
-<!-- TODO: alle comments nalopen, want het zijn niet alleen TODO en kijken
-of het opgeschoond kan/moet -->
+<!-- TODO: alle comments nalopen, want het zijn niet alleen TODO en kijken of het opgeschoond kan/moet -->
 
 <!-- hint: use Title Case everywher -->
 
@@ -67,6 +66,9 @@ contact the domain name holder for further negotiations.
 
 With due caution, such information can also be incorporated into automated availability services. When checking a domain name for availability, the service may indicate whether it is for sale and provide a pointer to the seller's information.
 
+Note: In this document, the term "for sale" is used in a broad sense and
+**MAY** also refer to cases where the domain name is available for lease.
+
 ## Terminology
 
 The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL NOT**",
@@ -93,7 +95,9 @@ forsale-record  = forsale-version forsale-content
                   ; forsale-content is referred to as content
 
 forsale-version = %s"v=FORSALE1;"
+                  ; %x76.3D.46.4F.52.53.41.4C.45.31.3B
                   ; version tag, case sensitive, no spaces
+                  ; without the quotes
 
 forsale-content = fcod-pair / ftxt-pair / furi-pair
                   ; referred to as tag-value pairs
@@ -167,9 +171,6 @@ See (#contentlimits) for additional content limitations.
 
 ## Content Tag Type Definitions {#tagdefs}
 
-<!-- TODO: see https://datatracker.ietf.org/doc/html/rfc6376#section-3.2 and https://datatracker.ietf.org/doc/html/rfc6376#section-3.6
-and https://datatracker.ietf.org/doc/html/rfc7489#section-6.1 -->
-
 The following content tags are defined as valid content tags.
 
 See (#guidelines) for operational guidelines.
@@ -177,12 +178,19 @@ See (#guidelines) for operational guidelines.
 <!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
 ### fcod=  
 This content tag is intended to contain a code that is meaningful only to processors 
-that understand its semantics. For example, a registry may allow registrars 
-to enter a "for sale" URL into their system. From that URL, a unique code 
-is generated and inserted as the value of this content tag. When a user checks the 
-availability of the domain name using a registry-provided tool 
-(e.g., a web interface), the registry can use the code to redirect the 
-user to the appropriate "for sale" URL.
+that understand its semantics.
+
+For example, a registry may allow registrars to enter a "for sale" URL into their system. 
+From that URL, a unique code is generated. This code is inserted as the value of
+thhe "fcod=" content tag of the "\_for-sale" TXT record a a domain, as shown in the example below.
+
+When a user checks the availability of a domain name using a registry-provided tool 
+(e.g., a web interface), the registry may use the code to redirect the user to the 
+appropriate "for sale" URL, which may include a query component containing the domain name, for example:
+
+~~~
+https://forsale-url.example.com/acme?d=example.org
+~~~
 
 The rationale for this approach is that controlling parties retain authority over 
 the redirection URLs, thereby preventing users from being sent to unintended or malicious destinations.
@@ -199,7 +207,8 @@ the domain sale process and use the same mechanism, it may be difficult to ident
 the relevant content in an RRset. Adding a recognizable prefix to the content (e.g.,
 "ACME-") is one possible approach. However, this is left to the implementor, 
 as it is not enforced in this document. In this case, ACME would recognize its 
-content tag and interpret it as intended. 
+content tag and interpret it as intended. This example uses base64 encoding 
+to avoid escaping and ensure printable characters, though this is not required.
 
 ### ftxt=  
 This content tag may contain human-readable text that conveys information to interested parties. For example:
@@ -222,6 +231,10 @@ The content value **MUST** contain exactly one URI. For example:
 _for-sale IN TXT "v=FORSALE1;furi=https://example.com/foo%20bar"
 ~~~
 
+URIs **MUST** conform to the syntax and encoding requirements specified in 
+[@!RFC3986, section 2.1], including the percent-encoding of characters 
+not allowed unencoded (for example, spaces MUST be encoded as `%20` in a URL).
+
 See the (#security, use title) section for possible risks.
 ## Content Limitations {#contentlimits}
 
@@ -242,8 +255,8 @@ See (#guidelines) for additional guidelines.
 
 ## RRset Limitations {#rrsetlimits}
 
-This specification does not define any restrictions on the number of TXT records in the RRset, 
-but limiting it to one per unique tag-value pair is **RECOMMENDED**. <!-- TODO re-think -->
+This specification does not define restrictions on the number of TXT records in the RRset, 
+but limiting it to one per content tag is **RECOMMENDED**.
 
 The RDATA [@RFC9499] of each TXT record **MUST** consist of a single character-string
 [@!RFC1035].
@@ -258,8 +271,6 @@ For example, a registry might extract content from an RRset that includes
 a recognizable "fcod" content tag and use it to direct visitors to a sales page as 
 part of its services. An individual, on the other hand, might extract a 
 phone number (if present) from a "furi" tag in the same RRset and use it to contact a potential seller.
-
-<!-- TODO are the tags mentioned here still called that way? -->
 
 ## RR type Limitations
 
@@ -319,19 +330,38 @@ records.
 
 # Additional Examples {#examples}
 
-<!-- TODO sorteren op alfabet; fcod, ftxt, furi ? -->
+## Example 1: Code Format
 
-## Example 1: A URI
+A proprietary format, defined by a registry or registrar to automatically redirect visitors to a web page, 
+but without a clearly defined meaning to third parties:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;fcod=XX-aHR0cHM...wbGUuY29t"
+~~~
+
+## Example 2: Free Text Format
+
+Free format text, with some additional unstructured information, aimed at
+being human-readable:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;ftxt=price:EU500, call for info"
+~~~
+
+The content in the following example could be malicious, but it is not in violation of this specification (see
+the (#security, use title)):
+
+~~~
+_for-sale IN TXT "v=FORSALE1;ftxt=<script>...</script>"
+~~~
+
+## Example 3: A URI
 
 The holder of 'example.com' wishes to signal that the domain is for sale and adds this record to the 'example.com' zone:
 
-<!-- TODO artwork inkorten -->
 ~~~
 _for-sale IN TXT "v=FORSALE1;furi=https://example.com/fs?d=eHl6"
 ~~~
-
-<!-- TODO: What about URLs with WSP and other weird charachters? MUST be
-encoded? Like https://example.nl/test%20for%20marco.html -->
 
 An interested party notices this signal and can visit the URI mentioned for further information. The TXT record
 may also be processed by automated tools, but see the (#security, use title) section for possible risks. 
@@ -351,30 +381,6 @@ _for-sale IN TXT "v=FORSALE1;furi=tel:+1-201-555-0123"
 There can be a use case for these URIs, especially since WHOIS (or RDAP) often has privacy restrictions.
 But see the (#privacy, use title) section for possible downsides.
 
-## Example 2: Free Text Format
-
-Free format text, with some additional unstructured information, aimed at
-being human-readable:
-
-~~~
-_for-sale IN TXT "v=FORSALE1;ftxt=price:EU500, call for info"
-~~~
-
-The content in the following example could be malicious, but it is not in violation of this specification (see
-the (#security, use title)):
-
-~~~
-_for-sale IN TXT "v=FORSALE1;ftxt=<script>...</script>"
-~~~
-
-## Example 3: Code Format
-
-A proprietary format, defined by a registry or registrar to automatically redirect visitors to a web page, 
-but without a clearly defined meaning to third parties:
-
-~~~
-_for-sale IN TXT "v=FORSALE1;fcod=XX-aHR0cHM...wbGUuY29t"
-~~~
 
 ## Example 4: Combinations
 
@@ -407,11 +413,10 @@ recommended-char    = %x20-21 / %x23-5B / %x5D-7E
 
 Long TTLs are discouraged as they increase the risk of outdated data misleading buyers into thinking the domain is still available.
 
-<!-- TODO -->
 Because the format of the content part is not strictly defined in this
 document, processors **MAY** apply the robustness principle of being 
 liberal in what they accept. This also applies to space 
-characters (%x20) immediately following the version tag. Alternatively, 
+characters (`%x20`) immediately following the version tag. Alternatively, 
 parties may agree on a more strictly defined proprietary format.
 
 # IANA Considerations
