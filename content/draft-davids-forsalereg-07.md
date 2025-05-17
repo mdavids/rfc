@@ -284,9 +284,9 @@ _for-sale IN TXT "v=FORSALE1;" "ftxt=foo" "bar" "invalid"
 When multiple content TXT records present, the processor MAY select one or more of them.
 
 For example, a registry might extract content from an RRset that includes 
-a recognizable "fcod" content tag and use it to direct visitors to a sales page as 
+a recognizable "fcod=" content tag and use it to direct visitors to a sales page as 
 part of its services. An individual, on the other hand, might extract a 
-phone number (if present) from a "furi" tag in the same RRset and use it to contact a potential seller.
+phone number (if present) from a "furi=" tag in the same RRset and use it to contact a potential seller.
 
 ## RR type Limitations
 
