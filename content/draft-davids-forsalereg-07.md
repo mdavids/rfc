@@ -391,8 +391,8 @@ An example of multiple valid TXT records from which a processor can choose:
 ~~~
 _for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
           IN TXT "v=FORSALE1;ftxt=starting price:EU500"
-	  IN TXT "v=FORSALE1;fcod=ACME-ZGVhZGJlZWYx"
-	  IN TXT "v=FORSALE1;fcod=XYZ1-MTExLTIyMi0zMzMtNDQ0"
+          IN TXT "v=FORSALE1;fcod=ACME-ZGVhZGJlZWYx"
+          IN TXT "v=FORSALE1;fcod=XYZ1-MTExLTIyMi0zMzMtNDQ0"
 ~~~
 
 # Operational Guidelines {#guidelines}
