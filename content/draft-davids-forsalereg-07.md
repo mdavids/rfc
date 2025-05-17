@@ -88,8 +88,6 @@ There are undoubtedly more ways to address this problem space. The reasons for t
 
 ## General Record Format
 
-<!-- COMMENT: https://www.rfc-editor.org/rfc/rfc8461.html#section-3.1 used for inspiration -->
-
 Each "\_for-sale" TXT record **MUST** begin with a version tag, optionally followed by a string containing content that follows a simple "tag=value" syntax.
 
 The formal definition of the record format, using ABNF [@!RFC5234; @!RFC7405], is as follows:
@@ -475,11 +473,11 @@ landing page via its registrar dashboard following the "fcod=" method.
 When this option is used, a unique code is generated, which can be included in the "\_for-sale" record. 
 If such a domain name is entered on the domain finder page of SIDN, a 'for sale' button is displayed accordingly.
 
-<!--
+<!-- TODO: remove?
 Another place where this method could be used is:
 
 ~~~
-http://whois.icann.org/en
+https://lookup.icann.org/en
 ~~~
 
 That website could include an indicator when a "\_for-sale" record is found.
