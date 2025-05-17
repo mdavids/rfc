@@ -270,9 +270,9 @@ but limiting it to one per content tag is **RECOMMENDED**.
 
 If this is not the case, the processor **SHOULD**  determine which content to use.
 
-The RDATA [@RFC9499] of each TXT record **MUST** consist of a single character-string with a maximum length of 255 octets
-[@!RFC1035], in order to avoid the need to concatenate multiple character-strings during
-processing. The ABNF definitions in this document are structured accordingly.
+The RDATA [@RFC9499] of each TXT record **MUST** consist of a single character-string
+[@!RFC1035] with a maximum length of 255 octets, in order to avoid the need to concatenate multiple
+character-strings during processing. 
 
 The following example illustrates an invalid TXT record due to the presence of multiple
 character-strings:
