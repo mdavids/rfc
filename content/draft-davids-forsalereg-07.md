@@ -252,9 +252,9 @@ Any text that suggests that the domain is not for sale is invalid content. If a 
 a "\_for-sale" indicator is pointless and any existence of a valid "\_for-sale" TXT record **MAY**
 therefore be regarded as an indication that the domain name is for sale.
 
-This specification does not dictate the exact use of any content in the "\_for-sale" TXT record, or the lack of any such content.
-Parties - such as registries and registrars - **MAY** use it in their tools, perhaps even by defining specific requirements that the content must meet.
-Content can also be represented in a human-readable format for individuals to
+This specification does not dictate the exact use of any content values in the "\_for-sale" TXT record.
+Parties - such as registries and registrars - **MAY** use it in their tools, perhaps even by defining specific requirements that the content
+value must meet. Content values can also be represented in a human-readable format for individuals to
 interpret. See the (#examples, use title) section for clarification.
 
 Since the content value in the TXT record has no strictly defined meaning, it is up to the processor of the content to decide how to handle it. 
