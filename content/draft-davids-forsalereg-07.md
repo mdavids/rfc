@@ -95,7 +95,7 @@ The formal definition of the record format, using ABNF [@!RFC5234; @!RFC7405], i
 ~~~
 forsale-record  = forsale-version forsale-content
                   ; referred to as content or RDATA
-                  ; in a single charachter-string
+                  ; in a single character-string
 
 forsale-version = %s"v=FORSALE1;"
                   ; %x76.3D.46.4F.52.53.41.4C.45.31.3B
