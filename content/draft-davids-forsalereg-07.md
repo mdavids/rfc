@@ -134,7 +134,7 @@ URI             = <as defined in RFC3986, Appendix A>
 
 See (#tagdefs) for more detailed format definitions per content tag type. 
 
-Each "\_for-sale" TXT record MUST NOT contain more than one tag-value pair.
+Each "\_for-sale" TXT record **MUST NOT** contain more than one tag-value pair.
 
 See (#rrsetlimits) for additional RRset limitations.
 
@@ -243,7 +243,7 @@ _for-sale IN TXT "v=FORSALE1;furi=https://example.com/foo%20bar"
 
 URIs **MUST** conform to the syntax and encoding requirements specified in 
 [@!RFC3986, section 2.1], including the percent-encoding of characters 
-not allowed unencoded (for example, spaces MUST be encoded as `%20` in a URL).
+not allowed unencoded (for example, spaces **MUST** be encoded as `%20` in a URL).
 
 See the (#security, use title) section for possible risks.
 ## Content Limitations {#contentlimits}
@@ -281,7 +281,7 @@ character-strings:
 _for-sale IN TXT "v=FORSALE1;" "ftxt=foo" "bar" "invalid"
 ~~~
 
-When multiple content TXT records present, the processor MAY select one or more of them.
+When multiple content TXT records present, the processor **MAY** select one or more of them.
 
 For example, a registry might extract content from an RRset that includes 
 a recognizable "fcod=" content tag and use it to direct visitors to a sales page as 
