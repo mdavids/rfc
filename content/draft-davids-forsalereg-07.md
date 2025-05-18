@@ -151,13 +151,11 @@ information:
 _for-sale.example.com. IN TXT "v=FORSALE1;"
 ```
 
-If the tag-value pair is present but invalid, this constitutes 
-a syntax error and **SHOULD** be treated as if it was
-absent.
+If a tag-value pair is present but invalid, this constitutes a syntax error 
+and **SHOULD** be treated as if it were absent.
 
-If the version tag is valid but the associated tag-value pair is invalid and
-**SHOULD** be treated as absent, processors **MAY** assume that the domain is for
-sale. For example:
+In such cases, if the version tag itself is valid, processors **MAY** assume that the domain is for sale.
+For example:
 
 ```
 _for-sale.example.com. IN TXT "v=FORSALE1;lorumipsum"
