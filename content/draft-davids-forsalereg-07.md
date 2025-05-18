@@ -230,8 +230,8 @@ While a single visible character is the minimum, it is **RECOMMENDED** to provid
 ### furi=  
 This content tag may contain a human-readable and machine-parseable URI that conveys information to interested parties.
 
-While the syntax allows any URI scheme, only the following schemes are currently defined for use:
-`http` and `https` [@RFC9110], `mailto` [@RFC6068], and `tel` [@RFC3966].  
+While the syntax allows any URI scheme, only the following schemes are **RECOMMENDED** 
+for use: `http` and `https` [@RFC9110], `mailto` [@RFC6068], and `tel` [@RFC3966].  
 
 The content value **MUST** contain exactly one URI. For example:
 
