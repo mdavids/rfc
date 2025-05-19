@@ -296,20 +296,6 @@ purposes of this document and therefore discouraged.
 
 Wildcards are only interpreted as leaf names, so \_for-sale.*.example is not a valid wildcard and is non-conformant.
 
-<!!-- REMOVED
-## CNAME Limitation
-
-The "\_for-sale" leaf node name **MAY** be an alias, but if
-that is the case, the CNAME record it is associated with it **SHOULD** also be
-named "\_for-sale", for example:
-
-~~~
-_for-sale.example.com. IN CNAME _for-sale.example.org.
-~~~
-
-However, processors **MAY** follow the CNAME pointers in other cases as well.
--->
-
 ## Placement of the Leaf Node Name
 
 The "\_for-sale" leaf node name is primarily intended to indicate that a domain name is available for
