@@ -163,8 +163,7 @@ _for-sale.example.com. IN TXT "v=FORSALE1;fcod="
 _for-sale.example.com. IN TXT "v=FORSALE1;foo=bar"
 ```
 
-
-TXT records in the same RRset, but without a version tag  **MUST NOT** be interpreted or processed as a valid "\_for-sale" indicator. 
+TXT records in the same RRset, but without a version tag, **MUST NOT** be interpreted or processed as a valid "\_for-sale" indicator. 
 However, they may still offer some additional information for humans when considered alongside a valid
 record. For example:
 
@@ -184,7 +183,7 @@ The following content tags are defined as valid content tags.
 See (#guidelines) for operational guidelines.
 
 <!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
-### fcod=  
+### fcod= {#fcoddef}  
 This content tag is intended to contain a code that is meaningful only to processors 
 that understand its semantics.
 
@@ -297,6 +296,7 @@ purposes of this document and therefore discouraged.
 
 Wildcards are only interpreted as leaf names, so \_for-sale.*.example is not a valid wildcard and is non-conformant.
 
+<!!-- REMOVED
 ## CNAME Limitation
 
 The "\_for-sale" leaf node name **MAY** be an alias, but if
@@ -308,6 +308,7 @@ _for-sale.example.com. IN CNAME _for-sale.example.org.
 ~~~
 
 However, processors **MAY** follow the CNAME pointers in other cases as well.
+-->
 
 ## Placement of the Leaf Node Name
 
@@ -333,23 +334,24 @@ Table: Placements of TXT record {#placements}
 
 Note 1:
 When the "\_for-sale" leaf node name is placed in front of a label of a
-domain that is not in the PSL, it suggests that this label is for sale, and
-not the domain name as a whole. There may be use cases for this, but this
+domain that is not in the PSL, it suggests that this label (and everything
+underneath) is for sale, and not the domain name as a whole. There may be use cases for this, but this
 situation is considered unusual in the context of this document. 
 Processors **MAY** ignore such records.
 
 Note 2:
-When the "\_for-sale" leaf node name is placed in the .arpa infrastructure top-level
-domain, it may indicate that IP space is being offered for sale, but such a scenario is
-considered outside the scope of this document. Processors **MUST** ignore such
-records.
+If a "\_for-sale" leaf node were to appear under the .arpa infrastructure top-level 
+domain, it might be interpreted as an offer to sell IP address space. 
+However, such use is explicitly out of scope for this document, and processors
+**MUST** ignore any such records.
 
 # Additional Examples {#examples}
 
 ## Example 1: Code Format
 
-A proprietary format, defined by a registry or registrar to automatically redirect visitors to a web page, 
-but without a clearly defined meaning to third parties:
+A proprietary format, defined by a registry or registrar, without a clearly defined meaning to third 
+parties. For example, it may be used to automatically redirect visitors to a web page, as described in
+(#fcoddef):
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;fcod=XX-aHR0cHM...wbGUuY29t"
@@ -444,7 +446,7 @@ leaf node name defined in this specification should be added as follows:
 
 RR Type | _NODE NAME | Reference
 -----|-----------|--------
-TXT | \_for-sale | TBD
+TXT | \_for-sale | <this memo>
 Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
 This specification does not require the creation of an IANA registry for
