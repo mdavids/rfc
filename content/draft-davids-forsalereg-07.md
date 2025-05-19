@@ -403,7 +403,8 @@ is **NOT RECOMMENDED** when deploying this mechanism. However, wildcards may sti
 in practice, especially with operators who are not implementing this mechanism. 
 This is why the version tag is a **REQUIRED** element: it helps distinguish
 valid "\_for-sale" records from unrelated TXT records. Nonetheless, any assumptions about the 
-content of "\_for-sale" TXT records **SHOULD** be made with caution.
+content of "\_for-sale" TXT records **SHOULD** be made with caution, for example 
+in cases where the use of wildcards inadvertently causes third-party property to be listed for sale.
 
 It is also **RECOMMENDED** that the content value be limited to visible ASCII characters, 
 excluding the double quote (") and backslash (\\).
