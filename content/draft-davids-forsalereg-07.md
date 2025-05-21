@@ -424,7 +424,7 @@ Because the format of the content part is not strictly defined in this
 document, processors **MAY** apply the robustness principle of being 
 liberal in what they accept. This also applies to space 
 characters (`%x20`) immediately following the version tag.
-Alternatively, parties may agree on a more strictly defined proprietary format
+Alternatively, parties may mutually agree on a more strictly defined proprietary format
 for the content value to mitigate ambiguity.
 
 # IANA Considerations
