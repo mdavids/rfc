@@ -443,6 +443,7 @@ Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 <!-- This specification does not require the creation of an IANA registry for content tags. -->
 <!-- TODO zie https://www.rfc-editor.org/rfc/rfc8726.html#name-creating-new-iana-registrie -->
 <!-- TODO zie ook https://www.iana.org/help/protocol-registration -->
+<!-- TODO en zie ook https://www.rfc-editor.org/rfc/rfc8126.html -->
 This document defines a new registry [@!FORSALEREG] for content tags, which will be maintained independently of IANA. The registry is publicly accessible at:
 
 ~~~
