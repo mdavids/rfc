@@ -178,12 +178,12 @@ See (#contentlimits) for additional content limitations.
 
 ## Content Tag Type Definitions {#tagdefs}
 
-The following content tags are defined as valid content tags.
+The following content tags are defined as the initial valid content tags.
 
-See (#guidelines) for operational guidelines.
+<!-- TODO: Inlude '=' yes or no ? -->
 
 <!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
-### fcod= {#fcoddef}  
+### fcod {#fcoddef}  
 This content tag is intended to contain a code that is meaningful only to processors 
 that understand its semantics.
 
@@ -217,7 +217,7 @@ as it is not enforced in this document. In this case, ACME would recognize its
 content tag and interpret it as intended. This example uses base64 encoding 
 to avoid escaping and ensure printable characters, though this is also not required.
 
-### ftxt=  
+### ftxt  
 This content tag may contain human-readable text that conveys information to interested parties. For example:
 
 ~~~
@@ -226,7 +226,7 @@ _for-sale IN TXT "v=FORSALE1;ftxt=price:$500,info[at]example.com"
 
 While a single visible character is the minimum, it is **RECOMMENDED** to provide more context.
 
-### furi=  
+### furi  
 This content tag may contain a human-readable and machine-parseable URI that conveys information to interested parties.
 
 While the syntax allows any URI scheme, only the following schemes are **RECOMMENDED** 
@@ -257,6 +257,8 @@ value must meet. Content values can also be represented in a human-readable form
 interpret. See the (#examples, use title) section for clarification.
 
 Since the content value in the TXT record has no strictly defined meaning, it is up to the processor of the content to decide how to handle it. 
+
+See (#guidelines) for operational guidelines.
 
 See (#guidelines) for additional guidelines.
 
@@ -436,10 +438,21 @@ RR Type | _NODE NAME | Reference
 TXT | \_for-sale | <this memo>
 Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
-This specification does not require the creation of an IANA registry for
-content tags.
-
 <NOTE TO RFC EDITOR: Adjust the text in this section before publication with a citation for the (this) document making the addition as per RFC8552.>
+
+<!-- This specification does not require the creation of an IANA registry for content tags. -->
+<!-- TODO zie https://www.rfc-editor.org/rfc/rfc8726.html#name-creating-new-iana-registrie -->
+<!-- poging 1: -->
+This document defines a new registry [@!FORSALEREG] for content tags, which will be maintained independently of IANA. The registry is publicly accessible at:
+
+~~~
+https://forsalereg.sidnlabs.nl/
+~~~
+
+The registry entries consist of content tags as defined in
+(#tagdefs). Future updates will be managed by the Designated Expert.
+
+This registry is not maintained by IANA as per [@!RFC8726].
 
 # Privacy Considerations {#privacy}
 
@@ -511,6 +524,16 @@ Editor for their valuable feedback.
   <title>Underscored and Globally Scoped DNS Node Names</title>
   <author>
     <organization>IANA</organization>
+  </author>
+ </front>
+</reference>
+
+<!-- TODO niet vergeten op te ruimen indien alsnog niet nodig --> 
+<reference anchor='FORSALEREG' target='https://forsalereg.sidnlabs.nl/forsale-parameters.xhtml#tag'>
+ <front>
+  <title>Registration of the "_for-sale" Underscored and Globally Scoped DNS Node Name</title>
+  <author>
+    <organization>SIDN Labs</organization>
   </author>
  </front>
 </reference>
