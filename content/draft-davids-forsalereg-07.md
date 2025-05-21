@@ -530,7 +530,7 @@ Editor for their valuable feedback.
 </reference>
 
 <!-- TODO niet vergeten op te ruimen indien alsnog niet nodig --> 
-<reference anchor='FORSALEREG' target='https://forsalereg.sidnlabs.nl/forsale-parameters.xhtml#tag'>
+<reference anchor='FORSALEREG' target='https://forsalereg.sidnlabs.nl/forsale-parameters#tag'>
  <front>
   <title>Registration of the "_for-sale" Underscored and Globally Scoped DNS Node Name</title>
   <author>
