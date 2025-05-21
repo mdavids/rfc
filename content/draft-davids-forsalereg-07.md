@@ -442,6 +442,7 @@ Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 <!-- TODO zie https://www.rfc-editor.org/rfc/rfc8726.html#name-creating-new-iana-registrie -->
 <!-- TODO zie ook https://www.iana.org/help/protocol-registration -->
 <!-- TODO en zie ook https://www.rfc-editor.org/rfc/rfc8126.html -->
+<!-- TODO of deze: https://www.ietf.org/id/draft-baber-ianabis-rfc8126bis-00.html -->
 <!-- TODO niet vergeten reference anchor op te ruimen indien alsnog niet nodig -->
 This document defines a new registry [@!FORSALEREG] for content tags, which will be maintained independently of IANA. The registry is publicly accessible at:
 
@@ -450,7 +451,8 @@ https://forsalereg.sidnlabs.nl/
 ~~~
 
 The registry entries consist of content tags as defined in
-(#tagdefs). Future updates will be managed by the Designated Expert.
+(#tagdefs). Future updates will be managed by the Designated Expert. The registration procedure is
+"First Come First Served". <!-- TODO is dit de beste keust, of toch Expert Review ? -->
 
 This registry is not maintained by IANA as per [@!RFC8726].
 
