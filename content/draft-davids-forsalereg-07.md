@@ -180,8 +180,6 @@ See (#contentlimits) for additional content limitations.
 
 The following content tags are defined as the initial valid content tags.
 
-<!-- TODO: Inlude '=' yes or no ? -->
-
 <!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
 ### fcod {#fcoddef}  
 This content tag is intended to contain a code that is meaningful only to processors 
@@ -444,6 +442,7 @@ Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 <!-- TODO zie https://www.rfc-editor.org/rfc/rfc8726.html#name-creating-new-iana-registrie -->
 <!-- TODO zie ook https://www.iana.org/help/protocol-registration -->
 <!-- TODO en zie ook https://www.rfc-editor.org/rfc/rfc8126.html -->
+<!-- TODO niet vergeten reference anchor op te ruimen indien alsnog niet nodig -->
 This document defines a new registry [@!FORSALEREG] for content tags, which will be maintained independently of IANA. The registry is publicly accessible at:
 
 ~~~
@@ -529,7 +528,6 @@ Editor for their valuable feedback.
  </front>
 </reference>
 
-<!-- TODO niet vergeten op te ruimen indien alsnog niet nodig --> 
 <reference anchor='FORSALEREG' target='https://forsalereg.sidnlabs.nl/forsale-parameters'>
  <front>
   <title>Registration of the "_for-sale" Underscored and Globally Scoped DNS Node Name</title>
