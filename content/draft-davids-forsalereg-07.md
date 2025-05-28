@@ -37,7 +37,7 @@ organization = "SIDN Labs"
 
 <!-- TODO: alle comments nalopen, want het zijn niet alleen TODO en kijken of het opgeschoond kan/moet -->
 
-<!-- hint: use Title Case everywher -->
+<!-- hint: use Title Case everywhere -->
 
 .# Abstract
 
@@ -433,9 +433,6 @@ for the content value to mitigate ambiguity.
 
 IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@!RFC8552; @IANA]. The underscored
 leaf node name defined in this specification should be added as follows:
-
-<!-- TODO: see https://datatracker.ietf.org/doc/html/draft-ietf-dmarc-dmarcbis-41#name-dmarc-tags-registry-update -->
-<!-- TODO: see https://www.iana.org/help/protocol-registration -->
 
 RR Type | _NODE NAME | Reference
 --------|------------|-----------
