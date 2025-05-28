@@ -466,7 +466,7 @@ Tag Name | Reference | Status | Description
 fcod | RFCXXXX | active | For Sale Proprietary Code
 ftxt | RFCXXXX | active | For Sale Free Format Text
 furi | RFCXXXX | active | For Sale URI
-Table: Iinitial set of entries in the "Content Tags" registry
+Table: Initial set of entries in the "Content Tags" registry
 
 <NOTE TO RFC EDITOR: Adjust the text in the table above before publication with a citation for the (this) document making the addition as per RFC8552.>
 
