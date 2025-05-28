@@ -1,6 +1,6 @@
 %%%
 # This is a comment - but only in this block
-title = "Registration of the \"_for-sale\" Underscored and Globally Scoped DNS Node Name"
+title = "The '_for-sale' Underscored and Globally Scoped DNS Node Name"
 abbrev = "forsalereg"
 ipr = "trust200902" 
 # area = "Internet"
@@ -42,7 +42,7 @@ organization = "SIDN Labs"
 .# Abstract
 
 This document defines an operational convention for using the reserved DNS leaf node name
-"\_for-sale" to indicate that the parent domain name is available for purchase. 
+'\_for-sale' to indicate that the parent domain name is available for purchase. 
 This approach offers the advantage of easy deployment without affecting ongoing operations. 
 As such, the method can be applied to a domain name that is still in full use.
 
@@ -88,7 +88,7 @@ There are undoubtedly more ways to address this problem space. The reasons for t
 
 ## General Record Format
 
-Each "\_for-sale" TXT record **MUST** begin with a version tag, optionally followed by a string containing content that follows a simple "tag=value" syntax.
+Each '\_for-sale' TXT record **MUST** begin with a version tag, optionally followed by a string containing content that follows a simple "tag=value" syntax.
 
 The formal definition of the record format, using ABNF [@!RFC5234; @!RFC7405], is as follows:
 
@@ -134,7 +134,7 @@ URI             = <as defined in RFC3986, Appendix A>
 
 See (#tagdefs) for more detailed format definitions per content tag type. 
 
-Each "\_for-sale" TXT record **MUST NOT** contain more than one tag-value pair.
+Each '\_for-sale' TXT record **MUST NOT** contain more than one tag-value pair.
 
 See (#rrsetlimits) for additional RRset limitations.
 
@@ -163,7 +163,7 @@ _for-sale.example.com. IN TXT "v=FORSALE1;fcod="
 _for-sale.example.com. IN TXT "v=FORSALE1;foo=bar"
 ```
 
-TXT records in the same RRset, but without a version tag, **MUST NOT** be interpreted or processed as a valid "\_for-sale" indicator. 
+TXT records in the same RRset, but without a version tag, **MUST NOT** be interpreted or processed as a valid '\_for-sale' indicator. 
 However, they may still offer some additional information for humans when considered alongside a valid
 record. For example:
 
@@ -178,6 +178,10 @@ See (#contentlimits) for additional content limitations.
 
 ## Content Tag Type Definitions {#tagdefs}
 
+A new registry for known content tags is created in (#ianaconsid), with 
+this document registering the initial set. Implementations **SHOULD** 
+process only registered tags they support, and **MAY** ignore any others.
+
 The following content tags are defined as the initial valid content tags.
 
 <!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
@@ -187,7 +191,7 @@ that understand its semantics.
 
 For example, a registry may allow registrars to enter a "for sale" URL into their system. 
 From that URL, a unique code is generated. This code is inserted as the value of
-the "fcod=" content tag of the "\_for-sale" TXT record of a domain name, as shown in the example below.
+the "fcod=" content tag of the '\_for-sale' TXT record of a domain name, as shown in the example below.
 
 When a user checks the availability of the domain name using a registry-provided tool 
 (e.g., a web interface), the registry may use the code to redirect the user to the 
@@ -243,13 +247,13 @@ not allowed unencoded (for example, spaces **MUST** be encoded as `%20` in a URL
 See the (#security, use title) section for possible risks.
 ## Content Limitations {#contentlimits}
 
-The "\_for-sale" TXT record [@RFC8553, (see) section 2.1] **MUST** contain content deemed valid under this specification.
+The '\_for-sale' TXT record [@RFC8553, (see) section 2.1] **MUST** contain content deemed valid under this specification.
 
 Any text that suggests that the domain is not for sale is invalid content. If a domain name is not for sale, 
-a "\_for-sale" indicator is pointless and any existence of a valid "\_for-sale" TXT record **MAY**
+a '\_for-sale' indicator is pointless and any existence of a valid '\_for-sale' TXT record **MAY**
 therefore be regarded as an indication that the domain name is for sale.
 
-This specification does not dictate the exact use of any content values in the "\_for-sale" TXT record.
+This specification does not dictate the exact use of any content values in the '\_for-sale' TXT record.
 Parties - such as registries and registrars - **MAY** use it in their tools, perhaps even by defining specific requirements that the content
 value must meet. Content values can also be represented in a human-readable format for individuals to
 interpret. See the (#examples, use title) section for clarification.
@@ -289,7 +293,7 @@ An example of such a combined record is provided in (#combiexample).
 
 ## RR type Limitations
 
-Adding any resource record (RR) types under the "\_for-sale" leaf, other than TXT (such as AAAA or HINFO), is unnecessary for the 
+Adding any resource record (RR) types under the '\_for-sale' leaf, other than TXT (such as AAAA or HINFO), is unnecessary for the 
 purposes of this document and therefore discouraged.
 
 ## Wildcard Limitation
@@ -298,13 +302,13 @@ Wildcards are only interpreted as leaf names, so \_for-sale.*.example is not a v
 
 ## Placement of the Leaf Node Name
 
-The "\_for-sale" leaf node name is primarily intended to indicate that a domain name is available for
+The '\_for-sale' leaf node name is primarily intended to indicate that a domain name is available for
 purchase.
 
 For that, the leaf node name is to be placed on the top-level domain, or any domain directly
 below. It can also be placed at a lower level, when that level is mentioned in the Public Suffix List [@PSL]. 
 
-When the "\_for-sale" leaf node name is placed elsewhere, the intent is ambiguous.
+When the '\_for-sale' leaf node name is placed elsewhere, the intent is ambiguous.
 
 (#placements) illustrates this:
 
@@ -319,14 +323,14 @@ xyz.\_for-sale.example. | Invalid placement | non-conformant
 Table: Placements of TXT record {#placements}
 
 Note 1:
-When the "\_for-sale" leaf node name is placed in front of a label of a
+When the '\_for-sale' leaf node name is placed in front of a label of a
 domain that is not in the PSL, it suggests that this label (and everything
 underneath) is for sale, and not the domain name as a whole. There may be use cases for this, but this
 situation is considered unusual in the context of this document. 
 Processors **MAY** ignore such records.
 
 Note 2:
-If a "\_for-sale" leaf node were to appear under the .arpa infrastructure top-level 
+If a '\_for-sale' leaf node were to appear under the .arpa infrastructure top-level 
 domain, it might be interpreted as an offer to sell IP address space. 
 However, such use is explicitly out of scope for this document, and processors
 **MUST** ignore any such records.
@@ -402,8 +406,8 @@ DNS wildcards interact poorly with underscored names. Therefore, the use of wild
 is **NOT RECOMMENDED** when deploying this mechanism. However, wildcards may still be encountered 
 in practice, especially with operators who are not implementing this mechanism. 
 This is why the version tag is a **REQUIRED** element: it helps distinguish
-valid "\_for-sale" records from unrelated TXT records. Nonetheless, any assumptions about the 
-content of "\_for-sale" TXT records **SHOULD** be made with caution, for example 
+valid '\_for-sale' records from unrelated TXT records. Nonetheless, any assumptions about the 
+content of '\_for-sale' TXT records **SHOULD** be made with caution, for example 
 in cases where the use of wildcards inadvertently causes third-party property to be listed for sale.
 
 It is also **RECOMMENDED** that the content value be limited to visible ASCII characters, 
@@ -425,40 +429,68 @@ characters (`%x20`) immediately following the version tag.
 Alternatively, parties may mutually agree on a more strictly defined proprietary format
 for the content value to mitigate ambiguity.
 
-# IANA Considerations
+# IANA Considerations {#ianaconsid} <!-- See RFC8126 -->
 
 IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@!RFC8552; @IANA]. The underscored
 leaf node name defined in this specification should be added as follows:
 
+<!-- TODO: see https://datatracker.ietf.org/doc/html/draft-ietf-dmarc-dmarcbis-41#name-dmarc-tags-registry-update -->
+<!-- TODO: see https://www.iana.org/help/protocol-registration -->
 
 RR Type | _NODE NAME | Reference
------|-----------|--------
+--------|------------|-----------
 TXT | \_for-sale | <this memo>
 Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
-<NOTE TO RFC EDITOR: Adjust the text in this section before publication with a citation for the (this) document making the addition as per RFC8552.>
+<NOTE TO RFC EDITOR: Adjust the text in the table above before publication with a citation for the (this) document making the addition as per RFC8552.>
 
-<!-- This specification does not require the creation of an IANA registry for content tags. -->
 <!-- TODO zie https://www.rfc-editor.org/rfc/rfc8726.html#name-creating-new-iana-registrie -->
 <!-- TODO zie ook https://www.iana.org/help/protocol-registration -->
 <!-- TODO en zie ook https://www.rfc-editor.org/rfc/rfc8126.html -->
 <!-- TODO of deze: https://www.ietf.org/id/draft-baber-ianabis-rfc8126bis-00.html -->
 <!-- TODO niet vergeten reference anchor op te ruimen indien alsnog niet nodig -->
-This document defines a new registry [@!FORSALEREG] for content tags, which will be maintained independently of IANA. The registry is publicly accessible at:
+
+A registry group called "The '_for-sale' Underscored and Globally Scoped DNS Node Name" [@!FORSALEREG] is to be created, 
+along with a registry called "Content Tags" within it. This registry group will be maintained independently of IANA.
+
+The registry is publicly accessible at:
 
 ~~~
 https://forsalereg.sidnlabs.nl/
 ~~~
 
 The registry entries consist of content tags as defined in
-(#tagdefs). Future updates will be managed by the Designated Expert. The registration procedure is
-"First Come First Served". <!-- TODO is dit de beste keust, of toch Expert Review ? -->
+(#tagdefs).
 
-This registry is not maintained by IANA as per [@!RFC8726].
+The initial set of entries in this registry is as follows:
+
+Tag Name | Reference | Status | Description
+---------|-----------|--------|-------------
+fcod | RFCXXXX | active | For Sale Proprietary Code
+ftxt | RFCXXXX | active | For Sale Free Format Text
+furi | RFCXXXX | active | For Sale URI
+Table: Iinitial set of entries in the "Content Tags" registry
+
+<NOTE TO RFC EDITOR: Adjust the text in the table above before publication with a citation for the (this) document making the addition as per RFC8552.>
+
+Future updates will be managed by the Designated Expert.
+
+Entries are assigned only for values that have been documented in 
+a manner consistent with the "Specification Required" registration 
+policy defined in [@!RFC8126].
+
+Newly defined content tags MUST NOT alter the semantics of existing content tags.
+
+The "status" column can have one of the following values:
+
+* active – the tag is in use in current implementations.
+* historic – the tag is deprecated and not expected to be used in current implementations.
+
+This registry group is not maintained by IANA as per [@!RFC8726].
 
 # Privacy Considerations {#privacy}
 
-The use of the "\_for-sale" leaf node name publicly indicates the intent to sell a domain name.
+The use of the '\_for-sale' leaf node name publicly indicates the intent to sell a domain name.
 Domain owners should be aware that this information is accessible to anyone querying the
 DNS and may have privacy implications.
 
@@ -489,7 +521,7 @@ https://www.sidn.nl/en/whois?q=example.nl
 
 The Dutch registry SIDN offers registrars the option to register a sales 
 landing page via its registrar dashboard following the "fcod=" method.
-When this option is used, a unique code is generated, which can be included in the "\_for-sale" record. 
+When this option is used, a unique code is generated, which can be included in the '\_for-sale' record. 
 If such a domain name is entered on the domain finder page of SIDN, a 'for sale' button is displayed accordingly.
 
 <!-- TODO: remove?
@@ -499,7 +531,7 @@ Another place where this method could be used is:
 https://lookup.icann.org/en
 ~~~
 
-That website could include an indicator when a "\_for-sale" record is found.
+That website could include an indicator when a '\_for-sale' record is found.
 -->
 
 <NOTE TO RFC EDITOR: Please remove this section before publication.>
@@ -532,7 +564,7 @@ Editor for their valuable feedback.
 
 <reference anchor='FORSALEREG' target='https://forsalereg.sidnlabs.nl/forsale-parameters'>
  <front>
-  <title>Registration of the "_for-sale" Underscored and Globally Scoped DNS Node Name</title>
+  <title>The '_for-sale' Underscored and Globally Scoped DNS Node Name</title>
   <author>
     <organization>SIDN Labs</organization>
   </author>
