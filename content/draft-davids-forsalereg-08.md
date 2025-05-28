@@ -15,7 +15,7 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-07"
+value = "draft-davids-forsalereg-08"
 stream = "IETF"
 status = "bcp"
 
@@ -259,8 +259,6 @@ value must meet. Content values can also be represented in a human-readable form
 interpret. See the (#examples, use title) section for clarification.
 
 Since the content value in the TXT record has no strictly defined meaning, it is up to the processor of the content to decide how to handle it. 
-
-See (#guidelines) for operational guidelines.
 
 See (#guidelines) for additional guidelines.
 
