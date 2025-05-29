@@ -13,7 +13,9 @@ https://check.sidnlabs.nl/marco/rfc/draft-davids-forsalereg.html
 
 ## Demo:
 
-https://www.sidn.nl/en/whois?q=example.nl
+SIDN: https://www.sidn.nl/en/whois?q=example.nl
+
+Demo-server from Tools: https://forsalereg.sidnlabs.nl/demo
 
 ## Test domain
 
