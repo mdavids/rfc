@@ -20,3 +20,7 @@ https://www.sidn.nl/en/whois?q=example.nl
 `TXT _for-sale.testdns.nl`
 
 (does not work at the demo above, because the demo user a early, deprecated method)
+
+## Tools
+
+The tools-directory contains a couple of scripts to validate the concept.
