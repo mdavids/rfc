@@ -423,7 +423,7 @@ Long TTLs [@!RFC1035, (see) section 3.2.1] are discouraged as they increase the 
 It is **NOT RECOMMENDED** to use ambiguous constructs in content values, as illustrated by the following example.
 
 ~~~
-_for-sale IN TXT ""v=FORSALE1;fcod=TRIP-confusing;ftxt=dont-do-this"
+_for-sale IN TXT "v=FORSALE1;fcod=TRIP-confusing;ftxt=dont-do-this"
 ~~~
 
 The above example is a valid "fcod=" content tag that includes the 
