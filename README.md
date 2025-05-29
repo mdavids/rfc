@@ -17,6 +17,8 @@ SIDN: https://www.sidn.nl/en/whois?q=example.nl
 
 Demo-server from Tools: https://forsalereg.sidnlabs.nl/demo
 
+( a good domain to test is `testdns.nl`)
+
 ## Test domain
 
 `TXT _for-sale.testdns.nl`
