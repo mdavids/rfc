@@ -420,6 +420,16 @@ recommended-char    = %x20-21 / %x23-5B / %x5D-7E
 
 Long TTLs [@!RFC1035, (see) section 3.2.1] are discouraged as they increase the risk of outdated data misleading buyers into thinking the domain is still available.
 
+It is **NOT RECOMMENDED** to use ambiguous constructs in content values, as illustrated by the following example.
+
+~~~
+_for-sale IN TXT ""v=FORSALE1;fcod=TRIP-confusing;ftxt=dont-do-this"
+~~~
+
+The above example is a valid "fcod=" content tag that includes the 
+string ";ftxt=", which may be confusing, as it does not actually 
+represent an "ftxt=" content tag.
+
 Because the format of the content part is not strictly defined in this
 document, processors **MAY** apply the robustness principle of being 
 liberal in what they accept. This also applies to space 
