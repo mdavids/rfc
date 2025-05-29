@@ -340,7 +340,7 @@ However, such use is explicitly out of scope for this document, and processors
 
 ## Example 1: Code Format
 
-A proprietary format, defined and used by agreement between parties -for example, 
+A proprietary format, defined and used by agreement between parties - for example, 
 a registry and its registrars - without a clearly specified meaning for third parties.
 For example, it may be used to automatically redirect visitors to a web page, as described in
 (#fcoddef):
