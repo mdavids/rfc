@@ -42,7 +42,8 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 	// Parse the HTML template for the form. template.Must panics if there's an error.
 	tmpl := template.Must(template.New("form").Parse(`
 		<!DOCTYPE html>
-		<html><body>
+		<html lang="en"><head><title>For Sale Check</title></head>
+		<body>
 		<h2>Check if a domain name is for sale</h2>
 		<form action="/check" method="get">
 			Domain Name: <input type="text" name="domain">
@@ -212,7 +213,9 @@ func renderResult(w http.ResponseWriter, info DomainInfo) {
 	// Parse the HTML template for the results page.
 	tmpl := template.Must(template.New("result").Funcs(funcMap).Parse(`
 		<!DOCTYPE html>
-		<html><body>
+		<html lang="en">
+		<head><title>For Sale Check</title></head>
+		<body>
 		<h2>Result for {{.Domain}}</h2>
 		{{if .ErrorMsg}}
 			<p style="color: red;">Error: {{.ErrorMsg}}</p>
