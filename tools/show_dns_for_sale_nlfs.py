@@ -19,7 +19,7 @@ def show_for_sale_records(domain):
         print(f"No '_for-sale' TXT record found for {domain}. Domain is likely not declared for sale via this method.")
         return
     except dns.resolver.NXDOMAIN:
-        print(f"The subdomain '{for_sale_subdomain}' does not exist. Domain is likely not declared for sale via this method.")
+        print(f"The domain '{domain}' or subdomain '{for_sale_subdomain}' does not exist. Domain is likely not declared for sale via this method, if it exists at all")
         return
     except Exception as e:
         print(f"An error occurred while querying DNS records: {e}")
