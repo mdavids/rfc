@@ -228,6 +228,9 @@ func renderResult(w http.ResponseWriter, info DomainInfo) {
 					<li><a href="{{safeURL $uri}}" target="_blank" rel="noopener noreferrer">{{htmlEscape $uri}}</a></li>
 				{{- else if hasPrefix . "fcod=" -}}
 					<li><code style="color: #888;">{{.}}</code></li>
+                                {{- else if hasPrefix . "ftxt=" -}}
+                                        {{ $txt := stripPrefix . "ftxt=" }}
+                                        <li><code>Text message: {{htmlEscape $txt}}</code></li>
 				{{- else -}}
 					<li><code>{{.}}</code></li>
 				{{- end }}
