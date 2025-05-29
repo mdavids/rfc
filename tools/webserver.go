@@ -80,6 +80,7 @@ func checkHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Use a map to keep track of already processed (duplicate) TXT records.
+	// TODO Does this make sense?
 	seen := map[string]bool{}
 	// foundValidVersionTag keeps track of whether at least one TXT record with a valid 'v=FORSALE1;' tag was found.
 	// This is crucial for the robustness principle of the RFC.
