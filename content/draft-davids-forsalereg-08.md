@@ -427,8 +427,8 @@ _for-sale IN TXT "v=FORSALE1;fcod=TRIP-confusing;ftxt=dont-do-this"
 ~~~
 
 The above example is a valid "fcod=" content tag that includes the 
-string ";ftxt=", which may be confusing, as it does not actually 
-represent an "ftxt=" content tag.
+string ";ftxt=" in the content value, which may be confusing, 
+as it does not actually represent an "ftxt=" content tag.
 
 Because the format of the content part is not strictly defined in this
 document, processors **MAY** apply the robustness principle of being 
