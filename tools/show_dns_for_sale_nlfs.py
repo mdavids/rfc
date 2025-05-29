@@ -84,7 +84,7 @@ def show_for_sale_records(domain):
 
     if not found_specific_nlfs_fcod:
         print("\nNo '_for-sale' TXT records with a specific 'NLFS-' fcod pattern were found.")
-        print("Other types of '_for-sale' records (ftxt, furi, or fcod not matching 'NLFS-{48}')")
+        print("Other types of '_for-sale' records (ftxt, furi, or fcod not matching 'NLFS-.{48}')")
         print("are ignored by this script. Use 'check_dns_for_sale.py' for full validation.")
 
 # --- Command-line argument handling ---
