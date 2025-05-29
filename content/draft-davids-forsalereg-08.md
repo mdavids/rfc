@@ -408,7 +408,7 @@ valid '\_for-sale' records from unrelated TXT records. Nonetheless, any assumpti
 content of '\_for-sale' TXT records **SHOULD** be made with caution, for example 
 in cases where the use of wildcards inadvertently causes third-party property to be listed for sale.
 
-It is also **RECOMMENDED** that the content value be limited to visible ASCII characters, 
+It is also **RECOMMENDED** that the content value be limited to visible US-ASCII characters, 
 excluding the double quote (") and backslash (\\).
 
 In ABNF syntax, this would be:
