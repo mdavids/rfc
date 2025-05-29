@@ -15,7 +15,7 @@ def check_for_sale_record(domain):
         print(f"No '_for-sale' TXT record found for {domain}. Domain is likely not for sale according to this specification.")
         return
     except dns.resolver.NXDOMAIN:
-        print(f"The subdomain '{for_sale_subdomain}' does not exist. Domain is likely not for sale according to this specification.")
+        print(f"The domain {domain} or subdomain '{for_sale_subdomain}' does not exist. Domain is likely not declared for sale via this method, if it exists at all")
         return
     except Exception as e:
         print(f"Error querying DNS records: {e}")
@@ -147,5 +147,5 @@ def check_for_sale_record(domain):
         print("\nValidation of '_for-sale' TXT records completed.")
 
 # Use the script for testdns.nl
-domain_to_check = "testdns.nl"
+domain_to_check = "example.nl"
 check_for_sale_record(domain_to_check)
