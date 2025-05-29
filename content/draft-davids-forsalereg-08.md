@@ -253,6 +253,9 @@ Any text that suggests that the domain is not for sale is invalid content. If a 
 a '\_for-sale' indicator is pointless and any existence of a valid '\_for-sale' TXT record **MAY**
 therefore be regarded as an indication that the domain name is for sale.
 
+The existence of a '\_for-sale' leaf node does not obligate the holder to sell the domain name; 
+it may have been published in error, or withdrawn later for other reasons.
+
 This specification does not dictate the exact use of any content values in the '\_for-sale' TXT record.
 Parties - such as registries and registrars - **MAY** use it in their tools, perhaps even by defining specific requirements that the content
 value must meet. Content values can also be represented in a human-readable format for individuals to
@@ -337,8 +340,9 @@ However, such use is explicitly out of scope for this document, and processors
 
 ## Example 1: Code Format
 
-A proprietary format, defined by a registry or registrar, without a clearly defined meaning to third 
-parties. For example, it may be used to automatically redirect visitors to a web page, as described in
+A proprietary format, defined and used by agreement between parties -for example, 
+a registry and its registrars - without a clearly specified meaning for third parties.
+For example, it may be used to automatically redirect visitors to a web page, as described in
 (#fcoddef):
 
 ~~~
@@ -375,7 +379,7 @@ may also be processed by automated tools, but see the (#security, use title) sec
 As an alternative, a mailto: URI could also be used:
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;furi=mailto:owner@example.com"
+_for-sale IN TXT "v=FORSALE1;furi=mailto:seller@example.com"
 ~~~
 
 Or a telephone URI:
@@ -487,6 +491,9 @@ policy defined in [@!RFC8126].
 
 Newly defined content tags MUST NOT alter the semantics of existing content tags.
 
+The addition of a new content tag to the registered list does not require the 
+definition of a new version tag. However, any modification to existing content tags does.
+
 The "status" column can have one of the following values:
 
 * active - the tag is in use in current implementations.
@@ -497,7 +504,7 @@ This registry group is not maintained by IANA as per [@!RFC8726].
 # Privacy Considerations {#privacy}
 
 The use of the '\_for-sale' leaf node name publicly indicates the intent to sell a domain name.
-Domain owners should be aware that this information is accessible to anyone querying the
+Domain holders should be aware that this information is accessible to anyone querying the
 DNS and may have privacy implications.
 
 There is a risk of data scraping, such as email addresses and phone numbers.
