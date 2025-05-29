@@ -14,3 +14,9 @@ https://check.sidnlabs.nl/marco/rfc/draft-davids-forsalereg.html
 ## Demo:
 
 https://www.sidn.nl/en/whois?q=example.nl
+
+## Test domain
+
+`TXT _for-sale.testdns.nl`
+
+(does not work at the demo above, because the demo user a early, deprecated method)
