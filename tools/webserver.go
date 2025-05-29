@@ -216,7 +216,7 @@ func renderResult(w http.ResponseWriter, info DomainInfo) {
 		{{if .ErrorMsg}}
 			<p style="color: red;">Error: {{.ErrorMsg}}</p>
 		{{else if .ForSale}}
-			<p style="color: green;">✅ Domain appears to be for sale based on found records</p>
+			<p style="color: green;">✅ Domain appears to be for sale based on found records.</p>
 			<ul>
 			{{range .ValidTags}}
 				{{- if hasPrefix . "furi=" -}}
@@ -230,7 +230,7 @@ func renderResult(w http.ResponseWriter, info DomainInfo) {
 			{{end}}
 			</ul>
 			{{if .InvalidRaw}}
-				<p style="color: orange;">⚠️ Some records were syntactically invalid</p>
+				<p style="color: orange;">⚠️ Some records were syntactically invalid.</p>
 				<ul>{{range .InvalidRaw}}<li><code>{{.}}</code></li>{{end}}</ul>
 			{{end}}
 		{{else}}
