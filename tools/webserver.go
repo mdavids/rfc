@@ -69,6 +69,7 @@ func checkHandler(w http.ResponseWriter, r *http.Request) {
 	// Construct the DNS query name according to the specification: "_for-sale.<domain>".
 	queryName := "_for-sale." + domain
 	txts, err := net.LookupTXT(queryName) // Perform the DNS TXT lookup.
+	// TODO misses the _for-sale IN TXT "v=FORSALE1;" "ftxt=foo" "bar" "invalid" case, because it concatenates implicitly
 	if err != nil {
 		// RFC 3.1: "If no TXT records at a leaf node contain a valid version tag,
 		// processors MUST consider the node name invalid and discard it."
