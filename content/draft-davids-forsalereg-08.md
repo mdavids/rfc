@@ -141,11 +141,12 @@ See (#rrsetlimits) for additional RRset limitations.
 The content value provides information to interested parties as explained
 in (#introsect).
 
-In the absence of a tag-value pair, processors **MAY** assume that the domain 
-is for sale. In such cases, processors **SHOULD** determine how to proceed. 
-One possible approach is to indicate that the domain is for sale 
-and to use traditional methods, such as WHOIS or RDAP, to obtain contact
-information:
+If no tag-value pair is present but a valid version tag is, 
+processors **MAY** assume that the domain is for sale.
+In such cases, processors **SHOULD** determine how to proceed. 
+One possible approach is to indicate that the domain is for 
+sale and to use traditional methods, such as WHOIS or RDAP, 
+to obtain contact information:
 
 ```
 _for-sale.example.com. IN TXT "v=FORSALE1;"
@@ -404,13 +405,18 @@ _for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
 ~~~
 
 # Operational Guidelines {#guidelines}
-DNS wildcards interact poorly with underscored names. Therefore, the use of wildcards 
-is **NOT RECOMMENDED** when deploying this mechanism. However, wildcards may still be encountered 
-in practice, especially with operators who are not implementing this mechanism. 
-This is why the version tag is a **REQUIRED** element: it helps distinguish
-valid '\_for-sale' records from unrelated TXT records. Nonetheless, any assumptions about the 
-content of '\_for-sale' TXT records **SHOULD** be made with caution, for example 
-in cases where the use of wildcards inadvertently causes third-party property to be listed for sale.
+DNS wildcards interact poorly with underscored names, and their 
+use is **NOT RECOMMENDED** with this mechanism. However, wildcards 
+may still be encountered in practice, especially with operators who 
+are not implementing this mechanism. This is why the version 
+tag is a **REQUIRED** element: it allows processors to distinguish 
+valid '\_for-sale' records from unrelated TXT records.
+
+Nonetheless, any assumptions about the content of '\_for-sale' TXT 
+records **SHOULD** be made with caution, particularly in edge 
+cases where wildcard expansion - possibly combined with DNS aliases 
+(e.g., CNAMEs) or redirections (e.g., DNAMEs [@?RFC6672]) - might 
+result in misleading listings or unintended references to third-party domains.
 
 It is also **RECOMMENDED** that the content value be limited to visible US-ASCII characters, 
 excluding the double quote (") and backslash (\\).
@@ -522,7 +528,7 @@ means, without there being any intention to actually sell the domain name. There
 
 
 # Implementation Status
-
+<!-- https://datatracker.ietf.org/doc/html/rfc7942 -->
 The concept described in this document is in use with the .nl ccTLD
 registry. See for example:
 
@@ -537,17 +543,13 @@ landing page via its registrar dashboard following the "fcod=" method.
 When this option is used, a unique code is generated, which can be included in the '\_for-sale' record. 
 If such a domain name is entered on the domain finder page of SIDN, a 'for sale' button is displayed accordingly.
 
-<!-- TODO: remove?
-Another place where this method could be used is:
+A simple demonstration of a validator is present at:
 
 ~~~
-https://lookup.icann.org/en
+https://forsalereg.sidnlabs.nl/demo
 ~~~
 
-That website could include an indicator when a '\_for-sale' record is found.
--->
-
-<NOTE TO RFC EDITOR: Please remove this section before publication.>
+<NOTE TO RFC EDITOR: Please remove this section before publication as per RFC7942.>
 
 # Acknowledgements
 
