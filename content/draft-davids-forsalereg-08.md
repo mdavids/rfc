@@ -520,7 +520,7 @@ The "status" column can have one of the following values:
 * active - the tag is in use in current implementations.
 * historic - the tag is deprecated and not expected to be used in current implementations.
 
-This registry group is not maintained by IANA as per [@!RFC8726].
+This registry group is not maintained by IANA as per [@?RFC8726].
 
 # Privacy Considerations {#privacy}
 
