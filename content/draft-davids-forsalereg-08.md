@@ -1,6 +1,6 @@
 %%%
 # This is a comment - but only in this block
-title = "The '_for-sale' Underscored and Globally Scoped DNS Node Name"
+title = "The \"_for-sale\" Underscored and Globally Scoped DNS Node Name"
 abbrev = "forsalereg"
 ipr = "trust200902" 
 # area = "Internet"
