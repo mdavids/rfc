@@ -202,8 +202,11 @@ appropriate "for sale" URL, which may include a query component containing the d
 https://forsale-url.example.com/acme?d=example.org
 ~~~
 
-The rationale for this approach is that controlling parties retain authority over 
-the redirection URLs, thereby preventing users from being sent to unintended or malicious destinations.
+The rationale for this approach is that controlling parties retain 
+authority over redirection URLs and any other information derived 
+from the content tag, thereby preventing users from being sent 
+to unintended or malicious destinations or from being presented 
+with unintended content.
 
 The following example shows a base64-encoded [@?RFC4648] string preceded 
 by the prefix "ACME-" as the value of the content tag:
