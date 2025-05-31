@@ -461,7 +461,8 @@ Alternatively, parties may mutually agree on a more strictly defined proprietary
 for the content value to mitigate ambiguity.
 
 Note that this mechanism only functions when the domain name is active in the DNS, 
-which is typically not the case, for example, during a redemption period or while in pending delete status.
+which is typically not the case, for example, during a redemption period or while in pending delete status
+[@?STD69].
 
 # IANA Considerations {#ianaconsid} <!-- See RFC8126 -->
 
