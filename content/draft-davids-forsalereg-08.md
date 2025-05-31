@@ -554,7 +554,7 @@ signal their intent to sell, the proposed approach
 aims to introduce greater clarity and predictability
 into the domain lifecycle. This potentially reduces the
 advantage currently held by these professionals, and 
-fosters a more equitable environment for all domain holders.
+fosters a more equitable environment for all.
 
 # Implementation Status
 <!-- https://datatracker.ietf.org/doc/html/rfc7942 -->
