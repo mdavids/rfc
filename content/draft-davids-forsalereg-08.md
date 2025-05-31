@@ -193,8 +193,6 @@ that understand its semantics. The content value MUST consist of at least one oc
 
 The manner in which the "fcod=" content tag is used is determined by agreement among cooperating parties.
 
-<!-- TODO: " overal waar nodig vervangen door ', zoals hieronder? -->
-
 For example, a registry may allow registrars to enter a "for sale" URL into their system. 
 From that URL, a unique code is generated. This code is inserted as the value of
 the "fcod=" content tag of the "\_for-sale" TXT record of a domain name, as shown in the example below.
@@ -380,7 +378,7 @@ _for-sale IN TXT "v=FORSALE1;ftxt=<script>...</script>"
 
 ## Example 3: URI Format
 
-The holder of 'example.com' wishes to signal that the domain is for sale and adds this record to the 'example.com' zone:
+The holder of "example.com" wishes to signal that the domain is for sale and adds this record to the "example.com" zone:
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;furi=https://example.com/fs?d=eHl6"
@@ -558,7 +556,8 @@ https://www.sidn.nl/en/whois?q=example.nl
 The Dutch registry SIDN offers registrars the option to register a sales 
 landing page via its registrar dashboard following the "fcod=" method.
 When this option is used, a unique code is generated, which can be included in the "\_for-sale" record. 
-If such a domain name is entered on the domain finder page of SIDN, a 'for sale' button is displayed accordingly.
+If such a domain name is entered on the domain finder page of SIDN, a "for sale" 
+button is displayed accordingly.
 
 A simple demonstration of a validator is present at:
 
