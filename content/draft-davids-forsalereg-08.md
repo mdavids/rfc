@@ -229,11 +229,15 @@ _for-sale IN TXT "v=FORSALE1;ftxt=price:$500,info[at]example.com"
 
 While a single visible character is the minimum, it is **RECOMMENDED** to provide more context.
 
+While a URI in this field is not syntactically prohibited, its 
+interpretation as a URI is not guaranteed. Use of URIs in this 
+field **SHOULD** be avoided in favor of the furi content tag.
+
 ### furi  
 This content tag may contain a human-readable and machine-parseable URI that conveys information to interested parties.
 
 While the syntax allows any URI scheme, only the following schemes are **RECOMMENDED** 
-for use: `http` and `https` [@RFC9110], `mailto` [@RFC6068], and `tel` [@RFC3966].  
+for use: `http` and `https` [@RFC9110], `mailto` [@RFC6068], and `tel` [@RFC3966].
 
 The content value **MUST** contain exactly one URI. For example:
 
