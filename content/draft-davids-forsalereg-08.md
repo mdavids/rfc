@@ -221,7 +221,7 @@ content tag and interpret it as intended. This example uses base64 encoding
 to avoid escaping and ensure printable characters, though this is also not required.
 
 ### ftxt  
-This content tag may contain human-readable text that conveys information to interested parties. For example:
+This content tag is intended to contain human-readable text that conveys information to interested parties. For example:
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;ftxt=price:$500,info[at]example.com"
