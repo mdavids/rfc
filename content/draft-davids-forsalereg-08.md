@@ -70,8 +70,9 @@ contact the domain name holder for further negotiations.
 
 With due caution, such information can also be incorporated into automated availability services. When checking a domain name for availability, the service may indicate whether it is for sale and provide a pointer to the seller's information.
 
-Note: In this document, the term "for sale" is used in a broad sense and
-**MAY** also refer to cases where the domain name is available for lease.
+Note: In this document, the term "for sale" is used in a broad sense and 
+**MAY** also refer to cases where the domain name is available for lease, 
+or where the contractual right to use the domain name is offered to another party.
 
 ## Terminology
 
@@ -189,6 +190,10 @@ The following content tags are defined as the initial valid content tags.
 ### fcod {#fcoddef}  
 This content tag is intended to contain a code that is meaningful only to processors 
 that understand its semantics. The content value MUST consist of at least one octet. 
+
+The manner in which the "fcod=" content tag is used is determined by agreement among cooperating parties.
+
+<!-- TODO: " overal waar nodig vervangen door ', zoals hieronder? -->
 
 For example, a registry may allow registrars to enter a "for sale" URL into their system. 
 From that URL, a unique code is generated. This code is inserted as the value of
@@ -455,6 +460,9 @@ characters (`%x20`) immediately following the version tag.
 Alternatively, parties may mutually agree on a more strictly defined proprietary format
 for the content value to mitigate ambiguity.
 
+Note that this mechanism only functions when the domain name is active in the DNS, 
+which is typically not the case, for example, during a redemption period or while in pending delete status.
+
 # IANA Considerations {#ianaconsid} <!-- See RFC8126 -->
 
 IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@!RFC8552; @IANA]. The underscored
@@ -533,6 +541,7 @@ Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted wi
 There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
 means, without there being any intention to actually sell the domain name. Therefore, this method is best suited for use by professionals.
 
+<!-- TODO ?? Ethical Considerations -->
 
 # Implementation Status
 <!-- https://datatracker.ietf.org/doc/html/rfc7942 -->
