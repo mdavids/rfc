@@ -197,16 +197,23 @@ Usable _for-sale record found:
 
 ## show_dns_for_sale_nlfs.go
 (`show_dns_for_sale_nlfs.py` does the same)
-
 ~~~
-./show_dns_for_sale_nlfs example.nl
-Attempting to retrieve and display specific '_for-sale' records for: _for-sale.example.nl
+mdavids@iMac-van-Marco forsale % ./show_dns_for_sale_nlfs testdns.nl
+Attempting to retrieve and display specific '_for-sale' records for: _for-sale.testdns.nl
 
 --- Specific For Sale Information (NLFS- fcod) ---
 
 Record 1:
+  For Sale Code (NLFS- format found): NLFS-FcodIsAlsoUnknownToUsAndNeedsRobustnessPrinciple
+  Warning: Specific fcod not found in database.
+
+Record 2:
   For Sale Code (NLFS- format found): NLFS-NGYyYjEyZWYtZTUzYi00M2U0LTliNmYtNTcxZjBhMzA2NWQy
-  Action: Visit https://www.sidn.nl/en/landing-page-buying-and-selling-example?domain=example.nl for more information.
+  Action: Visit https://www.sidn.nl/en/landing-page-buying-and-selling-example?domain=testdns.nl for more information.
+
+Record 3:
+  For Sale Code (NLFS- format found): NLFS-ThisFcodIsUnknownToUsAndWeCannotRedirectToAnURL.
+  Warning: Specific fcod not found in database.
 ~~~
 ## webserver.go
 
