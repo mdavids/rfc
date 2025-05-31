@@ -170,3 +170,28 @@ Important Notes:
 - After adding, it may take some time for DNS changes to propagate.
 - You can verify the record using the 'check_dns_for_sale.py' script.
 ~~~
+
+## show_dns_for_sale.py
+~~~
+(venv) mdavids@iMac-van-Marco forsale % python3 ./show_dns_for_sale.py example.nl
+
+Attempting to retrieve and display valid '_for-sale' records for: _for-sale.example.nl
+
+--- For Sale Information ---
+
+Usable _for-sale record found:
+  For Sale Code: NLFS-NGYyYjEyZWYtZTUzYi00M2U0LTliNmYtNTcxZjBhMzA2NWQy
+
+Usable _for-sale record found:
+  For Sale Text: See the URL for important information!
+
+Usable _for-sale record found:
+  Action: Visit this URL for more information or to make an offer:
+  https://example.nl/for-sale.txt
+
+Usable _for-sale record found:
+  This domain is declared for sale.
+  Cannot display specific content details for this record (malformed tag or empty).
+  Please refer to check_dns_for_sale.py for full validation details if unexpected.
+~~~
+
