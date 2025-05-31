@@ -225,7 +225,7 @@ func renderResult(w http.ResponseWriter, info DomainInfo) {
 			{{range .ValidTags}}
 				{{- if hasPrefix . "furi=" -}}
 					{{ $uri := stripPrefix . "furi=" }}
-					<li><a href="{{safeURL $uri}}" target="_blank" rel="noopener noreferrer">{{htmlEscape $uri}}</a></li>
+					<li><a href="{{safeURL $uri}}" target="_blank" rel="noopener noreferrer">{{htmlEscape $uri}}</a> - click at own risk!</li>
 				{{- else if hasPrefix . "fcod=" -}}
 					<li><code style="color: #888;">{{.}}</code></li>
                                 {{- else if hasPrefix . "ftxt=" -}}
