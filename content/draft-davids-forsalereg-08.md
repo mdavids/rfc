@@ -481,6 +481,7 @@ Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 <!-- TODO of deze: https://www.ietf.org/id/draft-baber-ianabis-rfc8126bis-00.html -->
 <!-- TODO niet vergeten reference anchor op te ruimen indien alsnog niet nodig -->
 
+<!-- TODO FORSALEREG een informative reference van maken? -->
 A registry group called "The '_for-sale' Underscored and Globally Scoped DNS Node Name" [@!FORSALEREG] is to be created, 
 along with a registry called "Content Tags" within it. This registry group will be maintained independently of IANA.
 
