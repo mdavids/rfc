@@ -188,7 +188,7 @@ The following content tags are defined as the initial valid content tags.
 <!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
 ### fcod {#fcoddef}  
 This content tag is intended to contain a code that is meaningful only to processors 
-that understand its semantics.
+that understand its semantics. The content value MUST consist of at least one octet. 
 
 For example, a registry may allow registrars to enter a "for sale" URL into their system. 
 From that URL, a unique code is generated. This code is inserted as the value of
@@ -234,7 +234,7 @@ interpretation as a URI is not guaranteed. Use of URIs in this
 field **SHOULD** be avoided in favor of the furi content tag.
 
 ### furi  
-This content tag may contain a human-readable and machine-parseable URI that conveys information to interested parties.
+This content tag is intended to contain a human-readable and machine-parseable URI that conveys information to interested parties.
 
 While the syntax allows any URI scheme, only the following schemes are **RECOMMENDED** 
 for use: `http` and `https` [@RFC9110], `mailto` [@RFC6068], and `tel` [@RFC3966].
