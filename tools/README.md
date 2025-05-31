@@ -141,3 +141,32 @@ Found TXT record: "v=FORSALE1;lorumipsum"
 
 Validation of '_for-sale' TXT records completed.
 ~~~
+
+## generate_for_sale_txt.py
+~~~
+(venv) mdavids@iMac-van-Marco forsale % python3 ./generate_for_sale_txt.py
+
+--- Generate _for-sale TXT Record ---
+This tool will help you create a DNS TXT record for a domain that is for sale,
+following the specifications in draft-davids-forsalereg-08.txt.
+
+Choose a content tag type (only one allowed per record):
+1. fcod (For Sale Code: Short alphanumeric/text code)
+2. ftxt (For Sale Text: Short text description)
+3. furi (For Sale URI: Link to a sales page or contact info)
+4. No additional content tag (Just the version tag)
+Enter your choice (1-4): 2
+Enter the ftxt value (1-239 visible ASCII characters, excluding " and \): Hello World - Buy Me !
+
+--- Generated TXT Record ---
+To be placed in your DNS zone file for the domain 'example.com':
+_for-sale IN TXT "v=FORSALE1;ftxt=Hello World - Buy Me !"
+
+Replace 'example.com' with your actual domain name.
+
+Important Notes:
+- Some DNS providers require the TXT record content to be wrapped in double quotes.
+- Ensure no extra spaces are added inside the quotes when copying.
+- After adding, it may take some time for DNS changes to propagate.
+- You can verify the record using the 'check_dns_for_sale.py' script.
+~~~
