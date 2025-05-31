@@ -540,7 +540,20 @@ Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted wi
 There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
 means, without there being any intention to actually sell the domain name. Therefore, this method is best suited for use by professionals.
 
-<!-- TODO ?? Ethical Considerations -->
+<!-- TODO ?? Ethical Considerations laten staan of weghalen of verbeteren?-->
+
+# Ethical Considerations
+Although not specifically designed for this purpose, the mechanisms 
+described in this document may also facilitate domain name 
+transactions by professional speculators (domainers) and 
+domain drop catchers. Some may view this as controversial.
+
+However, by enabling domain holders to more explicitly
+signal their intent to sell, the proposed approach
+aims to introduce greater clarity and predictability
+into the domain lifecycle. This potentially reduces the
+advantage currently held by these professionals, and 
+fosters a more equitable environment for all domain holders.
 
 # Implementation Status
 <!-- https://datatracker.ietf.org/doc/html/rfc7942 -->
