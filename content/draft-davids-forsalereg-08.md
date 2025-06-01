@@ -546,8 +546,9 @@ means, without there being any intention to actually sell the domain name. There
 # Ethical Considerations
 Although not specifically designed for this purpose, the mechanisms 
 described in this document may also facilitate domain name 
-transactions by professional speculators (often referred to 
-as domainers) and domain drop catchers. Some may view this as controversial.
+transactions by professional speculators, often referred to 
+as domainers, and those commonly referred to as domain drop catchers. 
+Some may view this as controversial.
 
 However, by enabling domain holders to more explicitly
 signal their intent to sell, the proposed approach
