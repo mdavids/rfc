@@ -475,10 +475,10 @@ Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
 <NOTE TO RFC EDITOR: Adjust the text in the table above before publication with a citation for the (this) document making the addition as per RFC8552.>
 
-<!-- TODO zie https://www.rfc-editor.org/rfc/rfc8726.html#name-creating-new-iana-registrie -->
-<!-- TODO zie ook https://www.iana.org/help/protocol-registration -->
-<!-- TODO en zie ook https://www.rfc-editor.org/rfc/rfc8126.html -->
-<!-- TODO of deze: https://www.ietf.org/id/draft-baber-ianabis-rfc8126bis-00.html -->
+<!-- INFO zie https://www.rfc-editor.org/rfc/rfc8726.html#name-creating-new-iana-registrie -->
+<!-- INFO zie ook https://www.iana.org/help/protocol-registration -->
+<!-- INFO en zie ook https://www.rfc-editor.org/rfc/rfc8126.html -->
+<!-- INFO of deze: https://www.ietf.org/id/draft-baber-ianabis-rfc8126bis-00.html -->
 <!-- TODO niet vergeten reference anchor op te ruimen indien alsnog niet nodig -->
 
 A registry group called "The '_for-sale' Underscored and Globally Scoped DNS Node Name" [@?FORSALEREG] is to be created, 
@@ -540,8 +540,6 @@ Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted wi
 
 There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
 means, without there being any intention to actually sell the domain name. Therefore, this method is best suited for use by professionals.
-
-<!-- TODO ?? Ethical Considerations laten staan of weghalen of verbeteren?-->
 
 # Ethical Considerations
 Although not specifically designed for this purpose, the mechanisms 
