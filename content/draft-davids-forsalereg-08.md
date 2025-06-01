@@ -15,7 +15,7 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-08"
+value = "draft-davids-forsalereg-09"
 stream = "IETF"
 status = "bcp"
 
