@@ -243,6 +243,7 @@ While a URI in this field is not syntactically prohibited, its
 interpretation as a URI is not guaranteed. Use of URIs in this 
 field **SHOULD** be avoided in favor of the furi content tag.
 
+<!-- TODO https://www.rfc-editor.org/rfc/rfc7553.html noemen, of zelfs opnemen? -->
 ### furi  
 This content tag is intended to contain a human-readable and machine-parseable URI that conveys information to interested parties.
 
