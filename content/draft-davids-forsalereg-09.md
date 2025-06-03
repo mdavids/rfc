@@ -58,7 +58,8 @@ These should be reviewed and resolved prior to publication.
 Well-established services [@RFC3912; @RFC9083] exist to determine whether a domain name is registered. However, the fact that a domain name exists does not necessarily mean it
 is unavailable; it may still be for sale.
 
-Some registrars and other entities offer mediation services between domain name holders and interested parties. For domain names that are not for sale, such services may be
+Some registrars and other entities offer mediation services between domain name holders and interested parties
+(often referred to as brokers). For domain names that are not for sale, such services may be
 of limited value, whereas they may be beneficial for domain names that are clearly being offered for sale.
 
 This specification defines a lightweight method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored
@@ -85,6 +86,8 @@ when, and only when, they appear in all capitals, as shown here.
 # Rationale
 
 There are undoubtedly more ways to address this problem space. The reasons for the approach defined in this document are primarily accessibility and simplicity. The indicator can be easily turned on and off at will and moreover, it is immediately deployable and does not require significant changes in existing services. This allows for a smooth introduction of the concept.
+
+Furthermore, the chosen approach aligns with ethical considerations by promoting a more equitable domain aftermarket and minimizing potential for unintended commercial entanglements by registries, as detailed in (#ethicalconsids).
 
 # Conventions {#conventions}
 
@@ -541,7 +544,7 @@ Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted wi
 There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
 means, without there being any intention to actually sell the domain name. Therefore, this method is best suited for use by professionals.
 
-# Ethical Considerations
+# Ethical Considerations {#ethicalconsids}
 Although not specifically designed for this purpose, the mechanisms 
 described in this document may also facilitate domain name 
 transactions by professional speculators, often referred to 
@@ -554,6 +557,11 @@ aims to introduce greater clarity and predictability
 into the domain lifecycle. This potentially reduces the
 advantage currently held by these professionals, and 
 fosters a more equitable environment for all.
+
+Furthermore, this mechanism avoids creating unnecessary 
+dependencies on registries for market transactions, 
+which could otherwise introduce complexities and 
+potential for unintended commercial entanglements.
 
 # Implementation Status
 <!-- https://datatracker.ietf.org/doc/html/rfc7942 -->
