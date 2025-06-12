@@ -15,7 +15,7 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-09"
+value = "draft-davids-forsalereg-10"
 stream = "IETF"
 status = "bcp"
 
@@ -98,7 +98,7 @@ Each "\_for-sale" TXT record **MUST** begin with a version tag, optionally follo
 The formal definition of the record format, using ABNF [@!RFC5234; @!RFC7405], is as follows:
 
 ~~~
-forsale-record  = forsale-version forsale-content
+forsale-record  = forsale-version [forsale-content]
                   ; referred to as content or RDATA
                   ; in a single character-string
 
