@@ -23,7 +23,7 @@ Demo-server from Tools: https://forsalereg.sidnlabs.nl/demo
 
 `TXT _for-sale.testdns.nl`
 
-(does not work at the demo above, because the demo uses an early, deprecated method)
+(may not work at the demo above, because the demo uses an early, deprecated method)
 
 ## Tools
 
