@@ -1,4 +1,5 @@
 **Here is the somewhat longer reasoning:**
+(draft: 20250601)
 
 ### Why `_for-sale`?
 
