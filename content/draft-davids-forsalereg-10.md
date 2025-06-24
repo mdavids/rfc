@@ -466,6 +466,7 @@ for the content value to mitigate ambiguity.
 Note that this mechanism relies on the domain name being resolvable in the DNS.
 This is typically not the case during a redemption period or while in pending delete status [@?STD69].
 It also does not function when the domain is DNSSEC-signed but fails validation (i.e., has a bogus state).
+<!-- TODO: better wordings -->
 
 # IANA Considerations {#ianaconsid} <!-- See RFC8126 -->
 
