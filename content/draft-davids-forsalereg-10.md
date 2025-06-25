@@ -464,9 +464,8 @@ Alternatively, parties may mutually agree on a more strictly defined proprietary
 for the content value to mitigate ambiguity.
 
 Note that this mechanism relies on the domain name being resolvable in the DNS.
-This is typically not the case during a redemption period or while in pending delete status [@?STD69].
-It also does not function when the domain is DNSSEC-signed but fails validation (i.e., has a bogus state).
-<!-- TODO: better wordings -->
+This is not guaranteed, for example during a redemption period, in pending delete status [@?STD69],
+or when the domain is DNSSEC-signed but fails validation (i.e., has a bogus state).
 
 # IANA Considerations {#ianaconsid} <!-- See RFC8126 -->
 
