@@ -8,7 +8,7 @@ https://datatracker.ietf.org/doc/html/draft-davids-forsalereg
 
 ## More recent version from this repository (-10 vs -09 on datatracker):
 
-https://check.sidnlabs.nl/marco/rfc/draft-davids-forsalereg.html
+https://forsalereg.sidnlabs.nl/rfc/
 * https://forsalereg.sidnlabs.nl/ (associated registry group)
 
 ## Demo:
