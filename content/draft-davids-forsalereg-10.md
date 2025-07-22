@@ -47,7 +47,10 @@ parent domain name is available for purchase. This approach offers
 the advantage of easy deployment without affecting ongoing operations. 
 As such, the method can be applied to a domain name that is still in full use.
 
-.# Note to the RFC Editor
+.# About This Document
+
+This note is to be removed before publishing as an RFC.
+
 This document contains several "Notes to the RFC Editor", including this section. 
 These should be reviewed and resolved prior to publication.
 
