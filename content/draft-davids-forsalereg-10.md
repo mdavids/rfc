@@ -592,8 +592,8 @@ https://forsalereg.sidnlabs.nl/demo
 # Acknowledgements
 
 The author would like to thank Thijs van den Hout, Caspar Schutijser, Melvin
-Elderman, Paul Bakker, Ben van Hartingsveldt, Jesse Davids, Juan Stelling and the ISE
-Editor for their valuable feedback.
+Elderman, Paul Bakker, Ben van Hartingsveldt, Jesse Davids, Juan Stelling,
+John Levine, and the ISE Editor for their valuable feedback.
 
 {backmatter}
 
