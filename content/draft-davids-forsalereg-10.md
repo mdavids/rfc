@@ -302,7 +302,7 @@ character-strings:
 _for-sale IN TXT "v=FORSALE1;" "ftxt=foo" "bar" "invalid"
 ~~~
 
-When multiple content TXT records present, the processor **MAY** select one or more of them.
+When multiple content TXT records are present, the processor **MAY** select one or more of them.
 
 For example, a registry might extract content from an RRset that includes 
 a recognizable "fcod=" content tag and use it to direct visitors to a sales page as 
