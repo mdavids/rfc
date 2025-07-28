@@ -1,0 +1,27 @@
+body::before {
+  content: "🛠️  Work in progress: this is the next, not yet published -10 iteration of draft-davids-forsalereg (https://datatracker.ietf.org/doc/html/draft-davids-forsalereg)";
+  display: block;
+  background-color: #ffc107;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+
+  opacity: 0;
+  animation: fadeInBanner 1.5s ease-in forwards;
+  
+}
+
+@keyframes fadeInBanner {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
