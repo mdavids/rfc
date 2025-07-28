@@ -470,6 +470,10 @@ Note that this mechanism relies on the domain name being resolvable in the DNS.
 This is not guaranteed, for example during a redemption period, in pending delete status [@?STD69],
 or when the domain is DNSSEC-signed but fails validation (i.e., has a bogus state).
 
+When a sale price is stated, prospective buyers are expected to initiate contact 
+only if they are prepared to pay an amount in that range for the domain name concerned.
+<!-- TODO: Can be used minimize the amount of inquiris for certain domains -->
+
 # IANA Considerations {#ianaconsid} <!-- See RFC8126 -->
 
 IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@!RFC8552; @IANA]. The underscored
@@ -569,8 +573,9 @@ potential for unintended commercial entanglements.
 
 # Implementation Status
 <!-- https://datatracker.ietf.org/doc/html/rfc7942 -->
-The concept described in this document is in use with the .nl ccTLD
-registry. See for example:
+The concept described in this document has been in use at the .nl ccTLD registry since 2022, 
+when it initially started as a pilot. Since then, several hundred thousand domain names have 
+been marked with the "\_for-sale" indicator. See for example:
 
 ~~~
 https://www.sidn.nl/en/whois?q=example.nl
@@ -583,6 +588,8 @@ landing page via its registrar dashboard following the "fcod=" method.
 When this option is used, a unique code is generated, which can be included in the "\_for-sale" record. 
 If such a domain name is entered on the domain finder page of SIDN, a "for sale" 
 button is displayed accordingly.
+
+
 
 A simple demonstration of a validator is present at:
 
