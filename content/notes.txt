@@ -1,0 +1,4 @@
+DNSdir review:
+
+	https://datatracker.ietf.org/doc/draft-davids-forsalereg/reviewrequest/22191/
+
