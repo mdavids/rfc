@@ -15,7 +15,7 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-10"
+value = "draft-davids-forsalereg-11"
 stream = "IETF"
 status = "bcp"
 
@@ -94,7 +94,7 @@ Furthermore, the chosen approach aligns with ethical considerations by promoting
 
 # Conventions {#conventions}
 
-## General Record Format
+## General Record Format {#abnf}
 
 Each "\_for-sale" TXT record **MUST** begin with a version tag, optionally followed by a string containing content that follows a simple "tag=value" syntax.
 
@@ -109,20 +109,22 @@ forsale-version = %s"v=FORSALE1;"
                   ; %x76.3D.46.4F.52.53.41.4C.45.31.3B
                   ; version tag, case sensitive, no spaces
 
-forsale-content = fcod-pair / ftxt-pair / furi-pair
+forsale-content = fcod-pair / ftxt-pair / furi-pair / fval-pair
                   ; referred to as tag-value pairs
                   ; only one tag-value pair per record
 
 fcod-pair       = fcod-tag fcod-value
 ftxt-pair       = ftxt-tag ftxt-value
 furi-pair       = furi-tag furi-value
+fval-pair       = fval-tag fval-value
                   ; the tags are referred to as content tags
                   ; the values are referred to as content values
 
 fcod-tag        = %s"fcod="
 ftxt-tag        = %s"ftxt="
 furi-tag        = %s"furi="
-                  ; case sensitive lowercase
+fval-tag        = %s"fval="
+                  ; all content tags case sensitive lowercase
 
 fcod-value      = 1*239OCTET
                   ; must be at least 1 OCTET
@@ -132,10 +134,17 @@ ftxt-char       = %x20-21 / %x23-5B / %x5D-7E
                   ; excluding " and \ to avoid escape issues
 
 furi-value      = URI
-                  ; Only http, https, mailto and tel schemes
+                  ; Only the http, https, mailto and tel URI schemes
                   ; exactly one URI
 
 URI             = <as defined in RFC3986, Appendix A>
+
+fval-value      = 4*239fval-char
+                  ; consists of uppercase letters A–Z and digits 0–9
+                  ; length: 4 to 239 characters, 
+                  ; indicating (crypto)currency and amount
+fval-char       = ALPHA / DIGIT / %x2E
+                  ; ALPHA is A–Z (uppercase only), %x2E is ASCII "."
 ~~~
 <!-- hint: make sure [@!RFC3986 remains somewhere in the document-->
 <!-- hint: double check on https://author-tools.ietf.org/abnf -->
@@ -146,31 +155,23 @@ Each "\_for-sale" TXT record **MUST NOT** contain more than one tag-value pair.
 
 See (#rrsetlimits) for additional RRset limitations.
 
-The content value provides information to interested parties as explained
-in (#introsect).
+The **OPTIONAL** forsale-content provides information to interested parties as explained
+in (#introsect). 
 
-If no tag-value pair is present but a valid version tag is, 
-processors **MAY** assume that the domain is for sale.
-In such cases, processors **SHOULD** determine how to proceed. 
-One possible approach is to indicate that the domain is for 
-sale and to use traditional methods, such as WHOIS or RDAP, 
-to obtain contact information:
+If the forsale-content is absent or invalid, but a valid version tag
+is present, processors **SHOULD** assume that the domain is for sale. For
+example:
 
 ```
 _for-sale.example.com. IN TXT "v=FORSALE1;"
-```
-
-If a tag-value pair is present but invalid, this constitutes a syntax error 
-and **SHOULD** be treated as if it were absent.
-
-In such cases, if the version tag itself is valid, processors **MAY** assume that the domain is for sale.
-For example:
-
-```
-_for-sale.example.com. IN TXT "v=FORSALE1;lorumipsum"
 _for-sale.example.com. IN TXT "v=FORSALE1;fcod="
 _for-sale.example.com. IN TXT "v=FORSALE1;foo=bar"
 ```
+
+In such cases, processors **SHOULD** determine how to proceed. 
+An approach might be to signal that the domain is for sale and 
+to rely on traditional mechanisms such as WHOIS or RDAP to retrieve and present contact
+information.
 
 TXT records in the same RRset, but without a version tag, **MUST NOT** be interpreted or processed as a valid "\_for-sale" indicator. 
 However, they may still offer some additional information for humans when considered alongside a valid
@@ -246,6 +247,8 @@ While a URI in this field is not syntactically prohibited, its
 interpretation as a URI is not guaranteed. Use of URIs in this 
 field **SHOULD** be avoided in favor of the furi content tag.
 
+See (#fvalpar) for a way to explicitly indicate an asking price for easier machine parsing.
+
 <!-- TODO https://www.rfc-editor.org/rfc/rfc7553.html noemen, of zelfs opnemen? -->
 ### furi  
 This content tag is intended to contain a human-readable and machine-parseable URI that conveys information to interested parties.
@@ -264,13 +267,42 @@ URIs **MUST** conform to the syntax and encoding requirements specified in
 not allowed unencoded (for example, spaces **MUST** be encoded as `%20` in a URL).
 
 See the (#security, use title) section for possible risks.
+
+### fval {#fvalpar}
+This content tag is intended to contain human-readable and machine-parseable 
+text that explicitly indicates an asking price, as opposed to being incorporated 
+in an "ftxt=" content tag. For example:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;fval=EUR999"
+~~~
+
+Although the ABNF in (#abnf) is kept flexible and future-proof, the intent is
+to limit the format to a three-letter uppercase currency code such as those
+listed in [@?ISO4217], followed by an amount, like this:
+<!-- TODO: more strict, just limit to 3-letter, forget about future-proof? -->
+
+~~~
+fval-value      = fval-currency  fval-amount
+                  ; total length: 4 to 239 characters
+
+fval-currency   = 3ALPHA
+                  ; 3-letter currency code (A–Z), e.g., BTC, USD
+fval-amount     = 1*236(fval-digit / %x2E)
+                  ; followed by 1 to 236 digits
+                  ; at most one decimal point allowed, 
+                  ; but only as part of an amount, e.g., 0.00010
+fval-digit      = DIGIT
+                  ; ASCII 0–9
+~~~
+
 ## Content Limitations {#contentlimits}
 
 The "\_for-sale" TXT record [@RFC8553, (see) section 2.1] **MUST** contain content deemed valid under this specification.
 
 Any text that suggests that the domain is not for sale is invalid content. If a domain name is not for sale, 
-a "\_for-sale" indicator is pointless and any existence of a valid "\_for-sale" TXT record **MAY**
-therefore be regarded as an indication that the domain name is for sale.
+a "\_for-sale" indicator is pointless and any existence of a valid "\_for-sale" TXT record
+**SHOULD** therefore be regarded as an indication that the domain name is for sale.
 
 The existence of a "\_for-sale" leaf node does not obligate the holder to sell the domain name; 
 it may have been published in error, or withdrawn later for other reasons.
@@ -280,16 +312,21 @@ Parties - such as registries and registrars - **MAY** use it in their tools, per
 value must meet. Content values can also be represented in a human-readable format for individuals to
 interpret. See the (#examples, use title) section for clarification.
 
-Since the content value in the TXT record has no strictly defined meaning, it is up to the processor of the content to decide how to handle it. 
-
 See (#guidelines) for additional guidelines.
 
 ## RRset Limitations {#rrsetlimits}
 
-This specification does not define restrictions on the number of TXT records in the RRset, 
-but limiting it to one per content tag is **RECOMMENDED**.
+This specification does not define restrictions on the number of TXT records in the
+RRset.
 
-If this is not the case, the processor **SHOULD**  determine which content to use.
+When multiple content TXT records are present, the processor **MAY** select one or more of them.
+
+For example, a registry might extract content from an RRset that includes 
+a recognizable "fcod=" content tag and use it to direct visitors to a sales page as 
+part of its services. An individual, on the other hand, might extract a 
+phone number (if present) from a "furi=" tag in the same RRset and use it to contact a potential seller.
+
+An example of such a combined record is provided in (#combiexample).
 
 The RDATA [@RFC9499] of each TXT record **MUST** consist of a single character-string
 [@!RFC1035] with a maximum length of 255 octets, in order to avoid the need to concatenate multiple
@@ -302,35 +339,37 @@ character-strings:
 _for-sale IN TXT "v=FORSALE1;" "ftxt=foo" "bar" "invalid"
 ~~~
 
-When multiple content TXT records are present, the processor **MAY** select one or more of them.
-
-For example, a registry might extract content from an RRset that includes 
-a recognizable "fcod=" content tag and use it to direct visitors to a sales page as 
-part of its services. An individual, on the other hand, might extract a 
-phone number (if present) from a "furi=" tag in the same RRset and use it to contact a potential seller.
-
-An example of such a combined record is provided in (#combiexample).
-
-## RR type Limitations
-
-Adding any resource record (RR) types under the "\_for-sale" leaf, other than TXT (such as AAAA or HINFO), is unnecessary for the 
-purposes of this document and therefore discouraged.
-
 ## Wildcard Limitation
 
-Wildcards are only interpreted as leaf names, so \_for-sale.*.example is not a valid wildcard and is non-conformant.
+Wildcards are only interpreted as leaf names, so "\_for-sale.*.example." is not a valid wildcard and is non-conformant.
+Hence, it is not possible to put all domains under a TLD for sale with just one TXT record.
+
+The example below, however, shows a common use case where a "\_for-sale" leaf node exists alongside a
+wildcard:
+
+~~~
+*         IN A    198.51.100.80
+          IN AAAA 2001:DB8::80
+_for-sale IN TXT  "v=FORSALE1;ftxt=Only $99 at ACME"
+~~~
+
+<!-- TODO dit is nieuwe tekst, goed checken en over nadenken nog! -->
+
 
 ## Placement of the Leaf Node Name
 
 The "\_for-sale" leaf node name is primarily intended to indicate that a domain name is available for
 purchase.
 
-For that, the leaf node name is to be placed on the top-level domain, or any domain directly
-below. It can also be placed at a lower level, when that level is mentioned in the Public Suffix List [@PSL]. 
+For that, the leaf node name is to be placed on the top-level domain, or any domain
+name below. The Public Suffix List [@PSL], or similar techniques, could be used to 
+determine what a domain name is.
+
+<!-- TODO: update https://publicsuffix.org/learn/ -->
 
 When the "\_for-sale" leaf node name is placed elsewhere, the intent is ambiguous.
 
-(#placements) illustrates this:
+(#placements) illustrates this, based on the PSL:
 
 Name | Situation | Verdict
 -----|-----------|--------
@@ -344,10 +383,10 @@ Table: Placements of TXT record {#placements}
 
 Note 1:
 When the "\_for-sale" leaf node name is placed in front of a label of a
-domain that is not in the PSL, it suggests that this label (and everything
-underneath) is for sale, and not the domain name as a whole. There may be use cases for this, but this
+subdomain, it suggests that this label (and everything underneath) is 
+for sale, and not the domain name as a whole. There may be use cases for this, but this
 situation is considered unusual in the context of this document. 
-Processors **MAY** ignore such records.
+Processors **MAY** ignore such records. 
 
 Note 2:
 If a "\_for-sale" leaf node were to appear under the .arpa infrastructure top-level 
@@ -374,7 +413,7 @@ Free format text, with some additional unstructured information, aimed at
 being human-readable:
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;ftxt=price:EU500, call for info"
+_for-sale IN TXT "v=FORSALE1;ftxt=price:EUR500, call for info"
 ~~~
 
 The content in the following example could be malicious, but it is not in violation of this specification (see
@@ -410,22 +449,35 @@ _for-sale IN TXT "v=FORSALE1;furi=tel:+1-201-555-0123"
 There can be a use case for these URIs, especially since WHOIS (or RDAP) often has privacy restrictions.
 But see the (#privacy, use title) section for possible downsides.
 
+## Example 4: Asking Price Format
 
-## Example 4: Combinations {#combiexample}
+In Bitcoins:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;fval=BTC0.000010"
+~~~
+
+In US dollars:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;fval=USD750"
+~~~
+
+## Example 5: Combinations {#combiexample}
 
 An example of multiple valid TXT records from which a processor can choose:
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
-          IN TXT "v=FORSALE1;ftxt=starting price:EU500"
+          IN TXT "v=FORSALE1;ftxt=This domain name is for sale"
+          IN TXT "v=FORSALE1;fval=EUR500"
           IN TXT "v=FORSALE1;fcod=ACME-ZGVhZGJlZWYx"
           IN TXT "v=FORSALE1;fcod=XYZ1-MTExLTIyMi0zMzMtNDQ0"
 ~~~
 
 # Operational Guidelines {#guidelines}
-DNS wildcards interact poorly with underscored names, and their 
-use is **NOT RECOMMENDED** with this mechanism. However, wildcards 
-may still be encountered in practice, especially with operators who 
+DNS wildcards interact poorly with underscored names [@RFC8552, (see) section 1.4],
+but they may still be encountered in practice, especially with operators who 
 are not implementing this mechanism. This is why the version 
 tag is a **REQUIRED** element: it allows processors to distinguish 
 valid "\_for-sale" records from unrelated TXT records.
@@ -446,7 +498,8 @@ forsale-content     = 0*244recommended-char
 recommended-char    = %x20-21 / %x23-5B / %x5D-7E
 ~~~
 
-Long TTLs [@!RFC1035, (see) section 3.2.1] are discouraged as they increase the risk of outdated data misleading buyers into thinking the domain is still available.
+Long TTLs [@!RFC1035, (see) section 3.2.1] increase the risk of outdated data misleading buyers into thinking the domain is still
+available. 
 
 Ambiguous constructs in content values **SHOULD** be avoided, as illustrated by the following
 example:
@@ -469,10 +522,6 @@ for the content value to mitigate ambiguity.
 Note that this mechanism relies on the domain name being resolvable in the DNS.
 This is not guaranteed, for example during a redemption period, in pending delete status [@?STD69],
 or when the domain is DNSSEC-signed but fails validation (i.e., has a bogus state).
-
-When a sale price is stated, prospective buyers are expected to initiate contact 
-only if they are prepared to pay an amount in that range for the domain name concerned.
-<!-- TODO: Can be used minimize the amount of inquiris for certain domains -->
 
 # IANA Considerations {#ianaconsid} <!-- See RFC8126 -->
 
@@ -630,6 +679,15 @@ John Levine, and the ISE Editor for their valuable feedback.
   <title>The "_for-sale" Underscored and Globally Scoped DNS Node Name</title>
   <author>
     <organization>SIDN Labs</organization>
+  </author>
+ </front>
+</reference>
+
+<reference anchor='ISO4217' target='https://en.wikipedia.org/wiki/ISO_4217'>
+ <front>
+  <title>ISO 4217</title>
+  <author>
+    <organization>SIX Group</organization>
   </author>
  </front>
 </reference>
