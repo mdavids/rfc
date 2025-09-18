@@ -140,7 +140,8 @@ furi-value      = URI
 URI             = <as defined in RFC3986, Appendix A>
 
 fval-value      = 4*239fval-char
-                  ; consists of uppercase letters A–Z and digits 0–9
+                  ; consists of uppercase letters A–Z and digits 0–9 and
+                  ; ASCII "." (decimal point)
                   ; length: 4 to 239 characters, 
                   ; indicating (crypto)currency and amount
 fval-char       = ALPHA / DIGIT / %x2E
@@ -277,20 +278,23 @@ in an "ftxt=" content tag. For example:
 _for-sale IN TXT "v=FORSALE1;fval=EUR999"
 ~~~
 
-Although the ABNF in (#abnf) is kept flexible and future-proof, the intent is
-to limit the format to a three-letter uppercase currency code such as those
+Although the ABNF in (#abnf) is kept flexible and future-proof, 
+the preference is to limit the format to a three-letter uppercase currency code such as those
 listed in [@?ISO4217], followed by an amount, like this:
 <!-- TODO: more strict, just limit to 3-letter, forget about future-proof? -->
+<!-- TODO: example of future: DOGE coins -->
 
 ~~~
 fval-value      = fval-currency  fval-amount
                   ; total length: 4 to 239 characters
 
 fval-currency   = 3ALPHA
-                  ; 3-letter currency code (A–Z), e.g., BTC, USD
+                  ; 3-letter currency code (A–Z), e.g., USD, EUR
+                  ; but also BTC or ETH, etc.
+
 fval-amount     = 1*236(fval-digit / %x2E)
-                  ; followed by 1 to 236 digits
-                  ; at most one decimal point allowed, 
+                  ; currency code is followed by 1 to 236 digits
+                  ; with at most one decimal point allowed, 
                   ; but only as part of an amount, e.g., 0.00010
 fval-digit      = DIGIT
                   ; ASCII 0–9
