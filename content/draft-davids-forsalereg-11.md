@@ -278,28 +278,6 @@ in an "ftxt=" content tag. For example:
 _for-sale IN TXT "v=FORSALE1;fval=EUR999"
 ~~~
 
-Although the ABNF in (#abnf) is kept flexible and future-proof, 
-the preference is to limit the format to a three-letter uppercase currency code such as those
-listed in [@?ISO4217], followed by an amount, like this:
-<!-- TODO: more strict, just limit to 3-letter, forget about future-proof? -->
-<!-- TODO: example of future: DOGE coins -->
-
-~~~
-fval-value    = fval-currency  fval-amount
-                ; total length: 4 to 239 characters
-
-fval-currency = 3ALPHA
-                ; 3-letter currency code (A–Z), e.g., USD, EUR
-                ; but also BTC or ETH, etc.
-
-fval-amount   = 1*236(fval-digit / %x2E)
-                ; currency code is followed by 1 to 236 digits
-                ; with at most one decimal point allowed, 
-                ; but only as part of an amount, e.g., 0.00010
-fval-digit    = DIGIT
-                ; ASCII 0–9
-~~~
-
 ## Content Limitations {#contentlimits}
 
 The "\_for-sale" TXT record [@RFC8553, (see) section 2.1] **MUST** contain content deemed valid under this specification.
@@ -501,6 +479,29 @@ In ABNF syntax, this would be:
 forsale-content  = 0*244recommended-char
 recommended-char = %x20-21 / %x23-5B / %x5D-7E
 ~~~
+
+Although the ABNF for the "fval=" content value in (#abnf) is kept flexible and future-proof, 
+the preference is to limit the format to a three-letter uppercase currency code such as those
+listed in [@?ISO4217], followed by an amount, like this:
+<!-- TODO: more strict, just limit to 3-letter, forget about future-proof? -->
+<!-- TODO: example of future: DOGE coins -->
+
+~~~
+fval-value    = fval-currency  fval-amount
+                ; total length: 4 to 239 characters
+
+fval-currency = 3ALPHA
+                ; 3-letter currency code (A–Z), e.g., USD, EUR
+                ; but also BTC or ETH, etc.
+
+fval-amount   = 1*236(fval-digit / %x2E)
+                ; currency code is followed by 1 to 236 digits
+                ; with at most one decimal point allowed, 
+                ; but only as part of an amount, e.g., 0.00010
+fval-digit    = DIGIT
+                ; ASCII 0–9
+~~~
+
 
 Long TTLs [@!RFC1035, (see) section 3.2.1] increase the risk of outdated data misleading buyers into thinking the domain is still
 available. 
