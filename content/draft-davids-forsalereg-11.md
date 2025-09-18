@@ -481,7 +481,7 @@ recommended-char = %x20-21 / %x23-5B / %x5D-7E
 ~~~
 
 Although the ABNF for the "fval=" content value in (#abnf) is kept flexible and future-proof, 
-the preference is to limit the format to a three-letter uppercase currency code such as those
+it is **RECOMMENDED** to use a three-letter uppercase currency code such as those
 listed in [@?ISO4217], followed by an amount, like this:
 <!-- TODO: more strict, just limit to 3-letter, forget about future-proof? -->
 <!-- TODO: example of future: DOGE coins -->
