@@ -247,7 +247,7 @@ While a single visible character is the minimum, it is **RECOMMENDED** to provid
 
 While a URI in this field is not syntactically prohibited, its 
 interpretation as a URI is not guaranteed. Use of URIs in this 
-field **SHOULD** be avoided in favor of the furi content tag.
+field **SHOULD** be avoided in favour of the furi content tag.
 
 See (#fvalpar) for a way to explicitly indicate an asking price for easier machine parsing.
 
