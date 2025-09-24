@@ -61,9 +61,9 @@ These should be reviewed and resolved prior to publication.
 Well-established services [@RFC3912; @RFC9083] exist to determine whether a domain name is registered. However, the fact that a domain name exists does not necessarily mean it
 is unavailable; it may still be for sale.
 
-Some registrars and other entities offer mediation services between domain name holders and interested parties
-(often referred to as brokers). For domain names that are not for sale, such services may be
-of limited value, whereas they may be beneficial for domain names that are clearly being offered for sale.
+Some registrars and other parties offer brokerage services between domain name holders and interested buyers.
+Such services are of limited value when the domain name is not for sale, but they may be beneficial 
+for domain names that are clearly being offered for sale.
 
 This specification defines a lightweight method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored
 leaf node name [@!RFC8552] in the zone, indicating that the domain name is for sale.
@@ -271,8 +271,8 @@ See the (#security, use title) section for possible risks.
 
 ### fval {#fvalpar}
 This content tag is intended to contain human-readable and machine-parseable 
-text that explicitly indicates an asking price, as opposed to being incorporated 
-in an "ftxt=" content tag. For example:
+text that explicitly indicates an asking price in a certain currency, as opposed to 
+the price being incorporated in an "ftxt=" content tag. For example:
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;fval=EUR999"
@@ -433,6 +433,9 @@ But see the (#privacy, use title) section for possible downsides.
 
 ## Example 4: Asking Price Format
 
+Consists of an uppercase currency code (e.g., USD, EUR), followed by a
+numeric amount. See (#guidelines) for additional guidelines.
+
 In Bitcoins:
 
 ~~~
@@ -458,6 +461,8 @@ _for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
 ~~~
 
 # Operational Guidelines {#guidelines}
+1) DNS wildcards:
+
 DNS wildcards interact poorly with underscored names [@RFC8552, (see) section 1.4],
 but they may still be encountered in practice, especially with operators who 
 are not implementing this mechanism. This is why the version 
@@ -470,7 +475,9 @@ cases where wildcard expansion - possibly combined with DNS aliases
 (e.g., CNAMEs) or redirections (e.g., DNAMEs [@?RFC6672]) - might 
 result in misleading listings or unintended references to third-party domains.
 
-It is also **RECOMMENDED** that the content value be limited to visible US-ASCII characters, 
+2) Character set:
+
+It is **RECOMMENDED** that the content value be limited to visible US-ASCII characters, 
 excluding the double quote (") and backslash (\\).
 
 In ABNF syntax, this would be:
@@ -480,9 +487,11 @@ forsale-content  = 0*244recommended-char
 recommended-char = %x20-21 / %x23-5B / %x5D-7E
 ~~~
 
-Although the ABNF for the "fval=" content value in (#abnf) is kept flexible and future-proof, 
+3) Currency:
+
+While the ABNF for the "fval=" content value in (#abnf) allows for flexibility and future extensions, 
 it is **RECOMMENDED** to use a three-letter uppercase currency code such as those
-listed in [@?ISO4217], followed by an amount, like this:
+listed in [@?ISO4217], followed by a numeric amount, like this:
 <!-- TODO: more strict, just limit to 3-letter, forget about future-proof? -->
 <!-- TODO: example of future: DOGE coins -->
 
@@ -502,9 +511,12 @@ fval-digit    = DIGIT
                 ; ASCII 0–9
 ~~~
 
+4) TTLs:
 
 Long TTLs [@!RFC1035, (see) section 3.2.1] increase the risk of outdated data misleading buyers into thinking the domain is still
 available. 
+
+5) Ambiguous constructs:
 
 Ambiguous constructs in content values **SHOULD** be avoided, as illustrated by the following
 example:
@@ -517,12 +529,16 @@ The above example is a valid "fcod=" content tag that includes the
 string ";ftxt=" in the content value, which may be confusing, 
 as it does not actually represent an "ftxt=" content tag.
 
+6) Robustness:
+
 Because the format of the content part is not strictly defined in this
 document, processors **MAY** apply the robustness principle of being 
 liberal in what they accept. This also applies to space 
 characters (`%x20`) immediately following the version tag.
-Alternatively, parties may mutually agree on a more strictly defined proprietary format
-for the content value to mitigate ambiguity.
+Alternatively, parties may agree on a more strictly defined proprietary format
+for the content value to reduce ambiguity.
+
+7) Scope of application:
 
 Note that this mechanism relies on the domain name being resolvable in the DNS.
 This is not guaranteed, for example during a redemption period, in pending delete status [@?STD69],
@@ -596,11 +612,18 @@ DNS and may have privacy implications.
 
 There is a risk of data scraping, such as email addresses and phone numbers.
 
+Publishing contact information may expose domain holders to spam, or unwanted contact.
+
 # Security Considerations {#security}
 
-One use of the TXT record type defined in this document is to parse the content it contains and to automatically publish certain information from it on a website or elsewhere. However, there is a risk if the domain name holder  publishes a malicious URI or one that points to improper content. This may result in reputational damage for the party parsing the record.
+One use of the TXT record type defined in this document is to parse the content 
+it contains and to automatically publish certain information from it on a 
+website or elsewhere. However, there is a risk if the domain name holder 
+publishes a malicious URI or one that points to improper content. 
+This may result in reputational damage for the party parsing the record.
 
-An even more serious scenario arises when the content of the TXT record is insufficiently validated and sanitized, potentially enabling attacks such as XSS or SQL injection.
+An even more serious scenario arises when the content of the TXT record 
+is insufficiently validated and sanitized, potentially enabling attacks such as XSS or SQL injection.
 
 Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted with the utmost care.
 
