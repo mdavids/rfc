@@ -340,35 +340,26 @@ _for-sale IN TXT  "v=FORSALE1;ftxt=Only $99 at ACME"
 
 ## Placement of the Leaf Node Name
 
-The "\_for-sale" leaf node name is primarily intended to indicate that a domain name is available for
-purchase.
+The "\_for-sale" leaf node name can essentially be placed at any level of
+the DNS except in the in-addr.arpa. infrastructure TLD.
 
-For that, the leaf node name is to be placed on the top-level domain, or any domain
-name below. The Public Suffix List [@PSL], or similar techniques, could be used to 
-determine what a domain name is.
-
-<!-- TODO: update https://publicsuffix.org/learn/ -->
-
-When the "\_for-sale" leaf node name is placed elsewhere, the intent is ambiguous.
-
-(#placements) illustrates this, based on the PSL:
+(#placements) illustrates this:
 
 Name | Situation | Verdict
 -----|-----------|--------
 \_for-sale.example. | root zone | For sale
 \_for-sale.aaa.example. | second level | For sale
-\_for-sale.acme.bbb.example. | bbb.example in PSL | For sale
-\_for-sale.www.ccc.example. | ccc.example not in PSL | See note 1
+\_for-sale.acme.bbb.example. | third level with registry | For sale
+\_for-sale.www.ccc.example. | third level without registry | See note 1
 \_for-sale.51.198.in-addr.arpa. | infrastructure TLD | See note 2
-xyz.\_for-sale.example. | Invalid placement | non-conformant
+xyz.\_for-sale.example. | Invalid placement, not a leaf | non-conformant
 Table: Placements of TXT record {#placements}
 
-Note 1:
-When the "\_for-sale" leaf node name is placed in front of a label of a
-subdomain, it suggests that this label (and everything underneath) is 
-for sale, and not the domain name as a whole. There may be use cases for this, but this
-situation is considered unusual in the context of this document. 
-Processors **MAY** ignore such records. 
+Note 1: 
+When the "\_for-sale" leaf node is applied to a label under a subdomain, 
+there may not be a registry capable of properly recording the rights associated with that label. 
+Nevertheless, this does not constitute a violation of this document. 
+One possible approach is for the involved parties to establish a mutual agreement to formalize these rights.
 
 Note 2:
 If a "\_for-sale" leaf node were to appear under the .arpa infrastructure top-level 
