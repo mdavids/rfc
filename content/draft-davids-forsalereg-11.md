@@ -200,7 +200,8 @@ The following content tags are defined as the initial valid content tags.
 This content tag is intended to contain a code that is meaningful only to processors 
 that understand its semantics. The content value MUST consist of at least one octet. 
 
-The manner in which the "fcod=" content tag is used is determined by agreement among cooperating parties.
+The manner in which the "fcod=" content tag is used is determined by agreement
+between cooperating parties.
 
 For example, a registry may allow registrars to enter a "for sale" URL into their system. 
 From that URL, a unique code is generated. This code is inserted as the value of
