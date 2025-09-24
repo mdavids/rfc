@@ -349,15 +349,15 @@ Name | Situation | Verdict
 -----|-----------|--------
 \_for-sale.example. | root zone | For sale
 \_for-sale.aaa.example. | second level | For sale
-\_for-sale.acme.bbb.example. | third level with registry | For sale
-\_for-sale.www.ccc.example. | third level without registry | See note 1
+\_for-sale.acme.bbb.example. | third level with public registry | For sale
+\_for-sale.www.ccc.example. | third level without public registry | See note 1
 \_for-sale.51.198.in-addr.arpa. | infrastructure TLD | See note 2
 xyz.\_for-sale.example. | Invalid placement, not a leaf | non-conformant
 Table: Placements of TXT record {#placements}
 
 Note 1: 
 When the "\_for-sale" leaf node is applied to a label under a subdomain, 
-there may not be a registry capable of properly recording the rights associated with that label. 
+there may not be a public registry [@?RFC8499] capable of properly recording the rights associated with that label. 
 Nevertheless, this does not constitute a violation of this document. 
 One possible approach is for the involved parties to establish a mutual agreement to formalize these rights.
 
