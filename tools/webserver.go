@@ -22,7 +22,7 @@ type DomainInfo struct {
 
 var (
 	validFTXTChar = regexp.MustCompile(`^[\x20-\x21\x23-\x5B\x5D-\x7E]+$`)
-	validFVALChar = regexp.MustCompile(`^[A-Z0-9.]+$`)
+	validFVALChar = regexp.MustCompile(`^[A-Z]{3}[0-9.,]{1,236}$`)
 )
 
 func main() {
