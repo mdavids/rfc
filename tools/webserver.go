@@ -1,5 +1,9 @@
 package main
 
+// supports version -11 of draft
+// caveat: handles _for-sale IN TXT "v=FORSALE1;" "ftxt=foo" "bar" "invalid" well
+// (even though the draft says it's invalid
+
 import (
 	"fmt"
 	"html/template"
