@@ -15,7 +15,7 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-11"
+value = "draft-davids-forsalereg-12"
 stream = "IETF"
 status = "bcp"
 
@@ -134,25 +134,27 @@ ftxt-char       = %x20-21 / %x23-5B / %x5D-7E
                   ; excluding " and \ to avoid escape issues
 
 furi-value      = URI
-                  ; Only the http, https, mailto and tel URI schemes
+                  ; http, https, mailto and tel URI schemes
                   ; exactly one URI
 
 URI             = <as defined in RFC3986, Appendix A>
 
 fval-value      = 4*239fval-char
-                  ; consists of uppercase letters A–Z and digits 0–9 and
+                  ; Uppercase letters A–Z and digits 0–9 and
                   ; ASCII "." (decimal point)
                   ; length: 4 to 239 characters, 
                   ; indicating (crypto)currency and amount
 fval-char       = ALPHA / DIGIT / %x2E
-                  ; ALPHA is A–Z (uppercase only), %x2E is ASCII "."
+                  ; ALPHA is A–Z (uppercase only),
+                  ; %x2E is ASCII "."
 ~~~
 <!-- hint: make sure [@!RFC3986 remains somewhere in the document-->
 <!-- hint: double check on https://author-tools.ietf.org/abnf -->
 
 See (#tagdefs) for more detailed format definitions per content tag type. 
 
-Each "\_for-sale" TXT record **MUST NOT** contain more than one tag-value pair.
+Each "\_for-sale" TXT record **MUST NOT** contain more than one tag-value
+pair, but multiple TXT records **MAY** be present in a single RRset.
 
 See (#rrsetlimits) for additional RRset limitations.
 
@@ -672,7 +674,7 @@ https://forsalereg.sidnlabs.nl/demo
 # Acknowledgements
 
 The author would like to thank Thijs van den Hout, Caspar Schutijser, Melvin
-Elderman, Paul Bakker, Ben van Hartingsveldt, Jesse Davids, Juan Stelling,
+Elderman, Ben van Hartingsveldt, Jesse Davids, Juan Stelling,
 John R. Levine, and the ISE Editor for their valuable feedback.
 
 {backmatter}
