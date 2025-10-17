@@ -1,5 +1,8 @@
 # Tools to play and test the _for-sale draft
 
+> [!NOTE]
+> The Python has no support for the new ```fval=``` tag that was introduced in ```draft-davids-forsalereg-11```, only the Golang code has.
+
 ## check_dns_for_sale.py
 ~~~
 (venv) mdavids@iMac-van-Marco forsale % python3 ./check_dns_for_sale.py 
