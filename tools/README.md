@@ -3,6 +3,10 @@
 > [!NOTE]
 > The Python has no support for the new ```fval=``` tag that was introduced in ```draft-davids-forsalereg-11```, only the Golang code has.
 
+## webserver.go
+
+See in action on https://forsalereg.sidnlabs.nl/demo
+
 ## check_dns_for_sale.py
 ~~~
 (venv) mdavids@iMac-van-Marco forsale % python3 ./check_dns_for_sale.py 
@@ -218,6 +222,4 @@ Record 3:
   For Sale Code (NLFS- format found): NLFS-ThisFcodIsUnknownToUsAndWeCannotRedirectToAnURL.
   Warning: Specific fcod not found in database.
 ~~~
-## webserver.go
 
-See in action on https://forsalereg.sidnlabs.nl/demo
