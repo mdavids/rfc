@@ -47,7 +47,6 @@ parent domain name is available for purchase. This approach offers
 the advantage of easy deployment without affecting ongoing operations. 
 As such, the method can be applied to a domain name that is still in full use.
 
-{removeInRFC="true"}
 .# About This Document
 
 This note is to be removed before publishing as an RFC.
@@ -646,6 +645,7 @@ dependencies on registries for market transactions,
 which could otherwise introduce complexities and 
 potential for unintended commercial entanglements.
 
+{removeInRFC="true"}
 # Implementation Status
 <!-- https://datatracker.ietf.org/doc/html/rfc7942 -->
 The concept described in this document has been in use at the .nl ccTLD registry since 2022, 
