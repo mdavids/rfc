@@ -599,6 +599,8 @@ The "status" column can have one of the following values:
 
 This registry group is not maintained by IANA as per [@?RFC8726].
 
+<!-- TODO: Sectie 4 nog eens nagelezen, en nu denk ik dat het toch bij IANA zou moeten kunnen -->
+
 # Privacy Considerations {#privacy}
 
 The use of the "\_for-sale" leaf node name publicly indicates the intent to sell a domain name.
