@@ -491,7 +491,7 @@ listed in [@?ISO4217], followed by a numeric amount, like this:
 <!-- TODO: example of future: DOGE coins -->
 
 ~~~
-fval-value    = fval-currency  fval-amount
+fval-value    = fval-currency fval-amount
                 ; total length: 4 to 239 characters
 
 fval-currency = 3ALPHA
