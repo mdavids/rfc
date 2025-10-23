@@ -17,7 +17,7 @@ tocdepth = 3
 name = "Internet-Draft"
 value = "draft-davids-forsalereg-12"
 stream = "IETF"
-status = "bcp"
+status = "informational"
 
 [[author]]
 initials="M."
