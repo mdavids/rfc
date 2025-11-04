@@ -159,8 +159,8 @@ See (#tagdefs) for more detailed format definitions per content tag type.
 Each "\_for-sale" TXT record **MUST NOT** contain more than one tag-value
 pair, but multiple TXT records **MAY** be present in a single RRset.
 
-Every tag-value pair in the TXT record **MUST** be unique, but multiple 
-instances of the same content tag **MAY** occur within a single TXT record 
+Every tag-value pair in the RRset **MUST** be unique, but multiple 
+instances of the same content tag **MAY** occur within a single RRset 
 (e.g., two "fcod=" content tags, each with a different content value).
 
 
