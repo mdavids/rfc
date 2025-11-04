@@ -613,8 +613,6 @@ The "status" column can have one of the following values:
 
 This registry group is maintained by IANA as per [@?RFC8726].
 
-<!-- TODO: Sectie 4 nog eens nagelezen, en nu denk ik dat het toch bij IANA zou moeten kunnen -->
-
 # Privacy Considerations {#privacy}
 
 The use of the "\_for-sale" leaf node name publicly indicates the intent to sell a domain name.
@@ -660,7 +658,6 @@ dependencies on registries for market transactions,
 which could otherwise introduce complexities and 
 potential for unintended commercial entanglements.
 
-{removeInRFC="true"}
 # Implementation Status
 <!-- https://datatracker.ietf.org/doc/html/rfc7942 -->
 The concept described in this document has been in use at the .nl ccTLD registry since 2022, 
