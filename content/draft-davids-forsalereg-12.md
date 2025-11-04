@@ -422,7 +422,7 @@ may also be processed by automated tools, but see the (#security, use title) sec
 As an alternative, a mailto: URI could also be used:
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;furi=mailto:sale@example.com?subject=foo"
+_for-sale IN TXT "v=FORSALE1;furi=mailto:hq@example.com?subject=foo"
 ~~~
 
 Or a telephone URI:
