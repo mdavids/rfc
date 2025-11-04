@@ -139,14 +139,17 @@ furi-value      = URI
 
 URI             = <as defined in RFC3986, Appendix A>
 
-fval-value      = 4*239fval-char
-                  ; Uppercase letters A–Z and digits 0–9 and
-                  ; ASCII "." (decimal point)
-                  ; length: 4 to 239 characters, 
-                  ; indicating (crypto)currency and amount
-fval-char       = ALPHA / DIGIT / %x2E
-                  ; ALPHA is A–Z (uppercase only),
-                  ; %x2E is ASCII "."
+fval-value      = fval-currency fval-amount
+                  ; total length: 2 to 239 characters 
+fval-currency   = 1*ALPHA
+                  ; one or more uppercase letters (A-Z)
+                  ; indicating (crypto)currency
+                  ; e.g., USD, EUR, BTC, ETH
+fval-amount     = int-part [ %x2E frac-part ]
+                  ; integer part with optional fractional part
+                  ; e.g., 0.00010
+int-part        = 1*DIGIT
+frac-part       = 1*DIGIT
 ~~~
 <!-- hint: make sure [@!RFC3986 remains somewhere in the document-->
 <!-- hint: double check on https://author-tools.ietf.org/abnf -->
@@ -155,6 +158,11 @@ See (#tagdefs) for more detailed format definitions per content tag type.
 
 Each "\_for-sale" TXT record **MUST NOT** contain more than one tag-value
 pair, but multiple TXT records **MAY** be present in a single RRset.
+
+Every tag-value pair in the TXT record **MUST** be unique, but multiple 
+instances of the same content tag **MAY** occur within a single TXT record 
+(e.g., two "fcod=" content tags, each with a different content value).
+
 
 See (#rrsetlimits) for additional RRset limitations.
 
@@ -191,7 +199,7 @@ See (#contentlimits) for additional content limitations.
 
 ## Content Tag Type Definitions {#tagdefs}
 
-A new registry for known content tags is created in (#ianaconsid), with 
+A new IANA registry for known content tags is created in (#ianaconsid), with 
 this document registering the initial set. Implementations **SHOULD** 
 process only registered tags they support, and **MAY** ignore any others.
 
@@ -205,12 +213,12 @@ that understand its semantics. The content value MUST consist of at least one oc
 The manner in which the "fcod=" content tag is used is determined by agreement
 between cooperating parties.
 
-For example, a registry may allow registrars to enter a "for sale" URL into their system. 
+For example, a domain name registry may allow registrars to enter a "for sale" URL into their system. 
 From that URL, a unique code is generated. This code is inserted as the value of
 the "fcod=" content tag of the "\_for-sale" TXT record of a domain name, as shown in the example below.
 
 When a user checks the availability of the domain name using a registry-provided tool 
-(e.g., a web interface), the registry may use the code to redirect the user to the 
+(e.g., a web interface), the domain name registry may use the code to redirect the user to the 
 appropriate "for sale" URL, which may include a query component containing the domain name, for example:
 
 ~~~
@@ -223,8 +231,8 @@ from the content tag, thereby preventing users from being sent
 to unintended or malicious destinations or from being presented 
 with unintended content.
 
-The following example shows a base64-encoded [@?RFC4648] string preceded 
-by the prefix "ACME-" as the value of the content tag:
+The following example shows a string encoded using base 64 [@?RFC4648] 
+preceded by the prefix "ACME-" as the value of the content tag:
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;fcod=ACME-S2lscm95IHdhcyBoZXJl"
@@ -235,14 +243,14 @@ the domain sale process and use the same mechanism, it may be difficult to ident
 the relevant content in an RRset. Adding a recognizable prefix to the content (e.g.,
 "ACME-") is one possible approach. However, this is left to the implementor, 
 as it is not enforced in this document. In this case, ACME would recognize its 
-content tag and interpret it as intended. This example uses base64 encoding 
+content tag and interpret it as intended. This example uses base 64 encoding 
 to avoid escaping and ensure printable characters, though this is also not required.
 
 ### ftxt  
 This content tag is intended to contain human-readable text that conveys information to interested parties. For example:
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;ftxt=price:$500,info[at]example.com"
+_for-sale IN TXT "v=FORSALE1;ftxt=Call for info."
 ~~~
 
 While a single visible character is the minimum, it is **RECOMMENDED** to provide more context.
@@ -268,7 +276,7 @@ _for-sale IN TXT "v=FORSALE1;furi=https://example.com/foo%20bar"
 
 URIs **MUST** conform to the syntax and encoding requirements specified in 
 [@!RFC3986, section 2.1], including the percent-encoding of characters 
-not allowed unencoded (for example, spaces **MUST** be encoded as `%20` in a URL).
+not allowed unencoded (for example, spaces **MUST** be encoded as `%20` in a URI).
 
 See the (#security, use title) section for possible risks.
 
@@ -306,7 +314,7 @@ RRset.
 
 When multiple content TXT records are present, the processor **MAY** select one or more of them.
 
-For example, a registry might extract content from an RRset that includes 
+For example, a domain name registry might extract content from an RRset that includes 
 a recognizable "fcod=" content tag and use it to direct visitors to a sales page as 
 part of its services. An individual, on the other hand, might extract a 
 phone number (if present) from a "furi=" tag in the same RRset and use it to contact a potential seller.
@@ -360,7 +368,7 @@ Table: Placements of TXT record {#placements}
 
 Note 1: 
 When the "\_for-sale" leaf node is applied to a label under a subdomain, 
-there may not be a public registry [@?RFC8499] capable of properly recording the rights associated with that label. 
+there may not be a public domain name registry [@?RFC8499] capable of properly recording the rights associated with that label. 
 Nevertheless, this does not constitute a violation of this document. 
 One possible approach is for the involved parties to establish a mutual agreement to formalize these rights.
 
@@ -375,7 +383,7 @@ However, such use is explicitly out of scope for this document, and processors
 ## Example 1: Code Format
 
 A proprietary format, defined and used by agreement between parties - for example, 
-a registry and its registrars - without a clearly specified meaning for third parties.
+a domain name registry and its registrars - without a clearly specified meaning for third parties.
 For example, it may be used to automatically redirect visitors to a web page, as described in
 (#fcoddef):
 
@@ -389,7 +397,7 @@ Free format text, with some additional unstructured information, aimed at
 being human-readable:
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;ftxt=price:EUR500, call for info"
+_for-sale IN TXT "v=FORSALE1;ftxt=Eligibility criteria apply."
 ~~~
 
 The content in the following example could be malicious, but it is not in violation of this specification (see
@@ -413,7 +421,7 @@ may also be processed by automated tools, but see the (#security, use title) sec
 As an alternative, a mailto: URI could also be used:
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;furi=mailto:seller@example.com"
+_for-sale IN TXT "v=FORSALE1;furi=mailto:sale@example.com?subject=foo"
 ~~~
 
 Or a telephone URI:
@@ -471,7 +479,7 @@ result in misleading listings or unintended references to third-party domains.
 
 2) Character set:
 
-It is **RECOMMENDED** that the content value be limited to visible US-ASCII characters, 
+For the "ftxt=" content tag, the content value **MUST** be limited to visible US-ASCII characters, 
 excluding the double quote (") and backslash (\\).
 
 In ABNF syntax, this would be:
@@ -481,28 +489,31 @@ forsale-content  = 0*244recommended-char
 recommended-char = %x20-21 / %x23-5B / %x5D-7E
 ~~~
 
+For the content value of the "fcod=" content tag, this is **RECOMMENDED**. 
+
+For example, base 64 uses only characters within this range, and therefore conforms to 
+this recommendation.
+
+
 3) Currency:
 
-While the ABNF for the "fval=" content value in (#abnf) allows for flexibility and future extensions, 
-it is **RECOMMENDED** to use a three-letter uppercase currency code such as those
-listed in [@?ISO4217], followed by a numeric amount, like this:
-<!-- TODO: more strict, just limit to 3-letter, forget about future-proof? -->
-<!-- TODO: example of future: DOGE coins -->
+While the ABNF for the "fval=" content value in (#abnf) allows flexibility
+regarding the currency indication, it is **RECOMMENDED** to use a three-letter uppercase 
+currency code, such as those listed in [@?ISO4217], followed by a numeric amount, 
 
 ~~~
 fval-value    = fval-currency fval-amount
-                ; total length: 4 to 239 characters
-
+                ; total length: 4 to 239 characters 
 fval-currency = 3ALPHA
-                ; 3-letter currency code (A–Z), e.g., USD, EUR
-                ; but also BTC or ETH, etc.
-
-fval-amount   = 1*236(fval-digit / %x2E)
-                ; currency code is followed by 1 to 236 digits
-                ; with at most one decimal point allowed, 
-                ; but only as part of an amount, e.g., 0.00010
-fval-digit    = DIGIT
-                ; ASCII 0–9
+                ; 3-letter uppercase currency code (A-Z)
+                ; e.g., USD, EUR, BTC, ETH
+fval-amount   = int-part [ "." frac-part ]
+                ; integer part with optional fractional part
+                ; e.g., 0.00010
+int-part      = 1*DIGIT
+                ; at least one digit before the decimal point
+frac-part     = 1*DIGIT
+                ; at least one digit after the decimal point
 ~~~
 
 4) TTLs:
@@ -560,7 +571,9 @@ A registry group called "The '_for-sale' Underscored and Globally Scoped DNS Nod
 along with a registry called "Content Tags" within it. This registry group will be
 maintained by IANA.
 
-An early examply of such registry is publicly accessible at:
+<NOTE TO RFC EDITOR: Remove the text about the example registry below, prior to publication.>
+
+An early example of such IANA registry is publicly accessible at:
 
 ~~~
 https://forsalereg.sidnlabs.nl/
@@ -659,7 +672,7 @@ https://www.sidn.nl/en/whois?q=example.nl
 
 <!-- or https://api.sidn.nl/rest/whois?domain=example.nl -->
 
-The Dutch registry SIDN offers registrars the option to register a sales 
+The Dutch domain name registry SIDN offers registrars the option to register a sales 
 landing page via its registrar dashboard following the "fcod=" method.
 When this option is used, a unique code is generated, which can be included in the "\_for-sale" record. 
 If such a domain name is entered on the domain finder page of SIDN, a "for sale" 
