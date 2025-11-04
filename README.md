@@ -1,15 +1,15 @@
 # RFC
 
-Current draft I'm working on here is: **draft-davids-forsalereg-08**.
+Current draft I'm working on here is: **draft-davids-forsalereg-12**.
 
 ## Datatracker:
 
 https://datatracker.ietf.org/doc/html/draft-davids-forsalereg
 
-## More recent version from this repository (-10 vs -09 on datatracker):
+## More recent version from this repository (-12 vs -11 on datatracker):
 
 https://forsalereg.sidnlabs.nl/rfc/
-* https://forsalereg.sidnlabs.nl/ (associated registry group)
+* https://forsalereg.sidnlabs.nl/ (associated registry group example)
 
 ## Demo:
 
