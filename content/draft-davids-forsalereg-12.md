@@ -557,9 +557,10 @@ Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 <!-- TODO niet vergeten reference anchor op te ruimen indien alsnog niet nodig -->
 
 A registry group called "The '_for-sale' Underscored and Globally Scoped DNS Node Name" [@?FORSALEREG] is to be created, 
-along with a registry called "Content Tags" within it. This registry group will be maintained independently of IANA.
+along with a registry called "Content Tags" within it. This registry group will be
+maintained by IANA.
 
-The registry is publicly accessible at:
+An early examply of such registry is publicly accessible at:
 
 ~~~
 https://forsalereg.sidnlabs.nl/
@@ -580,10 +581,10 @@ Table: Initial set of entries in the "Content Tags" registry
 
 <NOTE TO RFC EDITOR: Adjust the text in the table above before publication with a citation for the (this) document making the addition as per RFC8552.>
 
-Future updates will be managed by the Designated Expert.
+Future updates will be managed by the Change Controller.
 
 Entries are assigned only for values that have been documented in 
-a manner consistent with the "Specification Required" registration 
+a manner consistent with the "RFC Required" registration 
 policy defined in [@!RFC8126].
 
 Newly defined content tags MUST NOT alter the semantics of existing content tags.
@@ -596,7 +597,7 @@ The "status" column can have one of the following values:
 * active - the tag is in use in current implementations.
 * historic - the tag is deprecated and not expected to be used in current implementations.
 
-This registry group is not maintained by IANA as per [@?RFC8726].
+This registry group is maintained by IANA as per [@?RFC8726].
 
 <!-- TODO: Sectie 4 nog eens nagelezen, en nu denk ik dat het toch bij IANA zou moeten kunnen -->
 
