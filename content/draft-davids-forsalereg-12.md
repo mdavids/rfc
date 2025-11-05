@@ -464,7 +464,7 @@ _for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
 ~~~
 
 # Operational Guidelines {#guidelines}
-1) DNS wildcards:
+## DNS Wildcards
 
 DNS wildcards interact poorly with underscored names [@RFC8552, (see) section 1.4],
 but they may still be encountered in practice, especially with operators who 
@@ -478,7 +478,7 @@ cases where wildcard expansion - possibly combined with DNS aliases
 (e.g., CNAMEs) or redirections (e.g., DNAMEs [@?RFC6672]) - might 
 result in misleading listings or unintended references to third-party domains.
 
-2) Character set:
+## Character Set
 
 For the "ftxt=" content tag, the content value **MUST** be limited to visible US-ASCII characters, 
 excluding the double quote (") and backslash (\\).
@@ -495,8 +495,7 @@ For the content value of the "fcod=" content tag, this is **RECOMMENDED**.
 For example, base 64 uses only characters within this range, and therefore conforms to 
 this recommendation.
 
-
-3) Currency:
+## Currency
 
 While the ABNF for the "fval=" content value in (#abnf) allows flexibility
 regarding the currency indication, it is **RECOMMENDED** to use a three-letter uppercase 
@@ -517,12 +516,12 @@ frac-part     = 1*DIGIT
                 ; at least one digit after the decimal point
 ~~~
 
-4) TTLs:
+## TTLs
 
 Long TTLs [@!RFC1035, (see) section 3.2.1] increase the risk of outdated data misleading buyers into thinking the domain is still
 available. 
 
-5) Ambiguous constructs:
+## Ambiguous Constructs
 
 Ambiguous constructs in content values **SHOULD** be avoided, as illustrated by the following
 example:
@@ -535,7 +534,7 @@ The above example is a valid "fcod=" content tag that includes the
 string ";ftxt=" in the content value, which may be confusing, 
 as it does not actually represent an "ftxt=" content tag.
 
-6) Robustness:
+## Robustness
 
 Because the format of the content part is not strictly defined in this
 document, processors **MAY** apply the robustness principle of being 
@@ -544,7 +543,7 @@ characters (`%x20`) immediately following the version tag.
 Alternatively, parties may agree on a more strictly defined proprietary format
 for the content value to reduce ambiguity.
 
-7) Scope of application:
+## Scope of Application
 
 Note that this mechanism relies on the domain name being resolvable in the DNS.
 This is not guaranteed, for example during a redemption period, in pending delete status [@?STD69],
