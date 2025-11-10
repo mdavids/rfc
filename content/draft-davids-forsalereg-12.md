@@ -287,7 +287,7 @@ See the (#security, use title) section for possible risks.
 ### fval {#fvalpar}
 This content tag is intended to contain human-readable and machine-parseable 
 text that explicitly indicates an asking price in a certain currency, as opposed to 
-the price being loosly incorporated in an "ftxt=" content tag. For example:
+the price being loosely incorporated in an "ftxt=" content tag. For example:
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;fval=EUR999"
@@ -579,13 +579,15 @@ A registry group called "The '_for-sale' Underscored and Globally Scoped DNS Nod
 along with a registry called "Content Tags" within it. This registry group will be
 maintained by IANA.
 
-<NOTE TO RFC EDITOR: Remove the text about the example registry below, prior to publication.>
-
-An early example of such IANA registry is publicly accessible at:
+A publicly accessible example of such an IANA registry, including relevant notes
+(but using 'SIDN Labs' instead of 'IANA'), can be found at:
 
 ~~~
 https://forsalereg.sidnlabs.nl/
 ~~~
+
+<NOTE TO RFC EDITOR: Please validate and improve the example where needed
+and remove the text about the example registry above, prior to publication.>
 
 The registry entries consist of content tags as defined in
 (#tagdefs).
