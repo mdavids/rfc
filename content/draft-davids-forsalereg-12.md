@@ -299,7 +299,7 @@ The "\_for-sale" TXT record [@RFC8553, (see) section 2.1] **MUST** contain conte
 
 Any text suggesting that a domain is not for sale is invalid content. If a domain name is not or no longer for sale, 
 a "\_for-sale" indicator **MUST NOT** exist. The presence of a valid "_for-sale" TXT record
-**MAY** therefore be regarded as an indication that the domain name is for sale.
+**SHOULD** therefore be regarded as an indication that the domain name is for sale.
 
 The existence of a "\_for-sale" leaf node does not obligate the holder to sell the domain name; 
 it may have been published in error, or withdrawn later for other reasons.
