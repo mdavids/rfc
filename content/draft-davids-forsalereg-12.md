@@ -261,7 +261,7 @@ While a single visible character is the minimum, it is **RECOMMENDED** to provid
 
 While a URI in this field is not syntactically prohibited, its 
 interpretation as a URI is not guaranteed. Use of URIs in this 
-field **SHOULD** be avoided in favor of the furi content tag.
+field **SHOULD** be avoided in favor of the "furi=" content tag.
 
 See (#fvalpar) for a way to explicitly indicate an asking price for easier machine parsing.
 
@@ -280,14 +280,14 @@ _for-sale IN TXT "v=FORSALE1;furi=https://example.com/foo%20bar"
 
 URIs **MUST** conform to the syntax and encoding requirements specified in 
 [@!RFC3986, section 2.1], including the percent-encoding of characters 
-not allowed unencoded (for example, spaces **MUST** be encoded as `%20` in a URI).
+not allowed unencoded (e.g., spaces **MUST** be encoded as `%20` in a URI).
 
 See the (#security, use title) section for possible risks.
 
 ### fval {#fvalpar}
 This content tag is intended to contain human-readable and machine-parseable 
 text that explicitly indicates an asking price in a certain currency, as opposed to 
-the price being incorporated in an "ftxt=" content tag. For example:
+the price being loosly incorporated in an "ftxt=" content tag. For example:
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;fval=EUR999"
@@ -297,15 +297,15 @@ _for-sale IN TXT "v=FORSALE1;fval=EUR999"
 
 The "\_for-sale" TXT record [@RFC8553, (see) section 2.1] **MUST** contain content deemed valid under this specification.
 
-Any text that suggests that the domain is not for sale is invalid content. If a domain name is not for sale, 
-a "\_for-sale" indicator is pointless and any existence of a valid "\_for-sale" TXT record
-**SHOULD** therefore be regarded as an indication that the domain name is for sale.
+Any text suggesting that a domain is not for sale is invalid content. If a domain name is not or no longer for sale, 
+a "\_for-sale" indicator **MUST NOT** exist. The presence of a valid "_for-sale" TXT record
+**MAY** therefore be regarded as an indication that the domain name is for sale.
 
 The existence of a "\_for-sale" leaf node does not obligate the holder to sell the domain name; 
 it may have been published in error, or withdrawn later for other reasons.
 
 This specification does not dictate the exact use of any content values in the "\_for-sale" TXT record.
-Parties - such as registries and registrars - **MAY** use it in their tools, perhaps even by defining specific requirements that the content
+Parties **MAY** use it in their tools, perhaps even by defining specific requirements that the content
 value must meet. Content values can also be represented in a human-readable format for individuals to
 interpret. See the (#examples, use title) section for clarification.
 
