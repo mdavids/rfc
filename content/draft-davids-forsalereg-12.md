@@ -239,6 +239,9 @@ preceded by the prefix "ACME-" as the value of the content tag:
 _for-sale IN TXT "v=FORSALE1;fcod=ACME-S2lscm95IHdhcyBoZXJl"
 ~~~
 
+See the (#examples, use title) section for other possible uses of this
+content tag.
+
 Note: As an implementation consideration, when multiple parties are involved in 
 the domain sale process and use the same mechanism, it may be difficult to identify 
 the relevant content in an RRset. Adding a recognizable prefix to the content (e.g.,
@@ -391,6 +394,11 @@ For example, it may be used to automatically redirect visitors to a web page, as
 ~~~
 _for-sale IN TXT "v=FORSALE1;fcod=XX-aHR0cHM...wbGUuY29t"
 ~~~
+
+The use of the "fcod=" content tag is, in principle, unrestricted, allowing implementers to define additional 
+uses as needed. For example, it may convey arbitrary formatting or conditional display 
+instructions, such as adding an extra banner (e.g., "eligibility criteria apply") or 
+specifying a style, including color, font, emojis, or logos.
 
 ## Example 2: Free Text Format
 
@@ -634,6 +642,7 @@ An even more serious scenario arises when the content of the TXT record
 is insufficiently validated and sanitized, potentially enabling attacks such as XSS or SQL injection.
 
 Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted with the utmost care.
+Possible approaches include maintaining a list of validated URIs or applying other validation methods after parsing and before publishing.
 
 There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
 means, without there being any intention to actually sell the domain name. Therefore, this method is best suited for use by professionals.
