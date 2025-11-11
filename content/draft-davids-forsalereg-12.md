@@ -488,7 +488,7 @@ result in misleading listings or unintended references to third-party domains.
 ## Handling of RDATA
 
 Since this method relies on DNS TXT records, standard content rules apply as 
-defined in [@RFC1035, (see) section 5.1]. With regard to the "ftx=" content
+defined in [@RFC1035, (see) section 5.1]. With regard to the "ftxt=" content
 tag, this includes the possibility of representing non-ASCII data in the
 content value, for instance by using UTF-8 [@?RFC3629] or escape 
 sequences (e.g., \DDD or \X notation).
