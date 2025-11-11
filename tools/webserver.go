@@ -1,9 +1,5 @@
 package main
 
-// supports version -11 of draft
-// caveat: handles _for-sale IN TXT "v=FORSALE1;" "ftxt=foo" "bar" "invalid" well
-// (even though the draft says it's invalid
-
 import (
 	"fmt"
 	"html/template"
@@ -25,7 +21,6 @@ type DomainInfo struct {
 }
 
 var (
-	validFTXTChar = regexp.MustCompile(`^[\x00-\xFF]+$`)
 	validFVALChar = regexp.MustCompile(`^[A-Z]{3}[0-9.,]{1,236}$`)
 )
 
@@ -44,7 +39,7 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 		<body>
 		<h2>Check if a domain name is for sale</h2>
 		<form action="/check" method="get">
-			Domain Name: <input type="text" name="domain">
+			Domain Name: <input type="text" name="domain" value="example.nl">
 			<input type="submit" value="Check">
 		</form></body></html>
 	`))
@@ -110,7 +105,7 @@ func checkHandler(w http.ResponseWriter, r *http.Request) {
 				info.InvalidRaw = append(info.InvalidRaw, txt)
 			}
 		case "ftxt":
-			if len(value) >= 1 && len(value) <= 239 && validFTXTChar.MatchString(value) {
+			if len(value) >= 1 && len(value) <= 239 {
 				info.ValidTags = append(info.ValidTags, content)
 			} else {
 				info.InvalidRaw = append(info.InvalidRaw, txt)
@@ -178,10 +173,10 @@ func renderResult(w http.ResponseWriter, info DomainInfo) {
 					<li><code style="color: #888;">{{.}}</code></li>
 				{{- else if hasPrefix . "ftxt=" -}}
 					{{ $txt := stripPrefix . "ftxt=" }}
-					<li><code>Text message: {{htmlEscape $txt}}</code></li>
+					<li><code>Text message: {{.}}</code></li>
 				{{- else if hasPrefix . "fval=" -}}
 					{{ $val := stripPrefix . "fval=" }}
-					<li><code>Price: {{htmlEscape $val}}</code></li>
+					<li><code>Price: {{.}}</code></li>
 				{{- else -}}
 					<li><code>{{.}}</code></li>
 				{{- end }}
