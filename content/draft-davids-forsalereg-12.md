@@ -247,7 +247,8 @@ the relevant content in an RRset. Adding a recognizable prefix to the content (e
 "ACME-") is one possible approach. However, this is left to the implementor, 
 as it is not enforced in this document. In this case, ACME would recognize its 
 content tag and interpret it as intended. This example uses base 64 encoding 
-to avoid escaping and ensure printable characters, though this is also not required.
+to avoid escaping and ensure printable characters, though this is also
+**OPTIONAL** and not required.
 
 ### ftxt  
 This content tag is intended to contain human-readable text that conveys information to interested parties. For example:
@@ -494,6 +495,17 @@ for instance by using UTF-8 [@?RFC3629] or escape sequences (e.g., \DDD or \X no
 
 Processors **SHOULD** be capable of handling such encodings to ensure that non-ASCII 
 content values are interpreted correctly.
+
+Note: When UTF-8 is used, the ABNF octet limit applies to the encoded
+byte sequence, not the number of visible characters. Multi-byte
+characters will reduce the available character count.
+
+For example, this entry could display 'For Sale' in Japanese Kanji
+characters:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;ftxt=\232\178\169\229\163\178\228\184\173"
+~~~
 
 ## Currency
 
