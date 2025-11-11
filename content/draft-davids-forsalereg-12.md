@@ -265,6 +265,8 @@ field **SHOULD** be avoided in favor of the "furi=" content tag.
 
 See (#fvalpar) for a way to explicitly indicate an asking price for easier machine parsing.
 
+See (#handlerdata) for considerations regarding the representation of non-ASCII data in the content value.
+
 <!-- TODO https://www.rfc-editor.org/rfc/rfc7553.html noemen, of zelfs opnemen? -->
 ### furi  
 This content tag is intended to contain a human-readable and machine-parseable URI that conveys information to interested parties.
@@ -486,7 +488,7 @@ cases where wildcard expansion - possibly combined with DNS aliases
 (e.g., CNAMEs) or redirections (e.g., DNAMEs [@?RFC6672]) - might 
 result in misleading listings or unintended references to third-party domains.
 
-## Handling of RDATA
+## Handling of RDATA {#handlerdata}
 
 Since this method relies on DNS TXT records, standard content rules apply as 
 defined in [@RFC1035, (see) section 5.1]. For the "ftxt=" content tag, 
@@ -500,11 +502,11 @@ Note: When UTF-8 is used, the ABNF octet limit applies to the encoded
 byte sequence, not the number of visible characters. Multi-byte
 characters will reduce the available character count.
 
-For example, this entry could display 'For Sale' in Japanese Kanji
-characters:
+For example, this TXT record contains Japanese Kanji characters 
+encoded in UTF-8 using octal escapes:
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;ftxt=\232\178\169\229\163\178\228\184\173"
+_for-sale IN TXT "v=FORSALE1;ftxt=\229\163\178\229\135\186"
 ~~~
 
 ## Currency
