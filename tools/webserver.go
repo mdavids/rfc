@@ -174,13 +174,14 @@ func renderResult(w http.ResponseWriter, info DomainInfo) {
 					{{ $uri := stripPrefix . "furi=" }}
 					<li><a href="{{safeURL $uri}}" target="_blank" rel="noopener noreferrer">{{htmlEscape $uri}}</a> - click at own risk!</li>
 				{{- else if hasPrefix . "fcod=" -}}
-					<li><code style="color: #888;">{{.}}</code></li>
+					{{ $cod := stripPrefix . "fcod=" }}
+					<li><code style="color: #888;">Code: {{$cod}}</code></li>
 				{{- else if hasPrefix . "ftxt=" -}}
 					{{ $txt := stripPrefix . "ftxt=" }}
-					<li><code>Text message: {{.}}</code></li>
+					<li><code>Text message: {{$txt}}</code></li>
 				{{- else if hasPrefix . "fval=" -}}
 					{{ $val := stripPrefix . "fval=" }}
-					<li><code>Price: {{.}}</code></li>
+					<li><code>Price: {{$val}}</code></li>
 				{{- else -}}
 					<li><code>{{.}}</code></li>
 				{{- end }}
