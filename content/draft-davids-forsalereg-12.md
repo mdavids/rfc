@@ -502,8 +502,9 @@ Note: When UTF-8 is used, the ABNF octet limit applies to the encoded
 byte sequence, not the number of visible characters. Multi-byte
 characters will reduce the available character count.
 
-For example, this TXT record contains Japanese Kanji characters 
-encoded in UTF-8 using octal escapes:
+For example, this TXT record contains two Japanese Kanji characters 
+encoded in UTF-8 using octal escapes, leading to 6 octets in the content
+value:
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;ftxt=\229\163\178\229\135\186"
