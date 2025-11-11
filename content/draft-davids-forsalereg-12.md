@@ -130,9 +130,8 @@ fval-tag        = %s"fval="
 fcod-value      = 1*239OCTET
                   ; must be at least 1 OCTET
 
-ftxt-value      = 1*239ftxt-char
-ftxt-char       = %x20-21 / %x23-5B / %x5D-7E
-                  ; excluding " and \ to avoid escape issues
+ftxt-value      = 1*239OCTET
+                  ; must be at least 1 OCTET
 
 furi-value      = URI
                   ; http, https, mailto and tel URI schemes
@@ -326,7 +325,7 @@ phone number (if present) from a "furi=" tag in the same RRset and use it to con
 An example of such a combined record is provided in (#combiexample).
 
 The RDATA [@RFC9499] of each TXT record **MUST** consist of a single character-string
-[@!RFC1035] with a maximum length of 255 octets, in order to avoid the need to concatenate multiple
+[@RFC1035] with a maximum length of 255 octets, in order to avoid the need to concatenate multiple
 character-strings during processing. 
 
 The following example illustrates an invalid TXT record due to the presence of multiple
@@ -486,22 +485,16 @@ cases where wildcard expansion - possibly combined with DNS aliases
 (e.g., CNAMEs) or redirections (e.g., DNAMEs [@?RFC6672]) - might 
 result in misleading listings or unintended references to third-party domains.
 
-## Character Set
+## Handling of RDATA
 
-For the "ftxt=" content tag, the content value **MUST** be limited to visible US-ASCII characters, 
-excluding the double quote (") and backslash (\\).
+Since this method relies on DNS TXT records, standard content rules apply as 
+defined in [@RFC1035, (see) section 5.1]. With regard to the "ftx=" content
+tag, this includes the possibility of representing non-ASCII data in the
+content value, for instance by using UTF-8 [@?RFC3629] or escape 
+sequences (e.g., \DDD or \X notation).
 
-In ABNF syntax, this would be:
-
-~~~
-forsale-content  = 0*244recommended-char
-recommended-char = %x20-21 / %x23-5B / %x5D-7E
-~~~
-
-For the content value of the "fcod=" content tag, this is **RECOMMENDED**. 
-
-For example, base 64 uses only characters within this range, and therefore conforms to 
-this recommendation.
+A processor SHOULD be able to handle such encodings to ensure that non-ASCII content 
+values are interpreted correctly.
 
 ## Currency
 
@@ -559,7 +552,7 @@ or when the domain is DNSSEC-signed but fails validation (i.e., has a bogus stat
 
 # IANA Considerations {#ianaconsid} <!-- See RFC8126 -->
 
-IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@!RFC8552; @IANA]. The underscored
+IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@RFC8552; @IANA]. The underscored
 leaf node name defined in this specification should be added as follows:
 
 RR Type | _NODE NAME | Reference
