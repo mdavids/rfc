@@ -25,7 +25,7 @@ type DomainInfo struct {
 }
 
 var (
-	validFTXTChar = regexp.MustCompile(`^[\x20-\x21\x23-\x5B\x5D-\x7E]+$`)
+	validFTXTChar = regexp.MustCompile(`^[\x00-\xFF]+$`)
 	validFVALChar = regexp.MustCompile(`^[A-Z]{3}[0-9.,]{1,236}$`)
 )
 
