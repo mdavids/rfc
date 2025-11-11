@@ -188,7 +188,7 @@ func renderResult(w http.ResponseWriter, info DomainInfo) {
 			{{end}}
 			</ul>
 			{{if .InvalidRaw}}
-				<p style="color: orange;">⚠️ Some records were syntactically invalid.</p>
+				<p style="color: orange;">⚠️ Some records were syntactically invalid or not recommended.</p>
 				<ul>{{range .InvalidRaw}}<li><code>{{.}}</code></li>{{end}}</ul>
 			{{end}}
 		{{else}}
