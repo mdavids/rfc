@@ -43,8 +43,8 @@ organization = "SIDN Labs"
 
 This document defines an operational convention for using the reserved
 underscored DNS leaf node name "\_for-sale" to indicate that the 
-parent domain name is available for purchase. This approach offers 
-the advantage of easy deployment without affecting ongoing operations. 
+parent domain name is available for purchase. This approach enables 
+easy deployment without affecting ongoing operations. 
 As such, the method can be applied to a domain name that is still in full use.
 
 {removeInRFC="true"}
@@ -145,6 +145,7 @@ fval-currency   = 1*ALPHA
                   ; one or more uppercase letters (A-Z)
                   ; indicating (crypto)currency
                   ; e.g., USD, EUR, BTC, ETH
+                  ; three-letter uppercase currency code recommended
 fval-amount     = int-part [ %x2E frac-part ]
                   ; integer part with optional fractional part
                   ; e.g., 0.00010
@@ -257,7 +258,7 @@ This content tag is intended to contain human-readable text that conveys informa
 _for-sale IN TXT "v=FORSALE1;ftxt=Call for info."
 ~~~
 
-While a single visible character is the minimum, it is **RECOMMENDED** to provide more context.
+While a single octet is the minimum, it is **RECOMMENDED** to provide more context.
 
 While a URI in this field is not syntactically prohibited, its 
 interpretation as a URI is not guaranteed. Use of URIs in this 
@@ -328,8 +329,8 @@ phone number (if present) from a "furi=" tag in the same RRset and use it to con
 An example of such a combined record is provided in (#combiexample).
 
 The RDATA [@RFC9499] of each TXT record **MUST** consist of a single character-string
-[@RFC1035] with a maximum length of 255 octets, in order to avoid the need to concatenate multiple
-character-strings during processing. 
+[@RFC1035] with a maximum length of 255 octets, to avoid the need to concatenate multiple
+character-strings during processing.
 
 The following example illustrates an invalid TXT record due to the presence of multiple
 character-strings:
@@ -522,9 +523,9 @@ fval-value    = fval-currency fval-amount
 fval-currency = 3ALPHA
                 ; 3-letter uppercase currency code (A-Z)
                 ; e.g., USD, EUR, BTC, ETH
-fval-amount   = int-part [ "." frac-part ]
+fval-amount   = int-part [ %x2E frac-part ]
                 ; integer part with optional fractional part
-                ; e.g., 0.00010
+                ; e.g., 0.00010 (%x2E is ".")
 int-part      = 1*DIGIT
                 ; at least one digit before the decimal point
 frac-part     = 1*DIGIT
@@ -542,7 +543,7 @@ Ambiguous constructs in content values **SHOULD** be avoided, as illustrated by 
 example:
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;fcod=TRIP-confusing;ftxt=dont-do-this"
+_for-sale IN TXT "v=FORSALE1;fcod=TRIP-confusing;ftxt=dont_do_this"
 ~~~
 
 The above example is a valid "fcod=" content tag that includes the 
@@ -645,7 +646,7 @@ One use of the TXT record type defined in this document is to parse the content
 it contains and to automatically publish certain information from it on a 
 website or elsewhere. However, there is a risk if the domain name holder 
 publishes a malicious URI or one that points to improper content. 
-This may result in reputational damage for the party parsing the record.
+This may result in reputational damage to the party parsing the record.
 
 An even more serious scenario arises when the content of the TXT record 
 is insufficiently validated and sanitized, potentially enabling attacks such as XSS or SQL injection.
@@ -706,7 +707,7 @@ https://forsalereg.sidnlabs.nl/demo
 # Acknowledgements
 
 The author would like to thank Thijs van den Hout, Caspar Schutijser, Melvin
-Elderman, Ben van Hartingsveldt, Jesse Davids, Juan Stelling,
+Elderman, Ben van Hartingsveldt, Jesse Davids, Juan Stelling, 
 John R. Levine, and the ISE Editor for their valuable feedback.
 
 {backmatter}
