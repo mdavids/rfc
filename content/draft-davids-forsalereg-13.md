@@ -2,10 +2,10 @@
 # This is a comment - but only in this block
 title = "The \"_for-sale\" Underscored and Globally Scoped DNS Node Name"
 abbrev = "forsalereg"
-ipr = "trust200902" 
+#ipr = "trust200902" 
 # area = "Internet"
-workgroup = "Internet Engineering Task Force (IETF)"
-submissiontype = "IETF"
+workgroup = "Independent Submission Editor (ISE)"
+submissiontype = "independent"
 keyword = [""]
 # https://www.rfc-editor.org/rfc/rfc7991#section-2.45.14
 tocdepth = 3
@@ -15,8 +15,8 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-12"
-stream = "IETF"
+value = "draft-davids-forsalereg-13"
+stream = "independent"
 status = "informational"
 
 [[author]]
@@ -47,6 +47,8 @@ parent domain name is available for purchase. This approach enables
 easy deployment without affecting ongoing operations, allowing the 
 method to be applied to a domain name that is still in full use.
 
+This document is not an IETF consensus document: it is published for informational purposes.
+
 {removeInRFC="true"}
 .# About This Document
 
@@ -54,6 +56,9 @@ This note is to be removed before publishing as an RFC.
 
 This document contains several "Notes to the RFC Editor", including this section. 
 These should be reviewed and resolved prior to publication.
+
+Please also review the Status of This Memo section and other relevant parts
+before publication..
 
 {mainmatter}
 
