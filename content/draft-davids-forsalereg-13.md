@@ -144,7 +144,7 @@ URI             = <as defined in RFC3986, Appendix A>
 
 fval-value      = fval-currency fval-amount
                   ; total length: 2 to 239 characters 
-fval-currency   = 1*ALPHA
+fval-currency   = 1*%x41-5A
                   ; one or more uppercase letters (A-Z)
                   ; indicating (crypto)currency
                   ; e.g., USD, EUR, BTC, ETH
@@ -521,7 +521,7 @@ _for-sale IN TXT "v=FORSALE1;ftxt=\229\163\178\229\135\186"
 ## Currency {#currency}
 
 The ABNF in (#abnf) allows currency codes consisting of one or 
-more uppercase letters (1*ALPHA), providing flexibility to 
+more uppercase letters, providing flexibility to 
 accommodate both standard fiat currencies and other widely 
 recognized abbreviations, such as cryptocurrencies.
 
