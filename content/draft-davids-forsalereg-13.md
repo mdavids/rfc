@@ -299,6 +299,8 @@ the price being loosely incorporated in an "ftxt=" content tag. For example:
 _for-sale IN TXT "v=FORSALE1;fval=EUR999"
 ~~~
 
+See (#currency) for additional operational guidelines.
+
 ## Content Limitations {#contentlimits}
 
 The "\_for-sale" TXT record [@RFC8553, (see) section 2.1] **MUST** contain content deemed valid under this specification.
@@ -453,7 +455,7 @@ But see the (#privacy, use title) section for possible downsides.
 ## Example 4: Asking Price Format
 
 Consists of an uppercase currency code (e.g., USD, EUR), followed by a
-numeric amount. See (#guidelines) for additional guidelines.
+numeric amount. See (#currency) for additional guidelines.
 
 In Bitcoins:
 
@@ -516,7 +518,7 @@ of six octets.
 _for-sale IN TXT "v=FORSALE1;ftxt=\229\163\178\229\135\186"
 ~~~
 
-## Currency
+## Currency {#currency}
 
 The ABNF in (#abnf) allows currency codes of one or more 
 letters (1*ALPHA), providing flexibility for both standard fiat 
@@ -529,7 +531,7 @@ Otherwise, widely recognized abbreviations of varying
 lengths **MAY** be used.
 
 Implementations **MAY** accept any currency code conforming to the 
-normative ABNF (1*ALPHA) in (#abnf). The amount portion consists 
+normative ABNF in (#abnf). The amount portion consists 
 of an integer part with an optional fractional part separated by 
 a decimal point (%x2E, "."), for example: BTC0.000010 or USD750.
 
