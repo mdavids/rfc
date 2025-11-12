@@ -527,7 +527,7 @@ recognized abbreviations, such as cryptocurrencies.
 
 The use of standard fiat currencies is **RECOMMENDED**. When used, 
 they **MUST** be represented by three-letter uppercase currency 
-codes as specified in [ISO4217] (e.g., USD, EUR, GBP, JPY).
+codes as specified in [@?ISO4217] (e.g., USD, EUR, GBP, JPY).
 
 The amount component consists of an integer part, optionally 
 followed by a fractional part separated by a decimal point (%x2E, ".").
