@@ -44,8 +44,8 @@ organization = "SIDN Labs"
 This document defines an operational convention for using the reserved
 underscored DNS leaf node name "\_for-sale" to indicate that the 
 parent domain name is available for purchase. This approach enables 
-easy deployment without affecting ongoing operations. 
-As such, the method can be applied to a domain name that is still in full use.
+easy deployment without affecting ongoing operations, allowing the 
+method to be applied to a domain name that is still in full use.
 
 {removeInRFC="true"}
 .# About This Document
