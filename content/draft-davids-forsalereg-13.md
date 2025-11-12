@@ -58,7 +58,7 @@ This document contains several "Notes to the RFC Editor", including this section
 These should be reviewed and resolved prior to publication.
 
 Please also review the Status of This Memo section and other relevant parts
-before publication..
+before publication.
 
 {mainmatter}
 
@@ -68,8 +68,8 @@ Well-established services [@RFC3912; @RFC9083] exist to determine whether a doma
 is unavailable; it may still be for sale.
 
 Some registrars and other parties offer brokerage services between domain name holders and interested buyers.
-Such services are of limited value when the domain name is not for sale, but they may be beneficial 
-for domain names that are clearly being offered for sale.
+Such services are of limited value when the domain name is not available for purchase, but they may be 
+beneficial for domain names that are clearly being offered for sale.
 
 This specification defines a lightweight method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored
 leaf node name [@!RFC8552] in the zone, indicating that the domain name is for sale.
@@ -133,10 +133,8 @@ fval-tag        = %s"fval="
                   ; all content tags case sensitive lowercase
 
 fcod-value      = 1*239OCTET
-                  ; must be at least 1 OCTET
 
 ftxt-value      = 1*239OCTET
-                  ; must be at least 1 OCTET
 
 furi-value      = URI
                   ; http, https, mailto and tel URI schemes
@@ -237,7 +235,7 @@ from the content tag, thereby preventing users from being sent
 to unintended or malicious destinations or from being presented 
 with unintended content.
 
-The following example shows a string encoded using base 64 [@?RFC4648] 
+The following example shows a string encoded using Base64 [@?RFC4648] 
 preceded by the prefix "ACME-" as the value of the content tag:
 
 ~~~
@@ -252,7 +250,7 @@ the domain sale process and use the same mechanism, it may be difficult to ident
 the relevant content in an RRset. Adding a recognizable prefix to the content (e.g.,
 "ACME-") is one possible approach. However, this is left to the implementor, 
 as it is not enforced in this document. In this case, ACME would recognize its 
-content tag and interpret it as intended. This example uses base 64 encoding 
+content tag and interpret it as intended. This example uses Base64 encoding 
 to avoid escaping and ensure printable characters, though this is also
 **OPTIONAL** and not required.
 
@@ -403,6 +401,8 @@ For example, it may be used to automatically redirect visitors to a web page, as
 _for-sale IN TXT "v=FORSALE1;fcod=XX-aHR0cHM...wbGUuY29t"
 ~~~
 
+Note: the content value in the above example is truncated for readability.
+
 The use of the "fcod=" content tag is, in principle, unrestricted, allowing implementers to define additional 
 uses as needed. For example, it may convey arbitrary formatting or conditional display 
 instructions, such as adding an extra banner (e.g., "eligibility criteria apply") or 
@@ -518,24 +518,20 @@ _for-sale IN TXT "v=FORSALE1;ftxt=\229\163\178\229\135\186"
 
 ## Currency
 
-While the ABNF for the "fval=" content value in (#abnf) allows flexibility
-regarding the currency indication, it is **RECOMMENDED** to use a three-letter uppercase 
-currency code, such as those listed in [@?ISO4217], followed by a numeric amount, 
+The ABNF in (#abnf) allows currency codes of one or more 
+letters (1*ALPHA), providing flexibility for both standard fiat 
+currencies and other indications.
 
-~~~
-fval-value    = fval-currency fval-amount
-                ; total length: 4 to 239 characters 
-fval-currency = 3ALPHA
-                ; 3-letter uppercase currency code (A-Z)
-                ; e.g., USD, EUR, BTC, ETH
-fval-amount   = int-part [ %x2E frac-part ]
-                ; integer part with optional fractional part
-                ; e.g., 0.00010 (%x2E is ".")
-int-part      = 1*DIGIT
-                ; at least one digit before the decimal point
-frac-part     = 1*DIGIT
-                ; at least one digit after the decimal point
-~~~
+Fiat currencies **SHOULD** use three-letter uppercase currency 
+codes as specified in [@?ISO4217] (e.g., USD, EUR, GBP, JPY).
+
+Otherwise, widely recognized abbreviations of varying 
+lengths **MAY** be used.
+
+Implementations **MAY** accept any currency code conforming to the 
+normative ABNF (1*ALPHA) in (#abnf). The amount portion consists 
+of an integer part with an optional fractional part separated by 
+a decimal point (%x2E, "."), for example: BTC0.000010 or USD750.
 
 ## TTLs
 
@@ -712,8 +708,8 @@ https://forsalereg.sidnlabs.nl/demo
 # Acknowledgements
 
 The author would like to thank Thijs van den Hout, Caspar Schutijser, Melvin
-Elderman, Ben van Hartingsveldt, Jesse Davids, Juan Stelling, 
-John R. Levine, and the ISE Editor for their valuable feedback.
+Elderman, Ben van Hartingsveldt, Jesse Davids, Juan Stelling, John R\. Levine, 
+and the ISE Editor for their valuable feedback.
 
 {backmatter}
 
