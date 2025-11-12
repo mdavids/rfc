@@ -739,9 +739,9 @@ John R. Levine, and the ISE Editor for their valuable feedback.
  </front>
 </reference>
 
-<reference anchor='ISO4217' target='https://en.wikipedia.org/wiki/ISO_4217'>
+<reference anchor='ISO4217' target='https://www.iso.org/iso-4217-currency-codes.html'>
  <front>
-  <title>ISO 4217</title>
+  <title>ISO 4217 Currency Codes</title>
   <author>
     <organization>SIX Group</organization>
   </author>
