@@ -148,7 +148,7 @@ fval-currency   = 1*ALPHA
                   ; one or more uppercase letters (A-Z)
                   ; indicating (crypto)currency
                   ; e.g., USD, EUR, BTC, ETH
-                  ; three-letter uppercase currency code recommended
+                  ; standard three-letter fiat currencies recommended
 fval-amount     = int-part [ %x2E frac-part ]
                   ; integer part with optional fractional part
                   ; e.g., 0.00010
@@ -520,20 +520,17 @@ _for-sale IN TXT "v=FORSALE1;ftxt=\229\163\178\229\135\186"
 
 ## Currency {#currency}
 
-The ABNF in (#abnf) allows currency codes of one or more 
-letters (1*ALPHA), providing flexibility for both standard fiat 
-currencies and other indications.
+The ABNF in (#abnf) allows currency codes consisting of one or 
+more uppercase letters (1*ALPHA), providing flexibility to 
+accommodate both standard fiat currencies and other widely 
+recognized abbreviations, such as cryptocurrencies.
 
-Fiat currencies **SHOULD** use three-letter uppercase currency 
-codes as specified in [@?ISO4217] (e.g., USD, EUR, GBP, JPY).
+The use of standard fiat currencies is **RECOMMENDED**. When used, 
+they **MUST** be represented by three-letter uppercase currency 
+codes as specified in [ISO4217] (e.g., USD, EUR, GBP, JPY).
 
-Otherwise, widely recognized abbreviations of varying 
-lengths **MAY** be used.
-
-Implementations **MAY** accept any currency code conforming to the 
-normative ABNF in (#abnf). The amount portion consists 
-of an integer part with an optional fractional part separated by 
-a decimal point (%x2E, "."), for example: BTC0.000010 or USD750.
+The amount component consists of an integer part, optionally 
+followed by a fractional part separated by a decimal point (%x2E, ".").
 
 ## TTLs
 
@@ -710,8 +707,8 @@ https://forsalereg.sidnlabs.nl/demo
 # Acknowledgements
 
 The author would like to thank Thijs van den Hout, Caspar Schutijser, Melvin
-Elderman, Ben van Hartingsveldt, Jesse Davids, Juan Stelling, John R\. Levine, 
-and the ISE Editor for their valuable feedback.
+Elderman, Ben van Hartingsveldt, Jesse Davids, Juan Stelling, John R.&#xa0;Levine, 
+and Eliot Lear (ISE) for their valuable feedback.
 
 {backmatter}
 
