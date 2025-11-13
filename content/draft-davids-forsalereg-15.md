@@ -54,8 +54,8 @@ This document is not an IETF consensus document: it is published for information
 
 This note is to be removed before publishing as an RFC.
 
-This document contain a "Note to the RFC Editor", with the request to remove
-(#implementation).
+This document contain as "Note to the RFC Editor", with the request to remove
+(#implementation) prior to publication.
 
 Please also review the Status of This Memo section and other relevant parts
 before publication, in particular (#ianaconsid).
