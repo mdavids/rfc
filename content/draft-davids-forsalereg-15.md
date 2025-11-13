@@ -592,7 +592,7 @@ Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
 ## Creation of a Sub-registry
 
-A sub-registry is to be created, called "ForeSaleReg". 
+A sub-registry is to be created, called "ForSaleReg". 
 
 ### Required Information for Registrations
 
@@ -620,7 +620,7 @@ The registry entries, consist of content tags as defined in
 (#abnf) and (#tagdefs).
 
 The entries in this sub-registry are called "Content Tags" as 
-defined in (#abnf) and (#tagdefs) and the intital set is as follows:
+defined in (#abnf) and (#tagdefs) and the initial set is as follows:
 
 Tag Name | Reference | Status | Description
 ---------|-----------|--------|-------------
