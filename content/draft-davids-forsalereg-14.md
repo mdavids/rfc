@@ -15,7 +15,7 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-13"
+value = "draft-davids-forsalereg-14"
 stream = "independent"
 status = "informational"
 
@@ -498,10 +498,14 @@ result in misleading listings or unintended references to third-party domains.
 
 ## Handling of RDATA {#handlerdata}
 
+All text exchanged between systems that are not part of a closed ecosystem
+**MUST** be encoded in UTF-8 [@!RFC3629] and conform to the Network 
+Unicode format [@?RFC5198].
+
 Since this method relies on DNS TXT records, standard content rules apply as 
 defined in [@RFC1035, (see) section 5.1]. For the "ftxt=" content tag, 
 this includes the possibility of representing non-ASCII data in the content value, 
-for instance by using UTF-8 [@?RFC3629] or escape sequences (e.g., \DDD or \X notation).
+for instance by using UTF-8 or escape sequences (e.g., \DDD or \X notation).
 
 Processors **SHOULD** be capable of handling such encodings to ensure that non-ASCII 
 content values are interpreted correctly.
