@@ -54,11 +54,11 @@ This document is not an IETF consensus document: it is published for information
 
 This note is to be removed before publishing as an RFC.
 
-This document contains several "Notes to the RFC Editor", including this section. 
-These should be reviewed and resolved prior to publication.
+This document contain a "Note to the RFC Editor", with the request to remove
+(#implementation).
 
 Please also review the Status of This Memo section and other relevant parts
-before publication.
+before publication, in particular (#ianaconsid).
 
 {mainmatter}
 
@@ -588,11 +588,12 @@ RR Type | _NODE NAME | Reference
 TXT | \_for-sale | <this memo>
 Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
-<NOTE TO RFC EDITOR: Adjust the text in the table above before publication with a citation for the (this) document making the addition as per RFC8552.>
-
 ## Creation of a Sub-registry
 
 A sub-registry is to be created, called "ForSaleReg". 
+
+The change controller for this sub-registry will be the Independent Submissions
+Editor.
 
 ### Required Information for Registrations
 
@@ -621,13 +622,11 @@ The sub-registry entries consist of content tags as defined in
 
 Tag Name | Reference | Status | Description
 ---------|-----------|--------|-------------
-fcod | RFCXXXX | active | For Sale Proprietary Code
-ftxt | RFCXXXX | active | For Sale Free Format Text
-furi | RFCXXXX | active | For Sale URI
-fval | RFCXXXX | active | For Sale Asking Price
+fcod | <this memo> | active | For Sale Proprietary Code
+ftxt | <this memo> | active | For Sale Free Format Text
+furi | <this memo> | active | For Sale URI
+fval | <this memo> | active | For Sale Asking Price
 Table: Initial set of entries in the "Content Tags" sub-registry
-
-<NOTE TO RFC EDITOR: Adjust the text in the table above before publication with a citation for the (this) document making the addition as per RFC8552.>
 
 The "status" column can have one of the following values:
 
@@ -641,8 +640,6 @@ The sub-registry has this additional note [@RFC8726]:
 >This registry was created by [RFCXXXX], which was published on the Independent Submission Stream. 
 >Any issues that arise with the management of this registry will be resolved by IANA in consultation 
 >with the Independent Submissions Editor.
-
-<NOTE TO RFC EDITOR: Adjust the text in the table above before publication with a citation for the (this) document making the addition as per RFC8552.>
 
 # Privacy Considerations {#privacy}
 
@@ -690,7 +687,7 @@ dependencies on registries for market transactions,
 which could otherwise introduce complexities and 
 potential for unintended commercial entanglements.
 
-# Implementation Status
+# Implementation Status {#implementation}
 <!-- https://datatracker.ietf.org/doc/html/rfc7942 -->
 The concept described in this document has been in use at the .nl ccTLD registry since 2022, 
 when it initially started as a pilot. Since then, several hundred thousand domain names have 
