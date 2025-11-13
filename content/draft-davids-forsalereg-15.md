@@ -510,12 +510,12 @@ defined in [@RFC1035, (see) section 5.1]. This includes the possibility of
 representing non-ASCII data in the content value, by using escape sequences 
 (e.g., \DDD or \X notation).
 
-This document defines that all text exchanged between systems that are 
-not part of a closed ecosystem **SHALL** be encoded in and interpreted as 
-UTF-8 [@!RFC3629] and conform to the Network Unicode format [@?RFC5198].
+All text exchanged between systems that are not part of a closed ecosystem 
+**SHALL** be encoded in and interpreted as UTF-8 [@!RFC3629] and conform 
+to the Network Unicode format [@?RFC5198].
 
-Processors **MUST** be capable of handling such encodings to ensure that non-ASCII 
-content values are interpreted accordingly.
+Processors **MUST** be capable of handling such encodings to ensure that
+non-ASCII content values are interpreted correctly.
 
 Note: When non-ASCII data is used, the ABNF octet limit applies to the encoded
 byte sequence, not the number of visible characters. Multi-byte
@@ -583,8 +583,7 @@ This document requires two IANA actions:
 1. Addition of "_for-sale" to the existing "Underscored and Globally Scoped DNS Node Names" registry
 ((#ianareg)).
 
-2. Creation of a new sub-registry for "_for-sale" content tags ((#ianasubreg)).
-
+2. Creation of a new sub-registry for "_for-sale Content Tags" ((#ianasubreg)).
 
 ## Underscored and Globally Scoped DNS Node Name {#ianareg}
 
@@ -598,7 +597,7 @@ Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
 ## Creation of a Sub-registry {#ianasubreg}
 
-A sub-registry is to be created, called "The "_for-sale" Underscored and Globally Scoped DNS Node Name". 
+A sub-registry is to be created, titled "The "_for-sale" Underscored and Globally Scoped DNS Node Name". 
 
 The change controller for this sub-registry will be the Independent Submissions
 Editor.
@@ -627,7 +626,7 @@ set and to maintain compact record formats.
 
 ### Format, Syntax and Initial Assignments
 
-The sub-registry entries consist of content tags as defined in
+The sub-registry entries consist of "_for-sale Content Tags" as defined in
 (#abnf) and (#tagdefs) and the initial set is as follows:
 
 Tag Name | Reference | Status | Description
@@ -636,7 +635,7 @@ fcod | <this memo> | active | For Sale Proprietary Code
 ftxt | <this memo> | active | For Sale Free Format Text
 furi | <this memo> | active | For Sale URI
 fval | <this memo> | active | For Sale Asking Price
-Table: Initial set of entries in the "Content Tags" sub-registry
+Table: Set of entries in the "_for-sale Content Tags" sub-registry
 
 The "status" column can have one of the following values:
 
