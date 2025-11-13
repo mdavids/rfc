@@ -94,7 +94,12 @@ when, and only when, they appear in all capitals, as shown here.
 
 # Rationale
 
-There are undoubtedly more ways to address this problem space. The reasons for the approach defined in this document are primarily accessibility and simplicity. The indicator can be easily turned on and off at will and moreover, it is immediately deployable and does not require significant changes in existing services. This allows for a smooth introduction of the concept.
+There are undoubtedly more ways to address this problem space. The reasons for the approach 
+defined in this document are primarily accessibility and simplicity. The indicator can be 
+easily turned on and off at will and, moreover, it is immediately deployable and does not 
+require significant changes in existing services, allowing for a smooth introduction of the concept.
+
+The method described in this memo does not alter existing IETF standards.
 
 Furthermore, the chosen approach aligns with ethical considerations by promoting a more equitable domain aftermarket and minimizing potential for unintended commercial entanglements by registries, as detailed in (#ethicalconsids).
 
@@ -203,7 +208,7 @@ See (#contentlimits) for additional content limitations.
 
 ## Content Tag Type Definitions {#tagdefs}
 
-A new IANA registry for known content tags is created in (#ianaconsid), with 
+A new IANA sub-registry for known content tags is created in (#ianaconsid), with 
 this document registering the initial set. Implementations **SHOULD** 
 process only registered tags they support, and **MAY** ignore any others.
 
@@ -322,9 +327,10 @@ See (#guidelines) for additional guidelines.
 ## RRset Limitations {#rrsetlimits}
 
 This specification does not define restrictions on the number of TXT records in the
-RRset.
+RRset of "\_for-sale" TXT records.
 
-When multiple content TXT records are present, the processor **MAY** select one or more of them.
+When multiple content TXT records are present in a "\_for-sale" TXT record, the 
+processor **MAY** select one or more of them.
 
 For example, a domain name registry might extract content from an RRset that includes 
 a recognizable "fcod=" content tag and use it to direct visitors to a sales page as 
@@ -333,11 +339,11 @@ phone number (if present) from a "furi=" tag in the same RRset and use it to con
 
 An example of such a combined record is provided in (#combiexample).
 
-The RDATA [@RFC9499] of each TXT record **MUST** consist of a single character-string
+The RDATA [@RFC9499] of each "\_for-sale" TXT record **MUST** consist of a single character-string
 [@RFC1035] with a maximum length of 255 octets, to avoid the need to concatenate multiple
 character-strings during processing.
 
-The following example illustrates an invalid TXT record due to the presence of multiple
+The following example illustrates an invalid "\_for-sale" TXT record due to the presence of multiple
 character-strings:
 
 ~~~
@@ -346,8 +352,9 @@ _for-sale IN TXT "v=FORSALE1;" "ftxt=foo" "bar" "invalid"
 
 ## Wildcard Limitation
 
-Wildcards are only interpreted as leaf names, so "\_for-sale.*.example." is not a valid wildcard and is non-conformant.
-Hence, it is not possible to put all domains under a TLD for sale with just one TXT record.
+Wildcards are only interpreted as leaf names, so "\_for-sale.*.example." is not a valid wildcard
+[@RFC4592] and is non-conformant. Hence, it is not possible to put all domains under a TLD for 
+sale with just one "\_for-sale" TXT record.
 
 The example below, however, shows a common use case where a "\_for-sale" leaf node exists alongside a
 wildcard:
@@ -571,8 +578,10 @@ or when the domain is DNSSEC-signed but fails validation (i.e., has a bogus stat
 
 # IANA Considerations {#ianaconsid} <!-- See RFC8126 -->
 
-IANA has established the "Underscored and Globally Scoped DNS Node Names" registry [@RFC8552; @IANA]. The underscored
-leaf node name defined in this specification should be added as follows:
+## Underscored and Globally Scoped DNS Node Name
+
+IANA should add the following entry to the "Underscored and Globally Scoped DNS Node Names" registry 
+in the "Domain Name System (DNS) Parameters" registry group [@RFC8552; @IANA]: 
 
 RR Type | _NODE NAME | Reference
 --------|------------|-----------
@@ -581,30 +590,17 @@ Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
 <NOTE TO RFC EDITOR: Adjust the text in the table above before publication with a citation for the (this) document making the addition as per RFC8552.>
 
-<!-- INFO zie https://www.rfc-editor.org/rfc/rfc8726.html#name-creating-new-iana-registrie -->
-<!-- INFO zie ook https://www.iana.org/help/protocol-registration -->
-<!-- INFO en zie ook https://www.rfc-editor.org/rfc/rfc8126.html -->
-<!-- INFO of deze: https://www.ietf.org/id/draft-baber-ianabis-rfc8126bis-00.html -->
-<!-- TODO niet vergeten reference anchor op te ruimen indien alsnog niet nodig -->
+## Creation of a Sub-registry
 
-A registry group called "The '_for-sale' Underscored and Globally Scoped DNS Node Name" [@?FORSALEREG] is to be created, 
-along with a registry called "Content Tags" within it. This registry group will be
-maintained by IANA.
+A sub-registry is to be created, called "ForeSaleReg". 
 
-A publicly accessible example of such an IANA registry, including relevant notes
-(but using 'SIDN Labs' instead of 'IANA'), can be found at:
+### Required Information for Registrations
 
-~~~
-https://forsalereg.sidnlabs.nl/
-~~~
+The registry entries, consist of content tags as defined in
+(#abnf) and (#tagdefs).
 
-<NOTE TO RFC EDITOR: Please validate and improve the example where needed
-and remove the text about the example registry above, prior to publication.>
-
-The registry entries consist of content tags as defined in
-(#tagdefs).
-
-The initial set of entries in this registry is as follows:
+The entries in this sub-registry are called "Content Tags" as 
+defined in (#abnf) and (#tagdefs) and the intital set is as follows:
 
 Tag Name | Reference | Status | Description
 ---------|-----------|--------|-------------
@@ -612,11 +608,16 @@ fcod | RFCXXXX | active | For Sale Proprietary Code
 ftxt | RFCXXXX | active | For Sale Free Format Text
 furi | RFCXXXX | active | For Sale URI
 fval | RFCXXXX | active | For Sale Asking Price
-Table: Initial set of entries in the "Content Tags" registry
+Table: Initial set of entries in the "Content Tags" sub-registry
 
 <NOTE TO RFC EDITOR: Adjust the text in the table above before publication with a citation for the (this) document making the addition as per RFC8552.>
 
-Future updates will be managed by the Change Controller.
+The "status" column can have one of the following values:
+
+* active - the tag is in use in current implementations.
+* historic - the tag is deprecated and not expected to be used in current implementations.
+
+### Applicable Registration Policy
 
 Entries are assigned only for values that have been documented in 
 a manner consistent with the "RFC Required" registration 
@@ -627,12 +628,22 @@ Newly defined content tags MUST NOT alter the semantics of existing content tags
 The addition of a new content tag to the registered list does not require the 
 definition of a new version tag. However, any modification to existing content tags does.
 
-The "status" column can have one of the following values:
+Tags in this registry are, in principle, expected to begin with the letter "f".
 
-* active - the tag is in use in current implementations.
-* historic - the tag is deprecated and not expected to be used in current implementations.
+Tags beginning with the character "x" are reserved for experimentation and development. 
+IANA cannot assign them.
 
-This registry group is maintained by IANA as per [@?RFC8726].
+A tag name length of 4 characters is **RECOMMENDED**.
+
+### Escalation Process
+
+The sub-registry has this additional note [@RFC8726]:
+
+>This registry was created by [RFCXXXX], which was published on the Independent Submission Stream. 
+>Any issues that arise with the management of this registry will be resolved by IANA in consultation 
+>with the Independent Submissions Editor.
+
+<NOTE TO RFC EDITOR: Adjust the text in the table above before publication with a citation for the (this) document making the addition as per RFC8552.>
 
 # Privacy Considerations {#privacy}
 
@@ -730,15 +741,6 @@ and Eliot Lear (ISE) for their valuable feedback.
   <title>Underscored and Globally Scoped DNS Node Names</title>
   <author>
     <organization>IANA</organization>
-  </author>
- </front>
-</reference>
-
-<reference anchor='FORSALEREG' target='https://forsalereg.sidnlabs.nl/forsale-parameters'>
- <front>
-  <title>The "_for-sale" Underscored and Globally Scoped DNS Node Name</title>
-  <author>
-    <organization>SIDN Labs</organization>
   </author>
  </front>
 </reference>
