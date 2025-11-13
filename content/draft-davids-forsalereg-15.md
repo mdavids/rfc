@@ -576,6 +576,78 @@ Note that this mechanism relies on the domain name being resolvable in the DNS.
 This is not guaranteed, for example during a redemption period, in pending delete status [@?STD69],
 or when the domain is DNSSEC-signed but fails validation (i.e., has a bogus state).
 
+# Security Considerations {#security}
+
+One use of the TXT record type defined in this document is to parse the content 
+it contains and to automatically publish certain information from it on a 
+website or elsewhere. However, there is a risk if the domain name holder 
+publishes a malicious URI or one that points to improper content. 
+This may result in reputational damage to the party parsing the record.
+
+An even more serious scenario arises when the content of the TXT record 
+is insufficiently validated and sanitized, potentially enabling attacks such as XSS or SQL injection.
+
+Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted with the utmost care.
+Possible approaches include maintaining a list of validated URIs or applying other validation methods after parsing and before publishing.
+
+There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
+means, without there being any intention to actually sell the domain name. Therefore, this method is best suited for use by professionals.
+
+# Privacy Considerations {#privacy} <!-- RFC6973 -->
+
+The use of the "\_for-sale" leaf node name publicly indicates the intent to sell a domain name.
+Domain holders should be aware that this information is accessible to anyone querying the
+DNS and may have privacy implications.
+
+There is a risk of data scraping, such as email addresses and phone numbers.
+
+Publishing contact information may expose domain holders to spam, or unwanted contact.
+
+# Ethical Considerations {#ethicalconsids}
+Although not specifically designed for this purpose, the mechanisms 
+described in this document may also facilitate domain name 
+transactions by professional speculators, often referred to 
+as domainers, and those commonly referred to as domain drop catchers. 
+Some may view this as controversial.
+
+However, by enabling domain holders to more explicitly
+signal their intent to sell, the proposed approach
+aims to introduce greater clarity and predictability
+into the domain lifecycle. This potentially reduces the
+advantage currently held by these professionals, and 
+fosters a more equitable environment for all.
+
+Furthermore, this mechanism avoids creating unnecessary 
+dependencies on registries for market transactions, 
+which could otherwise introduce complexities and 
+potential for unintended commercial entanglements.
+
+# Implementation Status {#implementation}
+<!-- https://datatracker.ietf.org/doc/html/rfc7942 -->
+The concept described in this document has been in use at the .nl ccTLD registry since 2022, 
+when it initially started as a pilot. Since then, several hundred thousand domain names have 
+been marked with the "\_for-sale" indicator. See for example:
+
+~~~
+https://www.sidn.nl/en/whois?q=example.nl
+~~~
+
+<!-- or https://api.sidn.nl/rest/whois?domain=example.nl -->
+
+The Dutch domain name registry SIDN offers registrars the option to register a sales 
+landing page via its registrar dashboard following the "fcod=" method.
+When this option is used, a unique code is generated, which can be included in the "\_for-sale" record. 
+If such a domain name is entered on the domain finder page of SIDN, a "for sale" 
+button is displayed accordingly.
+
+A simple demonstration of a validator is present at:
+
+~~~
+https://forsalereg.sidnlabs.nl/demo
+~~~
+
+<NOTE TO RFC EDITOR: Please remove this section before publication as per RFC7942.>
+
 # IANA Considerations {#ianaconsid} <!-- See RFC8126 -->
 
 This document requires two IANA actions:
@@ -649,78 +721,6 @@ The sub-registry has this additional note [@RFC8726]:
 >This registry was created by [RFCXXXX], which was published on the Independent Submission Stream. 
 >Any issues that arise with the management of this registry will be resolved by IANA in consultation 
 >with the Independent Submissions Editor.
-
-# Security Considerations {#security}
-
-One use of the TXT record type defined in this document is to parse the content 
-it contains and to automatically publish certain information from it on a 
-website or elsewhere. However, there is a risk if the domain name holder 
-publishes a malicious URI or one that points to improper content. 
-This may result in reputational damage to the party parsing the record.
-
-An even more serious scenario arises when the content of the TXT record 
-is insufficiently validated and sanitized, potentially enabling attacks such as XSS or SQL injection.
-
-Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted with the utmost care.
-Possible approaches include maintaining a list of validated URIs or applying other validation methods after parsing and before publishing.
-
-There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
-means, without there being any intention to actually sell the domain name. Therefore, this method is best suited for use by professionals.
-
-# Privacy Considerations {#privacy}
-
-The use of the "\_for-sale" leaf node name publicly indicates the intent to sell a domain name.
-Domain holders should be aware that this information is accessible to anyone querying the
-DNS and may have privacy implications.
-
-There is a risk of data scraping, such as email addresses and phone numbers.
-
-Publishing contact information may expose domain holders to spam, or unwanted contact.
-
-# Ethical Considerations {#ethicalconsids}
-Although not specifically designed for this purpose, the mechanisms 
-described in this document may also facilitate domain name 
-transactions by professional speculators, often referred to 
-as domainers, and those commonly referred to as domain drop catchers. 
-Some may view this as controversial.
-
-However, by enabling domain holders to more explicitly
-signal their intent to sell, the proposed approach
-aims to introduce greater clarity and predictability
-into the domain lifecycle. This potentially reduces the
-advantage currently held by these professionals, and 
-fosters a more equitable environment for all.
-
-Furthermore, this mechanism avoids creating unnecessary 
-dependencies on registries for market transactions, 
-which could otherwise introduce complexities and 
-potential for unintended commercial entanglements.
-
-# Implementation Status {#implementation}
-<!-- https://datatracker.ietf.org/doc/html/rfc7942 -->
-The concept described in this document has been in use at the .nl ccTLD registry since 2022, 
-when it initially started as a pilot. Since then, several hundred thousand domain names have 
-been marked with the "\_for-sale" indicator. See for example:
-
-~~~
-https://www.sidn.nl/en/whois?q=example.nl
-~~~
-
-<!-- or https://api.sidn.nl/rest/whois?domain=example.nl -->
-
-The Dutch domain name registry SIDN offers registrars the option to register a sales 
-landing page via its registrar dashboard following the "fcod=" method.
-When this option is used, a unique code is generated, which can be included in the "\_for-sale" record. 
-If such a domain name is entered on the domain finder page of SIDN, a "for sale" 
-button is displayed accordingly.
-
-A simple demonstration of a validator is present at:
-
-~~~
-https://forsalereg.sidnlabs.nl/demo
-~~~
-
-<NOTE TO RFC EDITOR: Please remove this section before publication as per RFC7942.>
 
 {backmatter}
 
