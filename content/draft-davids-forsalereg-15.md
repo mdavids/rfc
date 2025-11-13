@@ -722,13 +722,14 @@ https://forsalereg.sidnlabs.nl/demo
 
 <NOTE TO RFC EDITOR: Please remove this section before publication as per RFC7942.>
 
+{backmatter}
+
+{numbered="false"}
 # Acknowledgements
 
 The author would like to thank Thijs van den Hout, Caspar Schutijser, Melvin
 Elderman, Ben van Hartingsveldt, Jesse Davids, Juan Stelling, John R.&#xa0;Levine, 
 and Eliot Lear (ISE) for their valuable feedback.
-
-{backmatter}
 
 <reference anchor='PSL' target='https://publicsuffix.org/'>
  <front>
@@ -756,3 +757,4 @@ and Eliot Lear (ISE) for their valuable feedback.
   </author>
  </front>
 </reference>
+
