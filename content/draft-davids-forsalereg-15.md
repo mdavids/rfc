@@ -650,16 +650,6 @@ The sub-registry has this additional note [@RFC8726]:
 >Any issues that arise with the management of this registry will be resolved by IANA in consultation 
 >with the Independent Submissions Editor.
 
-# Privacy Considerations {#privacy}
-
-The use of the "\_for-sale" leaf node name publicly indicates the intent to sell a domain name.
-Domain holders should be aware that this information is accessible to anyone querying the
-DNS and may have privacy implications.
-
-There is a risk of data scraping, such as email addresses and phone numbers.
-
-Publishing contact information may expose domain holders to spam, or unwanted contact.
-
 # Security Considerations {#security}
 
 One use of the TXT record type defined in this document is to parse the content 
@@ -676,6 +666,16 @@ Possible approaches include maintaining a list of validated URIs or applying oth
 
 There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
 means, without there being any intention to actually sell the domain name. Therefore, this method is best suited for use by professionals.
+
+# Privacy Considerations {#privacy}
+
+The use of the "\_for-sale" leaf node name publicly indicates the intent to sell a domain name.
+Domain holders should be aware that this information is accessible to anyone querying the
+DNS and may have privacy implications.
+
+There is a risk of data scraping, such as email addresses and phone numbers.
+
+Publishing contact information may expose domain holders to spam, or unwanted contact.
 
 # Ethical Considerations {#ethicalconsids}
 Although not specifically designed for this purpose, the mechanisms 
