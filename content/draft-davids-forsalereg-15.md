@@ -54,11 +54,11 @@ This document is not an IETF consensus document: it is published for information
 
 This note is to be removed before publishing as an RFC.
 
-This document contain as "Note to the RFC Editor", with the request to remove
-(#implementation) prior to publication.
+This document contains a "Note to the RFC Editor" requesting removal 
+of (#implementation) prior to publication. Please also review the Status of 
+This Memo section and other relevant parts before publication, 
+particularly (#ianaconsid).
 
-Please also review the Status of This Memo section and other relevant parts
-before publication, in particular (#ianaconsid).
 
 {mainmatter}
 
@@ -208,7 +208,7 @@ See (#contentlimits) for additional content limitations.
 
 ## Content Tag Type Definitions {#tagdefs}
 
-A new IANA sub-registry for known content tags is created in (#ianaconsid), with 
+A new IANA sub-registry for known content tags is created in (#ianasubreg), with 
 this document registering the initial set. Implementations **SHOULD** 
 process only registered tags they support, and **MAY** ignore any others.
 
@@ -329,7 +329,7 @@ See (#guidelines) for additional guidelines.
 This specification does not define restrictions on the number of TXT records in the
 RRset of "\_for-sale" TXT records.
 
-When multiple content "\_for-sale" TXT records are present in an RRset, the 
+When multiple "\_for-sale" TXT records are present in an RRset, the 
 processor **MAY** select one or more of them.
 
 For example, a domain name registry might extract content from an RRset that includes 
@@ -505,19 +505,19 @@ result in misleading listings or unintended references to third-party domains.
 
 ## Handling of RDATA {#handlerdata}
 
-All text exchanged between systems that are not part of a closed ecosystem
-**MUST** be encoded in UTF-8 [@!RFC3629] and conform to the Network 
-Unicode format [@?RFC5198].
-
 Since this method relies on DNS TXT records, standard content rules apply as 
-defined in [@RFC1035, (see) section 5.1]. For the "ftxt=" content tag, 
-this includes the possibility of representing non-ASCII data in the content value, 
-for instance by using UTF-8 or escape sequences (e.g., \DDD or \X notation).
+defined in [@RFC1035, (see) section 5.1]. This includes the possibility of 
+representing non-ASCII data in the content value, by using escape sequences 
+(e.g., \DDD or \X notation).
+
+This document defines that all text exchanged between systems that are 
+not part of a closed ecosystem **SHALL** be encoded in and interpreted as 
+UTF-8 [@!RFC3629] and conform to the Network Unicode format [@?RFC5198].
 
 Processors **MUST** be capable of handling such encodings to ensure that non-ASCII 
-content values are interpreted correctly.
+content values are interpreted accordingly.
 
-Note: When UTF-8 is used, the ABNF octet limit applies to the encoded
+Note: When non-ASCII data is used, the ABNF octet limit applies to the encoded
 byte sequence, not the number of visible characters. Multi-byte
 characters will reduce the available character count.
 
@@ -578,9 +578,17 @@ or when the domain is DNSSEC-signed but fails validation (i.e., has a bogus stat
 
 # IANA Considerations {#ianaconsid} <!-- See RFC8126 -->
 
-## Underscored and Globally Scoped DNS Node Name
+This document requires two IANA actions:
 
-IANA should add the following entry to the "Underscored and Globally Scoped DNS Node Names" registry 
+1. Addition of "_for-sale" to the existing "Underscored and Globally Scoped DNS Node Names" registry
+((#ianareg)).
+
+2. Creation of a new sub-registry for "_for-sale" content tags ((#ianasubreg)).
+
+
+## Underscored and Globally Scoped DNS Node Name {#ianareg}
+
+IANA is requested to add the following entry to the "Underscored and Globally Scoped DNS Node Names" registry 
 in the "Domain Name System (DNS) Parameters" registry group [@RFC8552; @IANA]: 
 
 RR Type | _NODE NAME | Reference
@@ -588,9 +596,9 @@ RR Type | _NODE NAME | Reference
 TXT | \_for-sale | <this memo>
 Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
-## Creation of a Sub-registry
+## Creation of a Sub-registry {#ianasubreg}
 
-A sub-registry is to be created, called "ForSaleReg". 
+A sub-registry is to be created, called "The "_for-sale" Underscored and Globally Scoped DNS Node Name". 
 
 The change controller for this sub-registry will be the Independent Submissions
 Editor.
@@ -608,14 +616,16 @@ Newly defined content tags **MUST NOT** alter the semantics of existing content 
 The addition of a new content tag to the registered list does not require the 
 definition of a new version tag. However, any modification to existing content tags does.
 
-Tags in this registry are, in principle, expected to begin with the letter "f".
+Tags in this registry **SHOULD** begin with the letter "f" to maintain 
+consistency with the initial set of content tags (fcod, ftxt, furi, fval).
 
 Tags beginning with the character "x" are reserved for experimentation and development. 
 IANA **SHALL NOT** assign them.
 
-A tag name length of 4 characters is **RECOMMENDED** for consistency.
+A tag name length of 4 characters is **RECOMMENDED** for consistency with the initial tag
+set and to maintain compact record formats.
 
-### Size, Format, Syntax and Initial Assignments
+### Format, Syntax and Initial Assignments
 
 The sub-registry entries consist of content tags as defined in
 (#abnf) and (#tagdefs) and the initial set is as follows:
