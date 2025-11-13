@@ -329,7 +329,7 @@ See (#guidelines) for additional guidelines.
 This specification does not define restrictions on the number of TXT records in the
 RRset of "\_for-sale" TXT records.
 
-When multiple content TXT records are present in a "\_for-sale" TXT record, the 
+When multiple content "\_for-sale" TXT records are present in an RRset, the 
 processor **MAY** select one or more of them.
 
 For example, a domain name registry might extract content from an RRset that includes 
@@ -612,15 +612,12 @@ Tags in this registry are, in principle, expected to begin with the letter "f".
 Tags beginning with the character "x" are reserved for experimentation and development. 
 IANA cannot assign them.
 
-A tag name length of 4 characters is **RECOMMENDED**.
+A tag name length of 4 characters is **RECOMMENDED** for consistency.
 
 ### Size, Format, Syntax and Initial Assignments
 
-The registry entries, consist of content tags as defined in
-(#abnf) and (#tagdefs).
-
-The entries in this sub-registry are called "Content Tags" as 
-defined in (#abnf) and (#tagdefs) and the initial set is as follows:
+The sub-registry entries consist of content tags as defined in
+(#abnf) and (#tagdefs) and the initial set is as follows:
 
 Tag Name | Reference | Status | Description
 ---------|-----------|--------|-------------
@@ -710,8 +707,6 @@ landing page via its registrar dashboard following the "fcod=" method.
 When this option is used, a unique code is generated, which can be included in the "\_for-sale" record. 
 If such a domain name is entered on the domain finder page of SIDN, a "for sale" 
 button is displayed accordingly.
-
-
 
 A simple demonstration of a validator is present at:
 
