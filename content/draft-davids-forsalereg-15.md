@@ -611,7 +611,7 @@ definition of a new version tag. However, any modification to existing content t
 Tags in this registry are, in principle, expected to begin with the letter "f".
 
 Tags beginning with the character "x" are reserved for experimentation and development. 
-IANA cannot assign them.
+IANA **SHALL NOT** assign them.
 
 A tag name length of 4 characters is **RECOMMENDED** for consistency.
 
