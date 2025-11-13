@@ -217,7 +217,7 @@ The following content tags are defined as the initial valid content tags.
 <!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
 ### fcod {#fcoddef}  
 This content tag is intended to contain a code that is meaningful only to processors 
-that understand its semantics. The content value MUST consist of at least one octet. 
+that understand its semantics. The content value **MUST** consist of at least one octet. 
 
 The manner in which the "fcod=" content tag is used is determined by agreement
 between cooperating parties.
@@ -596,6 +596,26 @@ A sub-registry is to be created, called "ForeSaleReg".
 
 ### Required Information for Registrations
 
+Entries are assigned only for values that have been documented in 
+a manner consistent with the "RFC Required" registration 
+policy defined in [@!RFC8126].
+
+### Applicable Registration Policy
+
+Newly defined content tags **MUST NOT** alter the semantics of existing content tags.
+
+The addition of a new content tag to the registered list does not require the 
+definition of a new version tag. However, any modification to existing content tags does.
+
+Tags in this registry are, in principle, expected to begin with the letter "f".
+
+Tags beginning with the character "x" are reserved for experimentation and development. 
+IANA cannot assign them.
+
+A tag name length of 4 characters is **RECOMMENDED**.
+
+### Size, Format, Syntax and Initial Assignments
+
 The registry entries, consist of content tags as defined in
 (#abnf) and (#tagdefs).
 
@@ -616,24 +636,6 @@ The "status" column can have one of the following values:
 
 * active - the tag is in use in current implementations.
 * historic - the tag is deprecated and not expected to be used in current implementations.
-
-### Applicable Registration Policy
-
-Entries are assigned only for values that have been documented in 
-a manner consistent with the "RFC Required" registration 
-policy defined in [@!RFC8126].
-
-Newly defined content tags MUST NOT alter the semantics of existing content tags.
-
-The addition of a new content tag to the registered list does not require the 
-definition of a new version tag. However, any modification to existing content tags does.
-
-Tags in this registry are, in principle, expected to begin with the letter "f".
-
-Tags beginning with the character "x" are reserved for experimentation and development. 
-IANA cannot assign them.
-
-A tag name length of 4 characters is **RECOMMENDED**.
 
 ### Escalation Process
 
