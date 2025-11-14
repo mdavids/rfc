@@ -25,8 +25,8 @@ Syntax checker demo: https://forsale.bitfire.nl
 
 `TXT _for-sale.testdns.nl`
 
-(may not work at the demo above, because the demo uses an early, deprecated method)
-
 ## Tools
 
 The tools-directory contains a couple of scripts to validate the concept.
+
+<!-- do 'git pull' on local repository after making changes via GitHub web !! -->
