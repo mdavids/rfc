@@ -659,8 +659,8 @@ This document requires two IANA actions:
 
 ## Underscored and Globally Scoped DNS Node Name {#ianareg}
 
-IANA is requested to add the following entry to the "Underscored and Globally Scoped DNS Node Names" registry 
-in the "Domain Name System (DNS) Parameters" registry group [@RFC8552; @IANA]: 
+IANA is requested to add the following entry to the "Underscored and Globally Scoped DNS Node Names" 
+registry [@RFC8552] :
 
 RR Type | _NODE NAME | Reference
 --------|------------|-----------
@@ -669,35 +669,17 @@ Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
 
 ## Creation of a Sub-registry {#ianasubreg}
 
-A sub-registry is to be created, titled "The "_for-sale" Underscored and Globally Scoped DNS Node Name". 
+A sub-registry is to be created, titled "The "_for-sale" Underscored and Globally Scoped DNS Node Name" 
+in the "Domain Name System (DNS) Parameters" registry group.
 
 The change controller for this sub-registry will be the Independent Submissions
 Editor.
 
-### Required Information for Registrations
+<!-- ### Applicable Registration Policy -->
+Assignments in this registry follow the policy of "RFC Required" as specified in
+[@!RFC8126].
 
-Entries are assigned only for values that have been documented in 
-a manner consistent with the "RFC Required" registration 
-policy defined in [@!RFC8126].
-
-### Applicable Registration Policy
-
-Newly defined content tags **MUST NOT** alter the semantics of existing content tags.
-
-The addition of a new content tag to the registered list does not require the 
-definition of a new version tag. However, any modification to existing content tags does.
-
-Tags in this registry **SHOULD** begin with the letter "f" to maintain 
-consistency with the initial set of content tags (fcod, ftxt, furi, fval).
-
-Tags beginning with the character "x" are reserved for experimentation and development. 
-IANA **SHALL NOT** assign them.
-
-A tag name length of 4 characters is **RECOMMENDED** for consistency with the initial tag
-set and to maintain compact record formats.
-
-### Format, Syntax and Initial Assignments
-
+<!-- ### Format, Syntax and Initial Assignments -->
 The sub-registry entries consist of "_for-sale Content Tags" as defined in
 (#abnf) and (#tagdefs) and the initial set is as follows:
 
@@ -714,13 +696,21 @@ The "status" column can have one of the following values:
 * active - the tag is in use in current implementations.
 * historic - the tag is deprecated and not expected to be used in current implementations.
 
-### Escalation Process
+Newly defined content tags **MUST NOT** alter the semantics of existing content tags.
 
-The sub-registry has this additional note [@RFC8726]:
+The addition of a new content tag to the registered list does not require the 
+definition of a new version tag. However, any modification to existing content tags does.
 
->This registry was created by [RFCXXXX], which was published on the Independent Submission Stream. 
->Any issues that arise with the management of this registry will be resolved by IANA in consultation 
->with the Independent Submissions Editor.
+Tags beginning with the character "x" may be used for development and testing, and
+**SHOULD NOT** be requested or assigned.
+
+A tag name length of 4 characters is **RECOMMENDED** for consistency with the initial tag
+set and to maintain compact record formats.
+
+<!-- ### Escalation Process -->
+This registry was created by [RFCXXXX], which was published on the Independent Submission Stream. 
+Any issues that arise with the management of this registry will be resolved by IANA in consultation 
+with the Independent Submissions Editor.
 
 {backmatter}
 
