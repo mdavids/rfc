@@ -12,7 +12,7 @@ import (
 var (
     reFval   = regexp.MustCompile(`^[A-Z]+[0-9]+(\.[0-9]+)?$`)
     reMailto = regexp.MustCompile(`^mailto:[^ \t]+$`)
-    reTel    = regexp.MustCompile(`^tel:\+?[0-9][0-9\-\.\(\) ]*$`)
+    reTel    = regexp.MustCompile(`^tel:\+?[0-9][0-9\\-\\.\\(\\) ]*$`)
 )
 
 func ask(prompt string) string {
@@ -22,7 +22,6 @@ func ask(prompt string) string {
     return strings.TrimSpace(text)
 }
 
-// escapeQuotes ensures that any " in the value is escaped for zone file output
 func escapeQuotes(s string) string {
     return strings.ReplaceAll(s, `"`, `\"`)
 }
@@ -82,11 +81,23 @@ func main() {
         fmt.Println(" 2) furi (contact URI)")
         fmt.Println(" 3) ftxt (free text)")
         fmt.Println(" 4) fcod (code)")
-        fmt.Println(" 5) Done")
-        choice := ask("Enter choice (1-5): ")
+        fmt.Println(" 5) view (show current records)")
+        fmt.Println(" 6) done (finish)")
+        choice := ask("Enter choice (1-6): ")
 
-        if choice == "5" {
+        if choice == "6" {
             break
+        }
+        if choice == "5" {
+            fmt.Println("\nCurrent records:")
+            if len(records) == 0 {
+                fmt.Println("  (none yet)")
+            } else {
+                for _, r := range records {
+                    fmt.Println("  " + r)
+                }
+            }
+            continue
         }
 
         var tag, value string
@@ -140,9 +151,7 @@ func main() {
             continue
         }
 
-        // Escape any quotes in the value
         valueEsc := escapeQuotes(value)
-
         key := tag + "=" + valueEsc
         if _, exists := seenPairs[key]; exists {
             fmt.Println("Duplicate record detected — not allowed by the draft. Skipping.")
@@ -155,7 +164,7 @@ func main() {
         fmt.Println("Record added.")
     }
 
-    fmt.Println("\nGenerated DNS zone file snippet:")
+    fmt.Println("\nFinal DNS zone file snippet:")
     for _, r := range records {
         fmt.Println(r)
     }
