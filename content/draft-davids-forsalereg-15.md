@@ -594,7 +594,7 @@ Possible approaches include maintaining a list of validated URIs or applying oth
 There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
 means, without there being any intention to actually sell the domain name. Therefore, this method is best suited for use by professionals.
 
-# Privacy Considerations {#privacy} <!-- RFC6973 -->
+# Privacy Considerations {#privacy}
 
 The use of the "\_for-sale" leaf node name publicly indicates the intent to sell a domain name.
 Domain holders should be aware that this information is accessible to anyone querying the
@@ -602,7 +602,7 @@ DNS and may have privacy implications.
 
 There is a risk of data scraping, such as email addresses and phone numbers.
 
-Publishing contact information may expose domain holders to spam, or unwanted contact.
+Publishing contact information may expose domain name holders to spam, or unwanted contact.
 
 # Ethical Considerations {#ethicalconsids}
 Although not specifically designed for this purpose, the mechanisms 
@@ -611,7 +611,7 @@ transactions by professional speculators, often referred to
 as domainers, and those commonly referred to as domain drop catchers. 
 Some may view this as controversial.
 
-However, by enabling domain holders to more explicitly
+However, by enabling domain name holders to more explicitly
 signal their intent to sell, the proposed approach
 aims to introduce greater clarity and predictability
 into the domain lifecycle. This potentially reduces the
@@ -626,7 +626,7 @@ potential for unintended commercial entanglements.
 # Implementation Status {#implementation}
 <!-- https://datatracker.ietf.org/doc/html/rfc7942 -->
 The concept described in this document has been in use at the .nl ccTLD registry since 2022, 
-when it initially started as a pilot. Since then, several hundred thousand domain names have 
+when it initially started as a pilot. Since then, hundreds of thousands of domain names have 
 been marked with the "\_for-sale" indicator. See for example:
 
 ~~~
