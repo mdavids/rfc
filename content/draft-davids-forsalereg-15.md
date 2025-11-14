@@ -41,11 +41,11 @@ organization = "SIDN Labs"
 
 .# Abstract
 
-This document defines an operational convention for using the reserved
+This document defines an operational convention that uses the reserved 
 underscored DNS leaf node name "\_for-sale" to indicate that the 
-parent domain name is available for purchase. This approach enables 
-easy deployment without affecting ongoing operations, allowing the 
-method to be applied to a domain name that is still in full use.
+parent domain name is available for purchase. The convention can be 
+deployed without disrupting existing operations, and it may be 
+applied even when the domain name is still actively in use.
 
 This document is not an IETF consensus document: it is published for informational purposes.
 
@@ -113,7 +113,7 @@ The formal definition of the record format, using ABNF [@!RFC5234; @!RFC7405], i
 
 ~~~
 forsale-record  = forsale-version [forsale-content]
-                  ; referred to as content or RDATA
+                  ; referred to as 'content' or RDATA
                   ; in a single character-string
 
 forsale-version = %s"v=FORSALE1;"
@@ -121,15 +121,15 @@ forsale-version = %s"v=FORSALE1;"
                   ; version tag, case sensitive, no spaces
 
 forsale-content = fcod-pair / ftxt-pair / furi-pair / fval-pair
-                  ; referred to as tag-value pairs
+                  ; referred to as 'tag-value pairs'
                   ; only one tag-value pair per record
 
 fcod-pair       = fcod-tag fcod-value
 ftxt-pair       = ftxt-tag ftxt-value
 furi-pair       = furi-tag furi-value
 fval-pair       = fval-tag fval-value
-                  ; the tags are referred to as content tags
-                  ; the values are referred to as content values
+                  ; the tags are referred to as 'content tags'
+                  ; the values are referred to as 'content values'
 
 fcod-tag        = %s"fcod="
 ftxt-tag        = %s"ftxt="
@@ -311,7 +311,7 @@ See (#currency) for additional operational guidelines.
 The "\_for-sale" TXT record [@RFC8553, (see) section 2.1] **MUST** contain content deemed valid under this specification.
 
 Any text suggesting that a domain is not for sale is invalid content. If a domain name is not or no longer for sale, 
-a "\_for-sale" indicator **MUST NOT** exist. The presence of a valid "_for-sale" TXT record
+a "\_for-sale" indicator **SHOULD NOT** exist. The presence of a valid "_for-sale" TXT record
 **SHOULD** therefore be regarded as an indication that the domain name is for sale.
 
 The existence of a "\_for-sale" leaf node does not obligate the holder to sell the domain name; 
@@ -573,8 +573,9 @@ for the content value to reduce ambiguity.
 ## Scope of Application
 
 Note that this mechanism relies on the domain name being resolvable in the DNS.
-This is not guaranteed, for example during a redemption period, in pending delete status [@?STD69],
-or when the domain is DNSSEC-signed but fails validation (i.e., has a bogus state).
+This is not guaranteed, for example during a redemption period, in
+pendingDelete status [@?STD69], or when the domain is DNSSEC-signed but fails 
+validation (i.e., has a bogus state).
 
 # Security Considerations {#security}
 
@@ -585,7 +586,7 @@ publishes a malicious URI or one that points to improper content.
 This may result in reputational damage to the party parsing the record.
 
 An even more serious scenario arises when the content of the TXT record 
-is insufficiently validated and sanitized, potentially enabling attacks such as XSS or SQL injection.
+is not properly validated and sanitized, potentially enabling attacks such as XSS or SQL injection.
 
 Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted with the utmost care.
 Possible approaches include maintaining a list of validated URIs or applying other validation methods after parsing and before publishing.
