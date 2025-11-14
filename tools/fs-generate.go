@@ -105,7 +105,12 @@ func main() {
         case "1":
             tag = "fval"
             for {
-                v := ask("Enter asking price (e.g. USD750 or EUR99.99): ")
+                v := ask("Enter asking price (or type 'cancel' to return): ")
+                if strings.ToLower(v) == "cancel" {
+                    fmt.Println("Cancelled, returning to main menu.")
+                    tag, value = "", ""
+                    break
+                }
                 if err := validateFval(v); err != nil {
                     fmt.Println("Invalid:", err)
                     continue
@@ -116,7 +121,12 @@ func main() {
         case "2":
             tag = "furi"
             for {
-                v := ask("Enter contact URI (http/https/mailto/tel): ")
+                v := ask("Enter contact URI (or type 'cancel' to return): ")
+                if strings.ToLower(v) == "cancel" {
+                    fmt.Println("Cancelled, returning to main menu.")
+                    tag, value = "", ""
+                    break
+                }
                 if err := validateFuri(v); err != nil {
                     fmt.Println("Invalid:", err)
                     continue
@@ -127,7 +137,12 @@ func main() {
         case "3":
             tag = "ftxt"
             for {
-                v := ask("Enter free text message: ")
+                v := ask("Enter free text (or type 'cancel' to return): ")
+                if strings.ToLower(v) == "cancel" {
+                    fmt.Println("Cancelled, returning to main menu.")
+                    tag, value = "", ""
+                    break
+                }
                 if len(v) < 1 {
                     fmt.Println("Invalid: must not be empty")
                     continue
@@ -138,7 +153,12 @@ func main() {
         case "4":
             tag = "fcod"
             for {
-                v := ask("Enter code value: ")
+                v := ask("Enter code value (or type 'cancel' to return): ")
+                if strings.ToLower(v) == "cancel" {
+                    fmt.Println("Cancelled, returning to main menu.")
+                    tag, value = "", ""
+                    break
+                }
                 if len(v) < 1 {
                     fmt.Println("Invalid: must not be empty")
                     continue
@@ -148,6 +168,11 @@ func main() {
             }
         default:
             fmt.Println("Invalid choice")
+            continue
+        }
+
+        if tag == "" {
+            // user cancelled, skip adding
             continue
         }
 
