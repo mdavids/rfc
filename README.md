@@ -1,6 +1,6 @@
 # RFC
 
-Current draft I'm working on here is: **draft-davids-forsalereg-12**.
+Current draft I'm working on here is: **draft-davids-forsalereg**.
 
 ## Datatracker:
 
