@@ -3,6 +3,12 @@
 > [!NOTE]
 > Tools work for draft-davids-forsalereg-15
 
+Build:
+
+~~~
+go build name.go
+~~~
+
 ## webserver.go
 
 See in action on https://forsalereg.sidnlabs.nl/demo
