@@ -22,6 +22,11 @@ func ask(prompt string) string {
     return strings.TrimSpace(text)
 }
 
+// escapeQuotes ensures that any " in the value is escaped for zone file output
+func escapeQuotes(s string) string {
+    return strings.ReplaceAll(s, `"`, `\"`)
+}
+
 func validateFval(v string) error {
     if !reFval.MatchString(v) {
         return fmt.Errorf("must be uppercase currency letters followed by amount, e.g. USD750 or EUR99.99")
@@ -135,14 +140,17 @@ func main() {
             continue
         }
 
-        key := tag + "=" + value
+        // Escape any quotes in the value
+        valueEsc := escapeQuotes(value)
+
+        key := tag + "=" + valueEsc
         if _, exists := seenPairs[key]; exists {
             fmt.Println("Duplicate record detected — not allowed by the draft. Skipping.")
             continue
         }
         seenPairs[key] = struct{}{}
 
-        record := fmt.Sprintf(`_for-sale.%s. IN TXT "v=FORSALE1;%s=%s"`, domain, tag, value)
+        record := fmt.Sprintf(`_for-sale.%s. IN TXT "v=FORSALE1;%s=%s"`, domain, tag, valueEsc)
         records = append(records, record)
         fmt.Println("Record added.")
     }
