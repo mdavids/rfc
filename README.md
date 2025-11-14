@@ -6,7 +6,7 @@ Current draft I'm working on here is: **draft-davids-forsalereg-12**.
 
 https://datatracker.ietf.org/doc/html/draft-davids-forsalereg
 
-## More recent version from this repository (-12 vs -11 on datatracker):
+## More recent version from this repository (-16 vs -15 on datatracker):
 
 https://forsalereg.sidnlabs.nl/rfc/
 * https://forsalereg.sidnlabs.nl/ (associated registry group example)
@@ -16,6 +16,8 @@ https://forsalereg.sidnlabs.nl/rfc/
 SIDN: https://www.sidn.nl/en/whois?q=example.nl
 
 Demo-server from Tools: https://forsalereg.sidnlabs.nl/demo
+
+Syntax checker demo: https://forsale.bitfire.nl
 
 ( a good domain to test here is: `testdns.nl`)
 
