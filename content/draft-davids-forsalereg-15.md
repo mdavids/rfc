@@ -711,7 +711,7 @@ set and to maintain compact record formats.
 <!-- ### Escalation Process -->
 This registry was created by [RFCXXXX], which was published on the Independent Submission Stream. 
 Any issues that arise with the management of this registry will be resolved by IANA in consultation 
-with the Independent Submissions Editor.
+with the Independent Submissions Editor. <!-- https://datatracker.ietf.org/doc/html/rfc8726 -->
 
 {backmatter}
 
