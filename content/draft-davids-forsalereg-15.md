@@ -85,6 +85,8 @@ The operational convention described in this document does not require any proto
 
 Furthermore, (#ethicalconsids) discusses some ethical considerations. In particular, the approach in this document aims to promote a more equitable domain aftermarket and minimizing potential for unintended commercial entanglements by registries.
 
+Sample examples are provided in (#examples).
+
 ## Terminology
 
 The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL NOT**",
@@ -390,97 +392,6 @@ domain, it might be interpreted as an offer to sell IP address space.
 However, such use is explicitly out of scope for this document, and processors
 **MUST** ignore any such records.
 
-# Additional Examples {#examples}
-
-## Example 1: Code Format
-
-A proprietary format, defined and used by agreement between parties - for example, 
-a domain name registry and its registrars - without a clearly specified meaning for third parties.
-For example, it may be used to automatically redirect visitors to a web page, as described in
-(#fcoddef):
-
-~~~
-_for-sale IN TXT "v=FORSALE1;fcod=XX-aHR0cHM...wbGUuY29t"
-~~~
-
-Note: the content value in the above example is truncated for readability.
-
-The use of the "fcod=" content tag is, in principle, unrestricted, allowing implementers to define additional 
-uses as needed. For example, it may convey arbitrary formatting or conditional display 
-instructions, such as adding an extra banner (e.g., "eligibility criteria apply") or 
-specifying a style, including color, font, emojis, or logos.
-
-## Example 2: Free Text Format
-
-Free format text, with some additional unstructured information, aimed at
-being human-readable:
-
-~~~
-_for-sale IN TXT "v=FORSALE1;ftxt=Eligibility criteria apply."
-~~~
-
-The content in the following example could be malicious, but it is not in violation of this specification (see
-the (#security, use title)):
-
-~~~
-_for-sale IN TXT "v=FORSALE1;ftxt=<script>...</script>"
-~~~
-
-## Example 3: URI Format
-
-The holder of "example.com" wishes to signal that the domain is for sale and adds this record to the "example.com" zone:
-
-~~~
-_for-sale IN TXT "v=FORSALE1;furi=https://example.com/fs?d=eHl6"
-~~~
-
-An interested party notices this signal and can visit the URI mentioned for further information. The TXT record
-may also be processed by automated tools, but see the (#security, use title) section for possible risks. 
-
-As an alternative, a mailto: URI could also be used:
-
-~~~
-_for-sale IN TXT "v=FORSALE1;furi=mailto:hq@example.com?subject=foo"
-~~~
-
-Or a telephone URI:
-
-~~~
-_for-sale IN TXT "v=FORSALE1;furi=tel:+1-201-555-0123"
-~~~
-
-There can be a use case for these URIs, especially since WHOIS (or RDAP) often has privacy restrictions.
-But see the (#privacy, use title) section for possible downsides.
-
-## Example 4: Asking Price Format
-
-Consists of an uppercase currency code (e.g., USD, EUR), followed by a
-numeric amount. See (#currency) for additional guidelines.
-
-In Bitcoins:
-
-~~~
-_for-sale IN TXT "v=FORSALE1;fval=BTC0.000010"
-~~~
-
-In US dollars:
-
-~~~
-_for-sale IN TXT "v=FORSALE1;fval=USD750"
-~~~
-
-## Example 5: Combinations {#combiexample}
-
-An example of multiple valid TXT records from which a processor can choose:
-
-~~~
-_for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
-          IN TXT "v=FORSALE1;ftxt=This domain name is for sale"
-          IN TXT "v=FORSALE1;fval=EUR500"
-          IN TXT "v=FORSALE1;fcod=ACME-ZGVhZGJlZWYx"
-          IN TXT "v=FORSALE1;fcod=XYZ1-MTExLTIyMi0zMzMtNDQ0"
-~~~
-
 # Operational Guidelines {#guidelines}
 ## DNS Wildcards
 
@@ -707,6 +618,98 @@ Any issues that arise with the management of this registry will be resolved by I
 with the Independent Submissions Editor. <!-- https://datatracker.ietf.org/doc/html/rfc8726 -->
 
 {backmatter}
+
+# Additional Examples {#examples}
+
+## Example 1: Code Format
+
+A proprietary format, defined and used by agreement between parties - for example, 
+a domain name registry and its registrars - without a clearly specified meaning for third parties.
+For example, it may be used to automatically redirect visitors to a web page, as described in
+(#fcoddef):
+
+~~~
+_for-sale IN TXT "v=FORSALE1;fcod=XX-aHR0cHM...wbGUuY29t"
+~~~
+
+Note: the content value in the above example is truncated for readability.
+
+The use of the "fcod=" content tag is, in principle, unrestricted, allowing implementers to define additional 
+uses as needed. For example, it may convey arbitrary formatting or conditional display 
+instructions, such as adding an extra banner (e.g., "eligibility criteria apply") or 
+specifying a style, including color, font, emojis, or logos.
+
+## Example 2: Free Text Format
+
+Free format text, with some additional unstructured information, aimed at
+being human-readable:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;ftxt=Eligibility criteria apply."
+~~~
+
+The content in the following example could be malicious, but it is not in violation of this specification (see
+the (#security, use title)):
+
+~~~
+_for-sale IN TXT "v=FORSALE1;ftxt=<script>...</script>"
+~~~
+
+## Example 3: URI Format
+
+The holder of "example.com" wishes to signal that the domain is for sale and adds this record to the "example.com" zone:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;furi=https://example.com/fs?d=eHl6"
+~~~
+
+An interested party notices this signal and can visit the URI mentioned for further information. The TXT record
+may also be processed by automated tools, but see the (#security, use title) section for possible risks. 
+
+As an alternative, a mailto: URI could also be used:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;furi=mailto:hq@example.com?subject=foo"
+~~~
+
+Or a telephone URI:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;furi=tel:+1-201-555-0123"
+~~~
+
+There can be a use case for these URIs, especially since WHOIS (or RDAP) often has privacy restrictions.
+But see the (#privacy, use title) section for possible downsides.
+
+## Example 4: Asking Price Format
+
+Consists of an uppercase currency code (e.g., USD, EUR), followed by a
+numeric amount. See (#currency) for additional guidelines.
+
+In Bitcoins:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;fval=BTC0.000010"
+~~~
+
+In US dollars:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;fval=USD750"
+~~~
+
+## Example 5: Combinations {#combiexample}
+
+An example of multiple valid TXT records from which a processor can choose:
+
+~~~
+_for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
+          IN TXT "v=FORSALE1;ftxt=This domain name is for sale"
+          IN TXT "v=FORSALE1;fval=EUR500"
+          IN TXT "v=FORSALE1;fcod=ACME-ZGVhZGJlZWYx"
+          IN TXT "v=FORSALE1;fcod=XYZ1-MTExLTIyMi0zMzMtNDQ0"
+~~~
+
 
 {numbered="false"}
 # Acknowledgements
