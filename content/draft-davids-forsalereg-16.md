@@ -216,11 +216,12 @@ See (#contentlimits) for additional content limitations.
 
 ## Content Tag Type Definitions {#tagdefs}
 
-The following content tags are defined as valid content tags.They **MAY** be
-added to provide additional information. It is **RECOMMENDED** to make use
-of them.
+The following content tags are defined as valid content tags.
 
 Tags beginning with the character "x" may be used for development and testing.
+
+Content tags are optional. Providing a minimum set to allow interested parties 
+to engage is **RECOMMENDED**.
 
 <!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
 ### fcod {#fcoddef}  
