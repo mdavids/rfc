@@ -218,8 +218,6 @@ See (#contentlimits) for additional content limitations.
 
 The following content tags are defined as the initial valid content tags.
 
-Implementations **SHOULD** process only registered tags they support, and **MAY** ignore any others.
-
 Tags beginning with the character "x" may be used for development and testing.
 
 <!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
