@@ -323,7 +323,7 @@ tags **MUST NOT** alter the semantics of existing content tags.
 A tag name length of 4 characters is **RECOMMENDED** for consistency with the initial tag
 set and to maintain compact record formats.
 
-Tags beginning with the character "x" are reserved for for development and testing.
+Tags beginning with the character "x" are reserved for development and testing.
 
 ## Content Limitations {#contentlimits}
 
