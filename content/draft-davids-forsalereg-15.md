@@ -286,7 +286,7 @@ _for-sale IN TXT "v=FORSALE1;furi=https://example.com/foo%20bar"
 
 URIs **MUST** conform to the syntax and encoding requirements specified in 
 [@!RFC3986, section 2.1], including the percent-encoding of characters 
-not allowed unencoded (e.g., spaces **MUST** be encoded as `%20` in a URI).
+not allowed unencoded (e.g., spaces must be encoded as `%20` in a URI).
 
 See the (#security, use title) section for possible risks.
 
@@ -313,7 +313,7 @@ The existence of a "\_for-sale" leaf node does not obligate the holder to sell t
 it may have been published in error, or withdrawn later for other reasons.
 
 This specification does not dictate the exact use of any content values in the "\_for-sale" TXT record.
-Parties **MAY** use it in their tools, perhaps even by defining specific requirements that the content
+Parties may use it in their tools, perhaps even by defining specific requirements that the content
 value must meet. Content values can also be represented in a human-readable format for individuals to
 interpret. See the (#examples, use title) section for clarification.
 
@@ -321,7 +321,7 @@ See (#guidelines) for additional guidelines.
 
 ## RRset Limitations {#rrsetlimits}
 
-This specification does not define restrictions on the number of TXT records in the
+This document does not define restrictions on the number of TXT records in the
 RRset of "\_for-sale" TXT records.
 
 When multiple "\_for-sale" TXT records are present in an RRset, the 
@@ -392,17 +392,17 @@ domain, it might be interpreted as an offer to sell IP address space.
 However, such use is explicitly out of scope for this document, and processors
 **MUST** ignore any such records.
 
-# Operational Guidelines {#guidelines}
+# Operational Considerations {#guidelines}
 ## DNS Wildcards
 
 DNS wildcards interact poorly with underscored names [@RFC8552, (see) section 1.4],
 but they may still be encountered in practice, especially with operators who 
 are not implementing this mechanism. This is why the version 
-tag is a **REQUIRED** element: it allows processors to distinguish 
+tag is a mandatory element: it allows processors to distinguish 
 valid "\_for-sale" records from unrelated TXT records.
 
 Nonetheless, any assumptions about the content of "\_for-sale" TXT 
-records **SHOULD** be made with caution, particularly in edge 
+records should be made with caution, particularly in edge 
 cases where wildcard expansion - possibly combined with DNS aliases 
 (e.g., CNAMEs) or redirections (e.g., DNAMEs [@?RFC6672]) - might 
 result in misleading listings or unintended references to third-party domains.
@@ -442,7 +442,7 @@ recognized abbreviations, such as cryptocurrencies.
 
 The use of standard fiat currencies is **RECOMMENDED**. When used, 
 they **MUST** be represented by three-letter uppercase currency 
-codes as specified in [@?ISO4217] (e.g., USD, EUR, GBP, JPY).
+codes as specified in [@!ISO4217] (e.g., USD, EUR, GBP, JPY).
 
 The amount component consists of an integer part, optionally 
 followed by a fractional part separated by a decimal point (%x2E, ".").
@@ -471,13 +471,15 @@ Because the format of the content part is not strictly defined in this
 document, processors **MAY** apply the robustness principle of being 
 liberal in what they accept. This also applies to space 
 characters (`%x20`) immediately following the version tag.
+
 Alternatively, parties may agree on a more strictly defined proprietary format
-for the content value to reduce ambiguity.
+for the content value to reduce ambiguity. However, it is out of scope to discuss
+which mechanisms are put in place for such agreements.
 
 ## Scope of Application
 
-Note that this mechanism relies on the domain name being resolvable in the DNS.
-This is not guaranteed, for example during a redemption period, in
+The "_for-sale" mechanism relies upon the domain name being resolvable in the DNS.
+This is not guaranteed, for example, during a redemption period, in
 pendingDelete status [@?STD69], or when the domain is DNSSEC-signed but fails 
 validation (i.e., has a bogus state).
 
