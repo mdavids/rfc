@@ -212,13 +212,11 @@ See (#contentlimits) for additional content limitations.
 
 ## Content Tag Type Definitions {#tagdefs}
 
-A new IANA sub-registry for known content tags is created in (#ianasubreg), with 
-this document registering the initial set. Implementations **SHOULD** 
-process only registered tags they support, and **MAY** ignore any others.
+The following content tags are defined as the initial valid content tags.
+
+Implementations **SHOULD** process only registered tags they support, and **MAY** ignore any others.
 
 Tags beginning with the character "x" may be used for development and testing.
-
-The following content tags are defined as the initial valid content tags.
 
 <!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
 ### fcod {#fcoddef}  
@@ -587,15 +585,6 @@ https://forsalereg.sidnlabs.nl/demo
 
 # IANA Considerations {#ianaconsid} <!-- See RFC8126 -->
 
-This document requires two IANA actions:
-
-1. Addition of "_for-sale" to the existing "Underscored and Globally Scoped DNS Node Names" registry
-((#ianareg)).
-
-2. Creation of a new sub-registry for "_for-sale Content Tags" ((#ianasubreg)).
-
-## Underscored and Globally Scoped DNS Node Name {#ianareg}
-
 IANA is requested to add the following entry to the "Underscored and Globally Scoped DNS Node Names" 
 registry [@RFC8552] :
 
@@ -603,38 +592,6 @@ RR Type | _NODE NAME | Reference
 --------|------------|-----------
 TXT | \_for-sale | <this memo>
 Table: Entry for the "Underscored and Globally Scoped DNS Node Names" registry
-
-## Creation of a Sub-registry {#ianasubreg}
-
-A sub-registry is to be created, titled "The "_for-sale" Underscored and Globally Scoped DNS Node Name" 
-in the "Domain Name System (DNS) Parameters" registry group.
-
-The change controller for this sub-registry will be the Independent Submissions
-Editor.
-
-<!-- ### Applicable Registration Policy -->
-Assignments in this registry follow the policy of "RFC Required" as specified in
-[@!RFC8126].
-
-<!-- ### Format, Syntax and Initial Assignments -->
-The sub-registry entries consist of "_for-sale Content Tags" as defined in
-(#abnf) and (#tagdefs) and the initial set is as follows:
-
-Tag Name | Reference | Status | Description
----------|-----------|--------|-------------
-fcod | <this memo> | active | For Sale Proprietary Code
-ftxt | <this memo> | active | For Sale Free Format Text
-furi | <this memo> | active | For Sale URI
-fval | <this memo> | active | For Sale Asking Price
-Table: Set of entries in the "_for-sale Content Tags" sub-registry
-
-The "status" column can have one of the following values:
-
-* active - the tag is in use in current implementations.
-* historic - the tag is deprecated and not expected to be used in current implementations.
-
-The addition of a new content tag to the registered list does not require the 
-definition of a new version tag. However, any modification to existing content tags does.
 
 {backmatter}
 
