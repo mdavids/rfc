@@ -364,7 +364,7 @@ The example below, however, shows a common use case where a "\_for-sale" leaf no
 wildcard:
 
 ~~~
-*         IN A    192.0.2.1
+*         IN A    198.51.100.80
           IN AAAA 2001:db8::80
 _for-sale IN TXT  "v=FORSALE1;ftxt=Only $99 at ACME"
 ~~~
