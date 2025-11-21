@@ -216,7 +216,7 @@ See (#contentlimits) for additional content limitations.
 
 ## Content Tag Type Definitions {#tagdefs}
 
-The following content tags are defined as the initial valid content tags.
+The following content tags are defined as valid content tags.
 
 Tags beginning with the character "x" may be used for development and testing.
 
