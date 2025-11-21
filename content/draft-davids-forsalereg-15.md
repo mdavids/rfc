@@ -172,7 +172,7 @@ The **OPTIONAL** forsale-content provides information to interested parties as e
 in (#introsect). 
 
 If the forsale-content is absent or invalid, but a valid version tag
-is present, processors **SHOULD** assume that the domain is for sale. For
+is present, processors **SHOULD** assume that the domain is for sale unless a local policy indicates otherwise. For
 example:
 
 ```
@@ -181,9 +181,9 @@ _for-sale.example.com. IN TXT "v=FORSALE1;fcod="
 _for-sale.example.com. IN TXT "v=FORSALE1;foo=bar"
 ```
 
-In such cases, processors **SHOULD** determine how to proceed. 
+In such cases, processors determines how to proceed. 
 An approach might be to signal that the domain is for sale and 
-to rely on traditional mechanisms such as WHOIS or RDAP to retrieve and present contact
+to rely on conventional mechanisms (e.g., WHOIS or Registration Data Access Protocol (RDAP)) to retrieve and present contact
 information.
 
 TXT records in the same RRset, but without a version tag, **MUST NOT** be interpreted or processed as a valid "\_for-sale" indicator. 
@@ -195,7 +195,7 @@ _for-sale.example.com. IN TXT "I am for sale"
 _for-sale.example.com. IN TXT "v=FORSALE1;fcod=XX-NGYyYjEyZWY"
 ```
 
-If no TXT records at a leaf node contain a valid version tag, processors **MUST** consider the node name invalid and discard it.
+If no TXT records at a leaf node contain a valid version tag, processors **MUST** consider the node name invalid and **MUST** discard it.
 
 See (#contentlimits) for additional content limitations.
 
