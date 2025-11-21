@@ -323,6 +323,8 @@ tags **MUST NOT** alter the semantics of existing content tags.
 A tag name length of 4 characters is **RECOMMENDED** for consistency with the initial tag
 set and to maintain compact record formats.
 
+Tags beginning with the character "x" are reserved for for development and testing.
+
 ## Content Limitations {#contentlimits}
 
 The "\_for-sale" TXT record [@RFC8553, (see) section 2.1] **MUST** contain content deemed valid under this specification.
