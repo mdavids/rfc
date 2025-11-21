@@ -320,7 +320,7 @@ _for-sale IN TXT "v=FORSALE1;fval=EUR999"
 See (#currency) for additional operational guidelines.
 
 ### Future Tags
-Future tags may be defined to accomodate operational needs. Future content 
+Future tags may be defined to accommodate operational needs. Future content 
 tags **MUST NOT** alter the semantics of existing content tags.
 
 A tag name length of 4 characters is **RECOMMENDED** for consistency with the initial tag
