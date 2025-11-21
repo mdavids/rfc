@@ -101,9 +101,13 @@ The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL 
 "**OPTIONAL**" in this document are to be interpreted as described in BCP 14 [@!RFC2119] [@!RFC8174]
 when, and only when, they appear in all capitals, as shown here.
 
-Note: In this document, the term "for sale" is used in a broad sense and 
-**MAY** also refer to cases where the domain name is available for lease, 
-or where the contractual right to use the domain name is offered to another party.
+In this document the term "Processor" refers to an entity (person, system, or service) 
+that reads, interprets, and takes appropriate actions based on "\_for-sale" DNS labels, 
+whether manually or automatically.
+
+Note: In this document, the term "for sale" is used in a broad sense and **MAY** also refer to cases 
+where the domain name is available for lease, or where the contractual right to 
+use the domain name is offered to another party.
 
 # Conventions {#conventions}
 
