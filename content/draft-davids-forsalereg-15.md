@@ -442,7 +442,7 @@ recognized abbreviations, such as cryptocurrencies.
 
 The use of standard fiat currencies is **RECOMMENDED**. When used, 
 they **MUST** be represented by three-letter uppercase currency 
-codes as specified in [@!ISO4217] (e.g., USD, EUR, GBP, JPY).
+codes as specified in [@!ISO4217] (e.g., USD, EUR, GBP, and JPY).
 
 The amount component consists of an integer part, optionally 
 followed by a fractional part separated by a decimal point (%x2E, ".").
@@ -511,14 +511,14 @@ There is a risk of data scraping, such as email addresses and phone numbers.
 Publishing contact information may expose domain name holders to spam, or unwanted contact.
 
 # Ethical Considerations {#ethicalconsids}
-Although not specifically designed for this purpose, the mechanisms 
+Although not specifically designed for this purpose, the mechanism 
 described in this document may also facilitate domain name 
 transactions by professional speculators, often referred to 
 as domainers, and those commonly referred to as domain drop catchers. 
 Some may view this as controversial.
 
 However, by enabling domain name holders to more explicitly
-signal their intent to sell, the proposed approach
+signal their intent to sell, the "_for-sale" approach
 aims to introduce greater clarity and predictability
 into the domain lifecycle. This potentially reduces the
 advantage currently held by these professionals, and 
