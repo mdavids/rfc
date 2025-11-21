@@ -62,26 +62,22 @@ particularly (#ianaconsid).
 
 # Introduction {#introsect}
 
-Well-established services [@RFC3912; @RFC9083] exist to determine whether a domain name is registered. However, the fact that a domain name exists does not necessarily mean it
+Well-established services [@RFC3912; @RFC9083] exist to determine whether a DNS domain name is registered. However, the fact that a domain name exists does not necessarily mean it
 is unavailable; it may still be for sale.
 
 Some registrars and other parties offer brokerage services between domain name holders and interested buyers.
 Such services are of limited value when the domain name is not available for purchase, but they may be 
 beneficial for domain names that are clearly being offered for sale.
 
-This specification defines a lightweight method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored
+This specification defines a method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored
 leaf node name [@!RFC8552] in the zone, indicating that the domain name is for sale.
 
-The TXT RR type [@!RFC1035] created for this purpose **MUST** follow the formal definition of
-(#conventions). Its content **MAY** contain a pointer, such as a Uniform Resource Identifier (URI) 
+The TXT RR type [@!RFC1035] created for this purpose must follow the formal definition of
+(#conventions). Its content may contain a pointer, such as a Uniform Resource Identifier (URI) 
 [@!RFC3986], or another string, allowing interested parties to obtain information or 
 contact the domain name holder for further negotiations.
 
 With due caution, such information can also be incorporated into automated availability services. When checking a domain name for availability, the service may indicate whether it is for sale and provide a pointer to the seller's information.
-
-Note: In this document, the term "for sale" is used in a broad sense and 
-**MAY** also refer to cases where the domain name is available for lease, 
-or where the contractual right to use the domain name is offered to another party.
 
 ## Terminology
 
@@ -89,6 +85,10 @@ The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL 
 "**SHOULD**", "**SHOULD NOT**", "**RECOMMENDED**", "**NOT RECOMMENDED**", "**MAY**", and
 "**OPTIONAL**" in this document are to be interpreted as described in BCP 14 [@!RFC2119] [@!RFC8174]
 when, and only when, they appear in all capitals, as shown here.
+
+In this document, the term "for sale" is used in a broad sense and 
+may also refer to cases where the domain name is available for lease, 
+or where the contractual right to use the domain name is offered to another party.
 
 # Rationale
 
