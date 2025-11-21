@@ -1,11 +1,11 @@
 %%%
 # This is a comment - but only in this block
 title = "The \"_for-sale\" Underscored and Globally Scoped DNS Node Name"
-abbrev = "forsalereg"
-#ipr = "trust200902" 
-# area = "Internet"
-workgroup = "Independent Submission Editor (ISE)"
-submissiontype = "independent"
+abbrev = "_for-sale DNS"
+ipr = "trust200902" 
+area = "Operations and Management"
+#workgroup =
+submissiontype = "IETF"
 keyword = [""]
 # https://www.rfc-editor.org/rfc/rfc7991#section-2.45.14
 tocdepth = 3
@@ -16,7 +16,7 @@ tocdepth = 3
 [seriesInfo]
 name = "Internet-Draft"
 value = "draft-davids-forsalereg-15"
-stream = "independent"
+stream = "IETF"
 status = "informational"
 
 [[author]]
@@ -46,8 +46,6 @@ underscored DNS leaf node name "\_for-sale" to indicate that the
 parent domain name is available for purchase. The convention can be 
 deployed without disrupting existing operations, and it may be 
 applied even when the domain name is still actively in use.
-
-This document is not an IETF consensus document: it is published for informational purposes.
 
 {removeInRFC="true"}
 .# About This Document
