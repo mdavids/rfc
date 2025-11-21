@@ -382,7 +382,7 @@ Table: Placements of TXT record {#placements}
 
 Note 1: 
 When the "\_for-sale" leaf node is applied to a label under a subdomain, 
-there may not be a public domain name registry [@?RFC8499] capable of properly recording the rights associated with that label. 
+there may not be a public domain name registry [@?RFC9499] capable of properly recording the rights associated with that label. 
 Nevertheless, this does not constitute a violation of this document. 
 One possible approach is for the involved parties to establish a mutual agreement to formalize these rights.
 
