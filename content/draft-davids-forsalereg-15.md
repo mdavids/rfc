@@ -207,6 +207,8 @@ A new IANA sub-registry for known content tags is created in (#ianasubreg), with
 this document registering the initial set. Implementations **SHOULD** 
 process only registered tags they support, and **MAY** ignore any others.
 
+Tags beginning with the character "x" may be used for development and testing.
+
 The following content tags are defined as the initial valid content tags.
 
 <!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
@@ -300,6 +302,13 @@ _for-sale IN TXT "v=FORSALE1;fval=EUR999"
 ~~~
 
 See (#currency) for additional operational guidelines.
+
+### Future Tags
+
+Future tags may be defined to accomodate operational needs. Future content tags **MUST NOT** alter the semantics of existing content tags.
+
+A tag name length of 4 characters is **RECOMMENDED** for consistency with the initial tag
+set and to maintain compact record formats.
 
 ## Content Limitations {#contentlimits}
 
@@ -603,16 +612,8 @@ The "status" column can have one of the following values:
 * active - the tag is in use in current implementations.
 * historic - the tag is deprecated and not expected to be used in current implementations.
 
-Newly defined content tags **MUST NOT** alter the semantics of existing content tags.
-
 The addition of a new content tag to the registered list does not require the 
 definition of a new version tag. However, any modification to existing content tags does.
-
-Tags beginning with the character "x" may be used for development and testing, and
-**SHOULD NOT** be requested or assigned.
-
-A tag name length of 4 characters is **RECOMMENDED** for consistency with the initial tag
-set and to maintain compact record formats.
 
 <!-- ### Escalation Process -->
 This registry was created by [RFCXXXX], which was published on the Independent Submission Stream. 
