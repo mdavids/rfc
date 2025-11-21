@@ -15,7 +15,7 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-15"
+value = "draft-davids-forsalereg-16"
 stream = "independent"
 status = "informational"
 
@@ -76,8 +76,8 @@ leaf node name [@!RFC8552] in the zone, indicating that the domain name is for s
 
 The TXT RR type [@!RFC1035] created for this purpose **MUST** follow the formal definition of
 (#conventions). Its content **MAY** contain a pointer, such as a Uniform Resource Identifier (URI) 
-[@!RFC3986], or another string, allowing interested parties to obtain information or 
-contact the domain name holder for further negotiations.
+[@!RFC3986], an Internationalized Resource Identifier (IRI) [@!RFC3987] or another string, 
+allowing interested parties to obtain information or contact the domain name holder for further negotiations.
 
 With due caution, such information can also be incorporated into automated availability services. When checking a domain name for availability, the service may indicate whether it is for sale and provide a pointer to the seller's information.
 
@@ -118,7 +118,7 @@ forsale-record  = forsale-version [forsale-content]
 
 forsale-version = %s"v=FORSALE1;"
                   ; %x76.3D.46.4F.52.53.41.4C.45.31.3B
-                  ; version tag, case sensitive, no spaces
+                  ; version tag, case-sensitive, no spaces
 
 forsale-content = fcod-pair / ftxt-pair / furi-pair / fval-pair
                   ; referred to as 'tag-value pairs'
@@ -135,17 +135,18 @@ fcod-tag        = %s"fcod="
 ftxt-tag        = %s"ftxt="
 furi-tag        = %s"furi="
 fval-tag        = %s"fval="
-                  ; all content tags case sensitive lowercase
+                  ; all content tags case-sensitive lowercase
 
 fcod-value      = 1*239OCTET
 
 ftxt-value      = 1*239OCTET
 
-furi-value      = URI
+furi-value      = URI / IRI
                   ; http, https, mailto and tel URI schemes
-                  ; exactly one URI
+                  ; exactly one URI or IRI
 
 URI             = <as defined in RFC3986, Appendix A>
+IRI		= <as defined in RFC3987, Section 2.2>
 
 fval-value      = fval-currency fval-amount
                   ; total length: 2 to 239 characters 
@@ -281,7 +282,7 @@ See (#handlerdata) for considerations regarding the representation of non-ASCII 
 This content tag is intended to contain a human-readable and machine-parseable URI that conveys information to interested parties.
 
 While the syntax allows any URI scheme, only the following schemes are **RECOMMENDED** 
-for use: `http` and `https` [@RFC9110], `mailto` [@RFC6068], and `tel` [@RFC3966].
+for use: `http` and `https` [@RFC9110], `mailto` [@RFC6068; @RFC6530, (see) section 11.1], and `tel` [@RFC3966].
 
 The content value **MUST** contain exactly one URI. For example:
 
@@ -293,7 +294,11 @@ URIs **MUST** conform to the syntax and encoding requirements specified in
 [@!RFC3986, section 2.1], including the percent-encoding of characters 
 not allowed unencoded (e.g., spaces **MUST** be encoded as `%20` in a URI).
 
+(#handlerdata) provides additional guidelines on character encoding.
+
 See the (#security, use title) section for possible risks.
+
+Note: References to a URI in this document also encompass IRIs [@!RFC3987].
 
 ### fval {#fvalpar}
 This content tag is intended to contain human-readable and machine-parseable 
@@ -510,12 +515,20 @@ defined in [@RFC1035, (see) section 5.1]. This includes the possibility of
 representing non-ASCII data in the content value, by using escape sequences 
 (e.g., \DDD or \X notation).
 
-All text exchanged between systems that are not part of a closed ecosystem 
-**SHALL** be encoded in and interpreted as UTF-8 [@!RFC3629] and conform 
-to the Network Unicode format [@?RFC5198].
+All text in content values exchanged between systems that are not part of a 
+closed ecosystem **SHALL** be encoded in and interpreted as UTF-8 [@!RFC3629] and conform 
+to the Network Unicode format [@?RFC5198]. The allowed subset of Unicode code points
+**SHOULD** conform to [@!RFC9839, (see) section 4.3], with the exception of `%x09`, `%x0A`
+and `%x0D` which **SHOULD NOT** be used.
 
-Processors **MUST** be capable of handling such encodings to ensure that
-non-ASCII content values are interpreted correctly.
+See (#robustness) for additional guidelines and the (#security, use title)
+section for possible risks.
+
+Internationalized Domain Names (IDN) **MAY** be expressed as A-labels as well as
+U-labels [@!RFC5890].
+
+Processors **MUST** be capable of handling such encodings to ensure that 
+non-ASCII content values are correctly interpreted and represented.
 
 Note: When non-ASCII data is used, the ABNF octet limit applies to the encoded
 byte sequence, not the number of visible characters. Multi-byte
@@ -561,14 +574,16 @@ The above example is a valid "fcod=" content tag that includes the
 string ";ftxt=" in the content value, which may be confusing, 
 as it does not actually represent an "ftxt=" content tag.
 
-## Robustness
+## Robustness {#robustness}
 
-Because the format of the content part is not strictly defined in this
+Because the format of the content part is not strictly defined in this 
 document, processors **MAY** apply the robustness principle of being 
 liberal in what they accept. This also applies to space 
-characters (`%x20`) immediately following the version tag.
-Alternatively, parties may agree on a more strictly defined proprietary format
-for the content value to reduce ambiguity.
+characters (`%x20`) immediately following the version tag. 
+Alternatively, parties may agree on a more strictly defined proprietary format 
+for the content value to reduce ambiguity. Processors **MAY** also convert 
+control characters (e.g., `%x09`, `%x0A`, `%x0D`) in "ftx=" content to 
+spaces (`%x20`) for correct representation.
 
 ## Scope of Application
 
@@ -585,8 +600,10 @@ website or elsewhere. However, there is a risk if the domain name holder
 publishes a malicious URI or one that points to improper content. 
 This may result in reputational damage to the party parsing the record.
 
-An even more serious scenario arises when the content of the TXT record 
-is not properly validated and sanitized, potentially enabling attacks such as XSS or SQL injection.
+An even more serious scenario arises when the content of the TXT record is not 
+properly validated and sanitized, potentially enabling attacks such as XSS or SQL 
+injection, as well as spoofing techniques based on Unicode manipulation, 
+including bidirectional text attacks and homograph attacks.
 
 Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted with the utmost care.
 Possible approaches include maintaining a list of validated URIs or applying other validation methods after parsing and before publishing.
@@ -703,7 +720,7 @@ The addition of a new content tag to the registered list does not require the
 definition of a new version tag. However, any modification to existing content tags does.
 
 Tags beginning with the character "x" may be used for development and testing, and
-**SHOULD NOT** be requested or assigned.
+**MUST NOT** be requested or assigned.
 
 A tag name length of 4 characters is **RECOMMENDED** for consistency with the initial tag
 set and to maintain compact record formats.
@@ -720,7 +737,8 @@ with the Independent Submissions Editor. <!-- https://datatracker.ietf.org/doc/h
 
 The author would like to thank Thijs van den Hout, Caspar Schutijser, Melvin
 Elderman, Ben van Hartingsveldt, Jesse Davids, Juan Stelling, John R.&#xa0;Levine, 
-and Eliot Lear (ISE) for their valuable feedback.
+Dave Lawrence, Andrew Sullivan, Paul Hoffman, Eliot Lear (ISE) and 
+Mohamed 'Med' Boucadair for their valuable feedback.
 
 <reference anchor='PSL' target='https://publicsuffix.org/'>
  <front>
