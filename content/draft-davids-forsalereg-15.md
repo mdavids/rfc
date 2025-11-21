@@ -69,8 +69,10 @@ Some registrars and other parties offer brokerage services between domain name h
 Such services are of limited value when the domain name is not available for purchase, but they may be 
 beneficial for domain names that are clearly being offered for sale.
 
-This specification defines a method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored
-leaf node name [@!RFC8552] in the zone, indicating that the domain name is for sale.
+This specification defines a simple method to ascertain whether a domain name, although registered, is available for purchase. It enables a domain name holder to add a reserved underscored
+leaf node name [@!RFC8552] in the zone, indicating that the domain name is for sale. The indicator can be 
+turned on and off at will and, moreover, it is immediately deployable and does not 
+require significant changes in existing services, allowing for a smooth introduction of the concept.
 
 The TXT RR type [@!RFC1035] created for this purpose must follow the formal definition of
 (#conventions). Its content may contain a pointer, such as a Uniform Resource Identifier (URI) 
@@ -78,6 +80,10 @@ The TXT RR type [@!RFC1035] created for this purpose must follow the formal defi
 contact the domain name holder for further negotiations.
 
 With due caution, such information can also be incorporated into automated availability services. When checking a domain name for availability, the service may indicate whether it is for sale and provide a pointer to the seller's information.
+
+The operational convention described in this document does not require any protocol change.
+
+Furthermore, (#ethicalconsids) discusses some ethical considerations. In particular, the approach in this document aims to promote a more equitable domain aftermarket and minimizing potential for unintended commercial entanglements by registries.
 
 ## Terminology
 
@@ -89,17 +95,6 @@ when, and only when, they appear in all capitals, as shown here.
 In this document, the term "for sale" is used in a broad sense and 
 may also refer to cases where the domain name is available for lease, 
 or where the contractual right to use the domain name is offered to another party.
-
-# Rationale
-
-There are undoubtedly more ways to address this problem space. The reasons for the approach 
-defined in this document are primarily accessibility and simplicity. The indicator can be 
-easily turned on and off at will and, moreover, it is immediately deployable and does not 
-require significant changes in existing services, allowing for a smooth introduction of the concept.
-
-The method described in this memo does not alter existing IETF standards.
-
-Furthermore, the chosen approach aligns with ethical considerations by promoting a more equitable domain aftermarket and minimizing potential for unintended commercial entanglements by registries, as detailed in (#ethicalconsids).
 
 # Conventions {#conventions}
 
