@@ -451,7 +451,7 @@ All text in content values exchanged between systems that are not part of a
 closed ecosystem **SHALL** be encoded in and interpreted as UTF-8 [@!RFC3629] and conform 
 to the Network Unicode format [@?RFC5198]. The allowed subset of Unicode code points
 **SHOULD** conform to [@!RFC9839, (see) section 4.3], with the exception of `%x09`, `%x0A`
-and `%x0D` which **SHOULD NOT** be used.
+and `%x0D` which **MUST NOT** be used.
 
 See (#robustness) for additional guidelines and the (#security, use title)
 section for possible risks.
@@ -518,9 +518,12 @@ characters (`%x20`) immediately following the version tag.
 
 Alternatively, parties may agree on a more strictly defined proprietary format 
 for the content value to reduce ambiguity. However, it is out of scope to discuss
-which mechanisms are put in place for such agreements. Processors **MAY** also convert 
-control characters (e.g., `%x09`, `%x0A`, `%x0D`) in "ftx=" content to 
-spaces (`%x20`) for correct representation.
+which mechanisms are put in place for such agreements. 
+
+When encountering unexpected or prohibited control characters in "ftxt=" content 
+(e.g., `%x09`, `%x0A`, `%x0B`, `%x0D`, see (#handlerdata)), processors 
+**MAY** sanitize them (e.g., by converting to spaces (`%x20`) or removing 
+them entirely) before display or processing to ensure correct representation. 
 
 ## Scope of Application
 
