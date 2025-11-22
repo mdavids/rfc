@@ -545,10 +545,8 @@ injection, as well as spoofing techniques based on Unicode manipulation,
 including bidirectional text attacks and homograph attacks.
 
 Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted with the utmost care.
-Possible approaches include maintaining a list of validated URIs or applying other validation methods after parsing and before publishing.
-
-There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
-means, without there being any intention to actually sell the domain name.
+Possible approaches include maintaining a list of validated URIs or applying other validation methods 
+after parsing and before publishing.
 
 Automatically following URIs from "\_for-sale" records without user 
 consent creates security risks, including exposure to malware, 
@@ -558,6 +556,9 @@ redirect users when encountering "furi=" content tags. Instead,
 processors **SHOULD** present the target URI to users and require 
 explicit confirmation before navigation. This allows users to inspect 
 the destination before proceeding.
+
+There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
+means, without there being any intention to actually sell the domain name.
 
 Domain holders may advertise artificially low prices and processors that present
 "fval=" data to users **SHOULD** display appropriate disclaimers (e.g., "Price
