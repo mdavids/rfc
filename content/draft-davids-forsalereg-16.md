@@ -548,7 +548,16 @@ Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted wi
 Possible approaches include maintaining a list of validated URIs or applying other validation methods after parsing and before publishing.
 
 There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
-means, without there being any intention to actually sell the domain name. Therefore, this method is best suited for use by professionals.
+means, without there being any intention to actually sell the domain name.
+
+Automatically following URIs from "\_for-sale" records without user 
+consent creates security risks, including exposure to malware, 
+phishing pages, intrusive advertising (pop-ups, auto-playing 
+media), and scripted attacks.  Implementations **SHOULD NOT** automatically 
+redirect users when encountering "furi=" content tags. Instead, 
+processors **SHOULD** present the target URI to users and require 
+explicit confirmation before navigation. This allows users to inspect 
+the destination before proceeding.
 
 Domain holders may advertise artificially low prices and processors that present
 "fval=" data to users **SHOULD** display appropriate disclaimers (e.g., "Price
@@ -718,7 +727,7 @@ _for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
 
 The author would like to thank Thijs van den Hout, Caspar Schutijser, Melvin
 Elderman, Ben van Hartingsveldt, Jesse Davids, Juan Stelling, John R.&#xa0;Levine, 
-Dave Lawrence, Andrew Sullivan, Paul Hoffman, Eliot Lear (ISE) and 
+Dave Lawrence, Andrew Sullivan, Paul Hoffman, Eliot Lear (ISE), Joe Abley and 
 Mohamed 'Med' Boucadair for their valuable feedback.
 
 <reference anchor='PSL' target='https://publicsuffix.org/'>
