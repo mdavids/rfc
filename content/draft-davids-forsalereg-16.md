@@ -550,8 +550,7 @@ after parsing and before publishing.
 
 Automatically following URIs from "\_for-sale" records without user 
 consent creates security risks, including exposure to malware, 
-phishing pages, intrusive advertising (pop-ups, auto-playing 
-media), and scripted attacks.  Implementations **SHOULD NOT** automatically 
+phishing pages, and scripted attacks. Implementations **SHOULD NOT** automatically 
 redirect users when encountering "furi=" content tags. Instead, 
 processors **SHOULD** present the target URI to users and require 
 explicit confirmation before navigation. This allows users to inspect 
