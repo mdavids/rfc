@@ -218,8 +218,6 @@ See (#contentlimits) for additional content limitations.
 
 The following content tags are defined as valid content tags.
 
-Tags beginning with the character "x" may be used for development and testing.
-
 Content tags are optional. Providing a minimum set to allow interested parties 
 to engage is **RECOMMENDED**.
 
