@@ -91,7 +91,7 @@ The operational convention described in this document does not require any proto
 
 Furthermore, (#ethicalconsids) discusses some ethical considerations. In particular, 
 the approach in this document aims to promote a more equitable domain aftermarket and 
-minimizing potential for unintended commercial entanglements by registries.
+minimising potential for unintended commercial entanglements by registries.
 
 Examples are provided in (#examples).
 
@@ -103,7 +103,7 @@ The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL 
 when, and only when, they appear in all capitals, as shown here.
 
 Although the document defines an operation convention not any protocol extension, the use of normative language is used
-to promote consistent and umabiguous behaviors among entities that adopt the convention.
+to promote consistent and unambiguous behaviours among entities that adopt the convention.
 
 The term "Processor" refers to an entity (person, system, or service) 
 that reads, interprets, and takes appropriate actions based on "\_for-sale" DNS labels, 
@@ -265,7 +265,7 @@ Note: As an implementation consideration, when multiple parties are involved in
 the domain sale process and use the same mechanism, it may be difficult to identify 
 the relevant content in an RRset. Adding a recognizable prefix to the content (e.g.,
 "ACME-") is one possible approach. However, this is left to the implementor, 
-as it is not enforced in this document. In this case, ACME would recognize its 
+as it is not enforced in this document. In this case, ACME would recognise its 
 content tag and interpret it as intended. This example uses Base64 encoding 
 to avoid escaping and ensure printable characters, though this is 
 **OPTIONAL** and not required.
@@ -312,14 +312,23 @@ Note: References to a URI in this document also encompass IRIs [@!RFC3987].
 
 ### fval {#fvalpar}
 This content tag is intended to contain human-readable and machine-parseable 
-text that explicitly indicates an asking price in a certain currency, as opposed to 
-the price being loosely incorporated in an "ftxt=" content tag. For example:
+text that explicitly indicates an asking price in a certain currency.
+
+Price information is commonly published by domain sellers; the 
+"fval=" content tag provides a structured format for this purpose, enabling 
+reliable machine parsing and reducing ambiguity compared to 
+embedding prices in free-form "ftxt=" content tags. For example:
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;fval=EUR999"
 ~~~
 
-See (#currency) for additional operational guidelines.
+The information provided in "fval=" is not binding. For current and 
+reliable information, interested parties **SHOULD** engage directly 
+with the seller via "furi=" or conventional mechanisms.
+
+See (#currency) for additional operational guidelines and the (#security, use title) 
+section for possible risks.
 
 ### Future Tags
 Future tags may be defined to accommodate operational needs. Future content 
@@ -483,8 +492,11 @@ followed by a fractional part separated by a decimal point (`%x2E`, ".").
 
 ## TTLs
 
-Long TTLs [@!RFC1035, (see) section 3.2.1] increase the risk of outdated data misleading buyers into thinking the domain is still
-available. 
+Long TTLs [@!RFC1035, (see) section 3.2.1] increase the risk of outdated
+data misleading buyers into thinking the domain is still available
+or that advertised prices remain current. 
+
+A TTL of 3600 seconds (1 hour) or less is **RECOMMENDED**.
 
 ## Ambiguous Constructs
 
@@ -528,7 +540,7 @@ publishes a malicious URI or one that points to improper content.
 This may result in reputational damage to the party parsing the record.
 
 An even more serious scenario arises when the content of the TXT record is not 
-properly validated and sanitized, potentially enabling attacks such as XSS or SQL 
+properly validated and sanitised, potentially enabling attacks such as XSS or SQL 
 injection, as well as spoofing techniques based on Unicode manipulation, 
 including bidirectional text attacks and homograph attacks.
 
@@ -537,6 +549,11 @@ Possible approaches include maintaining a list of validated URIs or applying oth
 
 There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
 means, without there being any intention to actually sell the domain name. Therefore, this method is best suited for use by professionals.
+
+Domain holders may advertise artificially low prices and processors that present
+"fval=" data to users **SHOULD** display appropriate disclaimers (e.g., "Price
+indicative only - verify with seller").  Automated systems **SHOULD NOT**
+make purchase commitments based solely on advertised prices without human verification.
 
 # Privacy Considerations {#privacy}
 
