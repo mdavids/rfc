@@ -81,6 +81,7 @@ The TXT RR type [@!RFC1035] created for this purpose must follow the formal defi
 (#conventions). Its content may contain a pointer, such as a Uniform Resource Identifier (URI) 
 [@!RFC3986], an Internationalized Resource Identifier (IRI) [@!RFC3987] or another string, 
 allowing interested parties to obtain information or contact the domain name holder for further negotiations.
+Details about whether and how such negotiations occur are out of scope.
 
 With due caution, such information can also be incorporated into automated availability services. 
 When checking a domain name for availability, the service may indicate whether it is for 
@@ -101,11 +102,14 @@ The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL 
 "**OPTIONAL**" in this document are to be interpreted as described in BCP 14 [@!RFC2119] [@!RFC8174]
 when, and only when, they appear in all capitals, as shown here.
 
-In this document the term "Processor" refers to an entity (person, system, or service) 
+Although the document defines an operation convention not any protocol extension, the use of normative language is used
+to promote consistent and umabiguous behaviors among entities that adopt the convention.
+
+The term "Processor" refers to an entity (person, system, or service) 
 that reads, interprets, and takes appropriate actions based on "\_for-sale" DNS labels, 
 whether manually or automatically.
 
-Note: In this document, the term "for sale" is used in a broad sense and **MAY** also refer to cases 
+The term "for sale" is used in a broad sense and may also refer to cases 
 where the domain name is available for lease, or where the contractual right to 
 use the domain name is offered to another party.
 
@@ -197,7 +201,7 @@ _for-sale.example.com. IN TXT "v=FORSALE1;foo=bar"
 
 In such cases, processors determine how to proceed. 
 An approach might be to signal that the domain is for sale and 
-to rely on conventional mechanisms (e.g.,WHOIS or Registration Data Access 
+to rely on conventional mechanisms (e.g., WHOIS or Registration Data Access 
 Protocol (RDAP)) to retrieve and present contact information.
 
 TXT records in the same RRset, but without a version tag, **MUST NOT** be interpreted or processed as a valid "\_for-sale" indicator. 
@@ -265,11 +269,11 @@ the relevant content in an RRset. Adding a recognizable prefix to the content (e
 "ACME-") is one possible approach. However, this is left to the implementor, 
 as it is not enforced in this document. In this case, ACME would recognize its 
 content tag and interpret it as intended. This example uses Base64 encoding 
-to avoid escaping and ensure printable characters, though this is also
+to avoid escaping and ensure printable characters, though this is 
 **OPTIONAL** and not required.
 
 ### ftxt  
-This content tag is intended to contain human-readable text that conveys information to interested parties. For example:
+This content tag is intended to contain human-readable text that conveys additional information to interested parties. For example:
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;ftxt=Call for info."
@@ -287,7 +291,7 @@ See (#handlerdata) for considerations regarding the representation of non-ASCII 
 
 <!-- TODO https://www.rfc-editor.org/rfc/rfc7553.html noemen, of zelfs opnemen? -->
 ### furi  
-This content tag is intended to contain a human-readable and machine-parseable URI that conveys information to interested parties.
+This content tag is intended to contain a human-readable and machine-parseable URI that can be used by interested parties to retrieve further information.
 
 While the syntax allows any URI scheme, only the following schemes are **RECOMMENDED** 
 for use: `http` and `https` [@RFC9110], `mailto` [@RFC6068; @RFC6530, (see) section 11.1], and `tel` [@RFC3966].
