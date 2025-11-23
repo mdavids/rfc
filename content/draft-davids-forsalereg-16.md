@@ -457,7 +457,7 @@ See (#robustness) for additional guidelines and the (#security, use title)
 section for possible risks.
 
 Internationalized Domain Names (IDN) **MAY** be expressed as A-labels as well as
-U-labels [@!RFC5890].
+U-labels [@!RFC5890], with the U-label form in escape sequences as described above.
 
 Processors **MUST** be capable of handling such encodings to ensure that 
 non-ASCII content values are correctly interpreted and represented.
