@@ -102,7 +102,7 @@ The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL 
 "**OPTIONAL**" in this document are to be interpreted as described in BCP 14 [@!RFC2119] [@!RFC8174]
 when, and only when, they appear in all capitals, as shown here.
 
-Although the document defines an operation convention not any protocol extension, the use of normative language is used
+Although the document defines an operational convention rather than a protocol extension, the use of normative language is used
 to promote consistent and unambiguous behaviours among entities that adopt the convention.
 
 The term "Processor" refers to an entity (person, system, or service) 
