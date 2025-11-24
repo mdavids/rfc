@@ -90,8 +90,8 @@ sale and provide a pointer to the seller's information.
 The operational convention described in this document does not require any protocol change.
 
 Furthermore, (#ethicalconsids) discusses some ethical considerations. In particular, 
-the approach in this document aims to promote a more equitable domain aftermarket and 
-minimising potential for unintended commercial entanglements by registries.
+the approach in this document aims to promote a more equitable domain aftermarket and to 
+minimise the potential for unintended commercial entanglements by registries.
 
 Examples are provided in (#examples).
 
@@ -102,7 +102,7 @@ The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL 
 "**OPTIONAL**" in this document are to be interpreted as described in BCP 14 [@!RFC2119] [@!RFC8174]
 when, and only when, they appear in all capitals, as shown here.
 
-Although the document defines an operational convention rather than a protocol extension, the use of normative language is used
+Although the document defines an operational convention rather than a protocol extension, normative language is used
 to promote consistent and unambiguous behaviours among entities that adopt the convention.
 
 The term "Processor" refers to an entity (person, system, or service) 
@@ -457,7 +457,7 @@ See (#robustness) for additional guidelines and the (#security, use title)
 section for possible risks.
 
 Internationalized Domain Names (IDN) **MAY** be expressed as A-labels as well as
-U-labels [@!RFC5890], with the U-label form in escape sequences as described above.
+U-labels [@!RFC5890], with U-labels encoded using escape sequences as described above.
 
 Processors **MUST** be capable of handling such encodings to ensure that 
 non-ASCII content values are correctly interpreted and represented.
