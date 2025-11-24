@@ -35,7 +35,7 @@ organization = "SIDN Labs"
   country = "Netherlands"
 %%%
 
-<!-- TODO: alle comments nalopen, want het zijn niet alleen TODO en kijken of het opgeschoond kan/moet -->
+<!-- TODO: go through al comments -->
 
 <!-- hint: use Title Case everywhere -->
 
@@ -171,9 +171,6 @@ fval-amount     = int-part [ %x2E frac-part ]
 int-part        = 1*DIGIT
 frac-part       = 1*DIGIT
 ~~~
-<!-- hint: make sure [@!RFC3986 remains somewhere in the document-->
-<!-- hint: double check on https://author-tools.ietf.org/abnf -->
-
 See (#tagdefs) for more detailed format definitions per content tag type. 
 
 Each "\_for-sale" TXT record **MUST NOT** contain more than one tag-value
@@ -287,7 +284,6 @@ See (#fvalpar) for a way to explicitly indicate an asking price for easier machi
 
 See (#handlerdata) for considerations regarding the representation of non-ASCII data in the content value.
 
-<!-- TODO https://www.rfc-editor.org/rfc/rfc7553.html noemen, of zelfs opnemen? -->
 ### furi  
 This content tag is intended to contain a human-readable and machine-parseable URI that can be used by interested parties to retrieve further information.
 
