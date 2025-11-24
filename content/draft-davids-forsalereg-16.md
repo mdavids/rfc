@@ -68,7 +68,7 @@ is unavailable; it may still be for sale.
 
 Some registrars and other parties offer brokerage services between domain name holders and interested buyers.
 Such services are of limited value when the domain name is not available for purchase, but they may be 
-beneficial for domain names that are clearly being offered for sale.
+beneficial for domain names that are explicitly marked as for sale.
 
 This specification defines a simple method to ascertain whether a domain name, 
 although registered, is available for purchase. It enables a domain name holder to 
@@ -105,7 +105,7 @@ when, and only when, they appear in all capitals, as shown here.
 Although the document defines an operational convention rather than a protocol extension, normative language is used
 to promote consistent and unambiguous behaviours among entities that adopt the convention.
 
-The term "Processor" refers to an entity (person, system, or service) 
+The term "processor" refers to an entity (person, system, or service) 
 that reads, interprets, and takes appropriate actions based on "\_for-sale" DNS labels, 
 whether manually or automatically.
 
@@ -285,7 +285,7 @@ See (#fvalpar) for a way to explicitly indicate an asking price for easier machi
 See (#handlerdata) for considerations regarding the representation of non-ASCII data in the content value.
 
 ### furi  
-This content tag is intended to contain a human-readable and machine-parseable URI that can be used by interested parties to retrieve further information.
+This content tag is intended to contain a human-readable and machine-parsable URI that can be used by interested parties to retrieve further information.
 
 While the syntax allows any URI scheme, only the following schemes are **RECOMMENDED** 
 for use: `http` and `https` [@RFC9110], `mailto` [@RFC6068; @RFC6530, (see) section 11.1], and `tel` [@RFC3966].
@@ -307,10 +307,10 @@ See the (#security, use title) section for possible risks.
 Note: References to a URI in this document also encompass IRIs [@!RFC3987].
 
 ### fval {#fvalpar}
-This content tag is intended to contain human-readable and machine-parseable 
+This content tag is intended to contain human-readable and machine-parsable 
 text that explicitly indicates an asking price in a certain currency.
 
-Price information is commonly published by domain sellers; the 
+Price information is commonly published by domain sellers. The 
 "fval=" content tag provides a structured format for this purpose, enabling 
 reliable machine parsing and reducing ambiguity compared to 
 embedding prices in free-form "ftxt=" content tags. For example:
@@ -353,7 +353,7 @@ See (#operationalcons) for additional guidelines.
 
 ## RRset Limitations {#rrsetlimits}
 
-This document does not define restrictions on the number of TXT records in the
+This document does not impose a limit on the number of TXT records in the
 RRset of "\_for-sale" TXT records.
 
 When multiple "\_for-sale" TXT records are present in an RRset, the 
