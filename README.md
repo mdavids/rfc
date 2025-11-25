@@ -9,7 +9,6 @@ https://datatracker.ietf.org/doc/html/draft-davids-forsalereg
 ## More recent version from this repository (-17 vs -16 on datatracker):
 
 https://forsalereg.sidnlabs.nl/rfc/
-* https://forsalereg.sidnlabs.nl/ (associated registry group example)
 
 ## Demo:
 
