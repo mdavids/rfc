@@ -15,7 +15,7 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-16"
+value = "draft-davids-forsalereg-17"
 stream = "IETF"
 status = "informational"
 
@@ -395,7 +395,7 @@ _for-sale IN TXT  "v=FORSALE1;ftxt=Only $99 at ACME"
 ## Placement of the Leaf Node Name
 
 The "\_for-sale" leaf node name can essentially be placed at any level of
-the DNS except in the in-addr.arpa. infrastructure TLD.
+the DNS except in the arpa. infrastructure TLD.
 
 (#placements) illustrates this:
 
@@ -417,8 +417,8 @@ One possible approach is for the involved parties to establish a mutual agreemen
 
 Note 2:
 If a "\_for-sale" leaf node were to appear under the .arpa infrastructure top-level 
-domain, it might be interpreted as an offer to sell IP address space. 
-However, such use is explicitly out of scope for this document, and processors
+domain, it might be interpreted as an offer to sell IP address space, E.164
+numbers or the like. However, such use is explicitly out of scope for this document, and processors
 **MUST** ignore any such records.
 
 # Operational Considerations {#operationalcons}
