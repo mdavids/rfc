@@ -249,7 +249,7 @@ to unintended or malicious destinations or from being presented
 with unintended content. An additional advantage is that the "fcod=" content
 value in DNS records can remain unchanged, while the interpretation of it, such as to
 which "for sale" URL it redirects, can be updated in the back-end system
-that process it.
+that processes it.
 
 The following example shows a string encoded using Base64 [@?RFC4648] 
 preceded by the prefix "ACME-" as the value of the content tag:
