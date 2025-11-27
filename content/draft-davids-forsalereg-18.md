@@ -247,8 +247,8 @@ authority over redirection URLs and any other information derived
 from the content tag, thereby preventing users from being sent 
 to unintended or malicious destinations or from being presented 
 with unintended content. An additional advantage is that the "fcod=" content
-value in DNS record can remain unchanged, while the meaning of it, such as to
-which "for sale" URL it refers, can be updated in the back-end system when desired.
+value in DNS records can remain unchanged, while the interpretation of it, such as to
+which "for sale" URL it redirects, can be updated in the back-end system when desired.
 
 The following example shows a string encoded using Base64 [@?RFC4648] 
 preceded by the prefix "ACME-" as the value of the content tag:
