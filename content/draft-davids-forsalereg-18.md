@@ -248,7 +248,8 @@ from the content tag, thereby preventing users from being sent
 to unintended or malicious destinations or from being presented 
 with unintended content. An additional advantage is that the 
 interpretation of "fcod=" content values can be adjusted centrally 
-in back-end systems, without modifying the "\_for-sale" TXT records.
+in back-end systems, such as which "for sale" URL to redirect to, 
+without modifying the "\_for-sale" TXT records.
 
 The following example shows a string encoded using Base64 [@?RFC4648] 
 preceded by the prefix "ACME-" as the value of the content tag:
