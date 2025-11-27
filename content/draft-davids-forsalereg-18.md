@@ -15,7 +15,7 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-17"
+value = "draft-davids-forsalereg-18"
 stream = "IETF"
 status = "informational"
 
@@ -230,8 +230,8 @@ that understand its semantics. The content value **MUST** consist of at least on
 The manner in which the "fcod=" content tag is used is determined by agreement
 between cooperating parties.
 
-For example, a domain name registry may allow registrars to enter a "for sale" URL into their system. 
-From that URL, a unique code is generated. This code is inserted as the value of
+For example, a domain name registry may allow registrars to enter a "for sale" URL into their
+back-end system. From that URL, a unique code is generated. This code is inserted as the value of
 the "fcod=" content tag of the "\_for-sale" TXT record of a domain name, as shown in the example below.
 
 When a user checks the availability of the domain name using a registry-provided tool 
@@ -246,7 +246,9 @@ The rationale for this approach is that controlling parties retain
 authority over redirection URLs and any other information derived 
 from the content tag, thereby preventing users from being sent 
 to unintended or malicious destinations or from being presented 
-with unintended content.
+with unintended content. An additional advantage is that the "fcod=" content
+value in DNS record can remain unchanged, while the meaning of it, such as to
+which "for sale" URL it refers, can be updated in the back-end system when desired.
 
 The following example shows a string encoded using Base64 [@?RFC4648] 
 preceded by the prefix "ACME-" as the value of the content tag:
