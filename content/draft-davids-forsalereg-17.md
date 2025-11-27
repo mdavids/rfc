@@ -395,7 +395,7 @@ _for-sale IN TXT  "v=FORSALE1;ftxt=Only $99 at ACME"
 ## Placement of the Leaf Node Name
 
 The "\_for-sale" leaf node name can essentially be placed at any level of
-the DNS except in the arpa. infrastructure TLD.
+the DNS except in the .arpa infrastructure TLD.
 
 (#placements) illustrates this:
 
@@ -516,10 +516,11 @@ Alternatively, parties may agree on a more strictly defined proprietary format
 for the content value to reduce ambiguity. However, it is out of scope to discuss
 which mechanisms are put in place for such agreements. 
 
-When encountering unexpected or prohibited control characters in "ftxt=" content 
+When encountering unexpected, or prohibited control characters in "ftxt=" content 
 (e.g., `%x09`, `%x0A`, `%x0B`, `%x0D`, see (#handlerdata)), processors 
-**MAY** sanitize them (e.g., by converting to spaces (`%x20`) or removing 
-them entirely) before display or processing to ensure correct representation. 
+**MAY** sanitize them by replacing them with spaces (`%x20`) to ensure 
+correct representation, or replacing them to the Unicode REPLACEMENT CHARACTER U+FFFD 
+(`%xEF.BF.BD`) to signal the presence of problematic content.
 
 ## Scope of Application
 

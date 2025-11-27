@@ -6,7 +6,7 @@ Current draft I'm working on here is: **draft-davids-forsalereg**.
 
 https://datatracker.ietf.org/doc/html/draft-davids-forsalereg
 
-## More recent version from this repository (-17 vs -16 on datatracker):
+## More recent version from this repository (-18 vs -17 on datatracker):
 
 https://forsalereg.sidnlabs.nl/rfc/
 
