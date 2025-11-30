@@ -1,8 +1,9 @@
 package main
 
 // supports version -12 of draft
-// caveat: handles _for-sale IN TXT "v=FORSALE1;" "ftxt=foo" "bar" "invalid" well
-// (even though the draft says it's invalid)
+// caveats: handles _for-sale IN TXT "v=FORSALE1;" "ftxt=foo" "bar" "invalid" well
+//          (even though the draft says it's invalid)
+//          No IDNA-support (so entering δοκιμή.example won't work)
 
 import (
 	"fmt"
