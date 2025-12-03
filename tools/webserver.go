@@ -196,7 +196,7 @@ func renderResult(w http.ResponseWriter, info DomainInfo) {
 		{{else}}
 			<p>❌ No valid indications found that the domain is for sale.</p>
 		{{end}}
-		<a href="/">Back</a>
+		<a href="/demo">Back</a>
 		</body></html>
 	`))
 
