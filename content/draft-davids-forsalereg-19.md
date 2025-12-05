@@ -263,7 +263,7 @@ content tag.
 
 Note: As an implementation consideration, when multiple parties are involved in 
 the domain sale process and use the same mechanism, it may be difficult to identify 
-the relevant content in an RRset. Adding a recognizable prefix to the content (e.g.,
+the relevant content in an RRset. Adding a recognisable prefix to the content (e.g.,
 "EXCO-") is one possible approach. However, this is left to the implementor, 
 as it is not enforced in this document. In this case, Example
 Corporation (ExCo)  would recognise its content tag and interpret it as intended. This example uses Base64 encoding 
@@ -363,7 +363,7 @@ When multiple "\_for-sale" TXT records are present in an RRset, the
 processor **MAY** select one or more of them.
 
 For example, a domain name registry might extract content from an RRset that includes 
-a recognizable "fcod=" content tag and use it to direct visitors to a sales page as 
+a recognisable "fcod=" content tag and use it to direct visitors to a sales page as 
 part of its services. An individual, on the other hand, might extract a 
 phone number (if present) from a "furi=" tag in the same RRset and use it to contact a potential seller.
 
@@ -479,7 +479,7 @@ _for-sale IN TXT "v=FORSALE1;ftxt=\229\163\178\229\135\186"
 The ABNF in (#abnf) allows currency codes consisting of one or 
 more uppercase letters, providing flexibility to 
 accommodate both standard fiat currencies and other widely 
-recognized abbreviations, such as cryptocurrencies.
+recognised abbreviations, such as cryptocurrencies.
 
 The use of standard fiat currencies is **RECOMMENDED**. When used, 
 they **MUST** be represented by three-letter uppercase currency 
@@ -495,7 +495,7 @@ data misleading buyers into thinking the domain is still available
 or that advertised prices remain current. 
 
 A TTL of 3600 seconds (1 hour) or less is **RECOMMENDED** and the TTL values 
-of all records in an RRSet have to be the same [@!RFC2181, (see) section 5.2].
+of all records in an RRset have to be the same [@!RFC2181, (see) section 5.2].
 
 ## Ambiguous Constructs
 
@@ -562,7 +562,7 @@ the destination before proceeding.
 There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
 means, without there being any intention to actually sell the domain name.
 
-Domain holders may advertise artificially low prices and processors that present
+Domain name holders may advertise artificially low prices and processors that present
 "fval=" data to users **SHOULD** display appropriate disclaimers (e.g., "Price
 indicative only - verify with seller").  Automated systems **SHOULD NOT**
 make purchase commitments based solely on advertised prices without human verification.
@@ -570,7 +570,7 @@ make purchase commitments based solely on advertised prices without human verifi
 # Privacy Considerations {#privacy}
 
 The use of the "\_for-sale" leaf node name publicly indicates the intent to sell a domain name.
-Domain holders should be aware that this information is accessible to anyone querying the
+Domain name holders should be aware that this information is accessible to anyone querying the
 DNS and may have privacy implications.
 
 There is a risk of data scraping, such as email addresses and phone numbers.
