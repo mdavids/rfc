@@ -1,7 +1,7 @@
 %%%
 # This is a comment - but only in this block
 title = "The \"_for-sale\" Underscored and Globally Scoped DNS Node Name"
-abbrev = "_for-sale DNS"
+abbrev = "_for-sale DNS Node Name"
 ipr = "trust200902" 
 area = "Operations and Management"
 #workgroup = 
@@ -15,7 +15,7 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-18"
+value = "draft-davids-forsalereg-19"
 stream = "IETF"
 status = "informational"
 
@@ -62,9 +62,9 @@ particularly (#ianaconsid).
 
 # Introduction {#introsect}
 
-Well-established services [@RFC3912; @RFC9083] exist to determine whether a
-DNS domain name is registered. However, the fact that a domain name exists does not necessarily mean it
-is unavailable; it may still be for sale.
+Well-established services [@RFC3912; @RFC9083] exist for determining whether a
+DNS domain name is registered. However, the existence of a domain name does not necessarily 
+imply that it cannot be obtained; it may still be available for sale.
 
 Some registrars and other parties offer brokerage services between domain name holders and interested buyers.
 Such services are of limited value when the domain name is not available for purchase, but they may be 
@@ -84,7 +84,7 @@ allowing interested parties to obtain information or contact the domain name hol
 Details about whether and how such negotiations occur are out of scope.
 
 With due caution, such information can also be incorporated into automated availability services. 
-When checking a domain name for availability, the service may indicate whether it is for 
+When checking a domain name for purchasability, the service may indicate whether it is for 
 sale and provide a pointer to the seller's information.
 
 The operational convention described in this document does not require any protocol change.
@@ -211,7 +211,7 @@ _for-sale.example.com. IN TXT "v=FORSALE1;fcod=XX-NGYyYjEyZWY"
 ```
 
 If no TXT records at a leaf node contain a valid version tag, processors 
-**MUST** consider the node name invalid and **MUST** discard it.
+**MUST** consider the node name invalid and **MUST** ignore it.
 
 See (#contentlimits) for additional content limitations.
 
@@ -219,8 +219,8 @@ See (#contentlimits) for additional content limitations.
 
 The following content tags are defined as valid content tags.
 
-Content tags are optional. Providing a minimum set to allow interested parties 
-to engage is **RECOMMENDED**.
+Content tags are optional. Providing at least one to give interested parties a pointer 
+for engagement is **RECOMMENDED**.
 
 <!-- author tip: there are two spaces behind the content tag, to enforce a new line -->
 ### fcod {#fcoddef}  
@@ -239,7 +239,7 @@ When a user checks the availability of the domain name using a registry-provided
 appropriate "for sale" URL, which may include a query component containing the domain name, for example:
 
 ~~~
-https://forsale-url.example.com/acme?d=example.org
+https://forsale-url.example.com/exco?d=example.org
 ~~~
 
 The rationale for this approach is that controlling parties retain 
@@ -252,10 +252,10 @@ such as determining which "for sale" URL to redirect to, without
 modifying the "\_for-sale" TXT records.
 
 The following example shows a string encoded using Base64 [@?RFC4648] 
-preceded by the prefix "ACME-" as the value of the content tag:
+preceded by the prefix "EXCO-" as the value of the content tag:
 
 ~~~
-_for-sale IN TXT "v=FORSALE1;fcod=ACME-S2lscm95IHdhcyBoZXJl"
+_for-sale IN TXT "v=FORSALE1;fcod=EXCO-S2lscm95IHdhcyBoZXJl"
 ~~~
 
 See the (#examples, use title) section for other possible uses of this
@@ -264,9 +264,9 @@ content tag.
 Note: As an implementation consideration, when multiple parties are involved in 
 the domain sale process and use the same mechanism, it may be difficult to identify 
 the relevant content in an RRset. Adding a recognizable prefix to the content (e.g.,
-"ACME-") is one possible approach. However, this is left to the implementor, 
-as it is not enforced in this document. In this case, ACME would recognise its 
-content tag and interpret it as intended. This example uses Base64 encoding 
+"EXCO-") is one possible approach. However, this is left to the implementor, 
+as it is not enforced in this document. In this case, Example
+Corporation (ExCo)  would recognise its content tag and interpret it as intended. This example uses Base64 encoding 
 to avoid escaping and ensure printable characters, though this is 
 **OPTIONAL** and not required.
 
@@ -281,7 +281,7 @@ While a single octet is the minimum, it is **RECOMMENDED** to provide more conte
 
 While a URI in this field is not syntactically prohibited, its 
 interpretation as a URI is not guaranteed. Use of URIs in this 
-field **SHOULD** be avoided in favor of the "furi=" content tag.
+field **SHOULD** be avoided in favour of the "furi=" content tag.
 
 See (#fvalpar) for a way to explicitly indicate an asking price for easier machine parsing.
 
@@ -392,12 +392,12 @@ wildcard:
 ~~~
 *         IN A    198.51.100.80
           IN AAAA 2001:db8::80
-_for-sale IN TXT  "v=FORSALE1;ftxt=Only $99 at ACME"
+_for-sale IN TXT  "v=FORSALE1;ftxt=Only $99 at ExCo"
 ~~~
 
 ## Placement of the Leaf Node Name
 
-The "\_for-sale" leaf node name can essentially be placed at any level of
+The "\_for-sale" leaf node name can be placed at any level of
 the DNS except in the .arpa infrastructure TLD.
 
 (#placements) illustrates this:
@@ -406,7 +406,7 @@ Name | Situation | Verdict
 -----|-----------|--------
 \_for-sale.example. | root zone | For sale
 \_for-sale.aaa.example. | second level | For sale
-\_for-sale.acme.bbb.example. | third level with public registry | For sale
+\_for-sale.exco.bbb.example. | third level with public registry | For sale
 \_for-sale.www.ccc.example. | third level without public registry | See note 1
 \_for-sale.51.198.in-addr.arpa. | infrastructure TLD | See note 2
 xyz.\_for-sale.example. | Invalid placement, not a leaf | non-conformant
@@ -416,7 +416,8 @@ Note 1:
 When the "\_for-sale" leaf node is applied to a label under a subdomain, 
 there may not be a public domain name registry [@?RFC9499] capable of properly recording the rights associated with that label. 
 Nevertheless, this does not constitute a violation of this document. 
-One possible approach is for the involved parties to establish a mutual agreement to formalize these rights.
+One possible approach is for the involved parties to establish a mutual agreement to
+formalise these rights.
 
 Note 2:
 If a "\_for-sale" leaf node were to appear under the .arpa infrastructure top-level 
@@ -493,7 +494,8 @@ Long TTLs [@!RFC1035, (see) section 3.2.1] increase the risk of outdated
 data misleading buyers into thinking the domain is still available
 or that advertised prices remain current. 
 
-A TTL of 3600 seconds (1 hour) or less is **RECOMMENDED**.
+A TTL of 3600 seconds (1 hour) or less is **RECOMMENDED** and the TTL values 
+of all records in an RRSet have to be the same [@!RFC2181, (see) section 5.2].
 
 ## Ambiguous Constructs
 
@@ -719,7 +721,7 @@ An example of multiple valid TXT records from which a processor can choose:
 _for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
           IN TXT "v=FORSALE1;ftxt=This domain name is for sale"
           IN TXT "v=FORSALE1;fval=EUR500"
-          IN TXT "v=FORSALE1;fcod=ACME-ZGVhZGJlZWYx"
+          IN TXT "v=FORSALE1;fcod=EXCO-ZGVhZGJlZWYx"
           IN TXT "v=FORSALE1;fcod=XYZ1-MTExLTIyMi0zMzMtNDQ0"
 ~~~
 
