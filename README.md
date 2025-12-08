@@ -14,15 +14,38 @@ https://forsalereg.sidnlabs.nl/rfc/
 
 SIDN: https://www.sidn.nl/en/whois?q=example.nl
 
-Demo-server from Tools: https://forsalereg.sidnlabs.nl/demo
+Older demo server / syntax checker from Tools: https://forsalereg.sidnlabs.nl/demo
 
-Syntax checker demo: https://forsale.bitfire.nl
+Another syntax checker demo: https://forsale.bitfire.nl
+( a good domain to test here is: `testdns.nl` )
 
-( a good domain to test here is: `testdns.nl`)
+Userfriendly demo (in Dutch): https://forsalereg.sidnlabs.nl/forsale
+
 
 ## Test domain
 
 `TXT _for-sale.testdns.nl`
+
+Various other domains to use for testing:
+
+~~~
+example.nl
+spongat.nl
+bitfire.nl
+example.co.nl
+nascar.watkins-glen.ny.us
+pnawebloket.nl
+pna-webloket.nl
+~~~
+
+Other test domains: 
+~~~
+testdns.nl
+forsale.testdns.nl
+dynamic.testdns.nl (changes the asking price randomly)
+परीक्षा.testdns.nl
+xn--11b5bs3a9aj6g.testdns.nl 
+~~
 
 ## Tools
 
