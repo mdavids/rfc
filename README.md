@@ -10,7 +10,7 @@ https://datatracker.ietf.org/doc/html/draft-davids-forsalereg
 
 https://forsalereg.sidnlabs.nl/rfc/
 
-## Demo:
+## Demos:
 
 SIDN: https://www.sidn.nl/en/whois?q=example.nl
 
@@ -45,7 +45,7 @@ forsale.testdns.nl
 dynamic.testdns.nl (changes the asking price randomly)
 परीक्षा.testdns.nl
 xn--11b5bs3a9aj6g.testdns.nl 
-~~
+~~~
 
 ## Tools
 
