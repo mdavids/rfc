@@ -44,7 +44,7 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 		<html lang="en">
 		<head>
 		  <title>For Sale Check</title>
-		    <meta name="viewport" content="width=device-width, initial-scale=1">
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
 		</head>
 		<body>
 		  <h2>Check if a domain name is for sale</h2>
