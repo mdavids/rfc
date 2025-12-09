@@ -41,13 +41,24 @@ func main() {
 func formHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.New("form").Parse(`
 		<!DOCTYPE html>
-		<html lang="en"><head><title>For Sale Check</title></head>
+		<html lang="en">
+		<head>
+		  <title>For Sale Check</title>
+		    <meta name="viewport" content="width=device-width, initial-scale=1">
+		</head>
 		<body>
-		<h2>Check if a domain name is for sale</h2>
-		<form action="/check" method="get">
-			Domain Name: <input type="text" name="domain" value="example.nl" required autocomplete="off" spellcheck="false" autocapitalize="off" inputmode="url">
-			<input type="submit" value="Check">
-		</form></body></html>
+		  <h2>Check if a domain name is for sale</h2>
+		  <form action="/check" method="get">
+		    <label>
+		    Domain Name:
+		    <br>
+		      <input type="text" name="domain" value="example.nl" required autocomplete="off" spellcheck="false" autocapitalize="off" inputmode="url">
+		    </label>
+		    <br><br>
+		      <input type="submit" value="Check">
+		  </form>
+		</body>
+		</html>
 	`))
 	tmpl.Execute(w, nil)
 }
@@ -163,7 +174,10 @@ func renderResult(w http.ResponseWriter, info DomainInfo) {
 	tmpl := template.Must(template.New("result").Funcs(funcMap).Parse(`
 		<!DOCTYPE html>
 		<html lang="en">
-		<head><title>For Sale Check</title></head>
+		<head>
+		  <title>For Sale Check</title>
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		</head>
 		<body>
 		<h2>Result for {{.Domain}}</h2>
 		{{if .ErrorMsg}}
