@@ -447,8 +447,7 @@ defined in [@RFC1035, (see) section 5.1]. This includes the possibility of
 representing non-ASCII data in the content value, by using escape sequences 
 (e.g., \DDD or \X notation).
 
-All text in content values exchanged between systems that are not part of a 
-closed ecosystem **SHALL** be encoded in and interpreted as UTF-8 [@!RFC3629] and conform 
+All text in content values **SHALL** be encoded in and interpreted as UTF-8 [@!RFC3629] and conform 
 to the Network Unicode format [@?RFC5198]. The allowed subset of Unicode code points
 **SHOULD** conform to [@!RFC9839, (see) section 4.3], with the exception of `%x09`, `%x0A`
 and `%x0D` which **MUST NOT** be used.
