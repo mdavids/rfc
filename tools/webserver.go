@@ -45,7 +45,7 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 		<body>
 		<h2>Check if a domain name is for sale</h2>
 		<form action="/check" method="get">
-			Domain Name: <input type="text" name="domain" value="example.nl">
+			Domain Name: <input type="text" name="domain" value="example.nl" required autocomplete="off" spellcheck="false" autocapitalize="off" inputmode="url">
 			<input type="submit" value="Check">
 		</form></body></html>
 	`))
