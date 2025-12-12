@@ -447,31 +447,20 @@ defined in [@RFC1035, (see) section 5.1]. This includes the possibility of
 representing non-ASCII data in the content value, by using escape sequences 
 (e.g., \DDD or \X notation).
 
-All text in content values **SHALL** be encoded in and interpreted as UTF-8 [@!RFC3629] and conform 
-to the Network Unicode format [@?RFC5198]. The allowed subset of Unicode code points
-**SHOULD** conform to [@!RFC9839, (see) section 4.3], with the exception of `%x09`, `%x0A`
-and `%x0D` which **MUST NOT** be used.
+When non-ASCII data is used, interpretation may become ambiguous. For this reason, 
+it is **RECOMMENDED** that text in content values be encoded in UTF-8 [@!RFC3629], 
+conform to the Network Unicode format [@!RFC5198], and use a subset of Unicode 
+code points consistent with [@!RFC9839, (see) section 4.3], with the exception 
+of `%x09`, `%x0A`, and `%x0D`, which are best avoided.
 
-See (#robustness) for additional guidelines and the (#security, use title)
-section for possible risks.
+Processors are **RECOMMENDED** to handle such encodings to ensure that non-ASCII 
+content values are correctly interpreted and represented.
 
 Internationalized Domain Names (IDN) **MAY** be expressed as A-labels as well as
 U-labels [@!RFC5890], with U-labels encoded using escape sequences as described above.
 
-Processors **MUST** be capable of handling such encodings to ensure that 
-non-ASCII content values are correctly interpreted and represented.
-
-Note: When non-ASCII data is used, the ABNF octet limit applies to the encoded
-byte sequence, not the number of visible characters. Multi-byte
-characters will reduce the available character count.
-
-For example, this TXT record contains two Japanese Kanji characters 
-encoded in UTF-8 using octal escapes, resulting in a content value 
-of six octets.
-
-~~~
-_for-sale IN TXT "v=FORSALE1;ftxt=\229\163\178\229\135\186"
-~~~
+See (#robustness) for additional guidelines and the (#security, use title)
+section for possible risks.
 
 ## Currency {#currency}
 
