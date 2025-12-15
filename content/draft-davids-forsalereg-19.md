@@ -445,7 +445,7 @@ result in misleading listings or unintended references to third-party domains.
 Since this method relies on DNS TXT records, standard content rules apply as 
 defined in [@RFC1035, (see) section 5.1]. This includes the possibility of 
 representing non-ASCII data in the content value, by using escape sequences 
-(e.g., \DDD or \X notation).
+(e.g., \DDD notation).
 
 When non-ASCII data is used, interpretation may become ambiguous. For this reason, 
 it is **RECOMMENDED** that text in content values be encoded in UTF-8 [@!RFC3629], 
