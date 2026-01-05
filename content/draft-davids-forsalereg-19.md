@@ -42,8 +42,10 @@ organization = "SIDN Labs"
 .# Abstract
 
 This document defines an operational convention that uses the reserved 
-underscored DNS leaf node name "\_for-sale" to indicate that the 
-parent domain name is available for purchase. The convention can be 
+underscored DNS leaf node name "\_for-sale" to indicate the 
+parent domain name is available for purchase.
+
+The convention can be 
 deployed without disrupting existing operations, and it may be 
 applied even when the domain name is still actively in use.
 
@@ -446,7 +448,7 @@ result in misleading listings or unintended references to third-party domains.
 
 Since this method relies on DNS TXT records, standard content rules apply as 
 defined in [@RFC1035, (see) section 3.3.14]. This includes the possibility of 
-representing non-ASCII data in the content value.
+including non-ASCII data in the content value.
 
 When non-ASCII data is used, interpretation may become ambiguous. For this reason, 
 it is **RECOMMENDED** that text in content values be encoded in UTF-8 [@!RFC3629], 
@@ -458,7 +460,7 @@ Processors are **RECOMMENDED** to handle such encodings to ensure that non-ASCII
 content values are correctly interpreted and represented.
 
 Internationalized Domain Names (IDN) (e.g., in the "furi=" content tag) **MAY** 
-be expressed as A-labels as well as U-labels [@!RFC5890], with U-labels encoded as described above.
+appear as A-labels as well as U-labels [@!RFC5890], with U-labels encoded as described above.
 
 See (#robustness) for additional guidelines and the (#security, use title)
 section for possible risks.
