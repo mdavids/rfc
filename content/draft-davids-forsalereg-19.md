@@ -113,6 +113,8 @@ The term "for sale" is used in a broad sense and may also refer to cases
 where the domain name is available for lease, or where the contractual right to 
 use the domain name is offered to another party.
 
+The DNS terminology used in this document is as defined in [@!RFC9499].
+
 # Conventions {#conventions}
 
 ## General Record Format {#abnf}
