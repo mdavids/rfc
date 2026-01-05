@@ -72,8 +72,8 @@ Some registrars and other parties offer brokerage services between domain name h
 Such services are of limited value when the domain name is not available for purchase, but they may be 
 beneficial for domain names that are explicitly marked as for sale.
 
-This specification defines a simple method to ascertain whether a domain name, 
-although registered, is available for purchase. It enables a domain name holder to 
+This specification defines a simple method to explicitly signal that a 
+domain name, although registered, is available for purchase. It enables a domain name holder to 
 add a reserved underscored leaf node name [@!RFC8552] in the zone, indicating that the 
 domain name is for sale. The indicator can be turned on and off at will and, moreover, 
 it is immediately deployable and does not require significant changes in existing 
@@ -214,7 +214,7 @@ _for-sale.example.com. IN TXT "I am for sale"
 _for-sale.example.com. IN TXT "v=FORSALE1;fcod=XX-NGYyYjEyZWY"
 ```
 
-If no TXT records at a leaf node contain a valid version tag, processors 
+If no TXT records at a "\_for-sale" leaf node name contain a valid version tag, processors 
 **MUST** consider the node name invalid and **MUST** ignore it.
 
 See (#contentlimits) for additional content limitations.
@@ -348,7 +348,7 @@ Any text suggesting that a domain is not for sale is invalid content. If a domai
 a "\_for-sale" indicator **SHOULD NOT** exist. The presence of a valid "_for-sale" TXT record
 **SHOULD** therefore be regarded as an indication that the domain name is for sale.
 
-The existence of a "\_for-sale" leaf node does not obligate the holder to sell the domain name; 
+The existence of a "\_for-sale" leaf node name does not obligate the holder to sell the domain name; 
 it may have been published in error, or withdrawn later for other reasons.
 
 This specification does not dictate the exact use of any content values in the "\_for-sale" TXT record.
@@ -390,8 +390,7 @@ Wildcards are only interpreted as leaf names, so "\_for-sale.*.example." is not 
 [@RFC4592] and is non-conformant. Hence, it is not possible to put all domains under a TLD for 
 sale with just one "\_for-sale" TXT record.
 
-The example below, however, shows a common use case where a "\_for-sale" leaf node exists alongside a
-wildcard:
+The example below, however, shows a common use case where a "\_for-sale" leaf node name exists alongside a wildcard:
 
 ~~~
 *         IN A    198.51.100.80
@@ -413,18 +412,18 @@ Name | Situation | Verdict
 \_for-sale.exco.bbb.example. | third level with public registry | For sale
 \_for-sale.www.ccc.example. | third level without public registry | See note 1
 \_for-sale.51.198.in-addr.arpa. | infrastructure TLD | See note 2
-xyz.\_for-sale.example. | Invalid placement, not a leaf | non-conformant
+xyz.\_for-sale.example. | Invalid placement, not a leaf | Non-conformant
 Table: Placements of TXT record {#placements}
 
 Note 1: 
-When the "\_for-sale" leaf node is applied to a label under a subdomain, 
+When the "\_for-sale" leaf node name is applied to a label under a subdomain, 
 there may not be a public domain name registry [@?RFC9499] capable of properly recording the rights associated with that label. 
 Nevertheless, this does not constitute a violation of this document. 
 One possible approach is for the involved parties to establish a mutual agreement to
 formalise these rights.
 
 Note 2:
-If a "\_for-sale" leaf node were to appear under the .arpa infrastructure top-level 
+If a "\_for-sale" leaf node name were to appear under the .arpa infrastructure top-level 
 domain, it might be interpreted as an offer to sell IP address space, E.164
 numbers or the like. However, such use is explicitly out of scope for this document, and processors
 **MUST** ignore any such records.
@@ -461,6 +460,12 @@ content values are correctly interpreted and represented.
 
 Internationalized Domain Names (IDN) (e.g., in the "furi=" content tag) **MAY** 
 appear as A-labels as well as U-labels [@!RFC5890], with U-labels encoded as described above.
+
+Some DNS software represents non-ASCII data as special encodings (i.e.,
+escape sequences) [@RFC1035, (see) section 5.1]. 
+Processors that rely on such software **SHOULD** ensure that this representation 
+does not produce syntactically invalid output (e.g., an invalid IRI), or
+inadvertently result in text that is of little or no value to human readers.
 
 See (#robustness) for additional guidelines and the (#security, use title)
 section for possible risks.
