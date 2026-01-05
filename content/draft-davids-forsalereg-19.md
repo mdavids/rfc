@@ -443,9 +443,8 @@ result in misleading listings or unintended references to third-party domains.
 ## Handling of RDATA {#handlerdata}
 
 Since this method relies on DNS TXT records, standard content rules apply as 
-defined in [@RFC1035, (see) section 5.1]. This includes the possibility of 
-representing non-ASCII data in the content value, by using escape sequences 
-(e.g., \DDD notation).
+defined in [@RFC1035, (see) section 3.3.14]. This includes the possibility of 
+representing non-ASCII data in the content value.
 
 When non-ASCII data is used, interpretation may become ambiguous. For this reason, 
 it is **RECOMMENDED** that text in content values be encoded in UTF-8 [@!RFC3629], 
@@ -456,8 +455,8 @@ of `%x09`, `%x0A`, and `%x0D`, which are best avoided.
 Processors are **RECOMMENDED** to handle such encodings to ensure that non-ASCII 
 content values are correctly interpreted and represented.
 
-Internationalized Domain Names (IDN) **MAY** be expressed as A-labels as well as
-U-labels [@!RFC5890], with U-labels encoded using escape sequences as described above.
+Internationalized Domain Names (IDN) (e.g., in the "furi=" content tag) **MAY** 
+be expressed as A-labels as well as U-labels [@!RFC5890], with U-labels encoded as described above.
 
 See (#robustness) for additional guidelines and the (#security, use title)
 section for possible risks.
