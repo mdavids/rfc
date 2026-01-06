@@ -428,9 +428,8 @@ domain, it might be interpreted as an offer to sell IP address space, E.164
 numbers or the like. However, such use is explicitly out of scope for this document, and processors
 **MUST** ignore any such records.
 
-This specification is designed for the global DNS. Its application to 
-certain Special-Use Domain Names [@?RFC6761] (e.g., .onion, .alt), although
-possible, is out of scope for this document.
+This specification is designed for the global DNS. Application to 
+Special-Use Domain Names [@?RFC6761] (e.g., .onion, .alt) is out of scope.
 
 # Operational Considerations {#operationalcons}
 ## DNS Wildcards
