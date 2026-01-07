@@ -275,7 +275,7 @@ to avoid escaping and ensure printable characters, though this is
 **OPTIONAL** and not required.
 
 ### ftxt  
-This content tag is intended to contain human-readable text that conveys additional information to interested parties. For example:
+This content tag is intended to contain concise, human-readable text that conveys additional information to interested parties. For example: 
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;ftxt=Call for info."
