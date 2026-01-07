@@ -464,11 +464,14 @@ content values are correctly interpreted and represented.
 Internationalized Domain Names (IDN) (e.g., in the "furi=" content tag) **MAY** 
 appear as A-labels as well as U-labels [@!RFC5890], with U-labels encoded as described above.
 
-Some DNS software represents non-ASCII data as special encodings (i.e.,
-escape sequences) [@RFC1035, (see) section 5.1]. 
-Processors that rely on such software **SHOULD** ensure that this representation 
-does not produce syntactically invalid output (e.g., an invalid IRI), or
-inadvertently result in text that is of little or no value to human readers.
+Implementation Note: Some DNS query tools and libraries return DNS records in 
+presentation format rather than exposing the underlying RDATA values. Parsers 
+of the ABNF specified in this document **MUST** ensure that they operate on 
+the raw TXT RDATA content, and not on its escaped presentation representation. 
+If the TXT RDATA consists of multiple character strings, these **SHOULD** first 
+be concatenated to form a single contiguous string, and only then interpreted 
+as a UTF-8 encoded value matching the ABNF.
+
 
 See (#robustness) for additional guidelines and the (#security, use title)
 section for possible risks.
@@ -729,8 +732,8 @@ _for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
 
 The author would like to thank Thijs van den Hout, Caspar Schutijser, Melvin
 Elderman, Ben van Hartingsveldt, Jesse Davids, Juan Stelling, John R.&#xa0;Levine, 
-Dave Lawrence, Andrew Sullivan, Paul Hoffman, Eliot Lear (ISE), Joe Abley and 
-Mohamed 'Med' Boucadair for their valuable feedback.
+Dave Lawrence, Andrew Sullivan, Paul Hoffman, Eliot Lear (ISE), Viktor Dukhovni, 
+Joe Abley and Mohamed 'Med' Boucadair for their valuable feedback.
 
 <reference anchor='PSL' target='https://publicsuffix.org/'>
  <front>
