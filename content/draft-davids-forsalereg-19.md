@@ -468,7 +468,7 @@ appear as A-labels as well as U-labels [@!RFC5890], with U-labels encoded as des
 Implementation Note: Some DNS query tools return DNS records in presentation format, rather than the underlying 
 RDATA content. Parsers of the ABNF in this document **MUST** ensure they operate on the raw 
 TXT RDATA content, not its escaped presentation format [@RFC1035, (see) section 5.1]. 
-If, for some reason, the TXT RDATA consists of multiple character-strings, 
+If the TXT RDATA consists of multiple character-strings, 
 they **SHOULD** be concatenated into a single contiguous string prior to being interpreted 
 as a UTF-8 encoded value matching the ABNF.
 
