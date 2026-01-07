@@ -464,7 +464,7 @@ content values are correctly interpreted and represented.
 Internationalized Domain Names (IDN) (e.g., in the "furi=" content tag) **MAY** 
 appear as A-labels as well as U-labels [@!RFC5890], with U-labels encoded as described above.
 
-Some DNS query tools return DNS records in presentation format, rather than the underlying 
+Implementation Note: Some DNS query tools return DNS records in presentation format, rather than the underlying 
 RDATA content. Parsers of the ABNF in this document **MUST** ensure they operate on the raw 
 TXT RDATA content, not its escaped presentation format [@RFC1035, (see) section 5.1]. 
 If the TXT RDATA consists of multiple character-strings (which is non-conformant with this specification), 
