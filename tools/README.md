@@ -1,8 +1,8 @@
 # Tools to play and test the _for-sale draft
 
-> [!NOTE]
-> Tools work for draft-davids-forsalereg-15
-
+> [!IMPORTANT]
+> Tools work for draft-davids-forsalereg-15 (except for fs-check-new, which works for draft-davids-forsalereg-19)
+ 
 Build:
 
 ~~~
@@ -23,4 +23,5 @@ A validator / syntax checker
 
 A record generator
 
-
+> [!NOTE]
+> See https://forsalereg.sidnlabs.nl/ for running demo's and example domain names.
