@@ -523,7 +523,7 @@ which mechanisms are put in place for such agreements.
 
 When encountering unexpected, or prohibited control characters in "ftxt=" content 
 (e.g., `%x09`, `%x0A`, `%x0B`, `%x0D`, see (#handlerdata)), processors 
-**MAY** sanitize them by replacing them with spaces (`%x20`) to ensure 
+**MAY** sanitise them by replacing them with spaces (`%x20`) to ensure 
 correct representation, or replacing them to the Unicode REPLACEMENT CHARACTER U+FFFD 
 (`%xEF.BF.BD`) to signal the presence of problematic content.
 
