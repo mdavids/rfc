@@ -732,7 +732,8 @@ _for-sale IN TXT "v=FORSALE1;furi=https://fs.example.com/"
 The author would like to thank Thijs van den Hout, Caspar Schutijser, Melvin
 Elderman, Ben van Hartingsveldt, Jesse Davids, Juan Stelling, John R.&#xa0;Levine, 
 Dave Lawrence, Andrew Sullivan, Paul Hoffman, Eliot Lear (ISE), Viktor Dukhovni, 
-Joe Abley and Mohamed 'Med' Boucadair for their valuable feedback.
+James Gannon, Watson Ladd, Tim Wicinski, Russ Housley, Takahiro Nemoto, Chongfeng
+Xie, Joe Abley and Mohamed 'Med' Boucadair for their valuable feedback.
 
 <reference anchor='PSL' target='https://publicsuffix.org/'>
  <front>
