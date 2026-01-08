@@ -11,7 +11,7 @@ go build name.go
 
 ## webserver.go
 
-See in action on https://forsalereg.sidnlabs.nl/demo
+See [in action here](https://forsalereg.sidnlabs.nl/demo).
 
 (but also see https://forsale.bitfire.nl for another validator)
 
