@@ -90,7 +90,6 @@ When checking a domain name for purchasability, the service may indicate whether
 sale and provide a pointer to the seller's information.
 
 The operational convention described in this document does not require any protocol change.
-This operational convention is specifically informed by the deployment in (#implementation).
 
 Furthermore, (#ethicalconsids) discusses some ethical considerations. In particular, 
 the approach in this document aims to promote a more equitable domain aftermarket and to 
