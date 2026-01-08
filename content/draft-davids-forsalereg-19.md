@@ -115,7 +115,7 @@ The term "for sale" is used in a broad sense and may also refer to cases
 where the domain name is available for lease, or where the contractual right to 
 use the domain name is offered to another party.
 
-The DNS terminology used in this document is as defined in [@!RFC9499].
+DNS terminology in this document follows [@!RFC9499].
 
 # Conventions {#conventions}
 
@@ -524,7 +524,7 @@ which mechanisms are put in place for such agreements.
 When encountering unexpected, or prohibited control characters in "ftxt=" content 
 (e.g., `%x09`, `%x0A`, `%x0B`, `%x0D`, see (#handlerdata)), processors 
 **MAY** sanitise them by replacing them with spaces (`%x20`) to ensure 
-correct representation, or replacing them to the Unicode REPLACEMENT CHARACTER U+FFFD 
+correct representation, or replacing them with the Unicode REPLACEMENT CHARACTER U+FFFD 
 (`%xEF.BF.BD`) to signal the presence of problematic content.
 
 ## Scope of Application
