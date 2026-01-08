@@ -19,6 +19,10 @@ See [in action here](https://forsalereg.sidnlabs.nl/demo).
 
 A validator / syntax checker
 
+## fs-check-new.go
+
+An improved validator / syntax checker
+
 ## fs-generate.go
 
 A record generator
