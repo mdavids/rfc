@@ -205,7 +205,7 @@ An approach might be to signal that the domain is for sale and
 to rely on conventional mechanisms (e.g., WHOIS or Registration Data Access 
 Protocol (RDAP)) to retrieve and present contact information.
 
-TXT records in the same RRset, but without a version tag, **MUST NOT** be interpreted or processed as a valid "\_for-sale" indicator. 
+TXT records in the same RRset that lack a version tag **MUST NOT** be interpreted as a valid "\_for-sale" indicator. 
 However, they may still offer some additional information for humans when considered alongside a valid
 record. For example:
 
@@ -547,9 +547,10 @@ properly validated and sanitised, potentially enabling attacks such as XSS or SQ
 injection, as well as spoofing techniques based on Unicode manipulation, 
 including bidirectional text attacks and homograph attacks.
 
-Therefore, it is **RECOMMENDED** that any parsing and publishing is conducted with the utmost care.
-Possible approaches include maintaining a list of validated URIs or applying other validation methods 
-after parsing and before publishing.
+Therefore, it is **RECOMMENDED** that any parsing and publishing be conducted with 
+the utmost care. Possible approaches include output sanitisation, maintaining a 
+curated and validated list of URIs, or applying other validation methods, 
+such as URI reputation checks before display.
 
 Automatically following URIs from "\_for-sale" records without user 
 consent creates security risks, including exposure to malware, 
