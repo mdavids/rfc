@@ -72,7 +72,7 @@ Some registrars and other parties offer brokerage services between domain name h
 Such services are of limited value when the domain name is not available for purchase, but they may be 
 beneficial for domain names that are explicitly marked as for sale.
 
-This specification defines a simple method to explicitly signal that a 
+This document defines a simple method to explicitly signal that a 
 domain name, although registered, is available for purchase. It enables a domain name holder to 
 add a reserved underscored leaf node name [@!RFC8552] in the zone, indicating that the 
 domain name is for sale. The indicator can be turned on and off at will and, moreover, 
@@ -90,6 +90,7 @@ When checking a domain name for purchasability, the service may indicate whether
 sale and provide a pointer to the seller's information.
 
 The operational convention described in this document does not require any protocol change.
+This operational convention is specifically informed by the deployment in (#implementation).
 
 Furthermore, (#ethicalconsids) discusses some ethical considerations. In particular, 
 the approach in this document aims to promote a more equitable domain aftermarket and to 
@@ -342,7 +343,7 @@ set and to maintain compact record formats.
 
 ## Content Limitations {#contentlimits}
 
-The "\_for-sale" TXT record [@RFC8553, (see) section 2.1] **MUST** contain content deemed valid under this specification.
+The "\_for-sale" TXT record [@RFC8553, (see) section 2.1] **MUST** contain content deemed valid under the operational convention defined in this document.
 
 Any text suggesting that a domain is not for sale is invalid content. If a domain name is not or no longer for sale, 
 a "\_for-sale" indicator **SHOULD NOT** exist. The presence of a valid "_for-sale" TXT record
@@ -351,7 +352,7 @@ a "\_for-sale" indicator **SHOULD NOT** exist. The presence of a valid "_for-sal
 The existence of a "\_for-sale" leaf node name does not obligate the holder to sell the domain name; 
 it may have been published in error, or withdrawn later for other reasons.
 
-This specification does not dictate the exact use of any content values in the "\_for-sale" TXT record.
+This document does not dictate the exact use of any content values in the "\_for-sale" TXT record.
 Parties may use it in their tools, perhaps even by defining specific requirements that the content
 value must meet. Content values can also be represented in a human-readable format for individuals to
 interpret. See the (#examples, use title) section for clarification.
@@ -428,7 +429,7 @@ domain, it might be interpreted as an offer to sell IP address space, E.164
 numbers or the like. However, such use is explicitly out of scope for this document, and processors
 **MUST** ignore any such records.
 
-This specification is designed for the global DNS. Application to 
+The operational convention in this document is designed for the global DNS. Application to 
 Special-Use Domain Names [@?RFC6761] (e.g., .onion, .alt) is out of scope.
 
 # Operational Considerations {#operationalcons}
@@ -467,7 +468,7 @@ appear as A-labels as well as U-labels [@!RFC5890], with U-labels encoded as des
 Implementation Note: Some DNS query tools return DNS records in presentation format, rather than the underlying 
 RDATA content. Parsers of the ABNF in this document **MUST** ensure they operate on the raw 
 TXT RDATA content, not its escaped presentation format [@RFC1035, (see) section 5.1]. 
-If the TXT RDATA consists of multiple character-strings (which is non-conformant with this specification), 
+If the TXT RDATA consists of multiple character-strings, 
 they **SHOULD** be concatenated into a single contiguous string prior to being interpreted 
 as a UTF-8 encoded value matching the ABNF.
 
@@ -663,7 +664,7 @@ being human-readable:
 _for-sale IN TXT "v=FORSALE1;ftxt=Eligibility criteria apply."
 ~~~
 
-The content in the following example could be malicious, but it is not in violation of this specification (see
+The content in the following example could be malicious, but it is not in violation of the convention in this document (see
 the (#security, use title)):
 
 ~~~
