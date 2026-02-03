@@ -89,6 +89,9 @@ With due caution, such information can also be incorporated into automated avail
 When checking a domain name for purchasability, the service may indicate whether it is for 
 sale and provide a pointer to the seller's information.
 
+The TXT content defined by this document is intended primarily for human-readable informational display, 
+rather than for algorithmic string comparison or automated processing.
+
 The operational convention described in this document does not require any protocol change.
 
 Examples are provided in (#examples).
@@ -322,9 +325,9 @@ embedding prices in free-form "ftxt=" content tags. For example:
 _for-sale IN TXT "v=FORSALE1;fval=EUR999"
 ~~~
 
-The information provided in "fval=" is not binding. For current and 
-reliable information, interested parties **SHOULD** engage directly 
-with the seller via "furi=" or conventional mechanisms.
+The information provided in "fval=" is not binding and is intended for indicative purposes only. 
+Current and reliable information can be obtained by engaging directly via
+"furi=" or other available communication mechanisms.
 
 See (#currency) for additional operational guidelines and the (#security, use title) 
 section for possible risks.
@@ -340,9 +343,9 @@ set and to maintain compact record formats.
 
 The "\_for-sale" TXT record [@RFC8553, (see) section 2.1] **MUST** contain content deemed valid under the operational convention defined in this document.
 
-Any text suggesting that a domain is not for sale is invalid content. If a domain name is not or no longer for sale, 
-a "\_for-sale" indicator **SHOULD NOT** exist. The presence of a valid "_for-sale" TXT record
-**SHOULD** therefore be regarded as an indication that the domain name is for sale.
+The "\_for-sale" indicator is only to be used for domain names that are available for purchase. Any text suggesting 
+that a domain is not for sale is invalid content. When a domain name is no longer for sale, the
+"\_for-sale" indicator is to be removed.
 
 The existence of a "\_for-sale" leaf node name does not obligate the holder to sell the domain name; 
 it may have been published in error, or withdrawn later for other reasons.
@@ -543,16 +546,15 @@ properly validated and sanitised, potentially enabling attacks such as XSS or SQ
 injection, as well as spoofing techniques based on Unicode manipulation, 
 including bidirectional text attacks and homograph attacks.
 
-Therefore, it is **RECOMMENDED** that any parsing and publishing be conducted with 
-the utmost care. Possible approaches include output sanitisation, maintaining a 
-curated and validated list of URIs, or applying other validation methods, 
-such as URI reputation checks before display.
+Therefore, parsing and publishing this information requires careful validation to 
+ensure that only valid characters and formats are processed. Possible mitigation strategies 
+include output sanitisation, maintaining a curated and validated list of URIs, 
+or applying other validation methods, such as URI reputation checks before display.
 
 Automatically following URIs from "\_for-sale" records without user 
 consent creates security risks, including exposure to malware, 
-phishing pages, and scripted attacks. Implementations **SHOULD NOT** automatically 
-redirect users when encountering "furi=" content tags. Instead, 
-processors **SHOULD** present the target URI to users and require 
+phishing pages, and scripted attacks. Implementations **MUST NOT** automatically 
+redirect users when encountering "furi=" content tags without requiring 
 explicit confirmation before navigation. This allows users to inspect 
 the destination before proceeding.
 
