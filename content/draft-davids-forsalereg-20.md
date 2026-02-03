@@ -91,9 +91,6 @@ sale and provide a pointer to the seller's information.
 
 The operational convention described in this document does not require any protocol change.
 
-The approach in this document aims to promote a more equitable domain aftermarket and to 
-minimise the potential for unintended commercial entanglements by registries.
-
 Examples are provided in (#examples).
 
 ## Terminology
