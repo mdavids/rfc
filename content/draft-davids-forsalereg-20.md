@@ -536,7 +536,7 @@ validation (i.e., has a bogus state).
 # Security Considerations {#security}
 
 One use of the TXT record type defined in this document is to parse the content 
-it contains and to automatically publish certain information from it on a 
+it contains and to publish certain information from it on a 
 website or elsewhere. However, there is a risk if the domain name holder 
 publishes a malicious URI or one that points to improper content. 
 This may result in reputational damage to the party parsing the record.
@@ -553,7 +553,7 @@ or applying other validation methods, such as URI reputation checks before displ
 
 Automatically following URIs from "\_for-sale" records without user 
 consent creates security risks, including exposure to malware, 
-phishing pages, and scripted attacks. Implementations **MUST NOT** automatically 
+phishing pages, and scripted attacks. Processors **MUST NOT** automatically 
 redirect users when encountering "furi=" content tags without requiring 
 explicit confirmation before navigation. This allows users to inspect 
 the destination before proceeding.
