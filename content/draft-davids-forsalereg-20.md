@@ -15,7 +15,7 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-19"
+value = "draft-davids-forsalereg-20"
 stream = "IETF"
 status = "informational"
 
@@ -91,8 +91,7 @@ sale and provide a pointer to the seller's information.
 
 The operational convention described in this document does not require any protocol change.
 
-Furthermore, (#ethicalconsids) discusses some ethical considerations. In particular, 
-the approach in this document aims to promote a more equitable domain aftermarket and to 
+The approach in this document aims to promote a more equitable domain aftermarket and to 
 minimise the potential for unintended commercial entanglements by registries.
 
 Examples are provided in (#examples).
@@ -577,25 +576,6 @@ DNS and may have privacy implications.
 There is a risk of data scraping, such as email addresses and phone numbers.
 
 Publishing contact information may expose domain name holders to spam, or unwanted contact.
-
-# Ethical Considerations {#ethicalconsids}
-Although not specifically designed for this purpose, the mechanism 
-described in this document may also facilitate domain name 
-transactions by professional speculators, often referred to 
-as domainers, and those commonly referred to as domain drop catchers. 
-Some may view this as controversial.
-
-However, by enabling domain name holders to more explicitly
-signal their intent to sell, the "\_for-sale" approach
-aims to introduce greater clarity and predictability
-into the domain lifecycle. This potentially reduces the
-advantage currently held by these professionals, and 
-fosters a more equitable environment for all.
-
-Furthermore, this mechanism avoids creating unnecessary 
-dependencies on registries for market transactions, 
-which could otherwise introduce complexities and 
-potential for unintended commercial entanglements.
 
 # Implementation Status {#implementation}
 <!-- https://datatracker.ietf.org/doc/html/rfc7942 -->
