@@ -155,7 +155,7 @@ fcod-value      = 1*239OCTET
 ftxt-value      = 1*239OCTET
 
 furi-value      = URI / IRI
-                  ; http, https, mailto and tel URI schemes
+                  ; 'http', 'https', 'mailto' and 'tel' URI schemes
                   ; exactly one URI or IRI
 
 URI             = <as defined in RFC3986, Appendix A>
@@ -294,7 +294,8 @@ See (#handlerdata) for considerations regarding the representation of non-ASCII 
 This content tag is intended to contain a human-readable and machine-parsable URI that can be used by interested parties to retrieve further information.
 
 While the syntax allows any URI scheme, only the following schemes are **RECOMMENDED** 
-for use: `http` and `https` [@RFC9110], `mailto` [@RFC6068; @RFC6530, (see) section 11.1], and `tel` [@RFC3966].
+for use: '`http`' and '`https`' [@RFC9110], '`mailto`' [@RFC6068; @RFC6530, (see) section 11.1], and
+'`tel`' [@RFC3966].
 
 The content value **MUST** contain exactly one URI. For example:
 
@@ -559,7 +560,8 @@ explicit confirmation before navigation. This allows users to inspect
 the destination before proceeding.
 
 Some URI schemes **RECOMMENDED** in (#furipar) do not mandate transport security
-(e.g., `http`, `mailto`); therefore, more secure schemes such as `https` are preferred.
+(e.g., '`http`', '`mailto`'); therefore, more secure schemes such as
+'`https`' are preferred.
 
 There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
 means, without there being any intention to actually sell the domain name.
@@ -664,7 +666,7 @@ _for-sale IN TXT "v=FORSALE1;furi=https://example.com/fs?d=eHl6"
 An interested party notices this signal and can visit the URI mentioned for further information. The TXT record
 may also be processed by automated tools, but see the (#security, use title) section for possible risks. 
 
-As an alternative, a mailto: URI could also be used:
+As an alternative, a '`mailto`' URI could also be used:
 
 ~~~
 _for-sale IN TXT "v=FORSALE1;furi=mailto:hq@example.com?subject=foo"
