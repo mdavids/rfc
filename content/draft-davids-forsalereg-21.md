@@ -15,7 +15,7 @@ tocdepth = 3
 # https://mmark.miek.nl/post/faq/
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-davids-forsalereg-20"
+value = "draft-davids-forsalereg-21"
 stream = "IETF"
 status = "informational"
 
@@ -290,7 +290,7 @@ See (#fvalpar) for a way to explicitly indicate an asking price for easier machi
 
 See (#handlerdata) for considerations regarding the representation of non-ASCII data in the content value.
 
-### furi  
+### furi {#furipar}
 This content tag is intended to contain a human-readable and machine-parsable URI that can be used by interested parties to retrieve further information.
 
 While the syntax allows any URI scheme, only the following schemes are **RECOMMENDED** 
@@ -557,6 +557,9 @@ phishing pages, and scripted attacks. Processors **MUST NOT** automatically
 redirect users when encountering "furi=" content tags without requiring 
 explicit confirmation before navigation. This allows users to inspect 
 the destination before proceeding.
+
+Some URI schemes **RECOMMENDED** in (#furipar) do not mandate transport security
+(e.g., `http`, `mailto`); therefore, more secure schemes such as `https` are preferred.
 
 There is also a risk that this method will be abused as a marketing tool, or to lure individuals into visiting certain sites or making contact by other
 means, without there being any intention to actually sell the domain name.
