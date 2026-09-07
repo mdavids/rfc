@@ -1,7 +1,7 @@
 # RFC
 
 > [!NOTE]
-> This draft is now published as [RFC10023](https://www.rfc-editor.org/rfc/rfc10023.html) and this repo has been archived.
+> This draft is now published as [RFC10023](https://www.rfc-editor.org/rfc/rfc10023.html) and the `content` section of this repo has been frozen. The `tools` section may see updated from time to time.
 
 Also see: https://rfc10023.nl for additional information.
 
