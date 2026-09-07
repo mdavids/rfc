@@ -1,5 +1,12 @@
 # RFC
 
+> [!NOTE]
+> This draft is now published as [RFC10023](https://www.rfc-editor.org/rfc/rfc10023.html) and this repo has been archived.
+
+Also see: https://rfc10023.nl for additional information.
+
+---
+
 Current draft I'm working on here is: **draft-davids-forsalereg**.
 
 ## Datatracker:
