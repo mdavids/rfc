@@ -39,7 +39,6 @@ Various other domains to use for testing:
 example.nl
 spongat.nl
 bitfire.nl
-example.co.nl
 nascar.watkins-glen.ny.us
 pnawebloket.nl
 pna-webloket.nl
